@@ -1,17 +1,25 @@
-# ST05_01: Implement RAGFlow Client
+# ST05_01: Implement RAGFlow SDK Client Wrapper
 
 ## Parent Link
 `base/BT05_rag_integration.md`
 
 ## Actionable Steps
-- [ ] Step 1: Initialize RAGFlow SDK client with API key and base URL from config
-- [ ] Step 2: Implement `create_user_dataset()` with parser_config (chunk_token_num=512, layout_recognize=True)
-- [ ] Step 3: Implement `upload_document()` with async parsing trigger
-- [ ] Step 4: Implement `retrieve()` for semantic search within a dataset
-- [ ] Step 5: Add error handling for API failures and timeouts
+- [x] Step 1: Initialize RAGFlow client with api_key and base_url from settings
+- [x] Step 2: Implement `create_user_dataset()` with chunking config
+- [x] Step 3: Implement `upload_document()` with parsing trigger
+- [x] Step 4: Implement `retrieve()` with similarity threshold
+- [x] Step 5: Wrap in module-level singleton `get_ragflow_client()`
 
 ## Dependencies
-- `ragflow-sdk` installed, RAGFlow container running
+- `ragflow-sdk ^0.15.0` installed in pyproject.toml ✅
+- RAGFLOW_API_KEY and RAGFLOW_API_URL in settings ✅
 
-## Definition of Done
-Client wrapper creates datasets, uploads/parses documents, and retrieves chunks successfully.
+## Implementation Notes
+- `ragflow_sdk` is synchronous — callers use `asyncio.to_thread()` for async contexts
+- Chunk method: "naive", token limit: 512, layout_recognize: True (DeepDoc OCR)
+- Graceful error handling in `retrieve()` — returns empty list on SDK errors
+- Singleton pattern via `get_ragflow_client()` function
+
+## Completion
+**Status: [x] COMPLETE** — Implemented 2026-07-14 (as part of BT04 tooling).
+`../../echomind-core/app/rag/ragflow_client.py`

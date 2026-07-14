@@ -7,8 +7,8 @@ Integrate the RAGFlow engine for superior document understanding with OCR, layou
 RAGFlow provides document parsing capabilities (DeepDoc OCR, table extraction) that far exceed basic text splitters, critical for enterprise document workflows.
 
 ## Subtask Registry
-- [ ] `sub/ST05_01_ragflow_client.md` — Implement RAGFlow SDK client wrapper
-- [ ] `sub/ST05_02_ragflow_tool.md` — Implement LangChain @tool for RAGFlow retrieval
+- [x] `sub/ST05_01_ragflow_client.md` — Implement RAGFlow SDK client wrapper
+- [x] `sub/ST05_02_ragflow_tool.md` — Implement LangChain @tool for RAGFlow retrieval
 - [ ] `sub/ST05_03_ragflow_docker.md` — Validate RAGFlow Docker deployment and API connectivity
 
 ## Complexity Rating
@@ -16,3 +16,7 @@ RAGFlow provides document parsing capabilities (DeepDoc OCR, table extraction) t
 
 ## Source Code Location
 `../../echomind-core/app/rag/`, `../../echomind-core/app/agent/tools/ragflow_retrieval.py`
+
+## Partial Completion Note
+ST05_01 and ST05_02 were completed as part of BT04 (providing the tool set for the agent).
+ST05_03 (Docker validation) remains — requires manual testing with running containers.
