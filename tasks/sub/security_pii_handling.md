@@ -3,10 +3,10 @@
 **Parent Link:** `base/security_hardening.md`
 
 ## Actionable Steps
-- [ ] Implement PII scanning for API responses (post-flight output validation).
-- [ ] Implement PII redaction in structured log messages.
-- [ ] Strip PII from Kafka trace payloads before publishing.
-- [ ] Integrate with EvalOps PII leakage detection tests.
+- [x] Implement PII scanning for API responses (post-flight output validation).
+- [x] Implement PII redaction in structured log messages.
+- [x] Strip PII from Kafka trace payloads before publishing.
+- [x] Integrate with EvalOps PII leakage detection tests.
 
 ## Dependencies
 - GuardRoute post-flight pipeline. Kafka producer. Logging framework.

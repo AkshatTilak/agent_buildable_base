@@ -3,10 +3,10 @@
 **Parent Link:** `base/security_hardening.md`
 
 ## Actionable Steps
-- [ ] Verify `.env` is in `.gitignore`.
-- [ ] Create `.env.example` with placeholder values only — never real keys.
-- [ ] Document Docker secrets or cloud secret manager integration for production.
-- [ ] Ensure API keys, DB passwords, provider keys never appear in logs.
+- [x] Verify `.env` is in `.gitignore`.
+- [x] Create `.env.example` with placeholder values only — never real keys.
+- [x] Document Docker secrets or cloud secret manager integration for production.
+- [x] Ensure API keys, DB passwords, provider keys never appear in logs.
 
 ## Dependencies
 - `.gitignore` file. Logging framework in `common/observability/`.

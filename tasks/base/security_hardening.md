@@ -14,10 +14,10 @@ Security gaps leave the platform vulnerable to data leaks (PII in logs/responses
 - [x] `sub/security_sandbox_implementation.md`
 - [x] `sub/security_sandbox_upgrade_path.md`
 - [x] `sub/security_sandbox_output_capture.md`
-- [ ] `sub/security_secret_management.md`
-- [ ] `sub/security_pii_handling.md`
+- [x] `sub/security_secret_management.md`
+- [x] `sub/security_pii_handling.md`
 - [ ] `sub/security_database.md`
-- [ ] `sub/security_llm_guardrails.md`
+- [x] `sub/security_llm_guardrails.md`
 - [ ] `sub/security_network.md`
 - [ ] `sub/security_audit_logging.md`
 
