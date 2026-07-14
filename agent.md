@@ -29,3 +29,46 @@ As you architect the system, populate the `references/` directory to give downst
 ### 4. Operational Guiding Principles
 * **Clarification First:** If the user's project idea contains ambiguities or gaps, ask targeted clarifying questions before finalizing the architecture.
 * **Risk & Conflict View:** If any part of the project design lacks feasibility or cannot be smoothly integrated, put that into view for the user immediately.
+
+---
+
+## Active Project Context: ContAIned AI Platform
+
+This workspace is currently configured for the **ContAIned AI Platform** — a modular, AI-first monorepo for autonomous document/video ingestion, intelligent query orchestration, and automated QA.
+
+### Current State
+The following architectural and implementation work is **already completed** (see `references/` for details):
+* **Core Infrastructure:** Monorepo integration rules, environment configuration, database namespacing (Postgres, Qdrant, Neo4j, Redis, Kafka).
+* **Shared Library (`common/`):** Configuration, database clients, observability, schemas, Model Registry API.
+* **SyntraFlow:** Document/video ingestion pipeline, OCR/ASR integration, MCP retrieval server, hybrid RAG.
+* **GuardRoute:** LangGraph scatter-gather orchestration, LLM fallback chains, session management, SSE streaming.
+* **Inference Server:** VRAM Manager, lazy loading, LRU eviction, health endpoint, concurrency.
+* **Infrastructure:** Docker images, docker-compose services (core, admin, observability profiles).
+* **Security (Partial):** API auth, rate limiting, CORS, request validation, code execution sandbox.
+
+### Remaining Work
+See `tasks/goal/contained_platform.md` for the full breakdown. Key remaining areas:
+* **Model Hub:** HuggingFace auto-download, quantization, device mapping, model adapters for all roles.
+* **Inference Endpoints:** Classifier, ASR, Embedding, OCR endpoint implementations.
+* **EvalOps QA:** RAGAS benchmarks, DeepEval safety, router benchmarks, Kafka consumers, CI/CD.
+* **Frontend:** Full React developer dashboard.
+* **Security Hardening:** Secret management, PII handling, LLM guardrails, network isolation.
+* **System Lifecycle:** Startup/shutdown sequences, graceful degradation, Docker optimization.
+
+### Key References
+* `references/structure/system_architecture.md` — System topology, env vars, DB setup.
+* `references/logic/model_registry.md` — All model options and VRAM profiles.
+* `references/logic/syntraflow.md` — Ingestion and RAG architecture.
+* `references/logic/guardroute.md` — Orchestration and routing architecture.
+* `references/logic/inference.md` — Inference server architecture.
+* `references/logic/security.md` — Security policies.
+* `references/deployment/infrastructure.md` — Docker and deployment.
+* `references/code/common_library.md` — Shared library implementation details.
+
+### Documentation Sources
+* **Hugging Face & ML:** [Hugging Face Docs](https://huggingface.co/docs), [Transformers Docs](https://huggingface.co/docs/transformers/index), [Sentence Transformers](https://sbert.net/)
+* **LLM Orchestration & Clients:** [LangChain Docs](https://python.langchain.com/v0.3/docs/introduction/), [LangGraph Docs](https://langchain-ai.github.io/langgraph/), [LiteLLM Docs](https://docs.litellm.ai/)
+* **API & Data Validation:** [FastAPI Docs](https://fastapi.tiangolo.com/), [Pydantic v2 Docs](https://docs.pydantic.dev/latest/)
+* **Database & Storage:** [SQLAlchemy v2 Docs](https://docs.sqlalchemy.org/en/20/), [Qdrant Docs](https://qdrant.tech/documentation/), [Neo4j Python Driver](https://neo4j.com/docs/python-manual/current/)
+* **Evaluation & MLOps:** [DeepEval Docs](https://docs.confident-ai.com/), [Ragas Docs](https://docs.ragas.io/en/stable/), [MLflow Docs](https://mlflow.org/docs/latest/index.html)
+* **Other Integrations:** [Model Context Protocol (MCP)](https://modelcontextprotocol.io/), [Llama.cpp Python](https://abetlen.github.io/llama-cpp-python/), [Confluent Kafka Python](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html)

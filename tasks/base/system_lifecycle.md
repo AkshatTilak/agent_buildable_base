@@ -1,0 +1,21 @@
+# Base Task: System Lifecycle & Graceful Degradation
+
+## Objective
+Implement the formal startup/shutdown sequence for the gateway and inference server, plus graceful degradation behavior when optional services (Neo4j, Kafka, Redis, Inference Server) are unavailable. Also complete Docker image security optimizations and local development workflow.
+
+## Business/System Value
+Without proper lifecycle management, the system can crash on startup if any database is slow, leak resources on shutdown, or fail catastrophically when a single service goes down. This base task makes the platform resilient and operator-friendly.
+
+## Subtask Registry
+- [ ] `sub/lifecycle_startup_sequence.md`
+- [ ] `sub/lifecycle_shutdown_sequence.md`
+- [ ] `sub/lifecycle_graceful_degradation.md`
+- [ ] `sub/lifecycle_docker_optimization.md`
+- [ ] `sub/lifecycle_local_dev_setup.md`
+
+## Complexity Rating
+**Medium** — Requires careful ordering of initialization, error handling across multiple services, and Docker build optimization.
+
+## References
+- `references/structure/system_architecture.md` — Startup/shutdown specs, graceful degradation rules.
+- `references/deployment/infrastructure.md` — Docker images, local dev setup.
