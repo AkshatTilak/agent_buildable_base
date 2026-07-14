@@ -14,7 +14,7 @@ Without proper lifecycle management, the system can crash on startup if any data
 - [x] `sub/lifecycle_compose_admin.md`
 - [x] `sub/lifecycle_compose_observability.md`
 - [x] `sub/lifecycle_compose_volumes.md`
-- [ ] `sub/lifecycle_startup_sequence.md`
+- [x] `sub/lifecycle_startup_sequence.md`
 - [ ] `sub/lifecycle_shutdown_sequence.md`
 - [ ] `sub/lifecycle_graceful_degradation.md`
 - [ ] `sub/lifecycle_docker_optimization.md`

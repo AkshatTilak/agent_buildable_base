@@ -16,10 +16,10 @@ Security gaps leave the platform vulnerable to data leaks (PII in logs/responses
 - [x] `sub/security_sandbox_output_capture.md`
 - [x] `sub/security_secret_management.md`
 - [x] `sub/security_pii_handling.md`
-- [ ] `sub/security_database.md`
+- [x] `sub/security_database.md`
 - [x] `sub/security_llm_guardrails.md`
 - [ ] `sub/security_network.md`
-- [ ] `sub/security_audit_logging.md`
+- [x] `sub/security_audit_logging.md`
 
 ## Complexity Rating
 **Medium** — Individual items are straightforward but spread across many layers (gateway, clients, LLM pipeline, Docker networking).
