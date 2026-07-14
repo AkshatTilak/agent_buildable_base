@@ -15,10 +15,10 @@ These are the GPU-bound AI workloads that power every feature in the platform. W
 - [x] `sub/inference_health_endpoint.md`
 - [x] `sub/inference_concurrency_queuing.md`
 - [x] `sub/inference_latency_tracking.md`
-- [ ] `sub/inference_classifier_endpoint.md`
-- [ ] `sub/inference_asr_endpoint.md`
-- [ ] `sub/inference_embedding_endpoint.md`
-- [ ] `sub/inference_ocr_endpoint.md`
+- [x] `sub/inference_classifier_endpoint.md`
+- [x] `sub/inference_asr_endpoint.md`
+- [x] `sub/inference_embedding_endpoint.md`
+- [x] `sub/inference_ocr_endpoint.md`
 
 ## Complexity Rating
 **High** — Requires deep integration with multiple ML frameworks (`llama-cpp-python`, `funasr`, `sentence-transformers`, `transformers`, `paddleocr`) and the VRAM Manager's lazy-loading system.

@@ -17,8 +17,8 @@ This Goal is achieved when **all** Base Tasks below are verified and marked `[x]
 - [x] `base/common_library.md` — Shared library config, database clients, schemas, observability
 - [x] `base/syntraflow_rag.md` — Document and video ingestion, hybrid RAG store, MCP tools
 - [x] `base/guardroute_orchestrator.md` — Query classification, LangGraph orchestrator, fallbacks, streaming
-- [/] `base/model_hub.md` — HuggingFace integration, quantization, device mapping
-- [/] `base/inference_models.md` — Inference server model endpoints (classifier, ASR, embedding, OCR)
+- [x] `base/model_hub.md` — HuggingFace integration, quantization, device mapping
+- [x] `base/inference_models.md` — Inference server model endpoints (classifier, ASR, embedding, OCR)
 - [ ] `base/evalops_qa.md` — Full EvalOps QA pipeline
 - [ ] `base/frontend_ui.md` — Complete React developer dashboard
 - [/] `base/security_hardening.md` — Security hardening across all layers

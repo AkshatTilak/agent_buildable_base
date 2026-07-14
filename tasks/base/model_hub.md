@@ -11,14 +11,14 @@ Without this, all local models require manual downloading and configuration. Thi
 - [x] `sub/model_hub_env_override.md`
 - [x] `sub/model_hub_registry_api.md`
 - [x] `sub/model_hub_dynamic_vector_dim.md`
-- [ ] `sub/model_hub_auto_download.md`
-- [ ] `sub/model_hub_quantization.md`
-- [ ] `sub/model_hub_device_mapping.md`
-- [ ] `sub/model_hub_ocr_contracts.md`
-- [ ] `sub/model_hub_asr_contracts.md`
-- [ ] `sub/model_hub_embedding_contracts.md`
-- [ ] `sub/model_hub_classifier_contracts.md`
-- [ ] `sub/model_hub_completion_providers.md`
+- [x] `sub/model_hub_auto_download.md`
+- [x] `sub/model_hub_quantization.md`
+- [x] `sub/model_hub_device_mapping.md`
+- [x] `sub/model_hub_ocr_contracts.md`
+- [x] `sub/model_hub_asr_contracts.md`
+- [x] `sub/model_hub_embedding_contracts.md`
+- [x] `sub/model_hub_classifier_contracts.md`
+- [x] `sub/model_hub_completion_providers.md`
 
 ## Complexity Rating
 **High** — Involves GPU memory management, multiple ML frameworks, and cross-model interface unification.
