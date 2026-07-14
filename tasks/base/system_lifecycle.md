@@ -7,6 +7,13 @@ Implement the formal startup/shutdown sequence for the gateway and inference ser
 Without proper lifecycle management, the system can crash on startup if any database is slow, leak resources on shutdown, or fail catastrophically when a single service goes down. This base task makes the platform resilient and operator-friendly.
 
 ## Subtask Registry
+- [x] `sub/lifecycle_docker_gateway.md`
+- [x] `sub/lifecycle_docker_inference.md`
+- [x] `sub/lifecycle_resources_bug.md`
+- [x] `sub/lifecycle_compose_core.md`
+- [x] `sub/lifecycle_compose_admin.md`
+- [x] `sub/lifecycle_compose_observability.md`
+- [x] `sub/lifecycle_compose_volumes.md`
 - [ ] `sub/lifecycle_startup_sequence.md`
 - [ ] `sub/lifecycle_shutdown_sequence.md`
 - [ ] `sub/lifecycle_graceful_degradation.md`

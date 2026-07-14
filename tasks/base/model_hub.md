@@ -7,6 +7,10 @@ Implement the HuggingFace Hub integration layer, quantization support, and devic
 Without this, all local models require manual downloading and configuration. This base task enables the "plug-and-play" model experience where switching to a new model is a single env var change.
 
 ## Subtask Registry
+- [x] `sub/model_hub_registry_storage.md`
+- [x] `sub/model_hub_env_override.md`
+- [x] `sub/model_hub_registry_api.md`
+- [x] `sub/model_hub_dynamic_vector_dim.md`
 - [ ] `sub/model_hub_auto_download.md`
 - [ ] `sub/model_hub_quantization.md`
 - [ ] `sub/model_hub_device_mapping.md`

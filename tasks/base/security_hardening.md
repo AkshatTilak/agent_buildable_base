@@ -7,6 +7,13 @@ Implement the remaining security measures across all platform layers: secret man
 Security gaps leave the platform vulnerable to data leaks (PII in logs/responses), injection attacks (prompt injection, SQL/Cypher injection), and unauthorized access. These hardening tasks bring the platform from development-safe to production-ready.
 
 ## Subtask Registry
+- [x] `sub/security_auth_middleware.md`
+- [x] `sub/security_rate_limiting.md`
+- [x] `sub/security_cors.md`
+- [x] `sub/security_request_validation.md`
+- [x] `sub/security_sandbox_implementation.md`
+- [x] `sub/security_sandbox_upgrade_path.md`
+- [x] `sub/security_sandbox_output_capture.md`
 - [ ] `sub/security_secret_management.md`
 - [ ] `sub/security_pii_handling.md`
 - [ ] `sub/security_database.md`
