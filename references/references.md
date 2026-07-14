@@ -19,6 +19,10 @@ All contextual knowledge must be strictly categorized into the following subdire
 ### `structure/` (Architecture & Topology)
 * **Purpose:** Defines the physical and logical layout of the system.
 * **Contents:** Database schemas, API routing maps, dependency graphs, and monorepo/folder architecture diagrams.
+* **Key Files:**
+  * [repository_layout.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure/repository_layout.md): High-level monorepo folder layout, module responsibilities, integration flows, and directory navigation guidelines.
+  * [system_architecture.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure/system_architecture.md): Monorepo rules, environment settings, database/message queue specifications, and system lifecycle configurations.
+  * [frontend.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure/frontend.md): UI dashboard architecture, navigation patterns, component designs, and admin portal profiles.
 * **When to use:** Read this when creating new modules to ensure they fit the existing topology. Update this when adding new tables, microservices, or core integrations.
 
 ### `code/` (Codebase Explanations & Mappings)
