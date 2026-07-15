@@ -8,7 +8,7 @@
 - [x] Step 2: Implement POST /login with credential verification and JWT issuance
 - [x] Step 3: Implement GET /me with JWT dependency injection and profile retrieval
 - [x] Step 4: Implement POST /logout — invalidates Redis session cache
-- [ ] Step 5: Write API tests for register, login, profile, and logout endpoints
+- [x] Step 5: Write API tests for register, login, profile, and logout endpoints
 
 ## Dependencies
 - `ST03_01_security_utils.md` ✅ — Security utils implemented

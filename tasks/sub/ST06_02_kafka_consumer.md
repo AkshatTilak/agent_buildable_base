@@ -4,11 +4,11 @@
 `base/BT06_kafka_streaming.md`
 
 ## Actionable Steps
-- [ ] Step 1: Initialize AIOKafkaConsumer subscribing to `document.ingestion.events`
-- [ ] Step 2: Implement message processing loop with RAGFlow document handling
-- [ ] Step 3: Generate embeddings and insert into vector_knowledge table
-- [ ] Step 4: Update document status (PENDING → PROCESSING → COMPLETE/FAILED)
-- [ ] Step 5: Add error handling, retry logic, and dead letter queue for failures
+- [x] Step 1: Initialize AIOKafkaConsumer subscribing to `document.ingestion.events`
+- [x] Step 2: Implement message processing loop with RAGFlow document handling
+- [x] Step 3: Generate embeddings and insert into vector_knowledge table
+- [x] Step 4: Update document status (PENDING → PROCESSING → COMPLETE/FAILED)
+- [x] Step 5: Add error handling, retry logic, and dead letter queue for failures
 - [ ] Step 6: Add Langfuse tracing to consumer processing
 
 ## Dependencies

@@ -8,7 +8,7 @@
 - [x] Step 2: Create async_sessionmaker factory with expire_on_commit=False
 - [x] Step 3: Implement `get_db()` FastAPI dependency with commit/rollback handling
 - [x] Step 4: Wire into FastAPI lifespan (Redis warm-up on startup in main.py)
-- [ ] Step 5: Write integration test verifying DB session lifecycle
+- [x] Step 5: Write integration test verifying DB session lifecycle
 
 ## Dependencies
 - PostgreSQL running and accessible

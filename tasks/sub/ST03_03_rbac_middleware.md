@@ -9,7 +9,7 @@
 - [x] Step 3: Create `require_permission(tool_name)` dependency factory for tool-level gating
 - [x] Step 4: Create `require_role(*roles)` dependency factory for route-level gating
 - [x] Step 5: Return 403 Forbidden with descriptive detail on unauthorized access
-- [ ] Step 6: Write integration tests for RBAC enforcement across all three roles
+- [x] Step 6: Write integration tests for RBAC enforcement across all three roles
 
 ## Dependencies
 - `ST03_01_security_utils.md` ✅, `ST03_04_redis_session.md` ✅

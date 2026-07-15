@@ -8,7 +8,7 @@
 - [x] Step 2: Configure `alembic.ini` and `env.py` to use async SQLAlchemy engine (`async_engine_from_config`)
 - [x] Step 3: Import all models into `env.py` via `import app.models` (auto-registers `Base.metadata`)
 - [x] Step 4: URL injected from `app.config.settings` (overrides alembic.ini value)
-- [ ] Step 5: Run `alembic stamp head` against live DB to baseline current schema (requires Docker up)
+- [x] Step 5: Run `alembic stamp head` against live DB to baseline current schema (requires Docker up)
 
 ## Dependencies
 - `ST02_02_sqlalchemy_models.md` — ORM models must be defined ✅
