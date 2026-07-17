@@ -3,10 +3,10 @@
 **Parent Link:** `base/evalops_qa.md`
 
 ## Actionable Steps
-- [ ] Ensure EvalOps is configured as a QA/CI tool, not a production service.
-- [ ] In docker-compose: EvalOps runner behind `test` profile.
-- [ ] Kafka consumers only start when explicitly enabled (not on default gateway startup).
-- [ ] Document requirement: `poetry install --extras "evalops"`.
+- [x] Ensure EvalOps is configured as a QA/CI tool, not a production service.
+- [x] In docker-compose: EvalOps runner behind `test` profile.
+- [x] Kafka consumers only start when explicitly enabled (not on default gateway startup).
+- [x] Document requirement: `poetry install --extras "evalops"`.
 
 ## Dependencies
 - docker-compose configuration. `pyproject.toml` extras groups.

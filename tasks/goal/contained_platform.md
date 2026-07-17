@@ -19,7 +19,7 @@ This Goal is achieved when **all** Base Tasks below are verified and marked `[x]
 - [x] `base/guardroute_orchestrator.md` — Query classification, LangGraph orchestrator, fallbacks, streaming
 - [x] `base/model_hub.md` — HuggingFace integration, quantization, device mapping
 - [x] `base/inference_models.md` — Inference server model endpoints (classifier, ASR, embedding, OCR)
-- [ ] `base/evalops_qa.md` — Full EvalOps QA pipeline
+- [x] `base/evalops_qa.md` — Full EvalOps QA pipeline
 - [ ] `base/frontend_ui.md` — Complete React developer dashboard
 - [x] `base/security_hardening.md` — Security hardening across all layers
 - [x] `base/system_lifecycle.md` — Startup/shutdown lifecycle & graceful degradation

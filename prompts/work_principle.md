@@ -23,7 +23,7 @@ This document outlines the strict protocol and guidelines for all agents and dev
 ### Complete & Integrated Delivery
 - Every task must be completed **fully and end-to-end**, integrating across all dependent submodules.
 - **Never implement duplicate code.** Abstract recurring logic into a shared utility or `common/` package.
-
+- **Run any inference needed to test.** Run and test any infrastructure that is needed(like docker, kafka, kubernetes.) Whatever is used.
 ---
 
 ## 3. Scope Management & Tracking (Adhere to `tasks.md`)
