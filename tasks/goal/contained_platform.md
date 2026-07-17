@@ -21,5 +21,5 @@ This Goal is achieved when **all** Base Tasks below are verified and marked `[x]
 - [x] `base/inference_models.md` — Inference server model endpoints (classifier, ASR, embedding, OCR)
 - [ ] `base/evalops_qa.md` — Full EvalOps QA pipeline
 - [ ] `base/frontend_ui.md` — Complete React developer dashboard
-- [/] `base/security_hardening.md` — Security hardening across all layers
-- [/] `base/system_lifecycle.md` — Startup/shutdown lifecycle & graceful degradation
+- [x] `base/security_hardening.md` — Security hardening across all layers
+- [x] `base/system_lifecycle.md` — Startup/shutdown lifecycle & graceful degradation
