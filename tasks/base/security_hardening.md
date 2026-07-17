@@ -18,7 +18,7 @@ Security gaps leave the platform vulnerable to data leaks (PII in logs/responses
 - [x] `sub/security_pii_handling.md`
 - [x] `sub/security_database.md`
 - [x] `sub/security_llm_guardrails.md`
-- [ ] `sub/security_network.md`
+- [x] `sub/security_network.md`
 - [x] `sub/security_audit_logging.md`
 
 ## Complexity Rating
