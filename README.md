@@ -43,11 +43,16 @@ Supporting the AI orchestration layer is a robust, production-ready backend desi
 │   ├── resource/           # External API docs, dataset links, and asset catalogs
 │   ├── structure/          # Database schemas, API routing, and dependency graphs
 │   └── user/               # Human-in-the-loop requests (API keys, manual QA)
-├── tasks/                  # Active execution directory
-│   ├── tasks.md            # 📖 Master guide for task hierarchy and state roll-ups
-│   ├── goal/               # The ultimate system objective
-│   ├── base/               # Broad architectural milestones (The "What" and "Why")
-│   ├── sub/                # Granular execution units (The "How")
-│   └── temp/               # Holding zone for spontaneous, out-of-scope issues
+├── tasks/                  # Task directory with release versioning
+│   ├── tasks.md            # 📖 Master guide for task versioning, hierarchy, & registry
+│   ├── v1/                 # Version 1 baseline tasks (Completed)
+│   │   ├── tasks.md        # v1 task roll-up & SOP
+│   │   ├── goal/           # v1 system goal document
+│   │   ├── base/           # v1 architectural milestones (The "What" and "Why")
+│   │   └── sub/            # v1 granular execution units (The "How")
+│   └── v2/                 # Version 2 active tasks (Improvements & Bugfixes)
+│       ├── goal/           # v2 system goal document
+│       ├── base/           # v2 architectural milestones
+│       └── sub/            # v2 granular execution units
 ├── agent.md                # The master System Architect prompt and bootstrap guide
 └── README.md               # You are here

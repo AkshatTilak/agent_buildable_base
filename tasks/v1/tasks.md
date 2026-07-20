@@ -1,41 +1,39 @@
-# Standard Operating Procedure: Task Management & Hierarchy (`tasks.md`)
+# Version 1 (v1) Task SOP & Hierarchy (`tasks/v1/tasks.md`)
 
-This document defines the strict hierarchical structure and lifecycle of all actionable work within this project. Both the orchestration agents mapping out the system and the execution agents writing the code must adhere to these definitions to maintain alignment and prevent scope creep.
+This document defines the hierarchical structure and lifecycle of all Version 1 (v1) baseline system tasks.
 
 ---
 
-## 1. The Task Hierarchy
+## 1. The Task Hierarchy (v1)
 
-All project work is divided into four distinct layers, represented by the subdirectories within the `tasks/` folder:
+All v1 project work is divided into four distinct layers within the `tasks/v1/` directory:
 
 ### I. `goal/` (The North Star)
-* **Purpose:** Defines the absolute final objective of the entire system.
-* **Scope:** Contains a single, high-level document outlining what the completed, production-ready system looks like.
-* **Completion State:** The Goal is only achieved when **all** underlying Base Tasks are successfully executed, verified, and integrated.
+* **Purpose:** Defines the absolute final objective of the v1 system baseline.
+* **Scope:** Contains `tasks/v1/goal/contained_platform.md`.
+* **Completion State:** The Goal is achieved when **all** underlying v1 Base Tasks are successfully executed, verified, and integrated.
 
 ### II. `base/` (Architectural Milestones)
 * **Purpose:** Defines the broad, foundational objectives of the project (the "What" and the "Why").
-* **Scope:** Each Base Task represents a major system component (e.g., "Implement Inference Pipeline", "Set up Database & Storage", "Build User Auth Flow").
-* **Constraints:** Base Tasks do NOT contain granular code steps. They exist to group, provide context, and define the acceptance criteria for a cluster of Subtasks.
+* **Scope:** Each Base Task in `tasks/v1/base/` represents a major system component (e.g., Common Library, SyntraFlow, GuardRoute, Inference, EvalOps).
+* **Constraints:** Base Tasks do NOT contain granular code steps. They exist to group, provide context, and define acceptance criteria for v1 Subtasks.
 
 ### III. `sub/` (Granular Execution Units)
 * **Purpose:** The actual, actionable work given to an execution agent (the "How").
-* **Scope:** Highly specific, scoped implementations (e.g., "Write Pydantic schemas for User model", "Configure Docker-compose for Postgres", "Implement LangChain API wrapper").
-* **Linkage:** Every Subtask **must** explicitly link back to its parent Base Task.
+* **Scope:** Highly specific, scoped implementations in `tasks/v1/sub/`.
+* **Linkage:** Every Subtask **must** explicitly link back to its parent Base Task in `tasks/v1/base/`.
 * **Completion State:** When all Subtasks linked to a Base Task are marked `[x]`, the parent Base Task is considered complete.
 
 ### IV. `temp/` (Ad-Hoc & Scope Management)
-* **Purpose:** A holding zone for spontaneous, out-of-scope issues discovered during the execution of a Subtask.
-* **Scope:** Minor bug fixes, refactoring notes, or missing dependency flags that arise dynamically.
-* **Workflow:** If an agent encounters an issue outside its current Subtask, it must log a quick `.md` file in `temp/` and immediately return to its primary assignment. The orchestration agent will later review `temp/` to elevate these items into formal Subtasks if necessary.
+* **Purpose:** A holding zone for spontaneous, out-of-scope issues discovered during execution of a v1 Subtask (`tasks/v1/temp/`).
 
 ---
 
 ## 2. Task Definition Standards
 
-When the Architect Agent generates task files, it must follow these templates:
+When task files are created for v1, they follow these templates:
 
-### Base Task Template (`tasks/base/[task_name].md`)
+### Base Task Template (`tasks/v1/base/[task_name].md`)
 * **Objective:** A one-sentence summary of the milestone.
 * **Business/System Value:** Why this component is necessary.
 * **Subtask Registry:** A checklist of all linked subtasks required to complete this base task.
@@ -43,8 +41,8 @@ When the Architect Agent generates task files, it must follow these templates:
   * `[ ] sub/02_schema_definitions.md`
 * **Complexity Rating:** Estimated architectural weight (e.g., Low, Medium, High).
 
-### Subtask Template (`tasks/sub/[subtask_name].md`)
-* **Parent Link:** Explicit reference to `base/[task_name].md`.
+### Subtask Template (`tasks/v1/sub/[subtask_name].md`)
+* **Parent Link:** Explicit reference to `v1/base/[task_name].md`.
 * **Actionable Steps:** A strictly ordered checklist of technical steps.
   * `[ ] Step 1: Initialize clients...`
   * `[ ] Step 2: Write tests...`

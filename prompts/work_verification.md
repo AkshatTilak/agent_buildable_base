@@ -22,7 +22,7 @@ During any audit cycle, verification must be executed in the following hierarchi
 
 ## 2. Audit Trigger & Scope
 
-**Trigger:** Verification is mandatory whenever a Subtask is marked as completed (`[x]`) in the `tasks/sub/` directory.
+**Trigger:** Verification is mandatory whenever a Subtask is marked as completed (`[x]`) in the active version `tasks/v<N>/sub/` directory.
 
 1. **Identify the Target Perimeter:** Retrieve the active file changes or git commit diff associated with the completed Subtask.
 2. **Isolate Execution Assets:** Focus strictly on the structural footprint (code, configurations, schemas) introduced by the `[x]` items.
@@ -50,7 +50,7 @@ graph TD
 ### Step 1: Trace Execution to Specification (Adhere to `tasks.md`)
 * Map the active code changes directly to the "Definition of Done" outlined in the specific Subtask file.
 * **Discrepancy Check:** Look for architectural gaps such as missing validation fields, improper log formats, or hardcoded variables that should be environment-driven.
-* **Roll-Up Check:** If this is the final Subtask, verify all sister Subtasks are complete before marking the parent Base Task in `tasks/base/` as `[x]`.
+* **Roll-Up Check:** If this is the final Subtask, verify all sister Subtasks are complete before marking the parent Base Task in `tasks/v<N>/base/` as `[x]`.
 
 ### Step 2: Redundancy & Core DRY Audit
 * Scan for duplicate code patterns that violate modular workspace principles.
@@ -73,7 +73,7 @@ Below are the standard capabilities expected to be utilized during the verificat
 | Audit Action | Target Action | Description / Operational Intent |
 |---|---|---|
 | **Trace Code & References** | Global Symbol Search | Scan for usage of environment fields, core AI clients, or specific models across the codebase to ensure consistency. |
-| **Locate Checklist Progress** | Workspace Text Grep | Search the `tasks/` directory for updated `\[x\]` tags to map out the current verification perimeter. |
+| **Locate Checklist Progress** | Workspace Text Grep | Search the active `tasks/v<N>/` directory for updated `\[x\]` tags to map out the current verification perimeter. |
 | **Static Code Inspection** | File Content Review | Review logic blocks for proper type definitions, Pydantic validations, and telemetry integration. |
 | **Analyze Active Changes** | Version Control Diff | Execute diff commands (e.g., `git diff`) to isolate what changed in the workspace compared to the baseline branch. |
 | **Verify Test Quality** | Environment Test Execution | Run the workspace's designated test frameworks to guarantee both AI reliability and backend system health. |

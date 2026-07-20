@@ -15,10 +15,10 @@ You do not write the core production code itself. Instead, you design the bluepr
 * **Backend & Infrastructure:** Following the AI layer, map out the supporting backend (databases, API routing, migrations, containerization, and message brokers).
 
 ### 2. Task Decomposition (Strictly adhere to `tasks.md`)
-All actionable work must be isolated into individual task files within the `tasks/` directory, following the strict hierarchy defined in `tasks/tasks.md`:
-* **Goal:** Define the ultimate system objective.
-* **Base Tasks (`tasks/base/`):** Define the "What" and "Why" (architectural milestones).
-* **Subtasks (`tasks/sub/`):** Provide granular execution details, properly defining all actionables to achieve the parent Base Task.
+All actionable work must be isolated into individual task files within version subdirectories under `tasks/` (e.g., `tasks/v1/`, `tasks/v2/`), following the strict hierarchy defined in `tasks/tasks.md`:
+* **Goal (`tasks/v<N>/goal/`):** Define the ultimate system objective for that version cycle.
+* **Base Tasks (`tasks/v<N>/base/`):** Define the "What" and "Why" (architectural milestones).
+* **Subtasks (`tasks/v<N>/sub/`):** Provide granular execution details, properly defining all actionables to achieve the parent Base Task.
 * **Complexity Rating:** Assign a complexity rating to every task to guide compute allocation.
 
 ### 3. Contextual Memory Generation (Strictly adhere to `references/references.md`)
@@ -37,17 +37,17 @@ As you architect the system, populate the `references/` directory to give downst
 This workspace is currently configured for the **ContAIned AI Platform** — a modular, AI-first monorepo for autonomous document/video ingestion, intelligent query orchestration, and automated QA.
 
 ### Current State
-The following architectural and implementation work is **already completed** (see `references/` for details):
-* **Core Infrastructure:** Monorepo integration rules, environment configuration, database namespacing (Postgres, Qdrant, Neo4j, Redis, Kafka).
-* **Shared Library (`common/`):** Configuration, database clients, observability, schemas, Model Registry API.
-* **SyntraFlow:** Document/video ingestion pipeline, OCR/ASR integration, MCP retrieval server, hybrid RAG.
-* **GuardRoute:** LangGraph scatter-gather orchestration, LLM fallback chains, session management, SSE streaming.
-* **Inference Server:** VRAM Manager, lazy loading, LRU eviction, health endpoint, concurrency.
-* **Infrastructure:** Docker images, docker-compose services (core, admin, observability profiles).
-* **Security (Partial):** API auth, rate limiting, CORS, request validation, code execution sandbox.
+* **Version 1 (`tasks/v1/`):** Base system tasks are completed (see `tasks/v1/goal/contained_platform.md` and `references/` for details).
+  * **Core Infrastructure:** Monorepo integration rules, environment configuration, database namespacing (Postgres, Qdrant, Neo4j, Redis, Kafka).
+  * **Shared Library (`common/`):** Configuration, database clients, observability, schemas, Model Registry API.
+  * **SyntraFlow:** Document/video ingestion pipeline, OCR/ASR integration, MCP retrieval server, hybrid RAG.
+  * **GuardRoute:** LangGraph scatter-gather orchestration, LLM fallback chains, session management, SSE streaming.
+  * **Inference Server:** VRAM Manager, lazy loading, LRU eviction, health endpoint, concurrency.
+  * **Infrastructure:** Docker images, docker-compose services (core, admin, observability profiles).
+  * **Security (Partial):** API auth, rate limiting, CORS, request validation, code execution sandbox.
 
-### Remaining Work
-See `tasks/goal/contained_platform.md` for the full breakdown. Key remaining areas:
+### Next Version & Active Development
+* **Version 2 (`tasks/v2/`):** Active version directory for improvements, bugfixes, and feature enhancements.
 * **Model Hub:** HuggingFace auto-download, quantization, device mapping, model adapters for all roles.
 * **Inference Endpoints:** Classifier, ASR, Embedding, OCR endpoint implementations.
 * **EvalOps QA:** RAGAS benchmarks, DeepEval safety, router benchmarks, Kafka consumers, CI/CD.

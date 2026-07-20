@@ -31,7 +31,7 @@ This document outlines the strict protocol and guidelines for all agents and dev
 ### Out-of-Scope Issues & The `temp/` Directory
 If you encounter a bug, missing dependency, or design flaw that falls **beyond the scope of your current Subtask**:
   1. Do **NOT** attempt to resolve it silently.
-  2. Following `tasks.md`, create a temporary markdown log in `tasks/temp/` to track the issue.
+  2. Following `tasks.md`, create a temporary markdown log in the active version folder `tasks/v<N>/temp/` to track the issue.
   3. Immediately return focus solely to your assigned Subtask.
 
 ### Status Roll-Ups

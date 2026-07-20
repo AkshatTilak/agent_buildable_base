@@ -47,7 +47,7 @@ contained/                  <-- Monorepo Root
 └── agent_buildable_base/   <-- Reference documentation and task guidelines (Metadata)
     ├── prompts/            <-- Base prompt templates
     ├── references/         <-- System specifications (this directory)
-    └── tasks/              <-- Task database and base/sub-task assignments
+    └── tasks/              <-- Versioned task database (v1/, v2/, etc. for base/sub tasks)
 ```
 
 ---
