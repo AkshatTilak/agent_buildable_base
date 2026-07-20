@@ -62,7 +62,7 @@ Within any active version directory (`tasks/v<N>/`), work is divided into four d
 | Version | Status | Focus / Description | Folder Path |
 |---|---|---|---|
 | **v1** | `Completed [x]` | Base Buildable Architecture & Initial Core Modules (Common Lib, SyntraFlow, GuardRoute, Inference, EvalOps, Gateway, Infrastructure, Security) | [`tasks/v1/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v1) |
-| **v2** | `Active / Planning` | Platform Improvements, Bugfixes, Feature Enhancements, Performance & Edge-Case Optimizations | [`tasks/v2/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v2) |
+| **v2** | `Active [ ]` | Granular Real-Time Frontend, Visual Workflow Builder, Dynamic Ingestion Pipelines, Agent Management (CRUD), and Eval Test Generation | [`tasks/v2/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v2) |
 
 ### Version Management Rules
 

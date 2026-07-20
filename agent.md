@@ -47,13 +47,13 @@ This workspace is currently configured for the **ContAIned AI Platform** — a m
   * **Security (Partial):** API auth, rate limiting, CORS, request validation, code execution sandbox.
 
 ### Next Version & Active Development
-* **Version 2 (`tasks/v2/`):** Active version directory for improvements, bugfixes, and feature enhancements.
-* **Model Hub:** HuggingFace auto-download, quantization, device mapping, model adapters for all roles.
-* **Inference Endpoints:** Classifier, ASR, Embedding, OCR endpoint implementations.
-* **EvalOps QA:** RAGAS benchmarks, DeepEval safety, router benchmarks, Kafka consumers, CI/CD.
-* **Frontend:** Full React developer dashboard.
-* **Security Hardening:** Secret management, PII handling, LLM guardrails, network isolation.
-* **System Lifecycle:** Startup/shutdown sequences, graceful degradation, Docker optimization.
+* **Version 2 (`tasks/v2/`):** Active version directory. V2 completely revamps the system to be highly modular and real-time.
+* **Granular Real-Time Frontend:** Break down the monolithic React App using Zustand for state and WebSockets/SSE for real-time telemetry from existing APIs.
+* **Visual Workflow Builder:** Integrate ReactFlow for a drag-and-drop LangGraph visual editor, allowing node and edge configuration for agents.
+* **Dynamic Ingestion Strategies:** Pluggable data pipelines supporting various chunking strats (Semantic, Recursive) and pre/post-processing hooks for SyntraFlow.
+* **Agent Management (CRUD):** Implement APIs and UI to view, create, edit, and configure agents (system prompts, models, tool allowances).
+* **Automated Evaluation Generation:** Plumb specific test cases and datasets dynamically to created agents, tying directly into RAGAS and DeepEval.
+* **Architecture Cleanup:** Decouple existing services and refine API boundaries between gateway, inference, and common libraries.
 
 ### Key References
 * `references/structure/system_architecture.md` — System topology, env vars, DB setup.
