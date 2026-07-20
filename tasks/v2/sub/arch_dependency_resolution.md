@@ -3,10 +3,10 @@
 **Parent Link:** `base/06_architecture_cleanup.md`
 
 ## Actionable Steps
-- [ ] Profile service imports to identify circular dependencies between `gateway` and `inference`.
-- [ ] Decouple helper imports: ensure `gateway` never imports modules from `inference` that execute models locally.
-- [ ] Move any model schemas or validation helpers used by both services to `common/schemas/`.
-- [ ] Ensure `gateway` interacts with the `inference` server strictly via HTTP/REST protocol requests.
+- [x] Profile service imports to identify circular dependencies between `gateway` and `inference`.
+- [x] Decouple helper imports: ensure `gateway` never imports modules from `inference` that execute models locally.
+- [x] Move any model schemas or validation helpers used by both services to `common/schemas/`.
+- [x] Ensure `gateway` interacts with the `inference` server strictly via HTTP/REST protocol requests.
 
 ## Dependencies
 - None

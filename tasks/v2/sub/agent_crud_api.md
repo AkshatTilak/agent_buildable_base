@@ -3,14 +3,14 @@
 **Parent Link:** `base/04_agent_management_crud.md`
 
 ## Actionable Steps
-- [ ] Create router `/api/agents` in the Gateway.
-- [ ] Implement the CRUD API endpoints:
-  - [ ] `GET /api/agents`: Retrieve a list of all defined agents.
-  - [ ] `GET /api/agents/{id}`: Fetch details for a specific agent.
-  - [ ] `POST /api/agents`: Create a new agent (validate prompt, model_id, and tool configurations).
-  - [ ] `PUT /api/agents/{id}`: Update agent configurations.
-  - [ ] `DELETE /api/agents/{id}`: Remove an agent definition.
-- [ ] Connect the models dropdown dynamically to list models available inside `ModelRegistryModel`.
+- [x] Create router `/api/agents` in the Gateway.
+- [x] Implement the CRUD API endpoints:
+  - [x] `GET /api/agents`: Retrieve a list of all defined agents.
+  - [x] `GET /api/agents/{id}`: Fetch details for a specific agent.
+  - [x] `POST /api/agents`: Create a new agent (validate prompt, model_id, and tool configurations).
+  - [x] `PUT /api/agents/{id}`: Update agent configurations.
+  - [x] `DELETE /api/agents/{id}`: Remove an agent definition.
+- [x] Connect the models dropdown dynamically to list models available inside `ModelRegistryModel`.
 
 ## Dependencies
 - `sub/agent_crud_schema.md`

@@ -3,10 +3,10 @@
 **Parent Link:** `base/04_agent_management_crud.md`
 
 ## Actionable Steps
-- [ ] Implement Redis Pub/Sub in `common/clients/redis.py` to support real-time message broadcasting.
-- [ ] When an agent configuration is saved/updated via the API, publish a sync event to the Redis channel `agent-config-updates` containing the updated `AgentID`.
-- [ ] In GuardRoute and the Inference Server, subscribe to `agent-config-updates`.
-- [ ] Implement callback handlers in the running orchestrator to dynamically reload the updated system prompts or tools from the database without restarting the services.
+- [x] Implement Redis Pub/Sub in `common/clients/redis.py` to support real-time message broadcasting.
+- [x] When an agent configuration is saved/updated via the API, publish a sync event to the Redis channel `agent-config-updates` containing the updated `AgentID`.
+- [x] In GuardRoute and the Inference Server, subscribe to `agent-config-updates`.
+- [x] Implement callback handlers in the running orchestrator to dynamically reload the updated system prompts or tools from the database without restarting the services.
 
 ## Dependencies
 - `sub/agent_crud_api.md`

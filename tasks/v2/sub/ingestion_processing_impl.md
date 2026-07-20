@@ -3,12 +3,12 @@
 **Parent Link:** `base/03_ingestion_pipeline_strats.md`
 
 ## Actionable Steps
-- [ ] Implement PreProcessors:
-  - [ ] `OCRNoiseReduction`: Strip visual artifacts or redundant whitespace from raw OCR inputs.
-  - [ ] `LanguageFilter`: Detect and normalize character sets.
-- [ ] Implement PostProcessors:
-  - [ ] `MetadataExtractor`: Uses Model Registry completion models to extract entities (e.g. author, date, organizations) from chunk content.
-  - [ ] `SummaryTagger`: Automatically generates short tags/summaries for each chunk and attaches them to `metadata_json`.
+- [x] Implement PreProcessors:
+  - [x] `OCRNoiseReduction`: Strip visual artifacts or redundant whitespace from raw OCR inputs.
+  - [x] `LanguageFilter`: Detect and normalize character sets.
+- [x] Implement PostProcessors:
+  - [x] `MetadataExtractor`: Uses Model Registry completion models to extract entities (e.g. author, date, organizations) from chunk content.
+  - [x] `SummaryTagger`: Automatically generates short tags/summaries for each chunk and attaches them to `metadata_json`.
 
 ## Dependencies
 - `sub/ingestion_strategy_interfaces.md`
