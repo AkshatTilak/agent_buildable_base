@@ -10,8 +10,8 @@ Documents and videos require vastly different processing depending on the use ca
 Medium (Refactoring existing monolithic pipelines into a Strategy Pattern architecture).
 
 ## Subtask Registry
-* `[ ] sub/ingestion_strategy_interfaces.md` — Define abstract base classes for Chunkers, PreProcessors, and PostProcessors in Python.
-* `[ ] sub/ingestion_chunking_impl.md` — Implement `RecursiveCharacterChunking`, `SemanticChunking`, and `FixedSizeChunking` classes.
-* `[ ] sub/ingestion_processing_impl.md` — Implement pre-processors (OCR noise reduction) and post-processors (Metadata extractor, Summarizer).
-* `[ ] sub/ingestion_api_endpoints.md` — Update Gateway API to accept strategy selections in the upload request.
+* `[x] sub/ingestion_strategy_interfaces.md` — Define abstract base classes for Chunkers, PreProcessors, and PostProcessors in Python.
+* `[x] sub/ingestion_chunking_impl.md` — Implement `RecursiveCharacterChunking`, `SemanticChunking`, and `FixedSizeChunking` classes.
+* `[x] sub/ingestion_processing_impl.md` — Implement pre-processors (OCR noise reduction) and post-processors (Metadata extractor, Summarizer).
+* `[x] sub/ingestion_api_endpoints.md` — Update Gateway API to accept strategy selections in the upload request.
 * `[x] sub/ingestion_frontend_options.md` — Add UI dropdowns in the frontend to select ingestion strategies before upload.

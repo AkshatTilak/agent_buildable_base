@@ -1,33 +1,33 @@
-# Frontend UI & Dashboard Architecture
+# Frontend UI & Dashboard Architecture (V2 ✅)
 
-> **Source:** Migrated from `requirements/frontend.md`
-> **Last Updated:** 2026-07-14
+> **Source:** Updated for ContAIned V2
+> **Last Updated:** 2026-07-21
 
-This document details the user interface, component layout, dynamic route loading parameters, and technical stack of the unified web client for the ContAIned AI Platform.
+This document details the user interface, component layout, Zustand store slices, ReactFlow canvas, and technical stack of the web client for the ContAIned AI Platform.
 
 ---
 
-## 1. Technical Stack (Pending)
+## 1. Technical Stack (V2 ✅)
 
-### Framework & Build Tool
-- **Framework:** React 18+ with TypeScript.
-- **Build Tool:** Vite.
+### Framework, Styling & Build Tool
+- **Framework:** React 19 + TypeScript (~6.0).
+- **Styling:** Vanilla CSS + Tailwind CSS v4 (`@tailwindcss/vite`, `@import "tailwindcss";` in `index.css`).
+- **Build Tool:** Vite 8.
 - **Location:** `frontend/` at monorepo root.
-- **State Management:** `zustand` (stores in `frontend/src/store/`: `metricsSlice.ts`, `agentSlice.ts`, `workflowSlice.ts`).
-- **Real-Time Telemetry:** `TelemetryService` (`frontend/src/services/telemetry.ts`) with WebSocket (`/api/telemetry/ws`) & SSE fallback.
+- **State Management:** `zustand` (modular slices in `frontend/src/store/`: `metricsSlice.ts`, `agentSlice.ts`, `workflowSlice.ts`, `useStore.ts`).
+- **Real-Time Telemetry:** `TelemetryService` (`frontend/src/services/telemetry.ts`) listening to WebSocket (`/api/telemetry/ws`) & SSE fallback.
 - **Key Libraries:**
-  - `@xyflow/react` (React Flow) — LangGraph execution flowcharts.
-  - `zustand` — modular state management.
-  - `recharts` — EvalOps metric charts.
-  - `@tanstack/react-query` — API data fetching and caching.
-  - `react-markdown` + `react-syntax-highlighter` — chat rendering.
-  - `lucide-react` — icon library.
+  - `@xyflow/react` — Drag-and-drop ReactFlow visual workflow builder canvas.
+  - `zustand` — Modular reactive state management.
+  - `recharts` — RAGAS & DeepEval score progression area charts.
+  - `@tanstack/react-query` — Data fetching and caching.
+  - `react-markdown` + `react-syntax-highlighter` — Chat & prompt rendering.
+  - `lucide-react` — Visual iconography.
 
 ### API Client Layer
-- REST (`fetch`/`axios`) for gateway communication.
-- SSE for streaming chat responses from GuardRoute.
-- Auto-generate TypeScript types from FastAPI's `/openapi.json`.
-- Base URL: `VITE_API_URL` (default: `http://localhost:8000`).
+- Centralized REST client in `frontend/src/services/api.ts` wrapping `/api/agents`, `/api/syntraflow`, `/api/guardroute/workflows`, `/api/evals`, and `/api/models`.
+- Automatic fallback and human-readable error alerts.
+- Base URL: Configurable API Gateway endpoint (`http://localhost:8000`).
 
 ### Docker Integration
 - Add `frontend` service to `docker-compose.yml`.
