@@ -12,4 +12,4 @@ Medium (Primarily CSS and shared component work, but requires auditing all exist
 ## Subtask Registry
 * `[x] sub/design_css_tokens.md` — Implement full design token system in `index.css` as CSS custom properties.
 * `[x] sub/design_shared_components.md` — Create reusable shared components (StatusBadge, LoadingSkeleton, ConfirmModal, Toast).
-* `[ ] sub/design_component_audit.md` — Audit and update all existing components to use design tokens instead of hardcoded values.
+* `[x] sub/design_component_audit.md` — Audit and update all existing components to use design tokens instead of hardcoded values.
