@@ -10,7 +10,7 @@ V2 uses a simple `activeTab` state to swap between panels — no URL routes, no 
 Medium (Routing is well-understood, but requires updating every navigation touchpoint).
 
 ## Subtask Registry
-* `[ ] sub/routing_react_router_setup.md` — Install react-router-dom, define routes, wrap App in BrowserRouter.
-* `[ ] sub/routing_page_transitions.md` — Install framer-motion, add AnimatePresence with fade+slide transitions.
-* `[ ] sub/routing_command_palette.md` — Build CommandPalette component with fuzzy search and keyboard navigation.
-* `[ ] sub/routing_breadcrumbs_header.md` — Add top header bar with dynamic breadcrumbs and global status indicators.
+* `[x] sub/routing_react_router_setup.md` — Install react-router-dom, define routes, wrap App in BrowserRouter.
+* `[x] sub/routing_page_transitions.md` — Install framer-motion, add AnimatePresence with fade+slide transitions.
+* `[x] sub/routing_command_palette.md` — Build CommandPalette component with fuzzy search and keyboard navigation.
+* `[x] sub/routing_breadcrumbs_header.md` — Add top header bar with dynamic breadcrumbs and global status indicators.

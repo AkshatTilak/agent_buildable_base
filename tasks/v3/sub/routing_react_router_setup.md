@@ -3,9 +3,9 @@
 **Parent Link:** `base/04_frontend_routing_navigation.md`
 
 ## Actionable Steps
-- [ ] Install `react-router-dom` via `npm install react-router-dom`.
-- [ ] Update `main.tsx` to wrap `<App />` in `<BrowserRouter>`.
-- [ ] In `App.tsx`, replace the `activeTab` state + conditional rendering with `<Routes>`:
+- [x] Install `react-router-dom` via `npm install react-router-dom`.
+- [x] Update `main.tsx` to wrap `<App />` in `<BrowserRouter>`.
+- [x] In `App.tsx`, replace the `activeTab` state + conditional rendering with `<Routes>`:
   - `/` → redirect to `/system`
   - `/system` → `<SystemMetrics />`
   - `/ingestion` → `<IngestionPanel />`
@@ -14,8 +14,8 @@
   - `/evalops` → `<EvalPanel />`
   - `/settings` → Settings page (extract from config modal)
   - `*` → 404 page
-- [ ] Update `Sidebar.tsx` to use `<NavLink>` components instead of `<button>` with `setActiveTab`.
-- [ ] Remove `activeTab` state from App and Sidebar props entirely.
+- [x] Update `Sidebar.tsx` to use `<NavLink>` components instead of `<button>` with `setActiveTab`.
+- [x] Remove `activeTab` state from App and Sidebar props entirely.
 
 ## Dependencies
 - None (can be done independently, but Sidebar overhaul builds on top of this).
