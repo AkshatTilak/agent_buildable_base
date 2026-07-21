@@ -15,9 +15,9 @@ The V2 upgrade fundamentally shifts the platform from a "hardcoded backend with 
 ## Completion State
 This Goal is achieved when **all** Base Tasks below are verified and marked `[x]`:
 
-- [ ] `base/01_frontend_granular_realtime.md` — Decoupled React+Vite frontend with Zustand and WebSockets/SSE.
+- [x] `base/01_frontend_granular_realtime.md` — Decoupled React+Vite frontend with Zustand and WebSockets/SSE.
 - [ ] `base/02_visual_workflow_builder.md` — ReactFlow drag-and-drop LangGraph visual editor.
 - [ ] `base/03_ingestion_pipeline_strats.md` — Selectable chunking and pre/post-processing pipelines.
-- [ ] `base/04_agent_management_crud.md` — APIs and UI for Agent CRUD.
+- [x] `base/04_agent_management_crud.md` — APIs and UI for Agent CRUD.
 - [ ] `base/05_eval_test_generation.md` — Agent-attributed eval generation and integration.
 - [ ] `base/06_architecture_cleanup.md` — Decoupling and refactoring existing backend logic.

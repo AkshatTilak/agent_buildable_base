@@ -3,14 +3,14 @@
 **Parent Link:** `base/01_frontend_granular_realtime.md`
 
 ## Actionable Steps
-- [ ] Analyze the monolithic `frontend/src/App.tsx` (72KB) and identify candidates for extraction.
-- [ ] Extract the sidebar/navigation panel to a separate component: `frontend/src/components/Sidebar.tsx`.
-- [ ] Extract the telemetry / system health grid to: `frontend/src/components/SystemMetrics.tsx` (monitoring CPU, memory, VRAM, and API statuses).
-- [ ] Extract the ingestion strategy and file upload logic to: `frontend/src/components/IngestionPanel.tsx`.
-- [ ] Extract the LangGraph visual workflow canvas wrapper to: `frontend/src/components/WorkflowBuilder.tsx`.
-- [ ] Extract the agent configuration forms and lists to: `frontend/src/components/AgentHub.tsx`.
-- [ ] Extract the evaluations dashboard to: `frontend/src/components/EvalPanel.tsx`.
-- [ ] Clean up `App.tsx` to serve purely as the root layout shell loading these components.
+- [x] Analyze the monolithic `frontend/src/App.tsx` (72KB) and identify candidates for extraction.
+- [x] Extract the sidebar/navigation panel to a separate component: `frontend/src/components/Sidebar.tsx`.
+- [x] Extract the telemetry / system health grid to: `frontend/src/components/SystemMetrics.tsx` (monitoring CPU, memory, VRAM, and API statuses).
+- [x] Extract the ingestion strategy and file upload logic to: `frontend/src/components/IngestionPanel.tsx`.
+- [x] Extract the LangGraph visual workflow canvas wrapper to: `frontend/src/components/WorkflowBuilder.tsx`.
+- [x] Extract the agent configuration forms and lists to: `frontend/src/components/AgentHub.tsx`.
+- [x] Extract the evaluations dashboard to: `frontend/src/components/EvalPanel.tsx`.
+- [x] Clean up `App.tsx` to serve purely as the root layout shell loading these components.
 
 ## Dependencies
 - None

@@ -3,15 +3,15 @@
 **Parent Link:** `base/04_agent_management_crud.md`
 
 ## Actionable Steps
-- [ ] Build the grid layout component: `frontend/src/components/AgentHub.tsx`.
-- [ ] Implement card views for each agent, displaying agent names, assigned models, and active tools.
-- [ ] Create a dialog form modal to Create/Edit an agent:
-  - [ ] Text inputs for Name, Role description.
-  - [ ] Textarea for System Prompt.
-  - [ ] Dropdown select for LLM Model ID (populated from `/api/models`).
-  - [ ] Checklist/badges for available tools (web search, retrieval search, sandbox coding).
-  - [ ] Slider inputs for temperature.
-- [ ] Wire save/delete buttons to the REST API endpoints and update Zustand stores upon completion.
+- [x] Build the grid layout component: `frontend/src/components/AgentHub.tsx`.
+- [x] Implement card views for each agent, displaying agent names, assigned models, and active tools.
+- [x] Create a dialog form modal to Create/Edit an agent:
+  - [x] Text inputs for Name, Role description.
+  - [x] Textarea for System Prompt.
+  - [x] Dropdown select for LLM Model ID (populated from `/api/models`).
+  - [x] Checklist/badges for available tools (web search, retrieval search, sandbox coding).
+  - [x] Slider inputs for temperature.
+- [x] Wire save/delete buttons to the REST API endpoints and update Zustand stores upon completion.
 
 ## Dependencies
 - `sub/frontend_api_integration.md`

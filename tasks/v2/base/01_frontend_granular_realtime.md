@@ -10,7 +10,7 @@ The current frontend is highly static and doesn't reflect the actual state of th
 High (Requires significant refactoring of React components and establishing new network protocols).
 
 ## Subtask Registry
-* `[ ] sub/frontend_component_breakdown.md` — Split `App.tsx` into atomic components.
-* `[ ] sub/frontend_zustand_store.md` — Implement Zustand stores for system health, agents, and ingestion state.
-* `[ ] sub/frontend_websocket_integration.md` — Establish WS/SSE connections to the backend Gateway to stream live updates.
-* `[ ] sub/frontend_api_integration.md` — Integrate with all existing and newly created V2 REST APIs.
+* `[x] sub/frontend_component_breakdown.md` — Split `App.tsx` into atomic components.
+* `[x] sub/frontend_zustand_store.md` — Implement Zustand stores for system health, agents, and ingestion state.
+* `[x] sub/frontend_websocket_integration.md` — Establish WS/SSE connections to the backend Gateway to stream live updates.
+* `[x] sub/frontend_api_integration.md` — Integrate with all existing and newly created V2 REST APIs.

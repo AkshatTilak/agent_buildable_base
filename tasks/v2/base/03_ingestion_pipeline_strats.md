@@ -14,4 +14,4 @@ Medium (Refactoring existing monolithic pipelines into a Strategy Pattern archit
 * `[ ] sub/ingestion_chunking_impl.md` — Implement `RecursiveCharacterChunking`, `SemanticChunking`, and `FixedSizeChunking` classes.
 * `[ ] sub/ingestion_processing_impl.md` — Implement pre-processors (OCR noise reduction) and post-processors (Metadata extractor, Summarizer).
 * `[ ] sub/ingestion_api_endpoints.md` — Update Gateway API to accept strategy selections in the upload request.
-* `[ ] sub/ingestion_frontend_options.md` — Add UI dropdowns in the frontend to select ingestion strategies before upload.
+* `[x] sub/ingestion_frontend_options.md` — Add UI dropdowns in the frontend to select ingestion strategies before upload.

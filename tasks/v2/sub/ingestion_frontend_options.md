@@ -3,12 +3,12 @@
 **Parent Link:** `base/03_ingestion_pipeline_strats.md`
 
 ## Actionable Steps
-- [ ] Refactor `IngestionPanel.tsx` component.
-- [ ] Add an "Advanced Ingestion Settings" dropdown accordion.
-- [ ] Implement select dropdowns for chunking strategies (Fixed, Recursive, Semantic).
-- [ ] Add slider UI controls for numeric variables like `chunkSize` and `overlap`.
-- [ ] Add checklist toggles for Pre-Processors (OCR cleanups) and Post-Processors (Metadata extractor, Summarizer).
-- [ ] Attach selected settings as part of the FormData payload when initiating document upload calls.
+- [x] Refactor `IngestionPanel.tsx` component.
+- [x] Add an "Advanced Ingestion Settings" dropdown accordion.
+- [x] Implement select dropdowns for chunking strategies (Fixed, Recursive, Semantic).
+- [x] Add slider UI controls for numeric variables like `chunkSize` and `overlap`.
+- [x] Add checklist toggles for Pre-Processors (OCR cleanups) and Post-Processors (Metadata extractor, Summarizer).
+- [x] Attach selected settings as part of the FormData payload when initiating document upload calls.
 
 ## Dependencies
 - `sub/frontend_api_integration.md`
