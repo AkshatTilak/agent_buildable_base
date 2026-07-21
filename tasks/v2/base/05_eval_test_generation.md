@@ -13,4 +13,4 @@ High (Requires integrating LLM-based synthetic data generation and piping test r
 * `[x] sub/eval_attribution_schema.md` — Create DB schemas mapping `AgentID` to a `TestSuite` (Collection of queries and expected contexts/answers).
 * `[x] sub/eval_synthetic_generation.md` — Create a background pipeline that uses an LLM to automatically generate 10-20 test queries based on an Agent's System Prompt and connected Tools.
 * `[x] sub/eval_runner_integration.md` — Build an API that triggers RAGAS/DeepEval for a specific AgentID's test suite and stores the metrics (Faithfulness, Answer Relevance).
-* `[ ] sub/eval_frontend_attribution.md` — Add an "Evaluations" tab inside the Frontend Agent Hub UI to view test results and manually edit the test queries.
+* `[x] sub/eval_frontend_attribution.md` — Add an "Evaluations" tab inside the Frontend Agent Hub UI to view test results and manually edit the test queries.

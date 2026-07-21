@@ -45,9 +45,15 @@ Concurrently invoke worker subagents based on classifier output:
 - Gathers context fragments, cleans formatting, runs final LLM completion.
 - Supports **SSE streaming** for token-by-token output.
 
-### Visual Graph Translation Engine (V2 ✅)
+### Visual Graph Translation & Custom ReactFlow Canvas (V2 ✅)
 - **Parser (`projects/guardroute/src/core/graph_parser.py`):** Converts visual ReactFlow JSON configurations (nodes, edges, node parameters) into compiled, executable LangGraph `StateGraph` instances.
-- **Topology Safety Constraints:** Validates node linkage, ensures presence of terminal synthesis/gather nodes, and performs cycle detection to prevent infinite execution loops.
+- **Topology Safety Constraints:** Validates node linkage, ensures presence of terminal synthesis/gather nodes, and performs Kahn's algorithm cycle detection to prevent infinite execution loops.
+- **Custom ReactFlow Canvas Nodes:**
+  - `ClassifierNode`: Visual Arch-Router classification with confidence thresholds.
+  - `AgentNode`: Visual representation of subagent with model ID, system prompt override indicator, and active tool badges.
+  - `RetrievalNode`: Visual SyntraFlow hybrid vector search with top-k limit.
+  - `SynthesisNode`: Aggregator node compiling Scatter-Gather subagent outputs.
+- **Interactive Property Drawer (`frontend/src/components/PropertyDrawer.tsx`):** Reactive parameter form updating node data, model assignments, system prompts, confidence thresholds, and hybrid search top-k parameters in real time.
 
 ---
 
