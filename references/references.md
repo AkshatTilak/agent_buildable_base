@@ -1,6 +1,6 @@
 # Reference Management & Contextual Memory (`references.md`)
 
-This directory serves as the centralized knowledge base and memory bank for all AI agents and human developers working on the ContAIned AI Platform. It stores architectural decisions, codebase context, deployment guidelines, and microservice specifications updated for **Platform V2**.
+This directory serves as the centralized knowledge base and memory bank for all AI agents and human developers working on the ContAIned AI Platform. It stores architectural decisions, codebase context, deployment guidelines, and microservice specifications updated for **Platform V3**.
 
 **Agent Instruction:** Before executing a task, query the relevant subdirectories here to understand existing paradigms. Upon completing a complex task, updating these reference files is mandatory to ensure downstream agents retain context.
 

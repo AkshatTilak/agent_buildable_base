@@ -3,8 +3,8 @@
 **Parent Link:** `base/05_frontend_state_data_layer.md`
 
 ## Actionable Steps
-- [ ] Create `frontend/src/types/` directory.
-- [ ] Create `types/api.ts` with interfaces matching backend Pydantic schemas:
+- [x] Create `frontend/src/types/` directory.
+- [x] Create `types/api.ts` with interfaces matching backend Pydantic schemas:
   ```typescript
   // System
   interface SystemHealthResponse { status, environment, active_projects, services, inference_details }
@@ -32,8 +32,8 @@
   interface EvalRunResponse { ... }
   interface TestCaseResponse { ... }
   ```
-- [ ] Create `types/telemetry.ts` for WebSocket message types.
-- [ ] Export all types from a barrel `types/index.ts`.
+- [x] Create `types/telemetry.ts` for WebSocket message types.
+- [x] Export all types from a barrel `types/index.ts`.
 
 ## Dependencies
 - None.
