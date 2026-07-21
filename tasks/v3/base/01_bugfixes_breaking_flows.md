@@ -33,9 +33,9 @@ High (Touches every layer — frontend, gateway, common library, and infrastruct
 ## Subtask Registry
 * `[x] sub/fix_frontend_config_persistence.md` — Fix config modal to persist gateway URL and API key.
 * `[x] sub/fix_frontend_type_safety.md` — Replace all `any` types with proper TypeScript interfaces.
-* `[ ] sub/fix_frontend_loading_error_states.md` — Add loading skeletons and error banners to all panels.
-* `[ ] sub/fix_frontend_confirm_modal.md` — Replace browser `confirm()` with themed confirm modal.
-* `[ ] sub/fix_frontend_stale_assets.md` — Clean up App.css boilerplate, fix index.html SEO.
+* `[x] sub/fix_frontend_loading_error_states.md` — Add loading skeletons and error banners to all panels.
+* `[x] sub/fix_frontend_confirm_modal.md` — Replace browser `confirm()` with themed confirm modal.
+* `[x] sub/fix_frontend_stale_assets.md` — Clean up App.css boilerplate, fix index.html SEO.
 * `[x] sub/fix_backend_telemetry_hardcodes.md` — Replace hardcoded telemetry values with actual metrics.
 * `[x] sub/fix_backend_documents_jobs_api.md` — Add documents listing and jobs listing endpoints.
 * `[x] sub/fix_backend_settings_defaults.md` — Fix VRAM budget and add platform version to settings.
