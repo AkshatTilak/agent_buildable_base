@@ -1,6 +1,6 @@
-# Frontend UI & Dashboard Architecture (V2 ✅)
+# Frontend UI & Dashboard Architecture (V3 ✅)
 
-> **Source:** Updated for ContAIned V2
+> **Source:** Updated for ContAIned V3
 > **Last Updated:** 2026-07-21
 
 This document details the user interface, component layout, Zustand store slices, ReactFlow canvas, and technical stack of the web client for the ContAIned AI Platform.

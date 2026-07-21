@@ -10,7 +10,7 @@ V2's ingestion panel lets you upload one file at a time with no progress trackin
 High (Requires both frontend and backend changes — new API endpoints + complex UI components).
 
 ## Subtask Registry
-* `[ ] sub/ingestion_drag_drop_batch.md` — Real drag-and-drop with `onDragOver`/`onDrop`, batch file upload, file type icons, size display.
-* `[ ] sub/ingestion_job_tracker.md` — Job queue list showing all past/active jobs with status badges, progress bars, auto-polling via `/api/syntraflow/jobs/{id}`.
-* `[ ] sub/ingestion_advanced_settings_redesign.md` — Redesign advanced settings into tabbed interface (Chunking | Pre-processors | Post-processors).
-* `[ ] sub/ingestion_document_library.md` — New document library view: list all ingested documents with metadata, chunk counts, delete action. Requires backend `GET /documents` endpoint.
+* `[x] sub/ingestion_drag_drop_batch.md` — Real drag-and-drop with `onDragOver`/`onDrop`, batch file upload, file type icons, size display.
+* `[x] sub/ingestion_job_tracker.md` — Job queue list showing all past/active jobs with status badges, progress bars, auto-polling via `/api/syntraflow/jobs/{id}`.
+* `[x] sub/ingestion_advanced_settings_redesign.md` — Redesign advanced settings into tabbed interface (Chunking | Pre-processors | Post-processors).
+* `[x] sub/ingestion_document_library.md` — New document library view: list all ingested documents with metadata, chunk counts, delete action. Requires backend `GET /documents` endpoint.

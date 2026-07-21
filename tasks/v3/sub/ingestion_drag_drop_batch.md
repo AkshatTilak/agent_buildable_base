@@ -3,16 +3,16 @@
 **Parent Link:** `base/06_ingestion_documents_ux.md`
 
 ## Actionable Steps
-- [ ] In `IngestionPanel.tsx`, add proper drag-and-drop event handlers: `onDragOver`, `onDragLeave`, `onDrop`.
-- [ ] Add visual drag state — dropzone border turns emerald, overlay backdrop appears when files are dragged over.
-- [ ] Add batch upload support — allow selecting multiple files (`multiple` attribute on file input).
-- [ ] Render file queue list before upload:
+- [x] In `IngestionPanel.tsx`, add proper drag-and-drop event handlers: `onDragOver`, `onDragLeave`, `onDrop`.
+- [x] Add visual drag state — dropzone border turns emerald, overlay backdrop appears when files are dragged over.
+- [x] Add batch upload support — allow selecting multiple files (`multiple` attribute on file input).
+- [x] Render file queue list before upload:
   - File icon based on category (PDF, TXT, MD, Video, Image)
   - File name, size in human-readable units (KB/MB)
   - Remove file button (X) before committing upload
-- [ ] Add overall upload progress bar with percentage during upload request.
-- [ ] Add file size check — warn if file exceeds `MAX_UPLOAD_SIZE` (default 500MB).
-- [ ] Add toast notification upon upload completion or failure.
+- [x] Add overall upload progress bar with percentage during upload request.
+- [x] Add file size check — warn if file exceeds `MAX_UPLOAD_SIZE` (default 500MB).
+- [x] Add toast notification upon upload completion or failure.
 
 ## Dependencies
 - `sub/design_css_tokens.md`, `sub/design_shared_components.md` (for Toast, StatusBadge).

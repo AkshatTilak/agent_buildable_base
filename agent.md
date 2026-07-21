@@ -37,23 +37,9 @@ As you architect the system, populate the `references/` directory to give downst
 This workspace is currently configured for the **ContAIned AI Platform** — a modular, AI-first monorepo for autonomous document/video ingestion, intelligent query orchestration, and automated QA.
 
 ### Current State
-* **Version 1 (`tasks/v1/`):** Base system tasks are completed (see `tasks/v1/goal/contained_platform.md` and `references/` for details).
-  * **Core Infrastructure:** Monorepo integration rules, environment configuration, database namespacing (Postgres, Qdrant, Neo4j, Redis, Kafka).
-  * **Shared Library (`common/`):** Configuration, database clients, observability, schemas, Model Registry API.
-  * **SyntraFlow:** Document/video ingestion pipeline, OCR/ASR integration, MCP retrieval server, hybrid RAG.
-  * **GuardRoute:** LangGraph scatter-gather orchestration, LLM fallback chains, session management, SSE streaming.
-  * **Inference Server:** VRAM Manager, lazy loading, LRU eviction, health endpoint, concurrency.
-  * **Infrastructure:** Docker images, docker-compose services (core, admin, observability profiles).
-  * **Security (Partial):** API auth, rate limiting, CORS, request validation, code execution sandbox.
-
-### Next Version & Active Development
-* **Version 2 (`tasks/v2/`):** Active version directory. V2 completely revamps the system to be highly modular and real-time.
-* **Granular Real-Time Frontend:** Break down the monolithic React App using Zustand for state and WebSockets/SSE for real-time telemetry from existing APIs.
-* **Visual Workflow Builder:** Integrate ReactFlow for a drag-and-drop LangGraph visual editor, allowing node and edge configuration for agents.
-* **Dynamic Ingestion Strategies:** Pluggable data pipelines supporting various chunking strats (Semantic, Recursive) and pre/post-processing hooks for SyntraFlow.
-* **Agent Management (CRUD):** Implement APIs and UI to view, create, edit, and configure agents (system prompts, models, tool allowances).
-* **Automated Evaluation Generation:** Plumb specific test cases and datasets dynamically to created agents, tying directly into RAGAS and DeepEval.
-* **Architecture Cleanup:** Decouple existing services and refine API boundaries between gateway, inference, and common libraries.
+* **Version 1 (`tasks/v1/`):** Base system tasks completed (Monorepo integration, Common Library, SyntraFlow, GuardRoute, Inference, Infrastructure).
+* **Version 2 (`tasks/v2/`):** Real-time frontend, ReactFlow visual builder, CRUD agent hub, dynamic ingestion pipelines, and eval generator completed.
+* **Version 3 (`tasks/v3/`):** System-wide polish, design token system, React Router, 16GB RAM Docker profiles (`--profile core`), Document Library & Job Tracker UX completed.
 
 ### Key References
 * `references/structure/system_architecture.md` — System topology, env vars, DB setup.
