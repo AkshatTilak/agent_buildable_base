@@ -62,10 +62,12 @@ Within any active version directory (`tasks/v<N>/`), work is divided into four d
 | Version | Status | Focus / Description | Folder Path |
 |---|---|---|---|
 | **v1** | `Completed [x]` | Base Buildable Architecture & Initial Core Modules (Common Lib, SyntraFlow, GuardRoute, Inference, EvalOps, Gateway, Infrastructure, Security) | [`tasks/v1/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v1) |
-| **v2** | `Active [ ]` | Granular Real-Time Frontend, Visual Workflow Builder, Dynamic Ingestion Pipelines, Agent Management (CRUD), and Eval Test Generation | [`tasks/v2/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v2) |
+| **v2** | `Completed [x]` | Granular Real-Time Frontend, Visual Workflow Builder, Dynamic Ingestion Pipelines, Agent Management (CRUD), and Eval Test Generation | [`tasks/v2/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v2) |
+| **v3** | `Active [ ]` | System-wide Polish, Design Tokens & Premium UI, RAM-Optimized Infrastructure (16GB), React Router, Type Safety & Bugfixes | [`tasks/v3/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v3) |
 
 ### Version Management Rules
 
 1. **Active Version Context:** Agents MUST operate within the designated active version directory (`tasks/v<N>/`). Do not modify completed version directories unless explicitly instructed for historical backfills.
 2. **Roll-Up Rule:** A version's Goal (`tasks/v<N>/goal/`) is met only when 100% of its Base Tasks (`tasks/v<N>/base/`) and Subtasks (`tasks/v<N>/sub/`) are marked `[x]`.
 3. **Transitioning Versions:** When a version's goal is complete, the System Architect creates the next version folder (`v<N+1>`), establishes the new `goal/`, `base/`, and `sub/` tasks, and updates this master registry.
+
