@@ -3,13 +3,13 @@
 **Parent Link:** `base/07_docker_infrastructure_ram.md`
 
 ## Actionable Steps
-- [ ] Group services in `infrastructure/docker-compose.yml` into logical execution profiles:
+- [x] Group services in `infrastructure/docker-compose.yml` into logical execution profiles:
   - `profiles: ["core"]` for `postgres`, `qdrant`, `redis` (Essential DB services — ~1.3GB total RAM)
   - `profiles: ["full"]` or `profiles: ["messaging"]` for `kafka`, `zookeeper` (~768MB RAM)
   - `profiles: ["graph"]` for `neo4j` (~768MB RAM)
   - `profiles: ["app"]` for `gateway`, `inference`
-- [ ] Allow running lightweight stack using `docker compose --profile core up -d`.
-- [ ] Document profile options in `README.md` and `references/deployment/infrastructure.md`.
+- [x] Allow running lightweight stack using `docker compose --profile core up -d`.
+- [x] Document profile options in `README.md` and `references/deployment/infrastructure.md`.
 
 ## Dependencies
 - None.

@@ -10,6 +10,6 @@ V2's frontend uses inconsistent hardcoded hex values, ad-hoc Tailwind classes, a
 Medium (Primarily CSS and shared component work, but requires auditing all existing components for compliance).
 
 ## Subtask Registry
-* `[ ] sub/design_css_tokens.md` — Implement full design token system in `index.css` as CSS custom properties.
+* `[x] sub/design_css_tokens.md` — Implement full design token system in `index.css` as CSS custom properties.
 * `[ ] sub/design_shared_components.md` — Create reusable shared components (StatusBadge, LoadingSkeleton, ConfirmModal, Toast).
 * `[ ] sub/design_component_audit.md` — Audit and update all existing components to use design tokens instead of hardcoded values.

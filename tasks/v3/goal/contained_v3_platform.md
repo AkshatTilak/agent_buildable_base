@@ -23,5 +23,5 @@ This Goal is achieved when **all** Base Tasks below are verified and marked `[x]
 - [ ] `base/04_frontend_routing_navigation.md` — React Router, page transitions, command palette, breadcrumbs.
 - [ ] `base/05_frontend_state_data_layer.md` — New store slices, TypeScript types, settings persistence.
 - [ ] `base/06_ingestion_documents_ux.md` — Drag-drop, job tracking, batch upload, document library.
-- [ ] `base/07_docker_infrastructure_ram.md` — RAM-optimized Docker profiles for 16GB systems.
+- [x] `base/07_docker_infrastructure_ram.md` — RAM-optimized Docker profiles for 16GB systems.
 - [ ] `base/08_reference_documentation_sync.md` — Update all references, agent.md, README for V3.

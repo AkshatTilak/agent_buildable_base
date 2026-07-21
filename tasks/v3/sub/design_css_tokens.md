@@ -3,7 +3,7 @@
 **Parent Link:** `base/02_frontend_design_system.md`
 
 ## Actionable Steps
-- [ ] Rewrite `frontend/src/index.css` to implement the full token system from `references/structure/design_system.md`:
+- [x] Rewrite `frontend/src/index.css` to implement the full token system from `references/structure/design_system.md`:
   - Background layer tokens (`--bg-deep` through `--bg-input`)
   - Border tokens (`--border-subtle`, `--border-default`, `--border-hover`, `--border-focus`)
   - Typography color tokens (`--text-primary`, `--text-secondary`, `--text-muted`, `--text-disabled`)
@@ -12,11 +12,11 @@
   - Border radius tokens (`--radius-sm` through `--radius-full`)
   - Transition tokens (`--transition-fast`, `--transition-normal`, `--transition-slow`)
   - Font stack tokens (already partially exist — ensure completeness)
-- [ ] Add keyframe animations: `shimmer`, `slide-in-right`, `slide-out-right`, `fade-in`, `pulse-ring`.
-- [ ] Add utility classes for glass cards, buttons (primary/secondary/ghost/danger), inputs, status dots, badges.
-- [ ] Add scrollbar styling using accent colors.
-- [ ] Remove all existing hardcoded hex values from `index.css` and replace with token references.
-- [ ] Keep `@import "tailwindcss";` — Tailwind is used for inline utilities alongside the token system.
+- [x] Add keyframe animations: `shimmer`, `slide-in-right`, `slide-out-right`, `fade-in`, `pulse-ring`.
+- [x] Add utility classes for glass cards, buttons (primary/secondary/ghost/danger), inputs, status dots, badges.
+- [x] Add scrollbar styling using accent colors.
+- [x] Remove all existing hardcoded hex values from `index.css` and replace with token references.
+- [x] Keep `@import "tailwindcss";` — Tailwind is used for inline utilities alongside the token system.
 
 ## Dependencies
 - None (this is the foundation for everything else).

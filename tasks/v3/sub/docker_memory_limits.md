@@ -3,7 +3,7 @@
 **Parent Link:** `base/07_docker_infrastructure_ram.md`
 
 ## Actionable Steps
-- [ ] In `infrastructure/docker-compose.yml`, add strict `deploy.resources.limits.memory` settings to all services:
+- [x] In `infrastructure/docker-compose.yml`, add strict `deploy.resources.limits.memory` settings to all services:
   - `postgres`: `512m`
   - `qdrant`: `512m`
   - `redis`: `256m`
@@ -12,8 +12,8 @@
   - `zookeeper`: `256m`
   - `gateway`: `512m`
   - `inference`: `2048m` (CPU fallback mode limit)
-- [ ] Set `restart: unless-stopped` on all infrastructure services to ensure resilience.
-- [ ] Add container healthchecks with reasonable timeouts and retries for postgres, qdrant, and redis.
+- [x] Set `restart: unless-stopped` on all infrastructure services to ensure resilience.
+- [x] Add container healthchecks with reasonable timeouts and retries for postgres, qdrant, and redis.
 
 ## Dependencies
 - None.
