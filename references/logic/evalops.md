@@ -46,8 +46,9 @@ EvalOps serves as the automated quality assurance system, running benchmarks, an
 
 ---
 
-## 4. Asynchronous Kafka Consumers (Pending)
-- **Real-Time Log Stream Processing:** Background consumers for `guardroute-traces` and `syntraflow-ingestion-jobs` Kafka topics.
+## 4. Asynchronous Kafka Consumers & Eval Runner ✅
+- **Real-Time Log Stream Processing:** Background consumers for `guardroute-traces`, `syntraflow-ingestion-jobs`, and `agent-eval-trigger` Kafka topics.
+- **Agent Evaluation Runner (`projects/evalops/src/runner/consumer.py`):** Listens to `agent-eval-trigger` topic to asynchronously execute benchmark test cases against target models and update `EvalRunHistory` table with faithfulness, relevance, and latency metrics.
 - **Automated Report Generation:** Write to `evalops_reports` PostgreSQL table:
   ```sql
   CREATE TABLE evalops_reports (
@@ -62,6 +63,13 @@ EvalOps serves as the automated quality assurance system, running benchmarks, an
   );
   ```
 - Flag anomalies for manual auditing.
+
+---
+
+## 4b. Synthetic Test Case Generation Pipeline (V2 ✅)
+- **Engine (`projects/evalops/src/generation/synthetic.py`):** Takes an `AgentDefinition` (`system_prompt`, `role`), invokes LiteLLM / Model Registry, and generates 10-20 attributed test cases (`EvalTestCase`) saved into `EvalTestSuite`.
+- **API Endpoint:** `POST /api/evals/generate` schedules dataset creation.
+- **API Endpoint:** `POST /api/evals/run` dispatches asynchronous evaluation jobs to Kafka.
 
 ---
 

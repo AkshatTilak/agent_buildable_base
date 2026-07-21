@@ -6,7 +6,7 @@ This document outlines the strict protocol and guidelines for all agents and dev
 
 ## 1. Task Selection Limits & Prioritization
 
-- **Max Active Load:** You may select and work on **no more than 3 tasks** simultaneously to maintain deep context and execution quality.
+- **Max Active Load:** You may select and work on **no more than 5 sub tasks** simultaneously to maintain deep context and execution quality.
 - **Dependency First Prioritization:** Work must be sequenced to unblock the most critical system components first:
   1. **AI & Core Services:** Prioritize AI model integrations, prompt engineering structures, inference pipelines, and core agent architectures first.
   2. **Backend & Infrastructure:** Following AI services, prioritize foundational backend tasks (e.g., database schemas, shared utilities, Docker setups, and message brokers).

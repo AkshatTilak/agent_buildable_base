@@ -45,6 +45,10 @@ Concurrently invoke worker subagents based on classifier output:
 - Gathers context fragments, cleans formatting, runs final LLM completion.
 - Supports **SSE streaming** for token-by-token output.
 
+### Visual Graph Translation Engine (V2 ✅)
+- **Parser (`projects/guardroute/src/core/graph_parser.py`):** Converts visual ReactFlow JSON configurations (nodes, edges, node parameters) into compiled, executable LangGraph `StateGraph` instances.
+- **Topology Safety Constraints:** Validates node linkage, ensures presence of terminal synthesis/gather nodes, and performs cycle detection to prevent infinite execution loops.
+
 ---
 
 ## 3. Worker Agent Tool Connections ✅

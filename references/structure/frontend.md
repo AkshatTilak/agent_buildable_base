@@ -13,10 +13,12 @@ This document details the user interface, component layout, dynamic route loadin
 - **Framework:** React 18+ with TypeScript.
 - **Build Tool:** Vite.
 - **Location:** `frontend/` at monorepo root.
-- **Package Manager:** npm or pnpm.
+- **State Management:** `zustand` (stores in `frontend/src/store/`: `metricsSlice.ts`, `agentSlice.ts`, `workflowSlice.ts`).
+- **Real-Time Telemetry:** `TelemetryService` (`frontend/src/services/telemetry.ts`) with WebSocket (`/api/telemetry/ws`) & SSE fallback.
 - **Key Libraries:**
   - `@xyflow/react` (React Flow) — LangGraph execution flowcharts.
-  - `recharts` or `chart.js` — EvalOps metric charts.
+  - `zustand` — modular state management.
+  - `recharts` — EvalOps metric charts.
   - `@tanstack/react-query` — API data fetching and caching.
   - `react-markdown` + `react-syntax-highlighter` — chat rendering.
   - `lucide-react` — icon library.
