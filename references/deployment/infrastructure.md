@@ -1,7 +1,7 @@
-# Infrastructure & Deployment Reference (V2)
+# Infrastructure & Deployment Reference (V4.1)
 
-> **Source:** Updated for ContAIned V2
-> **Last Updated:** 2026-07-21
+> **Source:** Updated for ContAIned V4.1
+> **Last Updated:** 2026-07-22
 
 This document details Docker images, docker-compose services, local development setup, Kafka topics, and containerized deployment guidance for the ContAIned AI Platform.
 

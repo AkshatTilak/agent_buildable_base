@@ -1,6 +1,6 @@
-# Setup & Deployment Guide: ContAIned AI Platform (V2)
+# Setup & Deployment Guide: ContAIned AI Platform (V4.1)
 
-This guide outlines how to build, run, test, and deploy the **ContAIned AI Platform V2**. It covers **local hybrid native/Docker development**, **Tailwind CSS frontend integration**, and **all-in-one containerized deployment**.
+This guide outlines how to build, run, test, and deploy the **ContAIned AI Platform V4.1**. It covers **local hybrid native/Docker development**, **Tailwind CSS v4 frontend integration**, **UI layout spacing & card padding standards**, and **all-in-one containerized deployment**.
 
 ---
 
