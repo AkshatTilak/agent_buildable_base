@@ -1,108 +1,60 @@
 # EvalOps — QA Verification & Observability Architecture
 
-> **Source:** Migrated from `requirements/evalops.md`
-> **Last Updated:** 2026-07-14
+> **Source:** V5 Platform Maturity (B5-01)  
+> **Last Updated:** 2026-07-23 (S5-01a, S5-01b, S5-01c, S5-01d Complete)
 
-EvalOps serves as the automated quality assurance system, running benchmarks, analyzing transaction logs from Kafka, and enforcing safety guardrails. It runs as a **test/CI tool**, not a permanent production service.
-
----
-
-## 1. RAGAS Retrieval Quality Benchmarking (Pending)
-- **Context Recall Verification:** Measure overlap of retrieved document segments with ground truth.
-- **Faithfulness Metric Check:** Verify Synthesis Agent's response remains grounded in context without hallucinations.
-- **Semantic Similarity Scoring:** Compute embedding similarity scores comparing synthesized output to ground truths. Uses active embedding model from Model Registry (default: jina-clip-v2).
+EvalOps serves as the automated quality assurance system, running benchmarks, managing evaluation test datasets, computing RAGAS and DeepEval metrics, analyzing transaction logs, and enforcing safety guardrails.
 
 ---
 
-## 2. DeepEval Safety & Guardrails Assertions (Pending)
-- **Judge Model:** Configure to use platform's primary LLM (`gemini/gemini-3.5-flash` via LiteLLM) instead of default `gpt-4o`. Add `DEEPEVAL_MODEL` setting.
-- **Toxicity Metric Check:** Assert toxicity < 0.1 for typical user prompts.
-- **Prompt Injection Scanner:** Test orchestrator against injection payloads from `tests/fixtures/injection_payloads.json`.
-- **PII Leakage Detector:** Verify no PII output (phone numbers, API keys, emails).
+## 1. RAGAS Retrieval Quality Benchmarking (`projects/evalops/src/metrics/ragas_runner.py` ✅)
+- **Context Recall & Precision:** Measures overlap of retrieved document segments with expected context.
+- **Faithfulness Metric Check:** Verifies agent responses remain grounded in retrieved contexts without hallucinations.
+- **Answer Relevancy:** Evaluates alignment between generated response and user input query.
+- **Judge Model & Embeddings:** Uses platform's configured LiteLLM models and vector client embeddings.
 
 ---
 
-## 3. Router & Logic Benchmarking Scripts (Pending)
-
-### `bench_gguf.py`
-- Evaluate active classifier model F1-score against test dataset at `tests/fixtures/grpo_eval_data.json`.
-- Test dataset schema:
-  ```json
-  [
-    {"prompt": "What is 2+2?", "expected_complexity": "simple", "expected_agents": []},
-    {"prompt": "Search for recent AI papers and summarize", "expected_complexity": "complex", "expected_agents": ["retrieval", "web_search"]}
-  ]
-  ```
-- Track cold-start vs warm latencies. Assert VRAM freed after idle timeout.
-
-### `bench_mmlu.py`
-- Run standardized logic benchmarks (GSM8k, HumanEval, MMLU subsets) against orchestrator's synthesis node.
-- Measure primary provider failure injection → verify fallback chain works.
-
-### `bench_models.py` (NEW)
-- Run benchmarks across different model options from Model Registry.
-- Compare accuracy, latency, VRAM usage per role (OCR, ASR, Embedding, Classifier).
-- Output comparison table for model selection decisions.
+## 2. DeepEval Safety & Guardrails Engine (`projects/evalops/src/metrics/deepeval_runner.py` ✅)
+- **Judge Model:** Configured via platform's LiteLLM completion model (`gemini/gemini-3.5-flash`).
+- **Metrics Evaluated:**
+  - `HallucinationMetric`: Asserts actual output is factual with respect to context.
+  - `ToxicityMetric`: Asserts output is free from hate speech, harassment, and toxic language.
+  - `BiasMetric`: Detects demographic or gender bias in responses.
+  - `AnswerRelevancyMetric` & `FaithfulnessMetric`.
+- **Per-Metric Thresholds & Pass/Fail Assertions:** Configurable thresholds per run request with reasons.
 
 ---
 
-## 4. Asynchronous Kafka Consumers & Eval Runner ✅
-- **Real-Time Log Stream Processing:** Background consumers for `guardroute-traces`, `syntraflow-ingestion-jobs`, and `agent-eval-trigger` Kafka topics.
-- **Agent Evaluation Runner (`projects/evalops/src/runner/consumer.py`):** Listens to `agent-eval-trigger` topic to asynchronously execute benchmark test cases against target models and update `EvalRunHistory` table with faithfulness, relevance, and latency metrics.
-- **Automated Report Generation:** Write to `evalops_reports` PostgreSQL table:
-  ```sql
-  CREATE TABLE evalops_reports (
-      id              SERIAL PRIMARY KEY,
-      run_id          UUID NOT NULL,
-      benchmark_name  VARCHAR(100) NOT NULL,
-      metric_name     VARCHAR(100) NOT NULL,
-      metric_value    FLOAT NOT NULL,
-      model_name      VARCHAR(200),
-      timestamp       TIMESTAMP DEFAULT NOW(),
-      metadata_json   JSONB
-  );
-  ```
-- Flag anomalies for manual auditing.
+## 3. Dataset Manager & Bulk Import/Export (`projects/evalops/src/datasets/manager.py` ✅)
+- **Test Suite CRUD:** Create, list, retrieve, update, delete, and clone evaluation test suites (`EvalTestSuite`).
+- **Test Case CRUD:** Add, list, edit, and delete granular test cases (`EvalTestCase`).
+- **Bulk Import/Export:**
+  - CSV Format: Columns `input_query,expected_output,expected_context`.
+  - JSON Format: Bulk import/export of test suites and cases with nested contexts.
 
 ---
 
-## 4b. Synthetic Test Case Generation Pipeline (V2 ✅)
-- **Engine (`projects/evalops/src/generation/synthetic.py`):** Takes an `AgentDefinition` (`system_prompt`, `role`), invokes LiteLLM / Model Registry, and generates 10-20 attributed test cases (`EvalTestCase`) saved into `EvalTestSuite`.
-- **API Endpoint:** `POST /api/evals/generate` schedules dataset creation.
-- **API Endpoint:** `POST /api/evals/run` dispatches asynchronous evaluation jobs to Kafka.
+## 4. Asynchronous Kafka Consumers & Eval Runner (`projects/evalops/src/runner/consumer.py` ✅)
+- **Agent Evaluation Runner:** Listens to `agent-eval-trigger` Kafka topic (or background task fallback) to execute framework evaluations against target agent definitions.
+- **Granular Database Results (`EvalMetricResult`):** Writes per-test-case, per-metric rows into `eval_metric_results` table containing score, threshold, pass/fail status, framework, and reason.
+- **Aggregated History (`EvalRunHistory`):** Stores run status, duration, total cases, passed/failed counts, and aggregate scores for faithfulness, relevance, recall, precision, hallucination, toxicity, and bias.
 
 ---
 
-## 5. Trace Observability & Diagnostics (Pending)
-- **OpenTelemetry → Jaeger:** Gateway and Inference servers export spans. Jaeger UI at `http://localhost:16686`, OTLP gRPC at `http://localhost:4317`.
-- **LangSmith Integration:** LLM-specific tracing (prompt debugging, token usage). Toggle via `LANGSMITH_TRACING=true`.
-- **Waterfall Timeline Diagnostics:** Nested timeline spans showing OCR latency, embedding times, LiteLLM switchover, VRAM cold-starts.
-
----
-
-## 6. CI/CD Integration (Pending)
-- **GitHub Actions** (`.github/workflows/evalops.yml`): Trigger on PRs to `main`.
-  1. `poetry install --all-extras`
-  2. `ruff check .` + `mypy .`
-  3. `pytest projects/evalops/tests/test_safety.py -v`
-  4. Optional: `pytest projects/evalops/tests/test_benchmarks.py -v`
-- **Test Data:** Fixtures in `tests/fixtures/`, version controlled, documented JSON schemas.
-
----
-
-## 7. EvalOps as Optional Service (Pending)
-- QA/CI tool, not production-critical.
-- In docker-compose: behind `test` profile.
-- Kafka consumers only start when explicitly enabled.
-- Requires: `poetry install --extras "evalops"`.
-
----
-
-## 8. Dependencies (`pyproject.toml` evalops extras)
-```toml
-evalops = [
-    "deepeval (>=4.0.5,<5.0.0)",
-    "ragas (>=0.2.0,<1.0.0)",
-    "confluent-kafka (>=2.4.0,<3.0.0)",
-]
-```
+## 5. REST API Routes (`projects/evalops/api.py` ✅)
+- `POST /api/evalops/suites`: Create test suite.
+- `GET /api/evalops/suites`: List suites (optional `?agent_id=` filter).
+- `GET /api/evalops/suites/{id}`: Get suite details and contained cases.
+- `PUT /api/evalops/suites/{id}`: Update suite metadata.
+- `DELETE /api/evalops/suites/{id}`: Delete suite.
+- `POST /api/evalops/suites/{id}/clone`: Clone test suite.
+- `POST /api/evalops/suites/{id}/cases`: Add test case.
+- `GET /api/evalops/suites/{id}/cases`: List test cases in suite.
+- `PUT /api/evalops/cases/{id}`: Update test case.
+- `DELETE /api/evalops/cases/{id}`: Delete test case.
+- `POST /api/evalops/suites/{id}/import`: Bulk CSV/JSON import.
+- `GET /api/evalops/suites/{id}/export`: Export suite as JSON.
+- `POST /api/evalops/run`: Trigger evaluation run (`framework: ragas|deepeval|both`, `metrics`, `thresholds`).
+- `GET /api/evalops/runs/{agent_id}`: List run history for agent.
+- `GET /api/evalops/runs/detail/{run_id}/metrics`: Query granular per-metric DB results.

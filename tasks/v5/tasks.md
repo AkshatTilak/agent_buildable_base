@@ -24,10 +24,10 @@
 ## Subtask Index
 
 ### B5-01: EvalOps Deep Integration
-- `[ ]` S5-01a — RAGAS Evaluation Runner
-- `[ ]` S5-01b — DeepEval Evaluation Runner
-- `[ ]` S5-01c — Custom Dataset Manager (CRUD + Import/Export)
-- `[ ]` S5-01d — Enhanced Eval Run Orchestration (framework/metric selection)
+- `[x]` S5-01a — RAGAS Evaluation Runner
+- `[x]` S5-01b — DeepEval Evaluation Runner
+- `[x]` S5-01c — Custom Dataset Manager (CRUD + Import/Export)
+- `[x]` S5-01d — Enhanced Eval Run Orchestration (framework/metric selection)
 - `[x]` S5-01e — EvalOps DB Schema Expansion (EvalMetricResult, EvalRunHistory columns)
 - `[ ]` S5-01f — EvalOps Dashboard API (stats, trends)
 - `[ ]` S5-01g — Frontend: Suite Manager Tab
