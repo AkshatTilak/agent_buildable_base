@@ -10,7 +10,7 @@
 | Base Task ID | Title | Subtask Count | Status |
 |---|---|---|---|
 | **B5-01** | EvalOps Deep Integration (RAGAS + DeepEval + Datasets + Dashboard) | 8 | `[ ]` |
-| **B5-02** | Agent Endpoints & Routing API | 5 | `[ ]` |
+| **B5-02** | Agent Endpoints & Routing API | 5 | `[x]` |
 | **B5-03** | User Authentication & RBAC | 6 | `[x]` |
 | **B5-04** | Model Playground | 5 | `[ ]` |
 | **B5-05** | MCP Integration Hub | 5 | `[ ]` |
@@ -37,8 +37,8 @@
 - `[x]` S5-02a — Agent Invocation Endpoint (`POST /api/agents/{id}/invoke`)
 - `[x]` S5-02b — Unified Routing Endpoint (`POST /api/route`)
 - `[x]` S5-02c — Agent Invocation Logging (DB table + stats query)
-- `[ ]` S5-02d — Agent CRUD Enhancements (is_active, endpoint_slug, stats)
-- `[ ]` S5-02e — Frontend: Agent Invoke Panel & Stats
+- `[x]` S5-02d — Agent CRUD Enhancements (is_active, endpoint_slug, stats)
+- `[x]` S5-02e — Frontend: Agent Invoke Panel & Stats
 
 ### B5-03: User Authentication & RBAC
 - `[x]` S5-03a — Auth Package Scaffold & DB Models (User, UserSession)
