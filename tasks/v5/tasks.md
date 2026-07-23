@@ -9,7 +9,7 @@
 
 | Base Task ID | Title | Subtask Count | Status |
 |---|---|---|---|
-| **B5-01** | EvalOps Deep Integration (RAGAS + DeepEval + Datasets + Dashboard) | 8 | `[ ]` |
+| **B5-01** | EvalOps Deep Integration (RAGAS + DeepEval + Datasets + Dashboard) | 8 | `[x]` |
 | **B5-02** | Agent Endpoints & Routing API | 5 | `[x]` |
 | **B5-03** | User Authentication & RBAC | 6 | `[x]` |
 | **B5-04** | Model Playground | 5 | `[ ]` |
@@ -29,9 +29,9 @@
 - `[x]` S5-01c — Custom Dataset Manager (CRUD + Import/Export)
 - `[x]` S5-01d — Enhanced Eval Run Orchestration (framework/metric selection)
 - `[x]` S5-01e — EvalOps DB Schema Expansion (EvalMetricResult, EvalRunHistory columns)
-- `[ ]` S5-01f — EvalOps Dashboard API (stats, trends)
-- `[ ]` S5-01g — Frontend: Suite Manager Tab
-- `[ ]` S5-01h — Frontend: Results Dashboard (metrics cards, trend charts, drill-down)
+- `[x]` S5-01f — EvalOps Dashboard API (stats, trends)
+- `[x]` S5-01g — Frontend: Suite Manager Tab
+- `[x]` S5-01h — Frontend: Results Dashboard (metrics cards, trend charts, drill-down)
 
 ### B5-02: Agent Endpoints & Routing API
 - `[x]` S5-02a — Agent Invocation Endpoint (`POST /api/agents/{id}/invoke`)
