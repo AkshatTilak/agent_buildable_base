@@ -1,6 +1,6 @@
 # B5-03: User Authentication & RBAC
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway` (new `auth/` package)  
 > **Secondary:** `common/models`, `frontend`, `infrastructure`  
 > **Complexity:** 🔴 High (6 subtasks)
@@ -15,16 +15,16 @@ Add opt-in user authentication via Google and GitHub OAuth2. Issue JWTs for sess
 
 ## Acceptance Criteria
 
-- [ ] `User` and `UserSession` DB models created with Alembic migration
-- [ ] Google OAuth login/callback flow works end-to-end (redirect → callback → JWT issued)
-- [ ] GitHub OAuth login/callback flow works end-to-end
-- [ ] JWT middleware validates tokens on protected routes
-- [ ] `require_role()` dependency enforces admin/editor/viewer permissions
-- [ ] When `AUTH_ENABLED=false`, all routes remain open (no regression)
-- [ ] Frontend has login page with Google/GitHub buttons
-- [ ] Auth state persisted in Zustand store; header shows user avatar + role
-- [ ] Protected routes redirect unauthenticated users to `/login`
-- [ ] Admin panel for user management (list users, change roles)
+- [x] `User` and `UserSession` DB models created with Alembic migration
+- [x] Google OAuth login/callback flow works end-to-end (redirect → callback → JWT issued)
+- [x] GitHub OAuth login/callback flow works end-to-end
+- [x] JWT middleware validates tokens on protected routes
+- [x] `require_role()` dependency enforces admin/editor/viewer permissions
+- [x] When `AUTH_ENABLED=false`, all routes remain open (no regression)
+- [x] Frontend has login page with Google/GitHub buttons
+- [x] Auth state persisted in Zustand store; header shows user avatar + role
+- [x] Protected routes redirect unauthenticated users to `/login`
+- [x] Admin panel for user management (list users, change roles)
 
 ---
 

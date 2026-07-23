@@ -11,7 +11,7 @@
 |---|---|---|---|
 | **B5-01** | EvalOps Deep Integration (RAGAS + DeepEval + Datasets + Dashboard) | 8 | `[ ]` |
 | **B5-02** | Agent Endpoints & Routing API | 5 | `[ ]` |
-| **B5-03** | User Authentication & RBAC | 6 | `[ ]` |
+| **B5-03** | User Authentication & RBAC | 6 | `[x]` |
 | **B5-04** | Model Playground | 5 | `[ ]` |
 | **B5-05** | MCP Integration Hub | 5 | `[ ]` |
 | **B5-06** | Workflow Builder Enhancements | 7 | `[ ]` |
@@ -28,15 +28,15 @@
 - `[ ]` S5-01b — DeepEval Evaluation Runner
 - `[ ]` S5-01c — Custom Dataset Manager (CRUD + Import/Export)
 - `[ ]` S5-01d — Enhanced Eval Run Orchestration (framework/metric selection)
-- `[ ]` S5-01e — EvalOps DB Schema Expansion (EvalMetricResult, EvalRunHistory columns)
+- `[x]` S5-01e — EvalOps DB Schema Expansion (EvalMetricResult, EvalRunHistory columns)
 - `[ ]` S5-01f — EvalOps Dashboard API (stats, trends)
 - `[ ]` S5-01g — Frontend: Suite Manager Tab
 - `[ ]` S5-01h — Frontend: Results Dashboard (metrics cards, trend charts, drill-down)
 
 ### B5-02: Agent Endpoints & Routing API
-- `[ ]` S5-02a — Agent Invocation Endpoint (`POST /api/agents/{id}/invoke`)
-- `[ ]` S5-02b — Unified Routing Endpoint (`POST /api/route`)
-- `[ ]` S5-02c — Agent Invocation Logging (DB table + stats query)
+- `[x]` S5-02a — Agent Invocation Endpoint (`POST /api/agents/{id}/invoke`)
+- `[x]` S5-02b — Unified Routing Endpoint (`POST /api/route`)
+- `[x]` S5-02c — Agent Invocation Logging (DB table + stats query)
 - `[ ]` S5-02d — Agent CRUD Enhancements (is_active, endpoint_slug, stats)
 - `[ ]` S5-02e — Frontend: Agent Invoke Panel & Stats
 
@@ -46,7 +46,7 @@
 - `[x]` S5-03c — GitHub OAuth Provider
 - `[x]` S5-03d — JWT Middleware & Role-Based Dependencies
 - `[x]` S5-03e — Frontend: Login Page & Auth State Management
-- `[ ]` S5-03f — Frontend: Route Guards, Header User Badge, Admin User Management
+- `[x]` S5-03f — Frontend: Route Guards, Header User Badge, Admin User Management
 
 ### B5-04: Model Playground
 - `[ ]` S5-04a — Playground Chat API (completion, streaming, model selection)
