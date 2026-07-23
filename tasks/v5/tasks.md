@@ -14,7 +14,7 @@
 | **B5-03** | User Authentication & RBAC | 6 | `[x]` |
 | **B5-04** | Model Playground | 5 | `[x]` |
 | **B5-05** | MCP Integration Hub | 5 | `[x]` |
-| **B5-06** | Workflow Builder Enhancements | 7 | `[ ]` |
+| **B5-06** | Workflow Builder Enhancements | 7 | `[x]` |
 | **B5-07** | External API Gateway | 5 | `[ ]` |
 
 **Total Subtasks:** 41
@@ -63,13 +63,13 @@
 - `[x]` S5-05e — Frontend: MCPHubPage (server list, tool panels, test invoker)
 
 ### B5-06: Workflow Builder Enhancements
-- `[ ]` S5-06a — IfElseNode (frontend component + conditional evaluator runtime)
-- `[ ]` S5-06b — WebhookNode (frontend component + HTTP executor runtime)
-- `[ ]` S5-06c — APICallNode (frontend component + REST executor runtime)
-- `[ ]` S5-06d — EvalNode & MCPToolNode (frontend + runtime)
-- `[ ]` S5-06e — RouterNode & TransformNode (frontend + runtime)
-- `[ ]` S5-06f — Graph Parser V5 (parse all new node types into LangGraph)
-- `[ ]` S5-06g — Dynamic Node Palette (auto-populate from agents, MCP tools, eval suites)
+- `[x]` S5-06a — IfElseNode (frontend component + conditional evaluator runtime)
+- `[x]` S5-06b — WebhookNode (frontend component + HTTP executor runtime)
+- `[x]` S5-06c — APICallNode (frontend component + REST executor runtime)
+- `[x]` S5-06d — EvalNode & MCPToolNode (frontend + runtime)
+- `[x]` S5-06e — RouterNode & TransformNode (frontend + runtime)
+- `[x]` S5-06f — Graph Parser V5 (parse all new node types into LangGraph)
+- `[x]` S5-06g — Dynamic Node Palette (auto-populate from agents, MCP tools, eval suites)
 
 ### B5-07: External API Gateway
 - `[ ]` S5-07a — OpenAI-Compatible `/v1/chat/completions` Endpoint
