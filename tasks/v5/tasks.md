@@ -13,7 +13,7 @@
 | **B5-02** | Agent Endpoints & Routing API | 5 | `[x]` |
 | **B5-03** | User Authentication & RBAC | 6 | `[x]` |
 | **B5-04** | Model Playground | 5 | `[x]` |
-| **B5-05** | MCP Integration Hub | 5 | `[ ]` |
+| **B5-05** | MCP Integration Hub | 5 | `[x]` |
 | **B5-06** | Workflow Builder Enhancements | 7 | `[ ]` |
 | **B5-07** | External API Gateway | 5 | `[ ]` |
 
@@ -56,11 +56,11 @@
 - `[x]` S5-04e — Frontend: File Attachment Zone & Session Sidebar
 
 ### B5-05: MCP Integration Hub
-- `[ ]` S5-05a — MCP Server Registry (CRUD + health checks)
-- `[ ]` S5-05b — Tool Discovery & Caching
-- `[ ]` S5-05c — Tool Invocation API & Testing
-- `[ ]` S5-05d — Internal MCP Auto-Registration (SyntraFlow)
-- `[ ]` S5-05e — Frontend: MCPHubPage (server list, tool panels, test invoker)
+- `[x]` S5-05a — MCP Server Registry (CRUD + health checks)
+- `[x]` S5-05b — Tool Discovery & Caching
+- `[x]` S5-05c — Tool Invocation API & Testing
+- `[x]` S5-05d — Internal MCP Auto-Registration (SyntraFlow)
+- `[x]` S5-05e — Frontend: MCPHubPage (server list, tool panels, test invoker)
 
 ### B5-06: Workflow Builder Enhancements
 - `[ ]` S5-06a — IfElseNode (frontend component + conditional evaluator runtime)

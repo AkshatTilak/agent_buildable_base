@@ -1,6 +1,6 @@
 # B5-05: MCP Integration Hub
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway`  
 > **Secondary:** `projects/syntraflow`, `frontend`  
 > **Complexity:** 🟡 Medium (5 subtasks)
@@ -15,15 +15,15 @@ Provide a management layer for Model Context Protocol (MCP) servers and tools. U
 
 ## Acceptance Criteria
 
-- [ ] `mcp_servers` and `mcp_tool_cache` DB tables created
-- [ ] CRUD endpoints for MCP server registration (URL, transport, auth)
-- [ ] Tool discovery endpoint queries a server's `list_tools` and caches results
-- [ ] Tool invocation endpoint calls any registered tool by server_id + tool_name + params
-- [ ] Inline tool testing via API (provide sample input, get result)
-- [ ] SyntraFlow MCP server auto-registered as internal server on gateway startup
-- [ ] Health check polling for registered servers (status indicators)
-- [ ] Frontend MCPHubPage with server list, tool panels, test invoker, enable/disable toggles
-- [ ] Registered tools appear in Workflow Builder node palette as MCPToolNodes
+- [x] `mcp_servers` and `mcp_tool_cache` DB tables created
+- [x] CRUD endpoints for MCP server registration (URL, transport, auth)
+- [x] Tool discovery endpoint queries a server's `list_tools` and caches results
+- [x] Tool invocation endpoint calls any registered tool by server_id + tool_name + params
+- [x] Inline tool testing via API (provide sample input, get result)
+- [x] SyntraFlow MCP server auto-registered as internal server on gateway startup
+- [x] Health check polling for registered servers (status indicators)
+- [x] Frontend MCPHubPage with server list, tool panels, test invoker, enable/disable toggles
+- [x] Registered tools appear in Workflow Builder node palette as MCPToolNodes
 
 ---
 

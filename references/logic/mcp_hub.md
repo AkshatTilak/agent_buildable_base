@@ -1,7 +1,13 @@
 # MCP Integration Hub Architecture
 
-> **Source:** V5 Planning  
-> **Last Updated:** 2026-07-23
+> **Source:** V5 Base Task B5-05 Implementation  
+> **Status:** Completed `[x]`  
+> **Last Updated:** 2026-07-24  
+> **Files:**  
+> - Backend Models: [database.py](file:///c:/Akshat/ContAIned/common/models/database.py)  
+> - Router: [mcp_manager.py](file:///c:/Akshat/ContAIned/gateway/api/mcp_manager.py)  
+> - Service Client: [mcp_client.py](file:///c:/Akshat/ContAIned/gateway/services/mcp_client.py)  
+> - UI Component: [MCPHubPage.tsx](file:///c:/Akshat/ContAIned/frontend/src/components/MCPHubPage.tsx)  
 
 ---
 
