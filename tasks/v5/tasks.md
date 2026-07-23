@@ -41,11 +41,11 @@
 - `[ ]` S5-02e — Frontend: Agent Invoke Panel & Stats
 
 ### B5-03: User Authentication & RBAC
-- `[ ]` S5-03a — Auth Package Scaffold & DB Models (User, UserSession)
-- `[ ]` S5-03b — Google OAuth Provider
-- `[ ]` S5-03c — GitHub OAuth Provider
-- `[ ]` S5-03d — JWT Middleware & Role-Based Dependencies
-- `[ ]` S5-03e — Frontend: Login Page & Auth State Management
+- `[x]` S5-03a — Auth Package Scaffold & DB Models (User, UserSession)
+- `[x]` S5-03b — Google OAuth Provider
+- `[x]` S5-03c — GitHub OAuth Provider
+- `[x]` S5-03d — JWT Middleware & Role-Based Dependencies
+- `[x]` S5-03e — Frontend: Login Page & Auth State Management
 - `[ ]` S5-03f — Frontend: Route Guards, Header User Badge, Admin User Management
 
 ### B5-04: Model Playground
