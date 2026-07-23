@@ -12,7 +12,7 @@
 | **B5-01** | EvalOps Deep Integration (RAGAS + DeepEval + Datasets + Dashboard) | 8 | `[x]` |
 | **B5-02** | Agent Endpoints & Routing API | 5 | `[x]` |
 | **B5-03** | User Authentication & RBAC | 6 | `[x]` |
-| **B5-04** | Model Playground | 5 | `[ ]` |
+| **B5-04** | Model Playground | 5 | `[x]` |
 | **B5-05** | MCP Integration Hub | 5 | `[ ]` |
 | **B5-06** | Workflow Builder Enhancements | 7 | `[ ]` |
 | **B5-07** | External API Gateway | 5 | `[ ]` |
@@ -49,11 +49,11 @@
 - `[x]` S5-03f — Frontend: Route Guards, Header User Badge, Admin User Management
 
 ### B5-04: Model Playground
-- `[ ]` S5-04a — Playground Chat API (completion, streaming, model selection)
-- `[ ]` S5-04b — File Upload & Processing Pipeline (PDF, image, video)
-- `[ ]` S5-04c — Playground Session Persistence (save/load)
-- `[ ]` S5-04d — Frontend: PlaygroundPage Chat UI
-- `[ ]` S5-04e — Frontend: File Attachment Zone & Session Sidebar
+- `[x]` S5-04a — Playground Chat API (completion, streaming, model selection)
+- `[x]` S5-04b — File Upload & Processing Pipeline (PDF, image, video)
+- `[x]` S5-04c — Playground Session Persistence (save/load)
+- `[x]` S5-04d — Frontend: PlaygroundPage Chat UI
+- `[x]` S5-04e — Frontend: File Attachment Zone & Session Sidebar
 
 ### B5-05: MCP Integration Hub
 - `[ ]` S5-05a — MCP Server Registry (CRUD + health checks)
