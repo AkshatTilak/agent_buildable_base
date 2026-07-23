@@ -1,6 +1,6 @@
 # B5-06: Workflow Builder Enhancements
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/guardroute`, `frontend`  
 > **Secondary:** `projects/evalops` (EvalNode)  
 > **Complexity:** 🔴 High (7 subtasks)
@@ -35,17 +35,17 @@ Expand the visual Workflow Builder from its current 4-node-type system into a co
 
 ## Acceptance Criteria
 
-- [ ] All 7 new node types have frontend React components with proper handles and PropertyDrawer config
-- [ ] IfElseNode supports conditions on: complexity, agent_output, metadata fields, regex, custom expressions
-- [ ] WebhookNode has URL, headers, body template with `{{variable}}` interpolation, timeout, retry
-- [ ] APICallNode supports GET/POST/PUT/DELETE with auth (None/Bearer/API Key)
-- [ ] EvalNode lets user select suite, framework, metrics, and threshold for pass/fail
-- [ ] MCPToolNode dropdown populates from registered MCP tools
-- [ ] RouterNode supports N-way branching with condition → target mapping
-- [ ] TransformNode supports Jinja2-style template rendering
-- [ ] Graph Parser V5 handles all new node types → compiles to executable LangGraph
-- [ ] SSRF protection on WebhookNode/APICallNode (block private IP ranges)
-- [ ] Node palette auto-populates categorized sections: Agents, Logic, Integrations, Evals, Tools
+- [x] All 7 new node types have frontend React components with proper handles and PropertyDrawer config
+- [x] IfElseNode supports conditions on: complexity, agent_output, metadata fields, regex, custom expressions
+- [x] WebhookNode has URL, headers, body template with `{{variable}}` interpolation, timeout, retry
+- [x] APICallNode supports GET/POST/PUT/DELETE with auth (None/Bearer/API Key)
+- [x] EvalNode lets user select suite, framework, metrics, and threshold for pass/fail
+- [x] MCPToolNode dropdown populates from registered MCP tools
+- [x] RouterNode supports N-way branching with condition → target mapping
+- [x] TransformNode supports Jinja2-style template rendering
+- [x] Graph Parser V5 handles all new node types → compiles to executable LangGraph
+- [x] SSRF protection on WebhookNode/APICallNode (block private IP ranges)
+- [x] Node palette auto-populates categorized sections: Agents, Logic, Integrations, Evals, Tools
 
 ---
 

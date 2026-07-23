@@ -1,6 +1,6 @@
 # B5-01: EvalOps Deep Integration
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/evalops`  
 > **Secondary:** `common/models`, `frontend`  
 > **Complexity:** 🔴 High (8 subtasks)
@@ -15,14 +15,14 @@ Elevate EvalOps from a basic synthetic-test-and-run tool into a comprehensive ev
 
 ## Acceptance Criteria
 
-- [ ] RAGAS evaluation runner computes: context_recall, faithfulness, answer_relevance, context_precision
-- [ ] DeepEval evaluation runner computes: hallucination, toxicity, bias, answer_relevancy, faithfulness
-- [ ] Users can create, edit, delete test suites and individual test cases via API
-- [ ] Users can bulk import test cases from CSV/JSON and export suites
-- [ ] Eval runs accept framework selection (RAGAS / DeepEval / both) and metric subset
-- [ ] Per-metric granular results stored in `eval_metric_results` table
-- [ ] Dashboard API returns aggregated stats and time-series trends
-- [ ] Frontend EvalPanel has Suite Manager, Run Config modal, Metrics Dashboard, Trend Charts, and Per-Case Drill-Down
+- [x] RAGAS evaluation runner computes: context_recall, faithfulness, answer_relevance, context_precision
+- [x] DeepEval evaluation runner computes: hallucination, toxicity, bias, answer_relevancy, faithfulness
+- [x] Users can create, edit, delete test suites and individual test cases via API
+- [x] Users can bulk import test cases from CSV/JSON and export suites
+- [x] Eval runs accept framework selection (RAGAS / DeepEval / both) and metric subset
+- [x] Per-metric granular results stored in `eval_metric_results` table
+- [x] Dashboard API returns aggregated stats and time-series trends
+- [x] Frontend EvalPanel has Suite Manager, Run Config modal, Metrics Dashboard, Trend Charts, and Per-Case Drill-Down
 
 ---
 

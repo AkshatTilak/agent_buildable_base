@@ -1,6 +1,6 @@
 # B5-07: External API Gateway
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway`  
 > **Secondary:** `common/schemas`, `frontend`  
 > **Complexity:** 🟡 Medium (5 subtasks)
@@ -15,17 +15,17 @@ Expose an OpenAI-compatible external API at `/v1/*` that allows programmatic acc
 
 ## Acceptance Criteria
 
-- [ ] `POST /v1/chat/completions` — OpenAI-compatible request/response format
-- [ ] If `model` param matches an agent `endpoint_slug` → invoke that agent
-- [ ] If `model` param matches a `model_id` → direct LiteLLM completion
-- [ ] Streaming support (`stream: true`) in OpenAI SSE format
-- [ ] `POST /v1/embeddings` endpoint using active embedding model
-- [ ] `GET /v1/models` lists all available models and agent slugs
-- [ ] API key validation via `Authorization: Bearer <key>` header
-- [ ] Per-key rate limiting (configurable requests/minute)
-- [ ] Usage tracking: requests count, tokens consumed per key, stored in DB
-- [ ] API key CRUD in Settings page (generate, copy, revoke, toggle active)
-- [ ] Inline code examples / documentation panel in frontend
+- [x] `POST /v1/chat/completions` — OpenAI-compatible request/response format
+- [x] If `model` param matches an agent `endpoint_slug` → invoke that agent
+- [x] If `model` param matches a `model_id` → direct LiteLLM completion
+- [x] Streaming support (`stream: true`) in OpenAI SSE format
+- [x] `POST /v1/embeddings` endpoint using active embedding model
+- [x] `GET /v1/models` lists all available models and agent slugs
+- [x] API key validation via `Authorization: Bearer <key>` header
+- [x] Per-key rate limiting (configurable requests/minute)
+- [x] Usage tracking: requests count, tokens consumed per key, stored in DB
+- [x] API key CRUD in Settings page (generate, copy, revoke, toggle active)
+- [x] Inline code examples / documentation panel in frontend
 
 ---
 

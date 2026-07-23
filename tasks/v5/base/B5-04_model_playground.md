@@ -1,6 +1,6 @@
 # B5-04: Model Playground
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway`  
 > **Secondary:** `projects/syntraflow`, `inference`, `frontend`  
 > **Complexity:** 🟡 Medium (5 subtasks)
@@ -15,15 +15,15 @@ Provide an interactive playground page where users can chat with any model from 
 
 ## Acceptance Criteria
 
-- [ ] `POST /api/playground/chat` accepts model_id, messages, system_prompt, temperature, max_tokens, attachment refs
-- [ ] SSE streaming support for playground chat
-- [ ] `POST /api/playground/upload` handles PDF → text extraction, images → OCR, video → ASR transcription
-- [ ] Uploaded file content injected into conversation context for the model
-- [ ] Playground sessions persist to DB (save/load/delete)
-- [ ] Frontend has full chat UI with model selector, system prompt editor, parameter sliders
-- [ ] File attachment drag-and-drop with preview (text, thumbnail, transcription)
-- [ ] Token usage displayed per message
-- [ ] Copy response, regenerate, edit & resend capabilities
+- [x] `POST /api/playground/chat` accepts model_id, messages, system_prompt, temperature, max_tokens, attachment refs
+- [x] SSE streaming support for playground chat
+- [x] `POST /api/playground/upload` handles PDF → text extraction, images → OCR, video → ASR transcription
+- [x] Uploaded file content injected into conversation context for the model
+- [x] Playground sessions persist to DB (save/load/delete)
+- [x] Frontend has full chat UI with model selector, system prompt editor, parameter sliders
+- [x] File attachment drag-and-drop with preview (text, thumbnail, transcription)
+- [x] Token usage displayed per message
+- [x] Copy response, regenerate, edit & resend capabilities
 
 ---
 

@@ -1,6 +1,6 @@
 # B5-02: Agent Endpoints & Routing API
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway`, `projects/guardroute`  
 > **Secondary:** `common/schemas`  
 > **Complexity:** 🟡 Medium (5 subtasks)
@@ -15,13 +15,13 @@ Give every created agent a live, callable endpoint. Provide a unified routing AP
 
 ## Acceptance Criteria
 
-- [ ] `POST /api/agents/{agent_id}/invoke` resolves agent config and executes LLM completion
-- [ ] Streaming SSE support on agent invoke
-- [ ] If agent has tools → invoke tool pipeline (MCP, code sandbox, search)
-- [ ] `POST /api/route` accepts `agent_id`, `model_id`, or `routing_strategy: "auto"` to classify and route
-- [ ] Agent invocations logged to `agent_invocation_log` table
-- [ ] Agent CRUD extended with `is_active` toggle, auto-generated `endpoint_slug`, stats endpoint
-- [ ] Frontend shows active toggle, endpoint URL, inline "Test Agent" panel, and invocation stats
+- [x] `POST /api/agents/{agent_id}/invoke` resolves agent config and executes LLM completion
+- [x] Streaming SSE support on agent invoke
+- [x] If agent has tools → invoke tool pipeline (MCP, code sandbox, search)
+- [x] `POST /api/route` accepts `agent_id`, `model_id`, or `routing_strategy: "auto"` to classify and route
+- [x] Agent invocations logged to `agent_invocation_log` table
+- [x] Agent CRUD extended with `is_active` toggle, auto-generated `endpoint_slug`, stats endpoint
+- [x] Frontend shows active toggle, endpoint URL, inline "Test Agent" panel, and invocation stats
 
 ---
 
