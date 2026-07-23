@@ -40,6 +40,7 @@ This workspace is currently configured for the **ContAIned AI Platform** — a m
 * **Version 1 (`tasks/v1/`):** Base system tasks completed (Monorepo integration, Common Library, SyntraFlow, GuardRoute, Inference, Infrastructure).
 * **Version 2 (`tasks/v2/`):** Real-time frontend, ReactFlow visual builder, CRUD agent hub, dynamic ingestion pipelines, and eval generator completed.
 * **Version 3 (`tasks/v3/`):** System-wide polish, design token system, React Router, 16GB RAM Docker profiles (`--profile core`), Document Library & Job Tracker UX completed.
+* **Version 5 (`tasks/v5/`) — ACTIVE:** Platform Maturity — EvalOps Deep Integration (RAGAS+DeepEval+Custom Datasets), Agent Endpoints & Routing API, User Auth & RBAC (Google/GitHub OAuth), Model Playground (chat+file attachments), MCP Integration Hub, Workflow Builder Enhancements (IfElse/Webhook/API/Router/Eval/MCP/Transform nodes), External API Gateway (OpenAI-compatible).
 
 ### Key References
 * `references/structure/system_architecture.md` — System topology, env vars, DB setup.
@@ -50,6 +51,11 @@ This workspace is currently configured for the **ContAIned AI Platform** — a m
 * `references/logic/security.md` — Security policies.
 * `references/deployment/infrastructure.md` — Docker and deployment.
 * `references/code/common_library.md` — Shared library implementation details.
+* `references/logic/auth.md` — Authentication & RBAC architecture.
+* `references/logic/playground.md` — Model Playground architecture.
+* `references/logic/mcp_hub.md` — MCP Integration Hub architecture.
+* `references/logic/external_api.md` — External API Gateway architecture.
+* `references/logic/workflow_v5.md` — Workflow Builder V5 node types & graph parser.
 
 ### Documentation Sources
 * **Hugging Face & ML:** [Hugging Face Docs](https://huggingface.co/docs), [Transformers Docs](https://huggingface.co/docs/transformers/index), [Sentence Transformers](https://sbert.net/)
