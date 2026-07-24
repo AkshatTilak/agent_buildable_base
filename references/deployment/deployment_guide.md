@@ -1,10 +1,36 @@
-# Setup & Deployment Guide: ContAIned AI Platform (V4.1)
+# Setup & Deployment Guide: ContAIned AI Platform (V5)
 
-This guide outlines how to build, run, test, and deploy the **ContAIned AI Platform V4.1**. It covers **local hybrid native/Docker development**, **Tailwind CSS v4 frontend integration**, **UI layout spacing & card padding standards**, and **all-in-one containerized deployment**.
+This guide outlines how to build, run, test, and deploy the **ContAIned AI Platform V5**. It covers **automated CLI deployment**, **local hybrid native/Docker development**, **Tailwind CSS v4 frontend integration**, and **all-in-one containerized deployment**.
 
 ---
 
-## 1. System Overview & Port Mapping
+## 1. Automated Unified Deployment (Recommended)
+
+The platform includes a cross-platform Python CLI script (`scripts/deploy.py`) to manage git submodules, `.env` validation, Docker Compose infrastructure profiles, database migrations, health diagnostics, and test suites in a single command.
+
+### Deploy All Infrastructure & Run Diagnostics:
+```bash
+python scripts/deploy.py --mode all --profile core
+```
+
+### Supported Modes (`--mode`):
+- `all`: Sync submodules, spin up Docker infrastructure, run database migrations, and execute system health checks (Default).
+- `infra`: Spin up Docker infrastructure containers only.
+- `submodules`: Initialize and synchronize git submodules.
+- `migrate`: Execute Alembic database migrations (`alembic upgrade head`).
+- `check`: Perform deep TCP/HTTP health checks across all data stores and microservice ports.
+- `test`: Run system pytest test suite.
+
+### Profile Options (`--profile`):
+- `core`: PostgreSQL, Qdrant, Redis (Default, ~1.3GB RAM)
+- `graph`: Neo4j graph database
+- `messaging`: Kafka, Zookeeper, topic initializer
+- `app`: API Gateway and GPU Inference containers
+- `full`: Complete stack across all profiles
+
+---
+
+## 2. System Overview & Port Mapping
 
 The platform consists of the following primary microservices and infrastructure stores:
 
