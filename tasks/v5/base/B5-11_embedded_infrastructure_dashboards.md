@@ -1,6 +1,6 @@
 # B5-11: Embedded Infrastructure Dashboards & UI Proxies
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway`  
 > **Secondary:** `frontend`  
 > **Complexity:** 🟡 Medium (3 subtasks)
@@ -15,9 +15,10 @@ Expose native infrastructure dashboards (Qdrant vector UI and Neo4j Browser) via
 
 ## Acceptance Criteria
 
-- [ ] API Gateway implements reverse proxy endpoints (`/qdrant/*` → `http://localhost:6333`, `/neo4j/*` → `http://localhost:7474`)
-- [ ] RBAC middleware enforces admin/editor authentication before proxying requests
-- [ ] React frontend renders embedded iframe tabs for Qdrant and Neo4j dashboards in the Infrastructure view
+- [x] API Gateway implements reverse proxy endpoints (`/qdrant/*` → `http://localhost:6333`, `/neo4j/*` → `http://localhost:7474`)
+- [x] RBAC middleware enforces admin/editor authentication before proxying requests
+- [x] React frontend renders embedded iframe tabs for Qdrant and Neo4j dashboards in the Infrastructure view
+
 
 ---
 

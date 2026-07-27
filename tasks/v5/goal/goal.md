@@ -1,7 +1,7 @@
 # V5 Goal: Platform Maturity — Evals, Auth, Playground, MCP, Routing & Workflow Intelligence
 
 > **Version:** 5  
-> **Status:** `[ ] Active`  
+> **Status:** `[x] Completed`  
 > **Depends On:** V1–V4 (Completed)
 
 ---
