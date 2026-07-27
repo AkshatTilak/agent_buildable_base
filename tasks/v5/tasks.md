@@ -16,7 +16,7 @@
 | **B5-05** | MCP Integration Hub | 5 | `[x]` |
 | **B5-06** | Workflow Builder Enhancements | 7 | `[x]` |
 | **B5-07** | External API Gateway | 5 | `[ ]` |
-| **B5-08** | Global Data Store & Dynamic Collections | 5 | `[ ]` |
+| **B5-08** | Global Data Store & Dynamic Collections | 5 | `[x]` |
 | **B5-09** | Multi-Agent Workflows & Strict Flow Terminations | 4 | `[ ]` |
 | **B5-10** | Multi-Agent Flow Evaluation Tracing | 5 | `[ ]` |
 | **B5-11** | Embedded Infrastructure Dashboards & UI Proxies | 3 | `[ ]` |
@@ -83,11 +83,11 @@
 - `[ ]` S5-07e — Frontend: API Keys Tab in Settings + Docs Panel
 
 ### B5-08: Global Data Store & Dynamic Collections
-- `[ ]` S5-08a — DB Schema Migration & Collections Table
-- `[ ]` S5-08b — Qdrant Dynamic Collection Manager & API
-- `[ ]` S5-08c — Dynamic Metadata Indexing & Filtering Pipeline
-- `[ ]` S5-08d — Pluggable Retrieval Strategy Engine
-- `[ ]` S5-08e — Frontend: Collection Manager & Query Panel
+- `[x]` S5-08a — DB Schema Migration & Collections Table
+- `[x]` S5-08b — Qdrant Dynamic Collection Manager & API
+- `[x]` S5-08c — Dynamic Metadata Indexing & Filtering Pipeline
+- `[x]` S5-08d — Pluggable Retrieval Strategy Engine
+- `[x]` S5-08e — Frontend: Collection Manager & Query Panel
 
 ### B5-09: Multi-Agent Workflows & Strict Flow Terminations
 - `[ ]` S5-09a — MultiAgentNode Runtime Executor & State Transfer
