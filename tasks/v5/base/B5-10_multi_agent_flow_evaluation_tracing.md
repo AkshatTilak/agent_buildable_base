@@ -1,6 +1,6 @@
 # B5-10: Multi-Agent Flow Evaluation Tracing
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/evalops`  
 > **Secondary:** `projects/guardroute`, `frontend`  
 > **Complexity:** 🔴 High (5 subtasks)
@@ -15,11 +15,12 @@ Extend EvalOps to intercept and evaluate intermediate states, logic branch decis
 
 ## Acceptance Criteria
 
-- [ ] `EvalTrace` collector hooks into LangGraph execution events
-- [ ] Database schema includes `eval_flow_traces` for step-by-step state logs
-- [ ] Intermediate Block Assertion engine evaluates outputs of specific nodes in a flow
-- [ ] Action Node Mocking framework simulates side-effects during eval test runs
-- [ ] Frontend EvalOps panel includes a Flow Trace Visualizer and Step-by-Step Debugger
+- [x] `EvalTrace` collector hooks into LangGraph execution events
+- [x] Database schema includes `eval_flow_traces` for step-by-step state logs
+- [x] Intermediate Block Assertion engine evaluates outputs of specific nodes in a flow
+- [x] Action Node Mocking framework simulates side-effects during eval test runs
+- [x] Frontend EvalOps panel includes a Flow Trace Visualizer and Step-by-Step Debugger
+
 
 ---
 

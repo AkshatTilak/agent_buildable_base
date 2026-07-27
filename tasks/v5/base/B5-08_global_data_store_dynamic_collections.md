@@ -1,6 +1,6 @@
 # B5-08: Global Data Store & Dynamic Collections
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/syntraflow`  
 > **Secondary:** `common/clients`, `frontend`  
 > **Complexity:** 🔴 High (5 subtasks)
@@ -15,11 +15,11 @@ Transition SyntraFlow to a multi-collection Qdrant architecture with dynamic met
 
 ## Acceptance Criteria
 
-- [ ] Relational schema updated with `syntraflow_collections` SQL table and Alembic migration
-- [ ] API endpoints available for collection CRUD (`/api/syntraflow/collections`)
-- [ ] Vector indexing automatically tags metadata (`tenant_id`, `document_id`, `tags`, `access_level`)
-- [ ] Retrieval strategy engine allows selecting Dense, Sparse, Hybrid (RRF), or Graph search per query
-- [ ] Frontend SyntraFlow view features a Collection Manager tab and interactive retrieval tester
+- [x] Relational schema updated with `syntraflow_collections` SQL table and Alembic migration
+- [x] API endpoints available for collection CRUD (`/api/syntraflow/collections`)
+- [x] Vector indexing automatically tags metadata (`tenant_id`, `document_id`, `tags`, `access_level`)
+- [x] Retrieval strategy engine allows selecting Dense, Sparse, Hybrid (RRF), or Graph search per query
+- [x] Frontend SyntraFlow view features a Collection Manager tab and interactive retrieval tester
 
 ---
 
