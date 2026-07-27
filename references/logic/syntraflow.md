@@ -77,17 +77,25 @@ CREATE TABLE syntraflow_jobs (
 
 ---
 
-## 4. Database Writing & KG Population ✅
+## 4. Global Data Store & KG Population ✅
 
 ### Relational DB (PostgreSQL)
-- Document metadata, aligned video segments, chunk payloads to Postgres.
-- Prefix: `syntraflow_` for all tables (`syntraflow_documents`, `syntraflow_chunks`, `syntraflow_video_segments`).
+- Document metadata, aligned video segments, and chunk payloads to Postgres.
+- **Dynamic Collections Table:** New `syntraflow_collections` table to manage multiple Qdrant collections. Tracks collection `id`, `name`, `tenant_id`, `embedding_model`, and `dimension`.
+- Prefix: `syntraflow_` for all tables (`syntraflow_collections`, `syntraflow_documents`, `syntraflow_chunks`, `syntraflow_video_segments`).
 
-### Vector Indexing (Qdrant)
+### Vector Indexing (Qdrant Multi-Collection)
 - Embeddings via configured model (default: jina-clip-v2).
-- Collection: `syntraflow_chunks_v1`.
-- Vector dimension: determined by active embedding model (default: 1024).
+- **Dynamic Collections:** Collections are created dynamically per project/tenant, registered in the `syntraflow_collections` table, rather than a single static collection.
+- **Standard Metadata Payload:** Every vector must include standard filtering metadata: `document_id`, `tenant_id`, `tags`, `timestamp`, `access_level`.
 - Batch upserts: 100 vectors per upsert call.
+
+### Retrieval Strategy Engine
+- Pluggable retrieval options configured dynamically by workflow nodes or agents:
+  - **Dense Search:** Standard cosine similarity via embeddings.
+  - **Sparse Search (BM25):** Keyword-based sparse vector search.
+  - **Hybrid Search:** Combines Dense and Sparse using Reciprocal Rank Fusion (RRF).
+  - **Graph Search:** Neo4j traversal.
 
 ### Knowledge Graph (Neo4j)
 - LLM extraction pass over text chunks → Entities + Relationships.

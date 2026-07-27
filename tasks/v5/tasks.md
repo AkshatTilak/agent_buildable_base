@@ -16,8 +16,12 @@
 | **B5-05** | MCP Integration Hub | 5 | `[x]` |
 | **B5-06** | Workflow Builder Enhancements | 7 | `[x]` |
 | **B5-07** | External API Gateway | 5 | `[ ]` |
+| **B5-08** | Global Data Store & Dynamic Collections | 5 | `[ ]` |
+| **B5-09** | Multi-Agent Workflows & Strict Flow Terminations | 4 | `[ ]` |
+| **B5-10** | Multi-Agent Flow Evaluation Tracing | 5 | `[ ]` |
+| **B5-11** | Embedded Infrastructure Dashboards & UI Proxies | 3 | `[ ]` |
 
-**Total Subtasks:** 41
+**Total Subtasks:** 58
 
 ---
 
@@ -78,6 +82,31 @@
 - `[ ]` S5-07d — Per-Key Rate Limiting & Usage Tracking
 - `[ ]` S5-07e — Frontend: API Keys Tab in Settings + Docs Panel
 
+### B5-08: Global Data Store & Dynamic Collections
+- `[ ]` S5-08a — DB Schema Migration & Collections Table
+- `[ ]` S5-08b — Qdrant Dynamic Collection Manager & API
+- `[ ]` S5-08c — Dynamic Metadata Indexing & Filtering Pipeline
+- `[ ]` S5-08d — Pluggable Retrieval Strategy Engine
+- `[ ]` S5-08e — Frontend: Collection Manager & Query Panel
+
+### B5-09: Multi-Agent Workflows & Strict Flow Terminations
+- `[ ]` S5-09a — MultiAgentNode Runtime Executor & State Transfer
+- `[ ]` S5-09b — Terminal Node Executors (Action & FinalMessage)
+- `[ ]` S5-09c — Graph Parser V5 Enforcement & Rule 8 Validation
+- `[ ]` S5-09d — Frontend: MultiAgent, Action & FinalMessage Nodes
+
+### B5-10: Multi-Agent Flow Evaluation Tracing
+- `[ ]` S5-10a — LangGraph Flow Trace Collector & Event Interceptor
+- `[ ]` S5-10b — DB Schema Expansion for Flow Tracing
+- `[ ]` S5-10c — Intermediate Block Assertion Engine
+- `[ ]` S5-10d — Action Node Mocking Framework
+- `[ ]` S5-10e — Frontend: Flow Trace Visualizer & Debugger
+
+### B5-11: Embedded Infrastructure Dashboards & UI Proxies
+- `[ ]` S5-11a — Gateway Reverse Proxy for Infrastructure UIs
+- `[ ]` S5-11b — RBAC Authorization & Middleware for Proxy Routes
+- `[ ]` S5-11c — Frontend: Embedded Infrastructure Views
+
 ---
 
 ## Execution Order (Recommended)
@@ -85,16 +114,19 @@
 Dependencies flow top-down. Bolded items should be prioritized.
 
 1. **B5-03** (Auth) — foundational; all other features reference `user_id`
-2. **B5-01e** (DB schema) — schema must exist before eval runners write to it
-3. **B5-02** (Agent Endpoints) — invocation infra used by Playground and External API
-4. **B5-01** (EvalOps) — runners, datasets, dashboard
-5. **B5-05** (MCP Hub) — tool registry used by Workflow Builder
-6. **B5-04** (Playground) — depends on agent invoke + file processing
-7. **B5-06** (Workflow Builder) — depends on agents, MCP tools, evals all existing
-8. **B5-07** (External API) — depends on agent invoke + API key management
+2. **B5-08a/b** (Dynamic Collections DB & API) — foundational for global data store
+3. **B5-01e** (DB schema) — schema must exist before eval runners write to it
+4. **B5-02** (Agent Endpoints) — invocation infra used by Playground and External API
+5. **B5-08c/d/e** (Retrieval Strategies & Collections UI) — global data store engine
+6. **B5-05** (MCP Hub) — tool registry used by Workflow Builder
+7. **B5-04** (Playground) — depends on agent invoke + file processing
+8. **B5-06** & **B5-09** (Workflow Builder & Multi-Agent Flows) — graph orchestration & Rule 8 validation
+9. **B5-10** (Flow Evaluation Tracing) — traces intermediate states and asserts flow outputs
+10. **B5-11** (Embedded Infrastructure Dashboards) — reverse proxy & UI embedding
+11. **B5-07** (External API Gateway) — OpenAI-compatible endpoints
 
 ---
 
 ## Roll-Up Rules
 - A Base Task is marked `[x]` only when **all** its linked Subtasks are `[x]`.
-- The V5 Goal is met when **all 7 Base Tasks** are `[x]`.
+- The V5 Goal is met when **all 11 Base Tasks** are `[x]`.

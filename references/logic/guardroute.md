@@ -28,22 +28,22 @@ GuardRoute classifies query complexity, coordinates parallel subagents using Lan
 
 ---
 
-## 2. LangGraph Scatter-Gather Orchestration ✅
+## 2. LangGraph Multi-Agent Routing & Orchestration ✅
 
-### Parallel Execution (Scatter)
-Concurrently invoke worker subagents based on classifier output:
-- **Retrieval Agent:** Queries SyntraFlow MCP tools.
-- **Coding Agent:** Runs code in sandboxed environment (see `references/logic/security.md` §4).
-- **Web Search Agent:** Fetches live external data.
+### Multi-Agent Workflows
+Instead of basic scatter-gather, GuardRoute orchestrates complex graphs involving multiple specialized agents.
+- Workflows support instantiating discrete Agent Nodes (e.g., Retrieval Agent, Coding Agent, Planner Agent).
+- Agents can act sequentially or in parallel, utilizing logic blocks (IfElse, Router) to pass state dynamically.
 
-### Partial Failures Resolution (Gather)
-- Timeout/error → set status to `ERROR`/`TIMEOUT` in Graph State → continue to Synthesis.
-- No blocking from single subagent failure.
-- Configurable timeout: `SUBAGENT_TIMEOUT_SECONDS=30`.
+### State Transfer & Execution Boundaries
+- The central `GraphState` passes structured payloads between agents.
+- Agents receive state, execute tool calls (e.g., SyntraFlow MCP tools), and append their structured outputs (`SubAgentResult`) back to the state.
+- **Flow Terminations (V5 Strict Boundaries):** Every valid workflow MUST terminate explicitly in an `ActionNode` (executes a webhook/side-effect) or a `FinalMessageNode` (returns an LLM synthesis to the user). Dangling flows are blocked.
 
-### Context Consolidation (Synthesis)
-- Gathers context fragments, cleans formatting, runs final LLM completion.
-- Supports **SSE streaming** for token-by-token output.
+### Partial Failures & Circuit Breaking
+- Timeout/error in an agent sets status to `ERROR`/`TIMEOUT` in Graph State, triggering fallback branches.
+- No blocking from single subagent failure if a failure branch is defined.
+- Configurable timeout per agent node: `AGENT_TIMEOUT_SECONDS=30`.
 
 ### Visual Graph Translation & Custom ReactFlow Canvas (V2 ✅)
 - **Parser (`projects/guardroute/src/core/graph_parser.py`):** Converts visual ReactFlow JSON configurations (nodes, edges, node parameters) into compiled, executable LangGraph `StateGraph` instances.

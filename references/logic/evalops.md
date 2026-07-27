@@ -42,7 +42,14 @@ EvalOps serves as the automated quality assurance system, running benchmarks, ma
 
 ---
 
-## 5. REST API Routes (`projects/evalops/api.py` ✅)
+## 5. Multi-Agent Flow Evaluation Tracing (V5 New)
+- **State Interception:** EvalOps hooks into LangGraph `GraphState` events to capture intermediate outputs of custom blocks (IfElse, Routing, Agent Nodes, MCP Tools).
+- **`EvalTrace` Schema:** Defines step-by-step state captures, allowing developers to write assertions against specific segments of a multi-agent workflow, rather than just the final output.
+- **Terminal Node Mocks:** Enables mock testing of `ActionNode` side-effects (e.g., verifying a webhook payload without actually sending it).
+
+---
+
+## 6. REST API Routes (`projects/evalops/api.py` ✅)
 - `POST /api/evalops/suites`: Create test suite.
 - `GET /api/evalops/suites`: List suites (optional `?agent_id=` filter).
 - `GET /api/evalops/suites/{id}`: Get suite details and contained cases.

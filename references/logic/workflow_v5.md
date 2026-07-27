@@ -18,8 +18,10 @@ V5 extends the Workflow Builder from 4 node types to 11, adding logic blocks, in
 |---|---|---|---|
 | ClassifierNode | `classifier` | 1 in, N out (per complexity) | Arch-Router complexity classification |
 | AgentNode | `agent` | 1 in, 1 out | Subagent with model + prompt config |
-| RetrievalNode | `retrieval` | 1 in, 1 out | SyntraFlow hybrid search |
-| SynthesisNode | `synthesis` | N in, 1 out | Gather/aggregation terminal |
+| MultiAgentNode | `multi_agent` | 1 in, 1 out | Drop-in pre-configured agent node for dynamic graph composition |
+| RetrievalNode | `retrieval` | 1 in, 1 out | SyntraFlow hybrid search (configurable via Retrieval Strategy) |
+| ActionNode | `action` | 1 in, 0 out | Terminal node executing a side-effect (e.g. payload dispatch) |
+| FinalMessageNode | `final_message` | 1 in, 0 out | Terminal node returning synthesis output to the user |
 
 ### Logic (V5 new)
 | Node | Type Key | Handles | Description |
@@ -109,7 +111,7 @@ class GraphState(TypedDict):
 ## 6. Validation Rules (Graph Parser)
 
 1. All graphs must have exactly one entry point (ClassifierNode or direct start)
-2. All branches must eventually reach a terminal node (SynthesisNode or END)
+2. **Terminal Constraint (Rule 8):** Every valid graph path MUST conclude in either an `ActionNode` or a `FinalMessageNode`. The parser will reject any graph with dangling endpoints or fallback to legacy Synthesis nodes if improperly configured.
 3. Cycle detection via Kahn's algorithm (handles branching)
 4. IfElse/Router nodes must have all branches connected
 5. EvalNode must have both pass and fail branches connected

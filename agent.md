@@ -40,7 +40,7 @@ This workspace is currently configured for the **ContAIned AI Platform** — a m
 * **Version 1 (`tasks/v1/`):** Base system tasks completed (Monorepo integration, Common Library, SyntraFlow, GuardRoute, Inference, Infrastructure).
 * **Version 2 (`tasks/v2/`):** Real-time frontend, ReactFlow visual builder, CRUD agent hub, dynamic ingestion pipelines, and eval generator completed.
 * **Version 3 (`tasks/v3/`):** System-wide polish, design token system, React Router, 16GB RAM Docker profiles (`--profile core`), Document Library & Job Tracker UX completed.
-* **Version 5 (`tasks/v5/`) — ACTIVE:** Platform Maturity — EvalOps Deep Integration (RAGAS+DeepEval+Custom Datasets), Agent Endpoints & Routing API, User Auth & RBAC (Google/GitHub OAuth), Model Playground (chat+file attachments), MCP Integration Hub, Workflow Builder Enhancements (IfElse/Webhook/API/Router/Eval/MCP/Transform nodes), External API Gateway (OpenAI-compatible).
+* **Version 5 (`tasks/v5/`) — ACTIVE:** Platform Maturity — Global Data Store (Multi-collection, dynamic filtering, diverse retrieval strategies), Multi-Agent Workflows & Flow Terminal Actions, EvalOps Flow Tracing, Embedded native dashboards (Qdrant), User Auth & RBAC, Model Playground, MCP Integration Hub, and External API Gateway.
 
 ### Key References
 * `references/structure/system_architecture.md` — System topology, env vars, DB setup.

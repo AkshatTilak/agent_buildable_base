@@ -117,14 +117,14 @@ LANGSMITH_PROJECT="contained-platform"
 - **Connection pool:** `pool_size=10`, `max_overflow=20`, `pool_pre_ping=True`.
 - **Startup:** Retry/backoff if database is not yet ready.
 
-### Qdrant (Vector RAG) ✅
-- Collection: `syntraflow_chunks_v1`.
+### Qdrant (Vector RAG - Multi-Collection) ✅
+- **Dynamic Collections:** Collections are created dynamically per tenant/project instead of a single `syntraflow_chunks_v1` collection.
 - **Vector dimension:** Dynamically determined by active embedding model:
   - jina-clip-v2: **1024**
   - nomic-embed-vision-v2: **768**
   - Gemini Embedding 2: configurable up to **3072**
 - Distance metric: **Cosine**.
-- On startup, validate existing collection dimension matches active embedding model. Warn if mismatched.
+- On startup, validate connectivity and initialize the `syntraflow_collections` tracking table in Postgres.
 
 ### Neo4j (GraphRAG) ✅
 - Shared client in `common/clients/neo4j.py`.
@@ -147,7 +147,16 @@ LANGSMITH_PROJECT="contained-platform"
 
 ---
 
-## 4. Startup & Shutdown Lifecycle
+## 4. Embedded UI Proxies (Unified Dashboarding)
+To leverage existing infrastructure without rebuilding management screens:
+- **API Gateway Reverse Proxy:** The FastAPI Gateway serves as an authenticated reverse proxy for internal infrastructure dashboards.
+- **Qdrant UI:** Exposed from internal port `6333` to the frontend via Gateway routing.
+- **Neo4j Browser:** Exposed from internal port `7474`.
+- **Frontend Integration:** React frontend uses iframes pointing to these authenticated Gateway proxy endpoints, ensuring RBAC is enforced before granting access to infrastructure UIs.
+
+---
+
+## 5. Startup & Shutdown Lifecycle
 
 ### Startup Sequence (Pending Implementation)
 1. Load `.env` and validate required settings (fail-fast on missing critical keys).
