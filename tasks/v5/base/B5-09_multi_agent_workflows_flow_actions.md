@@ -1,6 +1,6 @@
 # B5-09: Multi-Agent Workflows & Strict Flow Terminations
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/guardroute`  
 > **Secondary:** `frontend`  
 > **Complexity:** 🔴 High (4 subtasks)
@@ -15,10 +15,10 @@ Evolve GuardRoute and the Workflow Builder to support dynamic multi-agent orches
 
 ## Acceptance Criteria
 
-- [ ] `MultiAgentNode` executor supports state passing and tool calls across multiple specialized agents
-- [ ] `ActionNode` (side-effects like webhooks/DB writes) and `FinalMessageNode` (LLM synthesis output) executors implemented
-- [ ] Graph Parser V5 enforces Rule 8 (terminal constraint), rejecting dangling nodes or invalid graph structures
-- [ ] ReactFlow canvas and Property Drawers support MultiAgent, Action, and FinalMessage node components
+- [x] `MultiAgentNode` executor supports state passing and tool calls across multiple specialized agents
+- [x] `ActionNode` (side-effects like webhooks/DB writes) and `FinalMessageNode` (LLM synthesis output) executors implemented
+- [x] Graph Parser V5 enforces Rule 8 (terminal constraint), rejecting dangling nodes or invalid graph structures
+- [x] ReactFlow canvas and Property Drawers support MultiAgent, Action, and FinalMessage node components
 
 ---
 
