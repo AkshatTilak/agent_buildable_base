@@ -26,8 +26,8 @@ holds every unsolicited sign-up in a `pending` state until an admin approves it.
 - [ ] Redeeming an invite applies its `hub_grants_json` as real `hub_members` rows and activates the account immediately.
 - [ ] Self sign-up with no matching invite creates a `pending` user and returns `ACCOUNT_PENDING_APPROVAL`; the frontend shows a dedicated holding screen, not an error.
 - [ ] `AUTO_APPROVE_EMAIL_DOMAINS` bypasses the gate for configured domains.
-- [ ] Passwords use Argon2id with the documented parameters, a 12-character minimum, and a common-password denylist.
-- [ ] Login is constant-time and non-enumerating; 5 failures lock the account for 15 minutes.
+- [x] Passwords use Argon2id with the documented parameters, a 12-character minimum, and a common-password denylist.
+- [x] Login is constant-time and non-enumerating; 5 failures lock the account for 15 minutes.
 - [ ] `gateway/services/mailer.py` sends via SMTP when configured and degrades to `NullMailer` otherwise; when delivery fails the API still succeeds and returns a one-time `invite_url` for manual copying.
 - [ ] Admin API covers list/detail/update/approve/reject/suspend/reinstate/delete users and create/list/resend/revoke invites, all audited.
 - [ ] Guardrails hold: an admin cannot demote, suspend or delete themselves; the system refuses to drop to zero active admins; a hub owner cannot be deleted before ownership transfer.
@@ -41,12 +41,13 @@ holds every unsolicited sign-up in a `pending` state until an admin approves it.
 | ID | Title | File | Status |
 |---|---|---|---|
 | S6-03a | User, Identity & Invite Models + Migration | [`S6-03a.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03a.md) | `[x]` |
-| S6-03b | Local Password Authentication | [`S6-03b.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03b.md) | `[ ]` |
+| S6-03b | Local Password Authentication | [`S6-03b.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03b.md) | `[x]` |
 | S6-03c | Multi-Provider OAuth Linking & Approval Gate | [`S6-03c.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03c.md) | `[ ]` |
 | S6-03d | Invite Issuance & Redemption Service | [`S6-03d.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03d.md) | `[ ]` |
 | S6-03e | Mailer Abstraction, SMTP & Templates | [`S6-03e.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03e.md) | `[ ]` |
 | S6-03f | Admin Users, Invites & Audit API | [`S6-03f.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03f.md) | `[ ]` |
 | S6-03g | Auth Hardening & Test Coverage | [`S6-03g.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03g.md) | `[ ]` |
+
 
 
 ---
