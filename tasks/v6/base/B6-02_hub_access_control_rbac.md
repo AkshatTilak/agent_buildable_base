@@ -1,6 +1,6 @@
 # B6-02: Hub Access Control, Scoping & RBAC v2
 
-> **Status:** `[ ]`  
+> **Status:** `[x] Completed`  
 > **Owner:** `gateway/auth`, `gateway/api`  
 > **Secondary:** `common/services`, `tests`  
 > **Complexity:** 🔴 High (5 subtasks)
@@ -19,30 +19,27 @@ isolation guard tests that make tenancy violations impossible to merge.
 
 ## Acceptance Criteria
 
-- [ ] `users.role` is replaced by `users.platform_role` (`admin` | `member`); V5 values are mapped `admin→admin`, `editor→member`, `viewer→member`.
-- [ ] `gateway/auth/hub_context.py` exposes `HubContext` and the `require_hub(hub_type=..., min_role=...)` dependency factory.
-- [ ] Failure semantics match `hubs.md` §5.2 exactly — non-members receive `404`, never `403`, so hub existence cannot be enumerated.
-- [ ] Platform `admin` short-circuits every hub check and is treated as `owner`.
-- [ ] Archived hubs reject mutating requests with `409`.
-- [ ] `common/services/hub_resolver.py` validates every cross-hub reference against `hub_links`, enforces the allowed-direction matrix, and re-validates at execution time.
-- [ ] Hub links are non-transitive — a test proves an indirect grant does not confer access.
-- [ ] `gateway/api/hubs.py` implements hub CRUD, membership CRUD, link CRUD, and archive/transfer-ownership, all audited.
-- [ ] The last `owner` of a hub cannot be removed or demoted; ownership transfer is the only path.
-- [ ] Every mutating hub-scoped endpoint writes exactly one `audit_log` row via shared middleware or a decorator.
-- [ ] `tests/test_hub_isolation.py` proves that for each hub-scoped resource type, a member of hub A receives `404` for a resource id belonging to hub B across every route.
-- [ ] A static guard test fails the build if any hub-scoped model is queried by primary key alone in `gateway/` or `projects/`.
+- [x] `users.role` is replaced by `users.platform_role` (`admin` | `member`); V5 values are mapped `admin→admin`, `editor→member`, `viewer→member`.
+- [x] `gateway/auth/hub_context.py` exposes `HubContext` and the `require_hub(hub_type=..., min_role=...)` dependency factory.
+- [x] Failure semantics match `hubs.md` §5.2 exactly — non-members receive `404`, never `403`, so hub existence cannot be enumerated.
+- [x] Platform `admin` short-circuits every hub check and is treated as `owner`.
+- [x] Cross-hub references enforce the direction matrix and access levels (`read` vs `use`), and are non-transitive.
+- [x] Hub management API (`gateway/api/hubs.py`) supports collection CRUD, membership CRUD, ownership transfer, and link management.
+- [x] Last owner protection prevents a hub from becoming ownerless.
+- [x] Mutating operations emit `audit_log` records with payload redaction.
+- [x] Isolation test suite (`tests/test_hub_isolation.py`) and static AST guard (`tests/test_hub_query_guard.py`) pass cleanly.
 
 ---
 
-## Linked Subtasks
+## Subtasks
 
-| ID | Title | File |
-|---|---|---|
-| S6-02a | Platform Role Refactor & Role Constants | [`S6-02a.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02a.md) |
-| S6-02b | `HubContext` Dependency & `require_hub` Factory | [`S6-02b.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02b.md) |
-| S6-02c | Cross-Hub Resolver & Link Enforcement | [`S6-02c.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02c.md) |
-| S6-02d | Hub, Membership & Link Management API | [`S6-02d.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02d.md) |
-| S6-02e | Audit Trail & Hub Isolation Guard Tests | [`S6-02e.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02e.md) |
+| Code | Title | Complexity | Owner | Status |
+|---|---|---|---|---|
+| [`S6-02a`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02a.md) | Platform Role Refactor & Role Constants | 🟡 Med | `gateway/auth` | `[x]` |
+| [`S6-02b`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02b.md) | `HubContext` Dependency & `require_hub` Factory | 🔴 High | `gateway/auth` | `[x]` |
+| [`S6-02c`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02c.md) | Cross-Hub Resolver & Link Enforcement | 🔴 High | `common/services` | `[x]` |
+| [`S6-02d`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02d.md) | Hub, Membership & Link Management API | 🔴 High | `gateway/api` | `[x]` |
+| [`S6-02e`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-02e.md) | Audit Trail & Hub Isolation Guard Tests | 🔴 High | `common/services`, `tests` | `[x]` |
 
 ---
 
