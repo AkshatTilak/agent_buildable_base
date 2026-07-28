@@ -40,10 +40,15 @@ This workspace is currently configured for the **ContAIned AI Platform** — a m
 * **Version 1 (`tasks/v1/`):** Base system tasks completed (Monorepo integration, Common Library, SyntraFlow, GuardRoute, Inference, Infrastructure).
 * **Version 2 (`tasks/v2/`):** Real-time frontend, ReactFlow visual builder, CRUD agent hub, dynamic ingestion pipelines, and eval generator completed.
 * **Version 3 (`tasks/v3/`):** System-wide polish, design token system, React Router, 16GB RAM Docker profiles (`--profile core`), Document Library & Job Tracker UX completed.
-* **Version 5 (`tasks/v5/`) — ACTIVE:** Platform Maturity — Global Data Store (Multi-collection, dynamic filtering, diverse retrieval strategies), Multi-Agent Workflows & Flow Terminal Actions, EvalOps Flow Tracing, Embedded native dashboards (Qdrant), User Auth & RBAC, Model Playground, MCP Integration Hub, and External API Gateway.
+* **Version 4 (`tasks/v4/`):** Frontend Spacing, Padding & Typography Overhaul completed.
+* **Version 5 (`tasks/v5/`):** Platform Maturity — Global Data Store, Multi-Agent Workflows, EvalOps Flow Tracing, Embedded Dashboards, User Auth & RBAC, Model Playground, MCP Integration Hub, External API Gateway completed.
+* **Version 6 (`tasks/v6/`) — ACTIVE:** The Hub Platform — Multi-tenant hub model (Ingestion, Agent, Workflow, Eval Hubs), Hub-scoped RBAC v2, Admin User Management & Invites/Approval Gate, Multi-Workflow Management & Versioning, Polymorphic Eval Targets, Hub Shell & Workspace IA.
 
 ### Key References
 * `references/structure/system_architecture.md` — System topology, env vars, DB setup.
+* `references/logic/hubs.md` — Canonical multi-tenant hub architecture, scoping rules, and route mapping.
+* `references/logic/user_management.md` — Admin user management, invites, approval gate, and audit logging.
+* `references/logic/workflow_v6.md` — Multi-workflow builder architecture and versioning models.
 * `references/logic/model_registry.md` — All model options and VRAM profiles.
 * `references/logic/syntraflow.md` — Ingestion and RAG architecture.
 * `references/logic/guardroute.md` — Orchestration and routing architecture.

@@ -1,6 +1,6 @@
 # Reference Management & Contextual Memory (`references.md`)
 
-This directory serves as the centralized knowledge base and memory bank for all AI agents and human developers working on the ContAIned AI Platform. It stores architectural decisions, codebase context, deployment guidelines, and microservice specifications updated for **Platform V3**.
+This directory serves as the centralized knowledge base and memory bank for all AI agents and human developers working on the ContAIned AI Platform. It stores architectural decisions, codebase context, deployment guidelines, and microservice specifications updated for **Platform V6**.
 
 **Agent Instruction:** Before executing a task, query the relevant subdirectories here to understand existing paradigms. Upon completing a complex task, updating these reference files is mandatory to ensure downstream agents retain context.
 
@@ -13,6 +13,13 @@ All contextual knowledge must be strictly categorized into the following subdire
 ### `logic/` (Business Rules & System Flow)
 * **Purpose:** Stores the core business logic, decision matrices, and AI/system interaction flows.
 * **Contents:** State machine definitions, prompt engineering strategies, core algorithmic rules, and data validation requirements.
+* **Key Files:**
+  * [hubs.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md): Canonical multi-tenant hub platform architecture, scoping rules, DB schema, and API routes.
+  * [user_management.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/user_management.md): Admin user lifecycle, invitations, approval gate, and audit logging.
+  * [workflow_v6.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v6.md): Multi-workflow builder architecture and version control.
+  * [syntraflow.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/syntraflow.md): Ingestion engine and dynamic vector collection bindings.
+  * [guardroute.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/guardroute.md): Agent execution and routing architecture.
+  * [evalops.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/evalops.md): Evaluation engine and polymorphic test targets.
 * **When to use:** Read this to understand *why* a feature behaves the way it does. Update this when altering fundamental system behavior.
 
 ### `structure/` (Architecture & Topology)
@@ -21,7 +28,7 @@ All contextual knowledge must be strictly categorized into the following subdire
 * **Key Files:**
   * [repository_layout.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure/repository_layout.md): High-level monorepo folder layout, module responsibilities, integration flows, and directory navigation guidelines.
   * [system_architecture.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure/system_architecture.md): Monorepo rules, environment settings, database/message queue specifications, and system lifecycle configurations.
-  * [frontend.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure/frontend.md): UI dashboard architecture, navigation patterns, component designs, and admin portal profiles.
+  * [frontend.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure/frontend.md): Hub Shell UI, navigation patterns, workspace layouts, and design tokens.
 * **When to use:** Read this when creating new modules to ensure they fit the existing topology. Update this when adding new tables, microservices, or core integrations.
 
 ### `code/` (Codebase Explanations & Mappings)

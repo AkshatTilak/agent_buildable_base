@@ -50,9 +50,10 @@ Supporting the AI orchestration layer is a robust, production-ready backend desi
 │   │   ├── goal/           # v1 system goal document
 │   │   ├── base/           # v1 architectural milestones (The "What" and "Why")
 │   │   └── sub/            # v1 granular execution units (The "How")
-│   └── v2/                 # Version 2 active tasks (Improvements & Bugfixes)
-│       ├── goal/           # v2 system goal document
-│       ├── base/           # v2 architectural milestones
-│       └── sub/            # v2 granular execution units
+│   ├── v5/                 # Version 5 tasks (Platform Maturity - Completed)
+│   └── v6/                 # Version 6 active tasks (The Hub Platform)
+│       ├── goal/           # v6 system goal document
+│       ├── base/           # v6 architectural milestones
+│       └── sub/            # v6 granular execution units
 ├── agent.md                # The master System Architect prompt and bootstrap guide
 └── README.md               # You are here
