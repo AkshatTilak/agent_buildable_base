@@ -10,6 +10,8 @@
 
 Interactive playground for chatting with any registered model. Supports multi-format file attachments (PDF, PNG/JPG/WEBP OCR, video/audio transcription preview, TXT/MD/CSV text extraction), real-time SSE token streaming responses, session persistence (`playground_sessions` table), and system prompt customization.
 
+> **Scope (V6):** the Playground remains a **platform-level** surface at `/playground`, available to **all authenticated users**. It is *not* hub-scoped and is not reachable under `/hubs/{hub_id}/…`. See [`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §7.
+
 ---
 
 ## 2. Chat Flow
@@ -41,10 +43,21 @@ User selects model → Types prompt → (optional: attaches files) → POST /api
 
 ## 4. Session Persistence
 
-- `playground_sessions` table: `id`, `user_id` (nullable FK), `name`, `model_id`, `system_prompt`, `messages_json`, `attachments_json`, `temperature`, `max_tokens`, `created_at`, `updated_at`
+- `playground_sessions` table: `id`, `user_id` (nullable FK), `hub_id` (nullable FK, V6), `name`, `model_id`, `system_prompt`, `messages_json`, `attachments_json`, `temperature`, `max_tokens`, `created_at`, `updated_at`
 - Migration script: `migrations/versions/f3c4d5e6f7a8_add_playground_sessions.py`
 - Auto-name: generated from first user query truncated to 80 chars if no explicit name provided
 - Auto-save: triggered on each message exchange
+
+### Hub context tag (V6)
+
+`playground_sessions.hub_id` is **nullable** and acts purely as an optional **context tag** — sessions are user-scoped, not hub-scoped, and a session with `hub_id = NULL` is fully functional. The tag exists so a user can associate scratch work with the hub they were working in.
+
+When a session *is* tagged with a hub, the UI may narrow its pickers to that hub's reachable resources:
+
+- the **model selector** may be filtered to models permitted by that hub's settings,
+- the **collection picker** (for retrieval-augmented prompts) may be filtered to collections in that hub and in the ingestion hubs it is linked to, resolved via `common/services/hub_resolver.py`.
+
+This is a convenience filter only. It never grants access: an untagged session sees the same platform-level model registry every authenticated user sees, and a tagged session can never reach resources the user could not otherwise read.
 
 ---
 

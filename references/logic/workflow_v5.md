@@ -1,5 +1,10 @@
 # Workflow Builder V5 — Node Types & Graph Parser
 
+> **⚠️ Partially superseded by V6.** Workflow *storage, grouping, versioning and execution* are now
+> defined in [`workflow_v6.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v6.md).
+> This document remains authoritative **only** for node semantics, the graph parser contract, the state
+> schema, and terminal-action constraints — all of which are unchanged in V6.
+
 > **Source:** V5 Planning  
 > **Last Updated:** 2026-07-23
 
@@ -8,6 +13,8 @@
 ## 1. Overview
 
 V5 extends the Workflow Builder from 4 node types to 11, adding logic blocks, integration nodes, evaluation nodes, and tool nodes. The Graph Parser compiles visual ReactFlow configurations into executable LangGraph StateGraph instances.
+
+The node catalogue, compilation mapping, state schema, sandboxing rules and validation rules below are unchanged in V6. What changed is the surrounding context: V5 assumed a single global workflow and a single flat resource namespace, whereas V6 stores many workflows per Workflow Hub with immutable versions — see [`workflow_v6.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v6.md) and [`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md).
 
 ---
 
@@ -45,6 +52,17 @@ V5 extends the Workflow Builder from 4 node types to 11, adding logic blocks, in
 | Node | Type Key | Handles | Description |
 |---|---|---|---|
 | MCPToolNode | `mcp_tool` | 1 in, 1 out | Invoke registered MCP tool |
+
+### Node Resource References (V6 correction)
+
+Where a node references a platform resource, V5 stored a bare id (`agent_id`, `collection_id`). **In V6 every such reference is a qualified object** carrying the owning hub, because ids are only unique within a hub:
+
+```json
+{ "type": "agent",      "hub_id": "hub_9f2…", "resource_id": "agt_31c…" }
+{ "type": "collection", "hub_id": "hub_4b8…", "resource_id": "col_77a…" }
+```
+
+This applies to `AgentNode` / `MultiAgentNode` (agent reference), `RetrievalNode` (collection reference), `EvalNode` (suite reference) and any other node pointing at a hub-scoped resource. References are resolved through `common/services/hub_resolver.py`, which requires an explicit `hub_link` from the workflow's hub to the target hub and re-validates that link at execution time. A bare id in `graph_json` is invalid and fails validation.
 
 ---
 
@@ -117,6 +135,7 @@ class GraphState(TypedDict):
 5. EvalNode must have both pass and fail branches connected
 6. Webhook/APICall nodes must have valid URL configurations
 7. MCPToolNode must reference existing tools in the cache
+8. *(V6)* Every agent/collection/suite reference must be a qualified `{type, hub_id, resource_id}` object resolvable through an existing hub link; a revoked or missing link fails validation on publish and fails the run with `HUB_LINK_REVOKED` at execution time.
 
 ---
 
@@ -127,11 +146,13 @@ The WorkflowCanvas palette auto-populates from platform data:
 | Category | Source | Dynamic |
 |---|---|---|
 | Core | Static list | No |
-| Agents | `GET /api/agents` (active only) | Yes |
+| Agents | `GET /hubs/{hub_id}/agents` on each linked agent hub (active only) | Yes |
 | Logic | Static list (IfElse, Router, Transform) | No |
 | Integrations | Static list (Webhook, APICall) | No |
-| Evaluation | `GET /api/evalops/suites` | Yes |
-| Tools | `GET /api/mcp/tools` (enabled only) | Yes |
+| Evaluation | `GET /hubs/{hub_id}/eval/suites` on each linked eval hub | Yes |
+| Tools | `GET /api/mcp/tools` (enabled only — MCP Registry stays platform-level) | Yes |
+
+> The flat V5 endpoints `GET /api/agents` and `GET /api/evalops/suites` were removed in V6. Dynamic palette categories now enumerate only the hubs the current workflow hub is linked to, grouped by source hub.
 
 ---
 

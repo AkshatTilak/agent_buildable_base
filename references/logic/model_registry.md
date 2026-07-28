@@ -5,6 +5,8 @@
 
 This document defines the configurable model selection system. All model references across the platform are resolved through this registry rather than hardcoded values.
 
+> **Scope (V6):** the Model Registry is **platform-level**, not hub-scoped. It lives at `/models`, is **readable by all authenticated users**, and is **writable by platform `admin` only**. There is no per-hub model registry. See [`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §7.
+
 ---
 
 ## 1. Model Registry Architecture ✅
@@ -53,6 +55,15 @@ Environment overrides take priority over database entries.
 ### Dynamic Vector Dimension ✅
 - Qdrant collection creation reads `vector_dim` from the active embedding model's registry entry.
 - Switching embedding models requires re-indexing all vectors. System detects dimension mismatches and warns/blocks on startup.
+
+### Embedding Model Selection is Per Collection (V6) ✅
+The registry stays global, but the *choice* of embedding model is no longer a single platform-wide setting:
+
+- When a collection is created inside an **ingestion hub**, the creator picks an embedding model from the enabled `embedding`-role registry entries.
+- The chosen `model_id` **and** its `vector_dim` are recorded **on the collection row** and are immutable thereafter; the physical Qdrant collection (`{hub_slug}__{collection_name}`) is created with that dimension.
+- `EMBEDDING_MODEL` / the registry `is_default` flag now only supply the **pre-selected default** in the picker — they no longer dictate the dimension of every collection.
+- Two collections in the same hub, or in different hubs, may therefore use different embedding models and different dimensions simultaneously. Search always resolves the embedding model from the target collection, never from the global default.
+- Changing a collection's embedding model still requires a full re-index; it is done by creating a new collection and re-ingesting, not by mutating the existing one.
 
 ---
 
@@ -145,9 +156,9 @@ Selection criteria: **MTEB/MMTEB Leaderboard**, **CCKM Benchmark** (2026), modal
 | 6 | `openai/text-embedding-3-large` | 3072 | Text only | Industry standard; Matryoshka |
 
 ### Vector Dimension Rules
-- Qdrant collection `syntraflow_chunks_v1` dimension determined by active embedding model.
-- Default: **1024** (jina-clip-v2 native).
-- Switching models with different dimensions requires a **re-indexing migration**.
+- Each collection's physical Qdrant collection (`{hub_slug}__{collection_name}`) is created with the `vector_dim` of the embedding model chosen for that collection and recorded on the collection row.
+- Default offered in the picker: **1024** (jina-clip-v2 native).
+- A collection's embedding model and dimension are immutable; moving to a different model means creating a new collection and re-ingesting.
 
 ---
 

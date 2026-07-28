@@ -1,9 +1,49 @@
 # GuardRoute — Decision Routing & Orchestration Architecture
 
+> **V6 Update — Hub Scoping.** GuardRoute now backs two hub types — the **Agent Hub** (agent definitions, endpoints, invocation logs) and the **Workflow Hub** (many versioned workflows per hub) — instead of one flat global agent and workflow plane.
+> All resources described below are scoped by `hub_id`. See
+> [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md)
+> for the canonical tenancy model.
+
 > **Source:** Migrated from `requirements/guardroute.md`
-> **Last Updated:** 2026-07-14
+> **Last Updated:** 2026-07-28 (V6 hub scoping)
 
 GuardRoute classifies query complexity, coordinates parallel subagents using LangGraph, implements fallback routing via LiteLLM, publishes diagnostic logs to Kafka, and manages multi-turn conversations. Model selection is configurable via the Model Registry (see `references/logic/model_registry.md`).
+
+---
+
+## 0. Hub-Scoped Storage (V6)
+
+### Agent Hub tables
+
+| Table | Change |
+|---|---|
+| `agent_definitions` | **`NOT NULL hub_id`** FK `hubs.id` (`hub_type = 'agent'`), indexed |
+| `agent_invocation_log` | **`NOT NULL hub_id`**, indexed |
+
+* `endpoint_slug` uniqueness moves from global `UNIQUE` to **`UNIQUE (hub_id, endpoint_slug)`** — two agent hubs may each expose a `support-triage` endpoint.
+* Every agent read and write filters by `hub_id`; resolving an agent by primary key alone is forbidden (see [`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §5.3).
+
+### Collection bindings are qualified references
+
+An agent no longer stores bare collection ids. Each binding is a **qualified reference**:
+
+```json
+{ "hub_id": "hub_4b8…", "collection_id": "col_77a…" }
+```
+
+Bindings are validated through `common/services/hub_resolver.py` **twice**:
+
+1. **At save time** — the agent hub must hold an `agent → ingestion` `hub_link` to the referenced hub, otherwise the save fails `422`.
+2. **At invocation time** — re-checked before retrieval runs; a revoked link fails the invocation with `HUB_LINK_REVOKED` rather than silently reading across a tenancy boundary.
+
+### Workflow storage
+
+Workflow persistence is reworked for V6: many workflows per workflow hub, immutable `workflow_versions`,
+a draft/publish lifecycle, and persisted `workflow_runs` with per-node traces. The detail is **not**
+restated here — see
+[`references/logic/workflow_v6.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v6.md).
+Node semantics, the graph parser and terminal constraints below are unchanged.
 
 ---
 
@@ -20,6 +60,8 @@ GuardRoute classifies query complexity, coordinates parallel subagents using Lan
 - **Medium:** Trigger a single subagent (e.g., RAG retrieval).
 - **Complex:** Trigger Scatter-Gather graph for parallel subagent execution.
 
+Classification behaviour is unchanged in V6. What changes is **resolution**: the subagents a classifier may fan out to are drawn from the invoking agent hub, plus any agent hubs reachable through a `hub_link`.
+
 ### Rule-Based Fallback
 - If remote classifier fails/times out → regex rule-based classification (keywords: "code", "search", "retrieve").
 
@@ -34,6 +76,7 @@ GuardRoute classifies query complexity, coordinates parallel subagents using Lan
 Instead of basic scatter-gather, GuardRoute orchestrates complex graphs involving multiple specialized agents.
 - Workflows support instantiating discrete Agent Nodes (e.g., Retrieval Agent, Coding Agent, Planner Agent).
 - Agents can act sequentially or in parallel, utilizing logic blocks (IfElse, Router) to pass state dynamically.
+- **V6:** the scatter-gather orchestration itself is unchanged, but **sub-agent resolution is hub-scoped**. An Agent Node stores `{ hub_id, agent_id }`, and the referenced agent hub must be linked to the workflow hub (`workflow → agent`). Resolution goes through `common/services/hub_resolver.py` at author time, on publish, and again at execution time.
 
 ### State Transfer & Execution Boundaries
 - The central `GraphState` passes structured payloads between agents.
@@ -50,8 +93,8 @@ Instead of basic scatter-gather, GuardRoute orchestrates complex graphs involvin
 - **Topology Safety Constraints:** Validates node linkage, ensures presence of terminal synthesis/gather nodes, and performs Kahn's algorithm cycle detection to prevent infinite execution loops.
 - **Custom ReactFlow Canvas Nodes:**
   - `ClassifierNode`: Visual Arch-Router classification with confidence thresholds.
-  - `AgentNode`: Visual representation of subagent with model ID, system prompt override indicator, and active tool badges.
-  - `RetrievalNode`: Visual SyntraFlow hybrid vector search with top-k limit.
+  - `AgentNode`: Visual representation of subagent with model ID, system prompt override indicator, and active tool badges. In V6 it also shows the **source agent hub** and flags a missing `hub_link`.
+  - `RetrievalNode`: Visual SyntraFlow hybrid vector search with top-k limit, targeting a qualified `{ hub_id, collection_id }` reference in a linked ingestion hub.
   - `SynthesisNode`: Aggregator node compiling Scatter-Gather subagent outputs.
 - **Interactive Property Drawer (`frontend/src/components/PropertyDrawer.tsx`):** Reactive parameter form updating node data, model assignments, system prompts, confidence thresholds, and hybrid search top-k parameters in real time.
 
@@ -135,7 +178,7 @@ Before streaming tokens, emit metadata event with:
 ## 8. Async Session Logging & Auditing ✅
 
 ### Execution Spans Tracing
-Trace payload includes: user prompt, complexity categorization, subagent list with latencies, total latency, response text, model used per step, token counts.
+Trace payload includes: user prompt, complexity categorization, subagent list with latencies, total latency, response text, model used per step, token counts. V6 adds `hub_id` (and, for workflow runs, `workflow_id` / `run_id`) to every span so traces can be filtered per hub.
 
 ### Kafka Writes
 - Publish to `guardroute-traces` topic.
@@ -160,3 +203,28 @@ guardroute = [
     "tiktoken (>=0.7.0,<1.0.0)",
 ]
 ```
+
+---
+
+## 10. V6 Route Surface
+
+Agent routes are guarded by `require_hub(hub_type='agent', ...)` and workflow routes by
+`require_hub(hub_type='workflow', ...)`. The flat `/agents` and `/workflows` route trees are
+**removed** — no back-compat aliases are retained.
+
+| Method | Path | Min role | Purpose |
+|---|---|---|---|
+| `GET` / `POST` | `/hubs/{hub_id}/agents` | viewer / contributor | List, create agents (`UNIQUE (hub_id, endpoint_slug)`) |
+| `GET` / `PATCH` | `/hubs/{hub_id}/agents/{agent_id}` | viewer / contributor | Inspect, update definition and collection bindings |
+| `DELETE` | `/hubs/{hub_id}/agents/{agent_id}` | maintainer | Delete agent |
+| `POST` | `/hubs/{hub_id}/agents/{agent_id}/invoke` | contributor | Invoke (SSE streaming supported) |
+| `GET` | `/hubs/{hub_id}/agents/{agent_id}/invocations` | viewer | Hub-scoped invocation log |
+| `GET` / `POST` | `/hubs/{hub_id}/workflows` | viewer / contributor | List, create workflows |
+| `GET` / `PATCH` | `/hubs/{hub_id}/workflows/{wf_id}` | viewer / contributor | Inspect, update metadata |
+| `PUT` | `/hubs/{hub_id}/workflows/{wf_id}/draft` | contributor | Save draft graph (optimistic `If-Match`) |
+| `POST` | `/hubs/{hub_id}/workflows/{wf_id}/publish` | contributor | Freeze draft into an immutable version |
+| `POST` | `/hubs/{hub_id}/workflows/{wf_id}/run` | contributor | Execute the published version (SSE) |
+| `GET` | `/hubs/{hub_id}/workflows/{wf_id}/runs` | viewer | Persisted run history |
+
+The full workflow route table, including versions, restore, duplicate and import/export, lives in
+[`workflow_v6.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v6.md) §3.

@@ -1,8 +1,9 @@
-# Frontend Design System & Component Pattern Guide (V3)
+# Frontend Design System & Component Pattern Guide (V6)
 
-> **Source:** ContAIned V3 Design Language Specification
-> **Last Updated:** 2026-07-21
+> **Source:** ContAIned V3 Design Language Specification, extended for V6 hub identity, status and density
+> **Last Updated:** 2026-07-28
 > **Authority:** All frontend changes MUST comply with this design system. Deviation requires explicit approval.
+> **Additive rule:** every V3/V4 token name is preserved verbatim. V6 tokens are **additive only** — no `--bg-*`, `--text-*`, `--space-*`, `--radius-*` or `--transition-*` token is renamed, so the V4 spacing and typography work does not regress.
 
 ---
 
@@ -69,6 +70,55 @@ Each accent has three variants: solid, soft (10% opacity bg), and glow (for shad
 --rose-soft:       rgba(239, 68, 68, 0.10)
 ```
 
+### Hub Accents (V6)
+
+Every hub type carries a default identity accent so a user can tell at a glance which kind of workspace
+they are in. Each ramp has a base, a `-soft` background and a `-glow` shadow variant.
+
+| Token | Resolves to | Hub type |
+|---|---|---|
+| `--hub-ingestion` | `var(--accent-cyan)` | `ingestion` |
+| `--hub-agent` | `var(--accent-indigo)` | `agent` |
+| `--hub-workflow` | `var(--accent-emerald)` | `workflow` |
+| `--hub-eval` | `var(--accent-amber)` | `eval` |
+| `--hub-archived` | `var(--text-muted)` | any archived hub or resource |
+
+A hub may override its default with a **user-selectable accent** stored on `hubs.accent`
+([`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §3.1). The stored
+key resolves to `--accent-{key}` from the extended palette:
+
+```
+--accent-violet   --accent-teal   --accent-pink   --accent-lime   --accent-slate
+   (each with matching -soft and -glow variants)
+```
+
+**Resolution rule:** `HubShell` sets `data-hub-accent="{key}"` on its root element, which binds
+`--hub-accent`, `--hub-accent-soft` and `--hub-accent-glow`. Every hub-scoped component references
+`var(--hub-accent)` and **never** a literal hex. Enforcement:
+`grep -rnE "#[0-9a-fA-F]{6}" frontend/src/components/hubs` must return zero hits.
+
+### Status Tokens (V6)
+
+Every status the platform renders has a token triple: base, `-soft` background, and `-fg` foreground
+guaranteed to meet WCAG AA (≥ 4.5:1) on that background.
+
+| Token | Domain | Base accent |
+|---|---|---|
+| `--status-pending` | user account, invite | amber |
+| `--status-active` | user account, agent, binding | emerald |
+| `--status-suspended` | user account | amber |
+| `--status-rejected` | user account, invite | rose |
+| `--status-draft` | workflow, eval suite | slate |
+| `--status-published` | workflow | emerald |
+| `--status-archived` | hub, workflow, collection | muted |
+| `--status-queued` | job, workflow run, eval run | cyan |
+| `--status-running` | job, workflow run, eval run | indigo |
+| `--status-succeeded` | job, workflow run, eval run | emerald |
+| `--status-failed` | job, workflow run, eval run | rose |
+| `--status-cancelled` | job, workflow run | muted |
+
+Status is always rendered through the shared `Chip` component, never as a raw coloured dot.
+
 ---
 
 ## 3. Typography
@@ -97,6 +147,10 @@ Each accent has three variants: solid, soft (10% opacity bg), and glow (for shad
 - **Labels/Badges:** Always `uppercase`, `letter-spacing: 0.05em`, `caption` size.
 - **Numeric Data:** Always `font-mono`, right-aligned in tables.
 - **Truncation:** Use `text-overflow: ellipsis` with `max-width`. Never wrap long IDs.
+- **Truncation + tooltip (V6):** long hub, collection, agent, workflow, suite and document names truncate
+  with an ellipsis and expose the full value through the shared `Tooltip` on hover **and** on keyboard
+  focus. A truncated name is never the only place a value appears. This rule must not regress the V4
+  typography work — no new text clipping, and layouts hold from 1280px to 2560px.
 
 ---
 
@@ -127,6 +181,31 @@ Each accent has three variants: solid, soft (10% opacity bg), and glow (for shad
 --radius-lg:   12px     // Main cards, panels
 --radius-xl:   16px     // Modals, upload zones
 --radius-full: 9999px   // Pills, avatars, dots
+```
+
+### Density Scale (V6)
+
+Information density is a user preference, not a per-screen decision. A `data-density` attribute on
+`<body>` selects a mode; the value is persisted in `frontend/src/store/settingsSlice.ts` and toggled
+from Settings.
+
+| Token | `comfortable` (default) | `compact` |
+|---|---|---|
+| `--row-height` | 44px | 34px |
+| `--control-height` | 36px | 30px |
+| `--table-cell-padding-y` | `var(--space-md)` | `var(--space-sm)` |
+| `--section-gap` | `var(--space-xl)` | `var(--space-lg)` |
+
+Tables, lists and form controls read these tokens rather than hardcoding heights, so both modes are
+reachable without per-component overrides.
+
+### Focus & Elevation Tokens (V6)
+```
+--focus-ring:         2px solid var(--accent-indigo)
+--focus-ring-offset:  2px
+--shadow-drawer:      0 0 40px rgba(0, 0, 0, 0.45)
+--shadow-modal:       0 24px 60px rgba(0, 0, 0, 0.55)
+--overlay-scrim:      rgba(0, 0, 0, 0.70)
 ```
 
 ---
@@ -218,6 +297,43 @@ All buttons: `border-radius: var(--radius-sm)`, `font-weight: 600`, `font-size: 
 - Duration: 1.5s infinite loop
 ```
 
+### 5.9 Shared Component Layer (V6 — mandatory)
+
+Every V6 surface composes from `frontend/src/components/shared/`. Ad-hoc local re-implementations of
+any component below are forbidden; if a surface needs a variation, extend the shared component rather
+than forking it.
+
+| Component | Contract |
+|---|---|
+| `DataTable` | The only list primitive. Sorting, column sizing, sticky header, row selection, bulk-action bar, pagination and full keyboard navigation. **Every** list surface in V6 uses it — no hand-rolled `<table>`. Virtualises above 50 rows. |
+| `PageHeader` | Title, optional subtitle, breadcrumb slot, right-aligned action slot. Actions are wrapped in `<Gated>` so role/archive gating is uniform. |
+| `EmptyState` | Icon, headline, one explanatory line, and a **primary action**. Never a bare “No data”. |
+| `ErrorState` | Human-readable message, correlation/trace id (`font-mono`, with `CopyButton`), and a retry action. |
+| `LoadingState` | Layout-matching skeletons. Bare spinners are not permitted for content regions. |
+| `Drawer` | Right-side panel; focus trap, focus restore, `Esc` to close, `--shadow-drawer`, `--overlay-scrim`. |
+| `Tabs` | Accessible tablist semantics with arrow-key navigation; the active tab is URL-addressable. |
+| `Chip` | Status and metadata pill. Takes a status token key and pairs colour with a label or icon. |
+| `Tooltip` | Opens on hover **and** keyboard focus; used for truncated values and for disabled-control reasons. |
+| `CopyButton` | Copy-to-clipboard with a transient confirmation; used for ids, endpoint slugs, curl snippets and invite links. |
+| `ConfirmModal` | Standard and **destructive** variants. The destructive variant requires the user to **type the resource name** before the confirm button enables, and states exactly what will be deleted. |
+
+### 5.10 Standard State Patterns (V6)
+
+Every async surface renders exactly one of four states, using the components above.
+
+* **Loading** — skeletons that match the final layout dimension-for-dimension, so nothing shifts when
+  data lands. No bare spinners for content regions; spinners are reserved for in-button pending state.
+* **Empty** — purposeful, specific and actionable: an explanatory line plus a primary action
+  (*No collections yet — create your first collection*), not a generic placeholder.
+* **Error** — a human-readable message, a correlation/trace id, and a retry that re-issues only the
+  failed request. Raw stack traces and bare status codes never reach the user. Backend error codes
+  (`HUB_LINK_REQUIRED`, `HUB_LINK_REVOKED`, `HUB_ARCHIVED`, `ACCOUNT_PENDING_APPROVAL`, and `409`
+  conflicts) each map to a specific, actionable message.
+* **Ready** — the content itself.
+
+Mutations use optimistic updates with rollback on failure for toggles, renames and reorders; a toast
+confirms success and describes failures in the same vocabulary as the error state.
+
 ---
 
 ## 6. Animation Specifications
@@ -264,17 +380,27 @@ The platform is **desktop-first**. Mobile is NOT a target.
 
 ```
 frontend/src/
+├── routes.ts             // Typed path builders + ROUTE_PATTERNS (no hardcoded paths elsewhere)
 ├── components/
 │   ├── layout/           // Sidebar, Header, Breadcrumbs, CommandPalette
+│   ├── hubs/             // HubShell, HubContext, HubDirectory, HubCreateWizard,
+│   │   │                 // HubSwitcher, MembersPanel, HubLinksPanel, Gated, hubTabs.ts
+│   │   ├── ingestion/    // IngestionOverview, CollectionsWorkspace, CollectionDetail,
+│   │   │                 // DatastoresWorkspace, DocumentsWorkspace, JobsWorkspace
+│   │   ├── agent/        // AgentOverview, AgentLibrary, AgentDetail
+│   │   ├── workflow/     // WorkflowHubOverview, WorkflowLibrary, WorkflowEditor,
+│   │   │                 // VersionRail, ValidationStrip, WorkflowRuns, NodeTraceTimeline
+│   │   └── eval/         // EvalHubOverview, SuiteManager, TargetPicker, TestCaseEditor,
+│   │                     // RunConfigModal, EvalResults, CaseResultsTable, TraceReplay
+│   ├── admin/            // UserDirectory, ApprovalQueue, InviteManager, AuditLogViewer
+│   ├── auth/             // LoginPage, RegisterPage, InviteAccept, PendingApproval, ResetPassword
 │   ├── dashboard/        // SystemMetrics, ServiceHealth, ModelRegistry
-│   ├── ingestion/        // IngestionPanel, UploadZone, JobTracker
-│   ├── workflow/          // WorkflowCanvas, PropertyDrawer, nodes/
-│   ├── agents/           // AgentHub, AgentCard, AgentModal
-│   ├── evalops/          // EvalPanel, TestCaseTable, ScoreChart
-│   └── shared/           // LoadingSkeleton, Toast, StatusBadge, ConfirmModal
-├── store/                // Zustand slices (one per domain)
+│   ├── nodes/            // ReactFlow node renderers (consumed by the workflow editor)
+│   └── shared/           // DataTable, PageHeader, EmptyState, ErrorState, LoadingState,
+│                         // Drawer, Tabs, Chip, Tooltip, CopyButton, ConfirmModal, Toast
+├── store/                // Zustand slices (hubSlice + one per domain, keyed by hubId)
 ├── services/             // API client, telemetry, localStorage helpers
-├── hooks/                // Custom React hooks (useKeyboard, useDebounce)
+├── hooks/                // useHubPermissions, useKeyboard, useDebounce
 └── types/                // Shared TypeScript interfaces (replace all `any`)
 ```
 
@@ -289,10 +415,31 @@ frontend/src/
 
 ## 9. Accessibility & Performance Rules
 
-- All interactive elements must have `aria-label` or visible text.
-- All images/icons in interactive context must have `title` attribute.
-- Focus states must be visible (indigo focus ring).
-- `tabIndex` must be set correctly on custom interactive elements.
+### 9.1 Accessibility Baseline (V6 — non-negotiable)
+
+- **Keyboard reachability:** every interactive element is reachable and operable by keyboard, in a
+  logical tab order. Custom interactive elements set `tabIndex` correctly.
+- **Visible focus:** a visible focus ring (`--focus-ring` at `--focus-ring-offset`) on every focusable
+  element, meeting contrast requirements against its background. Focus is never suppressed with
+  `outline: none` unless an equivalent ring replaces it.
+- **Focus management:** modals and drawers **trap** focus while open, **restore** focus to the invoking
+  control on close, and close on `Esc`.
+- **Labelling:** icon-only buttons carry an accessible label (`aria-label`); all images/icons in an
+  interactive context have a `title`; tables use proper `<th scope>` semantics; live regions announce
+  async status changes (job progress, run completion, save state).
+- **Colour is never the sole carrier of meaning.** Status chips always pair colour with a label or an
+  icon, so run states remain distinguishable without colour perception.
+- **Contrast:** all text meets WCAG AA (≥ 4.5:1 body, ≥ 3:1 large) across the dark theme. Every
+  `--status-*-fg` on its `--status-*-soft` pairing is measured and the ratio recorded.
+- **Shortcut sheet:** pressing `?` opens a documented keyboard-shortcut sheet covering global
+  (`Cmd+K` hub switcher, command palette) and contextual (workflow editor) shortcuts.
+
+### 9.2 Performance Rules
+
 - No layout shifts on data load (use skeletons that match final dimensions).
-- All lists > 50 items must use virtualization (`react-window` or similar).
+- All lists > 50 items must use virtualization (`react-window` or similar) — documents, invocations,
+  audit log, traces.
+- Route-level code splitting; the workflow editor and its ReactFlow dependency load lazily.
+- Layouts hold from 1280px to 2560px without truncation or overflow; the sidebar collapses gracefully
+  below 1024px.
 - WebSocket reconnection must be exponential backoff (not fixed interval).

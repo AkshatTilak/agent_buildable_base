@@ -1,4 +1,4 @@
-# MCP Integration Hub Architecture
+# MCP Registry Architecture
 
 > **Source:** V5 Base Task B5-05 Implementation  
 > **Status:** Completed `[x]`  
@@ -11,9 +11,34 @@
 
 ---
 
+## 0. ⚠️ V6 Rename Notice — "MCP Integration Hub" → **"MCP Registry"**
+
+In V6 the word **Hub** is reserved exclusively for the tenancy construct defined in
+[`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md). The V5 feature
+called the *"MCP Integration Hub"* is therefore **renamed to the "MCP Registry"** to remove the
+collision. Every user-facing label, heading, breadcrumb and doc reference uses the new name.
+
+- **The route does not change:** it remains `/mcp` (and `/api/mcp/*` for the backend).
+- The file name `mcp_hub.md`, the component file `MCPHubPage.tsx` and the router `mcp_manager.py` are
+  retained for continuity; only the **displayed name** and prose change.
+- Any remaining "MCP Hub" string in the UI or docs is a bug.
+
+---
+
 ## 1. Overview
 
 Central management layer for Model Context Protocol (MCP) servers. Supports registering external MCP servers, discovering tools, invoking tools, and surfacing them in the Workflow Builder.
+
+The MCP Registry is a **platform-level** service, not a hub
+([`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §7):
+
+| Operation | Required access |
+|---|---|
+| Read (list servers, list/inspect tools, health) | any authenticated `active` user |
+| Write (register, edit, delete, sync, enable/disable a tool) | platform `admin` only |
+
+Tool **invocation** is performed by hub-scoped callers (agents, workflow nodes), which are authorised
+by their own hub role; the registry itself grants no hub access.
 
 ---
 
@@ -21,9 +46,22 @@ Central management layer for Model Context Protocol (MCP) servers. Supports regi
 
 - `mcp_servers` table tracks registered servers (internal + external)
 - Internal: SyntraFlow's `mcp_server.py` auto-registered on startup
-- External: user-registered via dashboard
+- External: user-registered via dashboard (platform `admin`)
 - Supported transports: SSE, stdio, Streamable HTTP
 - Auth: none, bearer token, API key (encrypted at rest via Fernet)
+
+### Visibility scope (V6)
+
+`mcp_servers.hub_id` is **nullable**:
+
+| `hub_id` | Meaning | Visible to |
+|---|---|---|
+| `null` | **Shared platform registry entry** | every authenticated user; writable by platform `admin` |
+| set | **Hub-private server**, registered for one hub | members of that hub only; writable by `owner`/`maintainer` of that hub |
+
+Hub-private servers never appear in another hub's node palette or tool list, and are queried with a
+`hub_id` predicate like any other hub-scoped row. Listing the registry returns the union of the shared
+entries and the hub-private entries the caller can reach.
 
 ---
 
@@ -31,12 +69,13 @@ Central management layer for Model Context Protocol (MCP) servers. Supports regi
 
 ```
 Register Server → call MCP list_tools() → Cache tools in mcp_tool_cache →
-  → Display in MCPHubPage → Available in Workflow Builder node palette
+  → Display in the MCP Registry page (/mcp) → Available in Workflow Builder node palette
 ```
 
 - Tool cache refreshed: on registration, on manual sync, on health check pass
 - Schema stored: tool name, description, input_schema (JSON Schema)
-- Tools can be individually enabled/disabled
+- Tools can be individually enabled/disabled (platform `admin` for shared entries)
+- The palette shows shared tools plus the current hub's private tools only
 
 ---
 
@@ -53,7 +92,7 @@ Register Server → call MCP list_tools() → Cache tools in mcp_tool_cache →
 
 ```
 POST /api/mcp/tools/invoke → { server_id, tool_name, parameters }
-  → Resolve server config from DB
+  → Resolve server config from DB (asserting the caller may see this server)
   → Connect via MCP client (transport-specific)
   → Invoke tool with params
   → Return result + timing
@@ -61,6 +100,8 @@ POST /api/mcp/tools/invoke → { server_id, tool_name, parameters }
 
 - Timeout: 30 seconds (configurable)
 - Auth applied based on server config
+- A hub-private server (`hub_id` set) is invocable only by callers inside that hub; anyone else
+  receives `404`
 
 ---
 
@@ -68,7 +109,7 @@ POST /api/mcp/tools/invoke → { server_id, tool_name, parameters }
 
 On gateway startup (in `setup.py` lifespan hook):
 1. Check if SyntraFlow MCP server exists in `mcp_servers`
-2. If not, insert with `is_internal=True`
+2. If not, insert with `is_internal=True` and `hub_id=None` (shared platform entry)
 3. Trigger tool discovery
 4. Future submodules can call `register_mcp_server()` utility
 
@@ -76,7 +117,9 @@ On gateway startup (in `setup.py` lifespan hook):
 
 ## 7. Database Tables
 
-- `mcp_servers` — id, name, url, transport, auth_type, auth_token_encrypted, is_internal, is_active, health_status, last_health_check, timestamps
+- `mcp_servers` — id, name, url, transport, auth_type, auth_token_encrypted, `hub_id` (**nullable**;
+  `null` = shared platform registry entry, set = hub-private server), is_internal, is_active,
+  health_status, last_health_check, timestamps
 - `mcp_tool_cache` — id, server_id (FK), tool_name, description, input_schema_json, is_enabled, last_synced
 
 ---

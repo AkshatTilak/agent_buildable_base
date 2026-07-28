@@ -1,9 +1,9 @@
-# Infrastructure & Deployment Reference (V4.1)
+# Infrastructure & Deployment Reference (V6)
 
-> **Source:** Updated for ContAIned V4.1
-> **Last Updated:** 2026-07-22
+> **Source:** Updated for ContAIned V6 (Hub tenancy)
+> **Last Updated:** 2026-07-28
 
-This document details Docker images, docker-compose services, local development setup, Kafka topics, and containerized deployment guidance for the ContAIned AI Platform.
+This document details Docker images, docker-compose services, local development setup, Kafka topics, per-hub datastore bindings, and containerized deployment guidance for the ContAIned AI Platform.
 
 ---
 
@@ -64,3 +64,41 @@ This document details Docker images, docker-compose services, local development 
 ### Observability Profile (`--profile observability`) ✅
 - **Jaeger:** `jaegertracing/all-in-one:latest` on port `16686` (UI) and `4317` (OTel gRPC)
 - **OTEL Collector:** `otel/opentelemetry-collector:latest` on ports `4317`, `4318`
+
+---
+
+## 4. Per-Hub Datastore Bindings (V6)
+
+> Tenancy model: [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §3.4.
+
+From V6, an **ingestion hub** owns the databases that store its data via `datastore_bindings`. The consequence for infrastructure is a change of role, not of topology:
+
+- The Qdrant, Neo4j and PostgreSQL services provided by `docker-compose.yml` are now the **platform defaults**, not the only stores. They remain the fallback used implicitly by any hub that declares no binding of a given `store_type` (surfaced read-only in the UI as a synthetic *Platform Default* binding).
+- An ingestion hub may instead bind to an **external or additional instance** — a managed Qdrant Cloud cluster, a separate Neo4j Aura instance, a customer-owned Postgres — by creating a `datastore_binding` with its own `connection_uri` and credentials. Compose-provided containers are untouched by this; they simply stop being that hub's storage.
+- Exactly one binding per `(hub_id, store_type)` may be `is_default`. `credentials_encrypted` is Fernet-encrypted at rest with `DATASTORE_ENCRYPTION_KEY` and is never returned by the API — responses expose a masked `connection_uri` only.
+
+### Health checks are now two-tier ✅
+
+| Tier | Scope | Surface |
+|---|---|---|
+| Platform service health | The compose containers themselves (`pg_isready`, Qdrant `/readyz`, `cypher-shell RETURN 1`, `redis-cli ping`) | `/api/health`, `docker compose ps`, `deploy.py --mode check` |
+| Binding health | Each `datastore_binding` row, including external endpoints the platform does not run | `GET /hubs/{hub_id}/datastores`, persisted to `health_status` / `last_health_check` |
+
+A green platform service therefore no longer implies a healthy hub: a binding pointing at an unreachable external cluster reports `unhealthy` on the hub's datastore view while every compose container stays green. Operational alerting should consume both.
+
+### Qdrant physical collection naming ✅
+
+Collection names are unique **per hub**, so the physical Qdrant collection is namespaced:
+
+```text
+{hub_slug}__{collection_name}      # e.g. support-kb__product_docs
+```
+
+The V6 migration renames pre-existing collections to `default__{name}`. Anyone inspecting Qdrant directly — via the REST API, `qdrant-client`, or the embedded dashboard on port `6333` — must expect the prefix; the friendly name shown in the UI is the un-prefixed suffix. `syntraflow_collections.physical_name` holds the resolved physical name and is the only value that should be passed to the vector client.
+
+### Additional infrastructure-relevant environment variables
+
+| Variable | Purpose |
+|---|---|
+| `DATASTORE_ENCRYPTION_KEY` | Fernet key protecting `datastore_bindings.credentials_encrypted`. Generate once, back up with the database; losing it makes stored binding credentials unrecoverable. |
+| `SMTP_*`, `APP_PUBLIC_URL`, `INVITE_TTL_HOURS`, `PASSWORD_RESET_TTL_MINUTES` | Optional email delivery for invites/approvals; see [`deployment_guide.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/deployment/deployment_guide.md) §2. |
