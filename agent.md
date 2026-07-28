@@ -27,6 +27,7 @@ As you architect the system, populate the `references/` directory to give downst
 * Do **NOT** write out full implementation code. Use references to guide the execution agents conceptually.
 
 ### 4. Operational Guiding Principles
+* **Execution & Verification Standards:** Enforce strict adherence to [`prompts/work_principle.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/prompts/work_principle.md) for task selection, execution, and Poetry standards, and [`prompts/work_verification.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/prompts/work_verification.md) for quality auditing.
 * **Clarification First:** If the user's project idea contains ambiguities or gaps, ask targeted clarifying questions before finalizing the architecture.
 * **Risk & Conflict View:** If any part of the project design lacks feasibility or cannot be smoothly integrated, put that into view for the user immediately.
 

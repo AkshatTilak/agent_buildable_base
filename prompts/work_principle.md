@@ -17,8 +17,8 @@ This document outlines the strict protocol, execution standards, and operational
 ## 2. Core Execution Principles & Poetry Standard
 
 ### Context Before Code (Adhere to [`references.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/references.md))
-- **Query Memory First:** Before implementing complex logic, you **must** check the `references/` directory (e.g., [`references/logic/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic) or [`references/structure/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure)) to ensure your implementation aligns with the Architect's systemic vision.
-- **Update the Bank:** If you make a significant design choice or architectural decision, immediately document it in the appropriate `references/` subfolder.
+- **Query Memory First:** Before implementing complex logic, you **must** check the `references/` directory (e.g., [`references/logic/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic), [`references/structure/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/structure), [`references/code/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/code), or [`references/deployment/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/deployment)) to ensure your implementation aligns with the Architect's systemic vision.
+- **Update the Bank:** If you make a significant design choice or architectural decision, immediately document it in the appropriate `references/` subfolder. If technical debt or a blocker is encountered, document it in [`references/issues/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/issues).
 
 ### Complete & Integrated Delivery
 - Every task must be completed **fully and end-to-end**, integrating across all dependent submodules.
@@ -65,13 +65,14 @@ Always update the status of checklist items (`[ ]` to `[/]` to `[x]`). Remember 
 ### Standard Architectural Practices
 - **Design Patterns:** Adhere to strictly typed, modern design patterns appropriate for Python (e.g., explicit typing, Pydantic v2 schemas, and dataclasses).
 - **Observability First:** Ensure proper logging (`common.observability.logger`), telemetry, and OpenTelemetry transaction tracing are integrated natively into all new features.
-- **Testing Requirements:** Write tests concurrently with feature development. Prioritize evaluation benchmarks and safety checks for AI/inference pipelines (`poetry run deepeval`), followed by unit and integration tests (`poetry run pytest`).
+- **Testing & Verification:** Write tests concurrently with feature development. Adhere to the verification protocol in [`work_verification.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/prompts/work_verification.md). Prioritize evaluation benchmarks and safety checks for AI/inference pipelines (`poetry run deepeval`), followed by unit and integration tests (`poetry run pytest`).
 - **Containerization:** Utilize Docker (or the project's equivalent containerization strategy) to spin up isolated environments for databases, vector stores, testing, or service dependencies.
 - **Dependency Management:** Always manage dependencies through Poetry in [`pyproject.toml`](file:///c:/Akshat/ContAIned/pyproject.toml). Ensure packages are assigned to the correct core list, optional extras, or dev groups.
 
 ### Clarity & Collaboration
 - **Stop and Ask:** If a requirement, contract, or design decision is ambiguous, presents an architectural flaw, or lacks logical sense, **stop and ask for clarification** before making assumptions.
-- **Documentation Updates:** If you introduce new configurations, architectural improvements, or setup flags, immediately **update the project-level README** so other agents and developers are aware.
+- **System Architect Coordination:** Align with system-level architectural directions as set out by [`agent.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/agent.md).
+- **Documentation Updates:** If you introduce new configurations, architectural improvements, or setup flags, immediately update the project-level [`README.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/README.md) so other agents and developers are aware.
 - **Environment Variables:** If valid environment variables, API keys, or custom `.env` parameters are required to test or execute any module, explicitly prompt for these values and update `.env.example`.
 
 ### Documentation & Version Verification

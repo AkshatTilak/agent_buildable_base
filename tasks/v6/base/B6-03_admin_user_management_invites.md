@@ -1,6 +1,6 @@
 # B6-03: Admin User Management, Invitations & Approval Gate
 
-> **Status:** `[ ]`  
+> **Status:** `[/]`  
 > **Owner:** `gateway/auth`, `gateway/api/admin_users.py`  
 > **Secondary:** `common/models`, `gateway/services/mailer.py`  
 > **Complexity:** 🔴 High (7 subtasks)
@@ -18,8 +18,8 @@ holds every unsolicited sign-up in a `pending` state until an admin approves it.
 
 ## Acceptance Criteria
 
-- [ ] `users.is_active` is replaced by `users.status` (`pending` | `active` | `suspended` | `rejected`); only `active` users receive a usable session.
-- [ ] `users.provider` / `users.provider_id` are replaced by a `user_identities` table supporting `google`, `github` and `password` on one account, resolved by verified email.
+- [x] `users.is_active` is replaced by `users.status` (`pending` | `active` | `suspended` | `rejected`); only `active` users receive a usable session.
+- [x] `users.provider` / `users.provider_id` are replaced by a `user_identities` table supporting `google`, `github` and `password` on one account, resolved by verified email.
 - [ ] A user signing in with Google and later with GitHub using the same verified email lands on **one** account.
 - [ ] `user_invites` exists with hashed single-use tokens, TTL, `platform_role`, `hub_grants_json`, and a partial unique index allowing one open invite per email.
 - [ ] Invite redemption works via **both** OAuth ("Continue with Google") and password setup; a provider email mismatch is rejected with `409`.
@@ -38,15 +38,16 @@ holds every unsolicited sign-up in a `pending` state until an admin approves it.
 
 ## Linked Subtasks
 
-| ID | Title | File |
-|---|---|---|
-| S6-03a | User, Identity & Invite Models + Migration | [`S6-03a.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03a.md) |
-| S6-03b | Local Password Authentication | [`S6-03b.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03b.md) |
-| S6-03c | Multi-Provider OAuth Linking & Approval Gate | [`S6-03c.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03c.md) |
-| S6-03d | Invite Issuance & Redemption Service | [`S6-03d.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03d.md) |
-| S6-03e | Mailer Abstraction, SMTP & Templates | [`S6-03e.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03e.md) |
-| S6-03f | Admin Users, Invites & Audit API | [`S6-03f.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03f.md) |
-| S6-03g | Auth Hardening & Test Coverage | [`S6-03g.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03g.md) |
+| ID | Title | File | Status |
+|---|---|---|---|
+| S6-03a | User, Identity & Invite Models + Migration | [`S6-03a.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03a.md) | `[x]` |
+| S6-03b | Local Password Authentication | [`S6-03b.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03b.md) | `[ ]` |
+| S6-03c | Multi-Provider OAuth Linking & Approval Gate | [`S6-03c.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03c.md) | `[ ]` |
+| S6-03d | Invite Issuance & Redemption Service | [`S6-03d.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03d.md) | `[ ]` |
+| S6-03e | Mailer Abstraction, SMTP & Templates | [`S6-03e.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03e.md) | `[ ]` |
+| S6-03f | Admin Users, Invites & Audit API | [`S6-03f.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03f.md) | `[ ]` |
+| S6-03g | Auth Hardening & Test Coverage | [`S6-03g.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03g.md) | `[ ]` |
+
 
 ---
 
