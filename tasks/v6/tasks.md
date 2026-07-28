@@ -23,7 +23,7 @@ same version that replaces them, and the deletion is verified by `B6-11`.
 
 | ID | Title | Owner | Complexity | Subtasks | Status |
 |---|---|---|---|---|---|
-| [B6-01](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-01_hub_domain_model_tenancy.md) | Hub Domain Model & Tenancy Foundation | `common/models`, `migrations` | 🔴 High | 6 | `[ ]` |
+| [B6-01](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-01_hub_domain_model_tenancy.md) | Hub Domain Model & Tenancy Foundation | `common/models`, `migrations` | 🔴 High | 6 | `[x]` |
 | [B6-02](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-02_hub_access_control_rbac.md) | Hub Access Control, Scoping & RBAC v2 | `gateway/auth` | 🔴 High | 5 | `[ ]` |
 | [B6-03](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-03_admin_user_management_invites.md) | Admin User Management, Invitations & Approval Gate | `gateway/auth`, `gateway/api` | 🔴 High | 7 | `[ ]` |
 | [B6-04](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-04_ingestion_hub_collections_datastores.md) | Ingestion Hub — Collections & Datastore Bindings | `projects/syntraflow` | 🔴 High | 6 | `[ ]` |

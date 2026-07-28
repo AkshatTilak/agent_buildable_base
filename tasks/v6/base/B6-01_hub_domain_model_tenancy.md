@@ -1,6 +1,6 @@
 # B6-01: Hub Domain Model & Tenancy Foundation
 
-> **Status:** `[ ]`  
+> **Status:** `[x] Completed`  
 > **Owner:** `common/models`, `migrations`  
 > **Secondary:** `common/schemas`, `common/services`  
 > **Complexity:** 🔴 High (6 subtasks)
@@ -23,18 +23,18 @@ begin until `S6-01a` … `S6-01e` are complete.
 
 ## Acceptance Criteria
 
-- [ ] `Hub`, `HubMember`, `HubLink`, `DatastoreBinding` and `AuditLog` SQLAlchemy models exist in `common/models/database.py` with the exact columns, indexes and constraints defined in `hubs.md` §3.
-- [ ] `hub_type` is constrained to `ingestion | agent | workflow | eval` and is immutable after creation.
-- [ ] `hub_role` is constrained to `owner | maintainer | contributor | viewer` with a documented ordering helper.
-- [ ] Every table in `hubs.md` §3.6 carries a `hub_id` column with the specified nullability.
-- [ ] Uniqueness constraints are rebuilt per `hubs.md` §3.7 (`(hub_id, endpoint_slug)`, `(hub_id, name)` for collections / workflows / eval suites).
-- [ ] `syntraflow_collections.tenant_id` is dropped; `physical_name` is added and populated as `{hub_slug}__{name}`.
-- [ ] Migration stage 1 (additive) and stage 2 (backfill + constrain + drop) both run cleanly against a populated V5 database.
-- [ ] The migration seeds four default hubs, seeds all allowed hub links between them, and enrols every existing active user with the mapped hub role.
-- [ ] `downgrade()` is implemented for both stages and restores a working V5 schema.
-- [ ] Re-running the migration against an already-migrated database is a no-op (idempotent guards on seed inserts).
-- [ ] Pydantic schemas for hub, member, link, binding and audit entities exist in `common/schemas/hubs.py`.
-- [ ] A `HubRepository` in `common/services/hub_repository.py` exposes scoped list/get/create/update/archive helpers that **require** `hub_id` on every read path.
+- [x] `Hub`, `HubMember`, `HubLink`, `DatastoreBinding` and `AuditLog` SQLAlchemy models exist in `common/models/database.py` with the exact columns, indexes and constraints defined in `hubs.md` §3.
+- [x] `hub_type` is constrained to `ingestion | agent | workflow | eval` and is immutable after creation.
+- [x] `hub_role` is constrained to `owner | maintainer | contributor | viewer` with a documented ordering helper.
+- [x] Every table in `hubs.md` §3.6 carries a `hub_id` column with the specified nullability.
+- [x] Uniqueness constraints are rebuilt per `hubs.md` §3.7 (`(hub_id, endpoint_slug)`, `(hub_id, name)` for collections / workflows / eval suites).
+- [x] `syntraflow_collections.tenant_id` is dropped; `physical_name` is added and populated as `{hub_slug}__{name}`.
+- [x] Migration stage 1 (additive) and stage 2 (backfill + constrain + drop) both run cleanly against a populated V5 database.
+- [x] The migration seeds four default hubs, seeds all allowed hub links between them, and enrols every existing active user with the mapped hub role.
+- [x] `downgrade()` is implemented for both stages and restores a working V5 schema.
+- [x] Re-running the migration against an already-migrated database is a no-op (idempotent guards on seed inserts).
+- [x] Pydantic schemas for hub, member, link, binding and audit entities exist in `common/schemas/hubs.py`.
+- [x] A `HubRepository` in `common/services/hub_repository.py` exposes scoped list/get/create/update/archive helpers that **require** `hub_id` on every read path.
 
 ---
 

@@ -32,7 +32,7 @@ Supporting the AI orchestration layer is a robust, production-ready backend desi
 
 ```text
 ├── prompts/                # Core instructions and behavioral guardrails
-│   ├── work_principle.md   # SOP for task selection, execution, and coding standards
+│   ├── work_principle.md   # SOP for task selection, execution, Poetry command standards, & coding practices
 │   └── work_verification.md# SOP for auditing, AI evaluation, and regression testing
 ├── references/             # The contextual memory bank for agents
 │   ├── references.md       # 📖 Master guide for reading/writing contextual memory
