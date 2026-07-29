@@ -1,9 +1,10 @@
 # B6-03: Admin User Management, Invitations & Approval Gate
 
-> **Status:** `[/]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway/auth`, `gateway/api/admin_users.py`  
 > **Secondary:** `common/models`, `gateway/services/mailer.py`  
 > **Complexity:** 🔴 High (7 subtasks)
+
 
 ---
 
@@ -46,7 +47,8 @@ holds every unsolicited sign-up in a `pending` state until an admin approves it.
 | S6-03d | Invite Issuance & Redemption Service | [`S6-03d.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03d.md) | `[x]` |
 | S6-03e | Mailer Abstraction, SMTP & Templates | [`S6-03e.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03e.md) | `[x]` |
 | S6-03f | Admin Users, Invites & Audit API | [`S6-03f.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03f.md) | `[x]` |
-| S6-03g | Auth Hardening & Test Coverage | [`S6-03g.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03g.md) | `[ ]` |
+| S6-03g | Auth Hardening & Test Coverage | [`S6-03g.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03g.md) | `[x]` |
+
 
 
 
