@@ -27,7 +27,7 @@ same version that replaces them, and the deletion is verified by `B6-11`.
 | [B6-02](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-02_hub_access_control_rbac.md) | Hub Access Control, Scoping & RBAC v2 | `gateway/auth` | 🔴 High | 5 | `[x]` |
 | [B6-03](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-03_admin_user_management_invites.md) | Admin User Management, Invitations & Approval Gate | `gateway/auth`, `gateway/api` | 🔴 High | 7 | `[x]` |
 
-| [B6-04](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-04_ingestion_hub_collections_datastores.md) | Ingestion Hub — Collections & Datastore Bindings | `projects/syntraflow` | 🔴 High | 6 | `[ ]` |
+| [B6-04](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-04_ingestion_hub_collections_datastores.md) | Ingestion Hub — Collections & Datastore Bindings | `projects/syntraflow` | 🔴 High | 6 | `[x]` |
 | [B6-05](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-05_agent_hub_scoped_lifecycle.md) | Agent Hub — Scoped Agent Lifecycle | `projects/guardroute` | 🟡 Medium | 5 | `[ ]` |
 | [B6-06](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-06_workflow_hub_multi_workflow.md) | Workflow Hub — Multi-Workflow Management & Versioning | `projects/guardroute` | 🔴 High | 7 | `[ ]` |
 | [B6-07](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-07_eval_hub_polymorphic_targets.md) | Eval Hub — Polymorphic Targets & Flow Tracing | `projects/evalops` | 🔴 High | 6 | `[ ]` |

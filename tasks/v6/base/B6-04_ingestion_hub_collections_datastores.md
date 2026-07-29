@@ -1,6 +1,6 @@
 # B6-04: Ingestion Hub — Collections & Datastore Bindings
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/syntraflow`  
 > **Secondary:** `gateway/api`, `common/models`  
 > **Complexity:** 🔴 High (6 subtasks)
