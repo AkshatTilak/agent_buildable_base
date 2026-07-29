@@ -1,6 +1,6 @@
 # B6-05: Agent Hub — Scoped Agent Lifecycle
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/guardroute`, `gateway/api`  
 > **Secondary:** `common/models`, `common/services`  
 > **Complexity:** 🟡 Medium (5 subtasks)
@@ -18,17 +18,17 @@ become optionally hub-scoped.
 
 ## Acceptance Criteria
 
-- [ ] `AgentDefinition` carries a `NOT NULL hub_id`; `endpoint_slug` is unique per `(hub_id, endpoint_slug)`.
-- [ ] Agent CRUD, invoke, batch-invoke, route and stats endpoints are nested under `/hubs/{hub_id}/agents` and guarded by `require_hub(hub_type="agent")`.
-- [ ] An agent's collection bindings are stored as qualified references (`{hub_id, collection_id}`) and validated through `hub_resolver` at save **and** at invocation time.
-- [ ] Attempting to bind a collection from an unlinked ingestion hub fails with a descriptive `403 HUB_LINK_REQUIRED`.
-- [ ] Revoking a hub link causes dependent agent invocations to fail fast with `HUB_LINK_REVOKED` rather than silently reading across the boundary.
-- [ ] `agent_invocation_log` records `hub_id` and is only readable within its hub.
-- [ ] The external `/v1/chat/completions` endpoint resolves agents by `"{hub_slug}/{agent_slug}"` as the `model` value; the bare-slug form from V5 is removed.
-- [ ] A hub-scoped API key may only invoke agents in its own hub; a platform key may invoke any agent its owning user can reach.
-- [ ] `GET /v1/models` lists only agents the calling key is authorised for, using the hub-qualified identifier.
-- [ ] Flat `/agents` and `/agents/{id}` routes are **removed** from `gateway/api/agent_crud.py` and `agent_invoke.py`.
-- [ ] `tests/test_agent_hub.py` covers hub scoping, slug collision across hubs, link enforcement at invoke time, and external API resolution.
+- [x] `AgentDefinition` carries a `NOT NULL hub_id`; `endpoint_slug` is unique per `(hub_id, endpoint_slug)`.
+- [x] Agent CRUD, invoke, batch-invoke, route and stats endpoints are nested under `/hubs/{hub_id}/agents` and guarded by `require_hub(hub_type="agent")`.
+- [x] An agent's collection bindings are stored as qualified references (`{hub_id, collection_id}`) and validated through `hub_resolver` at save **and** at invocation time.
+- [x] Attempting to bind a collection from an unlinked ingestion hub fails with a descriptive `403 HUB_LINK_REQUIRED`.
+- [x] Revoking a hub link causes dependent agent invocations to fail fast with `HUB_LINK_REVOKED` rather than silently reading across the boundary.
+- [x] `agent_invocation_log` records `hub_id` and is only readable within its hub.
+- [x] The external `/v1/chat/completions` endpoint resolves agents by `"{hub_slug}/{agent_slug}"` as the `model` value; the bare-slug form from V5 is removed.
+- [x] A hub-scoped API key may only invoke agents in its own hub; a platform key may invoke any agent its owning user can reach.
+- [x] `GET /v1/models` lists only agents the calling key is authorised for, using the hub-qualified identifier.
+- [x] Flat `/agents` and `/agents/{id}` routes are **removed** from `gateway/api/agent_crud.py` and `agent_invoke.py`.
+- [x] `tests/test_agent_hub.py` covers hub scoping, slug collision across hubs, link enforcement at invoke time, and external API resolution.
 
 ---
 
