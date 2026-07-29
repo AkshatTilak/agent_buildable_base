@@ -20,12 +20,12 @@ holds every unsolicited sign-up in a `pending` state until an admin approves it.
 
 - [x] `users.is_active` is replaced by `users.status` (`pending` | `active` | `suspended` | `rejected`); only `active` users receive a usable session.
 - [x] `users.provider` / `users.provider_id` are replaced by a `user_identities` table supporting `google`, `github` and `password` on one account, resolved by verified email.
-- [ ] A user signing in with Google and later with GitHub using the same verified email lands on **one** account.
+- [x] A user signing in with Google and later with GitHub using the same verified email lands on **one** account.
 - [ ] `user_invites` exists with hashed single-use tokens, TTL, `platform_role`, `hub_grants_json`, and a partial unique index allowing one open invite per email.
 - [ ] Invite redemption works via **both** OAuth ("Continue with Google") and password setup; a provider email mismatch is rejected with `409`.
 - [ ] Redeeming an invite applies its `hub_grants_json` as real `hub_members` rows and activates the account immediately.
-- [ ] Self sign-up with no matching invite creates a `pending` user and returns `ACCOUNT_PENDING_APPROVAL`; the frontend shows a dedicated holding screen, not an error.
-- [ ] `AUTO_APPROVE_EMAIL_DOMAINS` bypasses the gate for configured domains.
+- [x] Self sign-up with no matching invite creates a `pending` user and returns `ACCOUNT_PENDING_APPROVAL`; the frontend shows a dedicated holding screen, not an error.
+- [x] `AUTO_APPROVE_EMAIL_DOMAINS` bypasses the gate for configured domains.
 - [x] Passwords use Argon2id with the documented parameters, a 12-character minimum, and a common-password denylist.
 - [x] Login is constant-time and non-enumerating; 5 failures lock the account for 15 minutes.
 - [ ] `gateway/services/mailer.py` sends via SMTP when configured and degrades to `NullMailer` otherwise; when delivery fails the API still succeeds and returns a one-time `invite_url` for manual copying.
@@ -42,11 +42,12 @@ holds every unsolicited sign-up in a `pending` state until an admin approves it.
 |---|---|---|---|
 | S6-03a | User, Identity & Invite Models + Migration | [`S6-03a.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03a.md) | `[x]` |
 | S6-03b | Local Password Authentication | [`S6-03b.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03b.md) | `[x]` |
-| S6-03c | Multi-Provider OAuth Linking & Approval Gate | [`S6-03c.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03c.md) | `[ ]` |
+| S6-03c | Multi-Provider OAuth Linking & Approval Gate | [`S6-03c.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03c.md) | `[x]` |
 | S6-03d | Invite Issuance & Redemption Service | [`S6-03d.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03d.md) | `[ ]` |
 | S6-03e | Mailer Abstraction, SMTP & Templates | [`S6-03e.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03e.md) | `[ ]` |
 | S6-03f | Admin Users, Invites & Audit API | [`S6-03f.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03f.md) | `[ ]` |
 | S6-03g | Auth Hardening & Test Coverage | [`S6-03g.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/sub/S6-03g.md) | `[ ]` |
+
 
 
 
