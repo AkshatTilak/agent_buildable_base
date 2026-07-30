@@ -1,6 +1,6 @@
 # B6-08: Frontend — Hub Shell, Information Architecture & Navigation
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `frontend/src`  
 > **Secondary:** `frontend/src/store`, `frontend/src/services`  
 > **Complexity:** 🔴 High (6 subtasks)

@@ -1,6 +1,6 @@
 # B6-07: Eval Hub — Polymorphic Targets & Flow Tracing
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/evalops`  
 > **Secondary:** `gateway/api`, `common/models`  
 > **Complexity:** 🔴 High (6 subtasks)
