@@ -32,7 +32,7 @@ same version that replaces them, and the deletion is verified by `B6-11`.
 | [B6-06](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-06_workflow_hub_multi_workflow.md) | Workflow Hub — Multi-Workflow Management & Versioning | `projects/guardroute` | 🔴 High | 7 | `[x]` |
 | [B6-07](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-07_eval_hub_polymorphic_targets.md) | Eval Hub — Polymorphic Targets & Flow Tracing | `projects/evalops` | 🔴 High | 6 | `[x]` |
 | [B6-08](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-08_frontend_hub_shell_navigation.md) | Frontend — Hub Shell, IA & Navigation | `frontend/src` | 🔴 High | 6 | `[x]` |
-| [B6-09](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-09_frontend_ingestion_agent_workspaces.md) | Frontend — Ingestion & Agent Hub Workspaces | `frontend/src` | 🔴 High | 5 | `[ ]` |
+| [B6-09](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-09_frontend_ingestion_agent_workspaces.md) | Frontend — Ingestion & Agent Hub Workspaces | `frontend/src` | 🔴 High | 5 | `[x]` |
 | [B6-10](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-10_frontend_workflow_eval_admin.md) | Frontend — Workflow & Eval Workspaces + Admin Console | `frontend/src` | 🔴 High | 6 | `[ ]` |
 | [B6-11](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-11_legacy_decommission_verification.md) | Legacy Decommission, Data Migration & Verification | all modules | 🔴 High | 6 | `[ ]` |
 | [B6-12](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-12_ux_interaction_accessibility.md) | UX, Interaction & Accessibility Uplift | `frontend/src` | 🟡 Medium | 6 | `[ ]` |

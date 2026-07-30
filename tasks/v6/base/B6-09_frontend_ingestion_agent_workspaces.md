@@ -1,6 +1,6 @@
 # B6-09: Frontend — Ingestion & Agent Hub Workspaces
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `frontend/src/components/hubs/ingestion`, `frontend/src/components/hubs/agent`  
 > **Secondary:** `frontend/src/store`, `frontend/src/types`  
 > **Complexity:** 🔴 High (5 subtasks)
