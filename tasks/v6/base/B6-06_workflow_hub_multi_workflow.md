@@ -1,6 +1,6 @@
 # B6-06: Workflow Hub — Multi-Workflow Management & Versioning
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `projects/guardroute`, `gateway/api/workflows.py`  
 > **Secondary:** `common/models`, `common/services`  
 > **Complexity:** 🔴 High (7 subtasks)
@@ -21,19 +21,19 @@ task changes how workflows are stored, grouped, versioned and executed, not what
 
 ## Acceptance Criteria
 
-- [ ] `workflows` carries `hub_id`, `slug`, `tags_json`, `status`, `draft_version_id` and `published_version_id`; `graph_json` is moved off this table.
-- [ ] `workflow_versions` stores immutable numbered graph snapshots with validation results; `workflow_runs` stores execution history.
-- [ ] A workflow hub can hold an unbounded number of workflows; `(hub_id, slug)` is unique.
-- [ ] Editing mutates the draft version; publishing freezes it and opens a fresh draft on the next edit.
-- [ ] `PUT .../draft` honours `If-Match: <version_etag>` and returns `409` plus the server graph on a stale write — no silent overwrite.
-- [ ] Any prior version can be restored as a new draft; a version diff (nodes/edges added, removed, changed) is computable server-side.
-- [ ] Duplicate, export (JSON) and import (JSON, with reference remapping and validation) all work.
-- [ ] Node references to agents and collections are stored as qualified `{type, hub_id, resource_id}` objects and validated on edit, on publish, and again at execution time.
-- [ ] Running a workflow persists a `workflow_run` row and emits per-node rows into `eval_flow_traces` linked by `run_id`.
-- [ ] Run progress streams over SSE with `node_start` / `node_end` / `run_end` events; runs can be cancelled.
-- [ ] All routes are nested under `/hubs/{hub_id}/workflows` and guarded by `require_hub(hub_type="workflow")`; the flat `/workflows` routes are **removed**.
-- [ ] Existing workflows migrate into `workflow/default` as published v1, with bare agent references rewritten to qualified references against `agent/default`.
-- [ ] `tests/test_workflow_hub.py` covers multi-workflow CRUD, version lifecycle, etag conflict, cross-hub reference rejection, and run persistence.
+- [x] `workflows` carries `hub_id`, `slug`, `tags_json`, `status`, `draft_version_id` and `published_version_id`; `graph_json` is moved off this table.
+- [x] `workflow_versions` stores immutable numbered graph snapshots with validation results; `workflow_runs` stores execution history.
+- [x] A workflow hub can hold an unbounded number of workflows; `(hub_id, slug)` is unique.
+- [x] Editing mutates the draft version; publishing freezes it and opens a fresh draft on the next edit.
+- [x] `PUT .../draft` honours `If-Match: <version_etag>` and returns `409` plus the server graph on a stale write — no silent overwrite.
+- [x] Any prior version can be restored as a new draft; a version diff (nodes/edges added, removed, changed) is computable server-side.
+- [x] Duplicate, export (JSON) and import (JSON, with reference remapping and validation) all work.
+- [x] Node references to agents and collections are stored as qualified `{type, hub_id, resource_id}` objects and validated on edit, on publish, and again at execution time.
+- [x] Running a workflow persists a `workflow_run` row and emits per-node rows into `eval_flow_traces` linked by `run_id`.
+- [x] Run progress streams over SSE with `node_start` / `node_end` / `run_end` events; runs can be cancelled.
+- [x] All routes are nested under `/hubs/{hub_id}/workflows` and guarded by `require_hub(hub_type="workflow")`; the flat `/workflows` routes are **removed**.
+- [x] Existing workflows migrate into `workflow/default` as published v1, with bare agent references rewritten to qualified references against `agent/default`.
+- [x] `tests/test_workflow_hub.py` covers multi-workflow CRUD, version lifecycle, etag conflict, cross-hub reference rejection, and run persistence.
 
 ---
 
