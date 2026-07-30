@@ -1,6 +1,6 @@
 # B6-10: Frontend — Workflow & Eval Hub Workspaces + Admin Console
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `frontend/src/components/hubs/workflow`, `frontend/src/components/hubs/eval`, `frontend/src/components/admin`  
 > **Secondary:** `frontend/src/store`, `frontend/src/components/auth`  
 > **Complexity:** 🔴 High (6 subtasks)
