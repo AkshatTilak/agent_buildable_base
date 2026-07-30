@@ -66,7 +66,7 @@ Within any active version directory (`tasks/v<N>/`), work is divided into four d
 | **v3** | `Completed [x]` | System-wide Polish, Design Tokens & Premium UI, RAM-Optimized Infrastructure (16GB), React Router, Type Safety & Bugfixes | [`tasks/v3/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v3) |
 | **v4** | `Completed [x]` | Frontend Spacing, Padding & Typography Overhaul — Fix text truncation, declutter microservice grids & cards | [`tasks/v4/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v4) |
 | **v5** | `Completed [x]` | Platform Maturity — EvalOps Deep Integration (RAGAS+DeepEval), Agent Endpoints & Routing, User Auth & RBAC, Model Playground, MCP Integration Hub, Workflow Builder Enhancements, External API Gateway | [`tasks/v5/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v5) |
-| **v6** | `[ ] In Progress` | The Hub Platform — Multi-tenant hub model (Ingestion, Agent, Workflow, Eval), RBAC v2, User Management & Invites, Multi-Workflow Builder, Polymorphic Evals, Hub Shell UI | [`tasks/v6/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6) |
+| **v6** | `Completed [x]` | The Hub Platform — Multi-tenant hub model (Ingestion, Agent, Workflow, Eval), RBAC v2, User Management & Invites, Multi-Workflow Builder, Polymorphic Evals, Hub Shell UI | [`tasks/v6/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6) |
 
 ### Version Management Rules
 

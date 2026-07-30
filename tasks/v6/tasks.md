@@ -1,7 +1,7 @@
 # V6 Task Registry — The Hub Platform
 
 > **Version:** 6
-> **Status:** `[ ] In Progress`
+> **Status:** `[x] Completed`
 > **Goal:** [`goal/goal.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/goal/goal.md)
 > **Canonical design:** [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md)
 
@@ -34,8 +34,8 @@ same version that replaces them, and the deletion is verified by `B6-11`.
 | [B6-08](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-08_frontend_hub_shell_navigation.md) | Frontend — Hub Shell, IA & Navigation | `frontend/src` | 🔴 High | 6 | `[x]` |
 | [B6-09](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-09_frontend_ingestion_agent_workspaces.md) | Frontend — Ingestion & Agent Hub Workspaces | `frontend/src` | 🔴 High | 5 | `[x]` |
 | [B6-10](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-10_frontend_workflow_eval_admin.md) | Frontend — Workflow & Eval Workspaces + Admin Console | `frontend/src` | 🔴 High | 6 | `[x]` |
-| [B6-11](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-11_legacy_decommission_verification.md) | Legacy Decommission, Data Migration & Verification | all modules | 🔴 High | 6 | `[ ]` |
-| [B6-12](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-12_ux_interaction_accessibility.md) | UX, Interaction & Accessibility Uplift | `frontend/src` | 🟡 Medium | 6 | `[ ]` |
+| [B6-11](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-11_legacy_decommission_verification.md) | Legacy Decommission, Data Migration & Verification | all modules | 🔴 High | 6 | `[x]` |
+| [B6-12](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-12_ux_interaction_accessibility.md) | UX, Interaction & Accessibility Uplift | `frontend/src` | 🟡 Medium | 6 | `[x]` |
 
 **Total: 12 Base Tasks, 71 Subtasks.**
 
