@@ -1,6 +1,6 @@
 # B6-11: Legacy Decommission, Data Migration & Verification
 
-> **Status:** `[ ]`  
+> **Status:** `[x]`  
 > **Owner:** `gateway`, `projects`, `frontend`, `tests`  
 > **Secondary:** `migrations`, `agent_buildable_base/references`  
 > **Complexity:** 🔴 High (6 subtasks)
@@ -22,29 +22,29 @@ This base task runs **last** — it may only begin once `B6-01` … `B6-10` are 
 
 ### Backend removal
 
-- [ ] Flat routes are gone: `GET/POST /agents`, `/agents/{id}`, `/agents/batch-invoke`, `/agents/route`, `/workflows`, `/workflows/{id}`, `/api/syntraflow/collections`, `/api/syntraflow/search`, `/api/syntraflow/ingest`, `/api/syntraflow/jobs`, and the `/api/evalops` suite/run endpoints.
-- [ ] `gateway/auth/dependencies.py::require_role` is narrowed to platform roles only; no hub-scoped route references it.
-- [ ] `users.role`, `users.is_active`, `users.provider`, `users.provider_id` and `syntraflow_collections.tenant_id` no longer appear in any model, schema, query or migration head.
-- [ ] `workflows.graph_json` is removed from the model and all code paths.
-- [ ] Every string literal `"editor"` and `"viewer"` used as a *platform* role is removed (hub role `viewer` remains and is unambiguous by context).
-- [ ] The identifier and user-facing label "MCP Hub" is renamed to "MCP Registry" across routes, components, copy and references.
+- [x] Flat routes are gone: `GET/POST /agents`, `/agents/{id}`, `/agents/batch-invoke`, `/agents/route`, `/workflows`, `/workflows/{id}`, `/api/syntraflow/collections`, `/api/syntraflow/search`, `/api/syntraflow/ingest`, `/api/syntraflow/jobs`, and the `/api/evalops` suite/run endpoints.
+- [x] `gateway/auth/dependencies.py::require_role` is narrowed to platform roles only; no hub-scoped route references it.
+- [x] `users.role`, `users.is_active`, `users.provider`, `users.provider_id` and `syntraflow_collections.tenant_id` no longer appear in any model, schema, query or migration head.
+- [x] `workflows.graph_json` is removed from the model and all code paths.
+- [x] Every string literal `"editor"` and `"viewer"` used as a *platform* role is removed (hub role `viewer` remains and is unambiguous by context).
+- [x] The identifier and user-facing label "MCP Hub" is renamed to "MCP Registry" across routes, components, copy and references.
 
 ### Frontend removal
 
-- [ ] Legacy top-level views are deleted: the old `AgentHub.tsx`, `WorkflowCanvas.tsx` singleton entry, `IngestionPanel.tsx`, `EvalPanel.tsx` and `CollectionManager.tsx` at their V5 paths, replaced by their hub-workspace equivalents.
-- [ ] `workflowSlice.currentWorkflow`, `.nodes` and `.edges` singleton fields no longer exist.
-- [ ] Flat API helpers in `services/api.ts` that do not take a `hubId` are removed.
-- [ ] Legacy routes `/ingestion`, `/workflow`, `/agents`, `/evalops` are removed — not aliased, not redirected.
-- [ ] `types/api.ts` contains no interface referencing a removed field; `npx tsc --noEmit` is clean.
+- [x] Legacy top-level views are deleted: the old `AgentHub.tsx`, `WorkflowCanvas.tsx` singleton entry, `IngestionPanel.tsx`, `EvalPanel.tsx` and `CollectionManager.tsx` at their V5 paths, replaced by their hub-workspace equivalents.
+- [x] `workflowSlice.currentWorkflow`, `.nodes` and `.edges` singleton fields no longer exist.
+- [x] Flat API helpers in `services/api.ts` that do not take a `hubId` are removed.
+- [x] Legacy routes `/ingestion`, `/workflow`, `/agents`, `/evalops` are removed — not aliased, not redirected.
+- [x] `types/api.ts` contains no interface referencing a removed field; `npx tsc --noEmit` is clean.
 
 ### Migration & verification
 
-- [ ] A dry-run harness restores a representative V5 dump, runs the full V6 migration chain, and asserts row counts, seeded hubs, seeded links, backfilled `hub_id` values and rebuilt constraints.
-- [ ] `alembic downgrade` back to the V5 head succeeds and the V5 test suite passes against the downgraded schema.
-- [ ] Re-running `alembic upgrade head` on an already-migrated database is a clean no-op.
-- [ ] A grep-based verification script (`scripts/verify_v6_cutover.py`) fails with a non-zero exit if any removed symbol, route or column string is found outside `tasks/` and `references/`.
-- [ ] Every reference document under `references/` is re-read and confirmed free of stale V5 claims.
-- [ ] A full-system verification matrix is executed and recorded: fresh install, migrated install, each hub type end-to-end, invite + approval flows, cross-hub denial, and the frontend build.
+- [x] A dry-run harness restores a representative V5 dump, runs the full V6 migration chain, and asserts row counts, seeded hubs, seeded links, backfilled `hub_id` values and rebuilt constraints.
+- [x] `alembic downgrade` back to the V5 head succeeds and the V5 test suite passes against the downgraded schema.
+- [x] Re-running `alembic upgrade head` on an already-migrated database is a clean no-op.
+- [x] A grep-based verification script (`scripts/verify_v6_cutover.py`) fails with a non-zero exit if any removed symbol, route or column string is found outside `tasks/` and `references/`.
+- [x] Every reference document under `references/` is re-read and confirmed free of stale V5 claims.
+- [x] A full-system verification matrix is executed and recorded: fresh install, migrated install, each hub type end-to-end, invite + approval flows, cross-hub denial, and the frontend build.
 
 ---
 
