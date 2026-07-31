@@ -36,8 +36,9 @@ same version that replaces them, and the deletion is verified by `B6-11`.
 | [B6-10](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-10_frontend_workflow_eval_admin.md) | Frontend — Workflow & Eval Workspaces + Admin Console | `frontend/src` | 🔴 High | 6 | `[x]` |
 | [B6-11](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-11_legacy_decommission_verification.md) | Legacy Decommission, Data Migration & Verification | all modules | 🔴 High | 6 | `[x]` |
 | [B6-12](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-12_ux_interaction_accessibility.md) | UX, Interaction & Accessibility Uplift | `frontend/src` | 🟡 Medium | 6 | `[x]` |
+| [B6-13](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6/base/B6-13_build_containerization_deployment_repair.md) | Build, Containerization & Deployment Repair | `infrastructure`, `gateway`, `inference` | 🔴 High | 3 | `[x]` |
 
-**Total: 12 Base Tasks, 71 Subtasks.**
+**Total: 13 Base Tasks, 74 Subtasks.**
 
 ---
 
