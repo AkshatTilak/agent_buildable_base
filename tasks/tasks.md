@@ -67,6 +67,7 @@ Within any active version directory (`tasks/v<N>/`), work is divided into four d
 | **v4** | `Completed [x]` | Frontend Spacing, Padding & Typography Overhaul — Fix text truncation, declutter microservice grids & cards | [`tasks/v4/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v4) |
 | **v5** | `Completed [x]` | Platform Maturity — EvalOps Deep Integration (RAGAS+DeepEval), Agent Endpoints & Routing, User Auth & RBAC, Model Playground, MCP Integration Hub, Workflow Builder Enhancements, External API Gateway | [`tasks/v5/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v5) |
 | **v6** | `Completed [x]` | The Hub Platform — Multi-tenant hub model (Ingestion, Agent, Workflow, Eval), RBAC v2, User Management & Invites, Multi-Workflow Builder, Polymorphic Evals, Hub Shell UI | [`tasks/v6/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v6) |
+| **v7** | `Active [/]` | Platform Stabilization & Lifecycle — Full user lifecycle (soft/hard delete), Logout & session revocation, Gateway fail-fast & logging, `.env` super admin bootstrapping, Docker local host path volumes, Clean startup empty states, Infrastructure UI dependency rendering, Full API Test Suite, and Reference System Audit | [`tasks/v7/`](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7) |
 
 ### Version Management Rules
 

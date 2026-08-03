@@ -43,7 +43,8 @@ This workspace is currently configured for the **ContAIned AI Platform** — a m
 * **Version 3 (`tasks/v3/`):** System-wide polish, design token system, React Router, 16GB RAM Docker profiles (`--profile core`), Document Library & Job Tracker UX completed.
 * **Version 4 (`tasks/v4/`):** Frontend Spacing, Padding & Typography Overhaul completed.
 * **Version 5 (`tasks/v5/`):** Platform Maturity — Global Data Store, Multi-Agent Workflows, EvalOps Flow Tracing, Embedded Dashboards, User Auth & RBAC, Model Playground, MCP Integration Hub, External API Gateway completed.
-* **Version 6 (`tasks/v6/`) — ACTIVE:** The Hub Platform — Multi-tenant hub model (Ingestion, Agent, Workflow, Eval Hubs), Hub-scoped RBAC v2, Admin User Management & Invites/Approval Gate, Multi-Workflow Management & Versioning, Polymorphic Eval Targets, Hub Shell & Workspace IA.
+* **Version 6 (`tasks/v6/`):** The Hub Platform — Multi-tenant hub model (Ingestion, Agent, Workflow, Eval Hubs), Hub-scoped RBAC v2, Admin User Management & Invites/Approval Gate, Multi-Workflow Management & Versioning, Polymorphic Eval Targets, Hub Shell & Workspace IA completed.
+* **Version 7 (`tasks/v7/`) — ACTIVE:** Platform Stabilization & Lifecycle — Full user lifecycle (soft/hard delete), Gateway hardening & logging, Environment-driven admin setup, Local Docker volumes, Clean startup UI, and Comprehensive API Tests.
 
 ### Key References
 * `references/structure/system_architecture.md` — System topology, env vars, DB setup.
