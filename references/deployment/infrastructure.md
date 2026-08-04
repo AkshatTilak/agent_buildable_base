@@ -1,7 +1,7 @@
-# Infrastructure & Deployment Reference (V6)
+# Infrastructure & Deployment Reference (V7)
 
-> **Source:** Updated for ContAIned V6 (Hub tenancy)
-> **Last Updated:** 2026-07-28
+> **Source:** Updated for ContAIned V7 (Hub tenancy, fail-fast Gateway, host path persistence)
+> **Last Updated:** 2026-08-04
 
 This document details Docker images, docker-compose services, local development setup, Kafka topics, per-hub datastore bindings, and containerized deployment guidance for the ContAIned AI Platform.
 
@@ -37,13 +37,34 @@ This document details Docker images, docker-compose services, local development 
 
 | Service | Image | Port | Volume / Host Path | Healthcheck |
 |---|---|---|---|---|
-| PostgreSQL | `postgres:16` | 5432 | `pgdata:/var/lib/postgresql/data` | `pg_isready -U contained -d contained_platform` |
-| Qdrant | `qdrant/qdrant:latest` | 6333 | `qdrant_data:/qdrant/storage` | HTTP `/readyz` |
-| Neo4j | `neo4j:5.20.0` | 7474, 7687 | `neo4j_data:/data`, `neo4j_logs:/logs` | `cypher-shell RETURN 1` |
-| Redis | `redis:7-alpine` | 6379 | `redis_data:/data` | `redis-cli ping` |
+| PostgreSQL | `postgres:16` | 5432 | `../data/postgres:/var/lib/postgresql/data` | `pg_isready -U contained -d contained_platform` |
+| Qdrant | `qdrant/qdrant:latest` | 6333 | `../data/qdrant:/qdrant/storage` | HTTP `/readyz` |
+| Neo4j | `neo4j:5.20.0` | 7474, 7687 | `../data/neo4j:/data`, `neo4j_logs:/logs` | `cypher-shell RETURN 1` |
+| Redis | `redis:7-alpine` | 6379 | `../data/redis:/data` | `redis-cli ping` |
 | Kafka | `confluentinc/cp-kafka:7.6.0` | 9092 | `kafka_data:/var/lib/kafka/data` | Broker readiness |
 | Gateway | `Dockerfile.gateway` | 8000 | — | Depends on: postgres, qdrant, neo4j, redis, kafka |
 | Inference | `Dockerfile.inference` | 8010 | `./models:/app/models` | GPU reservation |
+
+### Host Path Persistence ✅
+
+Platform data is persisted to host bind mounts under the monorepo `data/` directory. This applies to
+all core stateful services:
+
+```yaml
+volumes:
+  - ../data/postgres:/var/lib/postgresql/data
+  - ../data/qdrant:/qdrant/storage
+  - ../data/redis:/data
+  - ../data/neo4j:/data
+```
+
+* The `data/` folder is created automatically on first `docker compose up`.
+* To reset the platform state, stop the services and remove the relevant subdirectory, e.g.
+  `rm -rf data/postgres data/qdrant data/redis data/neo4j`.
+* Kafka continues to use a named Docker volume (`kafka_data`) because its logs are typically
+  ephemeral in local development.
+* Production deployments should replace these host paths with managed volumes, network storage, or
+  managed services.
 
 ### Kafka Topics (auto-created via `kafka-setup`) ✅
 1. `syntraflow-ingestion-jobs`: Ingestion job dispatch topic for document/video processing workers.
@@ -85,6 +106,21 @@ From V6, an **ingestion hub** owns the databases that store its data via `datast
 | Binding health | Each `datastore_binding` row, including external endpoints the platform does not run | `GET /hubs/{hub_id}/datastores`, persisted to `health_status` / `last_health_check` |
 
 A green platform service therefore no longer implies a healthy hub: a binding pointing at an unreachable external cluster reports `unhealthy` on the hub's datastore view while every compose container stays green. Operational alerting should consume both.
+
+### Docker host path reset procedure
+
+To completely reset the local platform database and vector state:
+
+```bash
+cd infrastructure
+docker compose --profile core --profile graph down
+rm -rf ../data/postgres ../data/qdrant ../data/redis ../data/neo4j
+docker compose --profile core --profile graph up -d
+```
+
+This removes all persisted relational, vector, cache, and graph data. The Gateway will re-bootstrap
+its default API key and configured `SUPER_ADMIN_EMAIL` / `TEST_USER_EMAIL` accounts on the next
+startup.
 
 ### Qdrant physical collection naming ✅
 

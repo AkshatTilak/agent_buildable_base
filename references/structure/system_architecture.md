@@ -1,7 +1,7 @@
 # System Architecture & Core Infrastructure
 
 > **Source:** Migrated from `requirements/system.md`
-> **Last Updated:** 2026-07-28 (V6 Hub tenancy)
+> **Last Updated:** 2026-08-04 (V7 fail-fast error policy + host path persistence)
 
 This document captures the system-level architecture, environment configurations, database connections, and message queue guidelines that unify the ContAIned AI Platform monorepo.
 
@@ -133,7 +133,58 @@ column string survives outside `tasks/` and `references/`.
 
 ---
 
-## 3. Environment Configuration Specifications
+## 3. Gateway Fail-Fast Error Policy
+
+The Gateway uses a structured, machine-readable error format for every failure path. All custom
+exceptions inherit from `common.observability.exceptions.ContAInedException`, carry a stable
+`error_code`, and are converted to JSON by the global exception handlers registered in
+`gateway/main:app`.
+
+### Error response schema
+
+```json
+{
+  "error_code": "ENTITY_NOT_FOUND",
+  "message": "Human-readable explanation",
+  "details": {},
+  "trace_id": "optional-opentelemetry-trace-id"
+}
+```
+
+### Exception hierarchy
+
+| Exception | error_code | Typical HTTP status |
+|---|---|---|
+| `EntityNotFoundException` | `ENTITY_NOT_FOUND` | 404 |
+| `ValidationErrorException` | `VALIDATION_ERROR` | 422 |
+| `ExternalServiceException` | `EXTERNAL_SERVICE_ERROR` | 502/503 |
+| `DatabaseException` | `DATABASE_ERROR` | 500 |
+| `PasswordPolicyError` | `PASSWORD_POLICY_ERROR` | 422 |
+| `AccountLockedError` | `ACCOUNT_LOCKED` | 403 |
+
+### Handler behaviour
+
+* `ContAInedException` → JSON response with the exception's `status_code` and `error_code`.
+* `HTTPException` (FastAPI/Starlette) → JSON response; `404` maps to `NOT_FOUND`, everything else to
+  `HTTP_ERROR`.
+* `RequestValidationError` (Pydantic) → `400` with `error_code: VALIDATION_ERROR`.
+* Unhandled `Exception` → `500` with `error_code: INTERNAL_SERVER_ERROR`; stack traces are logged,
+  never returned to the client.
+
+### Fail-fast principles
+
+1. **Never silently swallow errors.** Every repository failure, external timeout, and validation
+   violation raises a typed exception or returns a structured `HTTPException`.
+2. **Fail with a code.** Callers receive a stable `error_code` (e.g. `WORKFLOW_NOT_FOUND`,
+   `IMPORT_UNRESOLVED_REFERENCES`) so the frontend and CLI can branch without parsing messages.
+3. **Centralise handling.** `common.observability.middleware.register_exception_handlers(app)` is
+   called once in `gateway/main.py`; individual routes do not write ad-hoc error envelopes.
+4. **Preserve observability.** Every handled exception is logged with its `trace_id` and the
+   unhandled-exception handler records the full stack trace.
+
+---
+
+## 4. Environment Configuration Specifications
 
 Central `.env` file at the monorepo root containing:
 
@@ -250,6 +301,20 @@ returns `{"delivered": false, "invite_url": "…"}`. The Admin Console then surf
 link** control with a warning banner. This is the only path by which a raw token is returned, and it is
 returned only to the creating admin, only once.
 
+### Bootstrapped Accounts (V7) ✅
+
+`gateway/core/setup.py` creates the following accounts automatically on startup when
+`AUTH_ENABLED=true` and the email does not already exist:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `SUPER_ADMIN_EMAIL` | `admin@contained.ai` | Platform super admin; `platform_role=admin`, `status=active` |
+| `SUPER_ADMIN_PASSWORD` | `AdminPass123!` | Initial password for the super admin (must be changed in production) |
+| `TEST_USER_EMAIL` | `testuser@contained.ai` | Optional automated test account; `platform_role=member`, `status=active` |
+| `TEST_USER_PASSWORD` | `TestPass123!` | Initial password for the test user |
+
+Both accounts are created with a local `password` identity in `user_identities`.
+
 ### Observability & Tracing ✅
 ```env
 OTEL_SERVICE_NAME="contained-platform"
@@ -261,7 +326,33 @@ LANGSMITH_PROJECT="contained-platform"
 
 ---
 
-## 4. Database & Message Queue Setup
+## 5. Host Path Persistence
+
+Local development and lightweight deployments use **host bind mounts** instead of named Docker
+volumes. This keeps platform state visible on the host filesystem under the monorepo `data/`
+directory and makes backups, inspection, and reset operations straightforward.
+
+### Bind mount table
+
+| Service | Host path | Container path | Purpose |
+|---|---|---|---|
+| PostgreSQL | `./data/postgres` | `/var/lib/postgresql/data` | Relational database files |
+| Qdrant | `./data/qdrant` | `/qdrant/storage` | Vector store collections and snapshots |
+| Redis | `./data/redis` | `/data` | AOF persistence and cache state |
+| Neo4j | `./data/neo4j` | `/data` | Graph database store and transactions |
+
+### Operational notes
+
+* The `data/` directory is created automatically by Docker Compose on first start.
+* To perform a **factory reset**, stop the containers and delete the relevant host path, e.g.
+  `rm -rf data/postgres data/qdrant data/redis data/neo4j`.
+* Do not commit the `data/` directory to version control; it is excluded by `.gitignore`.
+* In production, replace the host bind mounts with managed volumes or network storage appropriate
+  for the orchestrator (e.g. Kubernetes PVCs, EBS, managed Postgres/Qdrant/Neo4j services).
+
+---
+
+## 6. Database & Message Queue Setup
 
 ### PostgreSQL (Relational) ✅
 - **Async engine:** `create_async_engine` with `asyncpg` driver.
@@ -302,7 +393,7 @@ LANGSMITH_PROJECT="contained-platform"
 
 ---
 
-## 5. Embedded UI Proxies (Unified Dashboarding)
+## 7. Embedded UI Proxies (Unified Dashboarding)
 To leverage existing infrastructure without rebuilding management screens:
 - **API Gateway Reverse Proxy:** The FastAPI Gateway serves as an authenticated reverse proxy for internal infrastructure dashboards.
 - **Qdrant UI:** Exposed from internal port `6333` to the frontend via Gateway routing.
@@ -312,7 +403,7 @@ To leverage existing infrastructure without rebuilding management screens:
 
 ---
 
-## 6. Startup & Shutdown Lifecycle
+## 8. Startup & Shutdown Lifecycle
 
 ### Startup Sequence (Pending Implementation)
 1. Load `.env` and validate required settings (fail-fast on missing critical keys).

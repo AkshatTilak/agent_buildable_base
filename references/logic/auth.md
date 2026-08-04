@@ -1,12 +1,13 @@
 # Authentication & RBAC Architecture
 
-> **Source:** V5 Planning  
-> **Last Updated:** 2026-07-23
+> **Source:** V7 Implementation  
+> **Last Updated:** 2026-08-04
 
 ---
 
-> **V6 UPDATE:** User lifecycle (registration, invitation, approval, suspension) is defined canonically
-> in [`user_management.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/user_management.md).
+> **V7 UPDATE:** User lifecycle (registration, invitation, approval, suspension, soft deletion, hard
+> purge) is defined canonically in
+> [`user_management.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/user_management.md).
 > The role model is defined canonically in
 > [`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §4.
 > Where this document disagrees with either, those documents win. This file describes how the gateway
@@ -18,6 +19,12 @@
 
 Auth is **opt-in** via `AUTH_ENABLED=true` (default: `false`). When enabled, users authenticate via
 Google OAuth2, GitHub OAuth2, **or a local email + password**. JWTs are issued for session management.
+
+### V7 additions
+- Accounts now support soft deletion and explicit self-service deletion routes (`/auth/me` and `/users/me`).
+- Logout now revokes all active sessions for the current user and clears auth cookies.
+- A startup bootstrap path creates a platform super admin from environment variables when the account does not exist.
+- Lockout and session comparisons are normalized to UTC to avoid timezone-related failures.
 
 Authorisation in V6 is split across **two independent axes**. The V5 global `admin` / `editor` /
 `viewer` triple is **removed**:
@@ -39,7 +46,7 @@ User → GET /auth/login/{provider} → Redirect to IdP (PKCE + signed state) �
 - Library: `authlib` (Starlette integration)
 - Providers: `google`, `github`
 - The provider email **must be verified**; an unverified email is rejected outright
-- First registered user auto-assigned `platform_role = "admin"` and `status = "active"`
+- First registered user is no longer auto-promoted to admin. The bootstrap path uses environment-driven credentials instead.
 - Subsequent self-registrations land in `status = "pending"` unless an invite matches (see §5.3)
 
 ### 2.1 Identity linking
@@ -108,9 +115,11 @@ All `user_sessions` rows for a user are deleted immediately on any of:
 |---|---|
 | Password change (`POST /auth/change-password`) | all sessions except the calling one |
 | Password reset completion | all sessions |
+| Logout (`POST /auth/logout`) | all sessions for the current user |
 | Admin **suspend** (`active → suspended`) | all sessions |
 | Admin **reject** (`pending → rejected`) | all sessions |
 | Platform role demotion (`admin → member`) | all sessions |
+| Soft delete (`/auth/me` or `/users/me`) | all sessions for the deleted user |
 
 ---
 
@@ -215,7 +224,16 @@ JWT_SECRET_KEY=""
 JWT_ALGORITHM="HS256"
 JWT_EXPIRY_HOURS=24
 
-# --- V6: password auth, invites, approval gate ---
+# --- V7: environment bootstrapped super admin ---
+# These accounts are created automatically by gateway/core/setup.py on startup when
+# AUTH_ENABLED=true and the email does not already exist. Both accounts receive a
+# local password identity.
+SUPER_ADMIN_EMAIL="admin@contained.ai"
+SUPER_ADMIN_PASSWORD="ChangeMe123!"
+TEST_USER_EMAIL="testuser@contained.ai"
+TEST_USER_PASSWORD="TestPass123!"
+
+# --- V6/V7: password auth, invites, approval gate ---
 INVITE_TTL_HOURS=72
 PASSWORD_RESET_TTL_MINUTES=60
 APP_PUBLIC_URL=http://localhost:5173
@@ -233,8 +251,9 @@ SMTP settings for invite / approval / reset email are listed in
 
 - `users` — account record: `id`, `email`, `display_name`, `avatar_url`, `platform_role`, `status`,
   `password_hash`, `password_updated_at`, `approved_by`, `approved_at`, `failed_login_count`,
-  `locked_until`, `created_at`, `last_login`.
+  `locked_until`, `is_deleted`, `deleted_at`, `created_at`, `last_login`.
   **Removed in V6:** `role`, `is_active`, `provider`, `provider_id`.
+  **Added in V7:** `is_deleted`, `deleted_at` for soft-deletion support.
 - `user_identities` — one row per sign-in method: `id`, `user_id`, `provider`
   (`google | github | password`), `provider_id`, `email`, `created_at`, `last_used_at`;
   `UNIQUE (provider, provider_id)`.
@@ -271,7 +290,7 @@ auth = [
 | `GET` | `/auth/callback` | public | OAuth callback; identity resolution per §2.1 |
 | `POST` | `/auth/register` | public | Password sign-up; invite / approval-gate branch per §5.3 |
 | `POST` | `/auth/login` | public | Password sign-in; Argon2id verify, lockout, constant-time response |
-| `POST` | `/auth/logout` | session | Delete the current `user_sessions` row |
+| `POST` | `/auth/logout` | session | Revoke **all** `user_sessions` rows for the authenticated user and clear cookies |
 | `GET` | `/auth/me` | session | Current user, platform role, status, hub memberships |
 | `POST` | `/auth/forgot-password` | public | Issue a single-use reset token by email; always `202` |
 | `POST` | `/auth/reset-password` | public | Consume the reset token, set a new password, revoke all sessions |

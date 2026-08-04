@@ -15,14 +15,14 @@ All contextual knowledge must be strictly categorized into the following subdire
 * **Contents:** State machine definitions, prompt engineering strategies, core algorithmic rules, and data validation requirements.
 * **Key Files:**
   * [hubs.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md): Canonical multi-tenant hub platform architecture, scoping rules, DB schema, and API routes.
-  * [user_management.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/user_management.md): Admin user lifecycle, invitations, approval gate, and audit logging.
+  * [user_management.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/user_management.md): V7 admin user lifecycle, soft deletion, invitations, approval gate, and audit logging.
+  * [auth.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/auth.md): V7 auth model including soft-deletion, session revocation on logout, and environment-driven super-admin bootstrapping.
   * [workflow_v6.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v6.md): Multi-workflow builder architecture and version control.
   * [workflow_v5.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v5.md): Workflow Builder V5 node types and graph parser.
   * [syntraflow.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/syntraflow.md): Ingestion engine and dynamic vector collection bindings.
   * [guardroute.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/guardroute.md): Agent execution and routing architecture.
   * [evalops.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/evalops.md): Evaluation engine and polymorphic test targets.
   * [agent_endpoints.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/agent_endpoints.md): Agent execution endpoints and routing logic.
-  * [auth.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/auth.md): Authentication and RBAC architecture.
   * [external_api.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/external_api.md): External API Gateway architecture and routes.
   * [inference.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/inference.md): GPU model inference server architecture and VRAM management.
   * [mcp_hub.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/mcp_hub.md): Model Context Protocol (MCP) Integration Hub.
@@ -54,6 +54,7 @@ All contextual knowledge must be strictly categorized into the following subdire
 * **Key Files:**
   * [infrastructure.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/deployment/infrastructure.md): Docker setup, profile configurations (e.g., `--profile core`), and container orchestration.
   * [deployment_guide.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/deployment/deployment_guide.md): Environment deployment guide and operational setup steps.
+  * Local persistence is now anchored to host bind mounts under [data/](file:///c:/Akshat/ContAIned/data) for Postgres, Qdrant, Redis, and Neo4j to keep Docker and local development state consistent.
 * **When to use:** Use this to spin up test environments or production builds. Always execute Python tasks using `poetry run` commands.
 
 ### `issues/` (Technical Debt & Blockers)

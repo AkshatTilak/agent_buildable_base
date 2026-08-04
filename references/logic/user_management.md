@@ -1,16 +1,19 @@
-# User Management, Invitations & Approval Gate (V6)
+# User Management, Invitations & Approval Gate (V7)
 
-> **Status:** Authoritative for V6+
+> **Status:** Authoritative for V7
 > **Owner modules:** `gateway/auth`, `gateway/api/admin_users.py`, `common/models`
 > **Depends on:** [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §4
 
 V5 supported Google/GitHub OAuth only, with a global `admin/editor/viewer` role and no way for an
-administrator to provision a user ahead of time. V6 introduces three linked capabilities:
+administrator to provision a user ahead of time. V6 introduced three linked capabilities; V7 adds
+soft deletion and hard purge:
 
 1. **Admin-issued invitations** with a pre-assigned platform role and pre-assigned hub memberships.
 2. **Local email + password authentication** alongside the existing OAuth providers.
 3. An **approval gate**: any user who self-registers (via OAuth or password signup) without a matching
    invite lands in a `pending` state and cannot access anything until a platform admin approves them.
+4. **Soft deletion with hard purge**: users are soft-deleted by default; an explicit `hard=true` query
+   parameter (or deleting an already-soft-deleted user) permanently removes the record.
 
 ---
 
@@ -26,12 +29,24 @@ stateDiagram-v2
     pending --> rejected: admin rejects
     active --> suspended: admin suspends
     suspended --> active: admin reinstates
+    active --> soft_deleted: admin deletes (soft)
+    suspended --> soft_deleted: admin deletes (soft)
+    soft_deleted --> [*]: admin deletes again (hard purge)
+    soft_deleted --> active: admin reinstates
     rejected --> [*]
     expired --> [*]
 ```
 
 `users.status` ∈ `pending | active | suspended | rejected`. The `is_active` boolean from V5 is
 **dropped** and replaced by this enum.
+
+**Soft-deletion flags (V7):**
+* `users.is_deleted` — boolean flag, default `false`.
+* `users.deleted_at` — timestamp set at soft-delete time.
+
+A soft-deleted user cannot log in, is filtered from normal admin/user listings, and has all sessions
+revoked immediately. Hard purge is only allowed when the user owns no active hubs; otherwise the API
+returns `409` with the list of owned hubs.
 
 **Access rule:** only `status = "active"` users receive a usable session token. Any other status
 returns `403` with a machine-readable `reason` (`ACCOUNT_PENDING_APPROVAL`, `ACCOUNT_SUSPENDED`,
@@ -57,11 +72,14 @@ users
   approved_at           DateTime    nullable
   failed_login_count    Integer     default 0
   locked_until          DateTime    nullable
+  is_deleted            Boolean     default false, indexed
+  deleted_at            DateTime    nullable
   created_at            DateTime
   last_login            DateTime    nullable
 ```
 
 **Removed:** `role`, `is_active`, `provider`, `provider_id` (single-provider assumption).
+**Added in V7:** `is_deleted`, `deleted_at`.
 
 ### 2.2 `user_identities` (new) — multi-provider linking
 
@@ -167,7 +185,7 @@ All routes require platform `admin`. Prefix `/admin`.
 | `POST` | `/admin/users/{id}/reject` | `pending` → `rejected`, with an optional reason emailed to the user |
 | `POST` | `/admin/users/{id}/suspend` | `active` → `suspended`; revokes all sessions immediately |
 | `POST` | `/admin/users/{id}/reinstate` | `suspended` → `active` |
-| `DELETE` | `/admin/users/{id}` | Hard delete; blocked (`409`) if the user owns any hub |
+| `DELETE` | `/admin/users/{id}` | Soft delete by default; `?hard=true` hard purges. Blocked (`409`) if the user owns active hubs |
 | `GET` | `/admin/users/pending` | Approval queue (badge count source) |
 | `POST` | `/admin/invites` | Create invite(s); accepts a list of emails for bulk invite |
 | `GET` | `/admin/invites` | List with status filter |

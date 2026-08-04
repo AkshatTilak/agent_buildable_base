@@ -7,4 +7,4 @@ Audit and update all reference files within `agent_buildable_base/references/` t
 Downstream agents and developers rely on `references/` as canonical system memory. Leaving outdated v6/v5 references causes architectural drift and incorrect code generation.
 
 ## Associated Subtasks
-- `[ ]` `tasks/v7/sub/sub_06_01_references_documentation_audit.md`
+- `[x]` `tasks/v7/sub/sub_06_01_references_documentation_audit.md`
