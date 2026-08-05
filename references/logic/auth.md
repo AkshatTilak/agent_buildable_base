@@ -228,8 +228,8 @@ JWT_EXPIRY_HOURS=24
 # These accounts are created automatically by gateway/core/setup.py on startup when
 # AUTH_ENABLED=true and the email does not already exist. Both accounts receive a
 # local password identity.
-SUPER_ADMIN_EMAIL="admin@contained.ai"
-SUPER_ADMIN_PASSWORD="ChangeMe123!"
+ADMIN_EMAIL="admin@contained.ai"
+ADMIN_PASSWORD="ChangeMe123!"
 TEST_USER_EMAIL="testuser@contained.ai"
 TEST_USER_PASSWORD="TestPass123!"
 

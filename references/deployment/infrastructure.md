@@ -119,7 +119,7 @@ docker compose --profile core --profile graph up -d
 ```
 
 This removes all persisted relational, vector, cache, and graph data. The Gateway will re-bootstrap
-its default API key and configured `SUPER_ADMIN_EMAIL` / `TEST_USER_EMAIL` accounts on the next
+its default API key and configured `ADMIN_EMAIL` / `TEST_USER_EMAIL` accounts on the next
 startup.
 
 ### Qdrant physical collection naming ✅

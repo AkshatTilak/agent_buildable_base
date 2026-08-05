@@ -308,8 +308,8 @@ returned only to the creating admin, only once.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `SUPER_ADMIN_EMAIL` | `admin@contained.ai` | Platform super admin; `platform_role=admin`, `status=active` |
-| `SUPER_ADMIN_PASSWORD` | `AdminPass123!` | Initial password for the super admin (must be changed in production) |
+| `ADMIN_EMAIL` | `admin@contained.ai` | Platform super admin; `platform_role=admin`, `status=active` |
+| `ADMIN_PASSWORD` | `AdminPass123!` | Initial password for the super admin (must be changed in production) |
 | `TEST_USER_EMAIL` | `testuser@contained.ai` | Optional automated test account; `platform_role=member`, `status=active` |
 | `TEST_USER_PASSWORD` | `TestPass123!` | Initial password for the test user |
 

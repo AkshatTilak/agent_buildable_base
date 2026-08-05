@@ -9,4 +9,4 @@
    - [x] `references/deployment/infrastructure.md`: Updated core services volume table to host bind mounts; added host path persistence and reset procedure.
 2. [x] Verify all references maintain consistent terminology across the project.
 3. [x] Updated `.env.example` with `SUPER_ADMIN_*`, `TEST_USER_*`, and `ALLOW_MEMBER_HUB_CREATION`.
-4. [x] Added `SUPER_ADMIN_EMAIL`, `SUPER_ADMIN_PASSWORD`, `TEST_USER_EMAIL`, `TEST_USER_PASSWORD` to `common/config/settings.py`.
+4. [x] Added `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `TEST_USER_EMAIL`, `TEST_USER_PASSWORD` to `common/config/settings.py`.
