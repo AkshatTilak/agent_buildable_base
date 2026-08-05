@@ -26,7 +26,7 @@ All contextual knowledge must be strictly categorized into the following subdire
   * [external_api.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/external_api.md): External API Gateway architecture and routes.
   * [inference.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/inference.md): GPU model inference server architecture and VRAM management.
   * [mcp_hub.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/mcp_hub.md): Model Context Protocol (MCP) Integration Hub.
-  * [model_registry.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/model_registry.md): Model options and VRAM allocation profiles.
+  * [model_registry.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/model_registry.md): Model options, VRAM profiles, dynamic LiteLLM discovery, disk path resolution & cache status (`HF_HOME` & `./models/`), Harrier 0.6B embedder, and model deletion with disk purging (`DELETE /api/models/local/{model_id}?purge_disk=true`).
   * [playground.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/playground.md): Interactive Model Playground architecture.
   * [security.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/security.md): System security policies, token management, and encryption standards.
 * **When to use:** Read this to understand *why* a feature behaves the way it does. Update this when altering fundamental system behavior.

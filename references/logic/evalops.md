@@ -1,12 +1,13 @@
 # EvalOps — QA Verification & Observability Architecture
 
 > **V6 Update — Hub Scoping.** EvalOps is now the **Eval Hub**: suites live inside an eval hub and may target **either** an agent **or** a whole workflow in any hub the eval hub is linked to, instead of a single global agent id.
+> **V7 Update — Judge Sync & Error Boundaries.** EvalOps judge models dynamically sync with GuardRoute model registry (with local judge fallback when remote API keys are missing); metric calculations are isolated in explicit exception boundaries with trace logging to `evalops.log`.
 > All resources described below are scoped by `hub_id`. See
 > [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md)
 > for the canonical tenancy model.
 
 > **Source:** V5 Platform Maturity (B5-01)  
-> **Last Updated:** 2026-07-28 (V6 hub scoping)
+> **Last Updated:** 2026-08-05 (V7 platform stabilization)
 
 EvalOps serves as the automated quality assurance system, running benchmarks, managing evaluation test datasets, computing RAGAS and DeepEval metrics, analyzing transaction logs, and enforcing safety guardrails.
 

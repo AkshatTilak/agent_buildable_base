@@ -1,12 +1,13 @@
 # SyntraFlow — Ingestion & Hybrid RAG Architecture
 
 > **V6 Update — Hub Scoping.** SyntraFlow is now the **Ingestion Hub**: a deployment holds many ingestion hubs, each owning its own collections, documents, jobs and the physical datastores that back them.
+> **V7 Update — Datastore Validation & Harrier 0.6B Support.** Strict datastore binding validation is enforced before collection creation; Harrier 0.6B local embedding support added; stage-by-stage trace logging enabled in `syntraflow.log`.
 > All resources described below are scoped by `hub_id`. See
 > [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md)
 > for the canonical tenancy model.
 
 > **Source:** Migrated from `requirements/syntraflow.md`
-> **Last Updated:** 2026-07-28 (V6 hub scoping)
+> **Last Updated:** 2026-08-05 (V7 platform stabilization)
 
 SyntraFlow handles ingestion, layout-aware OCR extraction, keyframe/ASR audio alignment, index writing (PostgreSQL, Qdrant, Neo4j), and MCP retrieval server. Model selection is configurable via the Model Registry (see `references/logic/model_registry.md`).
 

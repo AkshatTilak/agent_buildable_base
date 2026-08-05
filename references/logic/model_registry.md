@@ -145,7 +145,10 @@ Selection criteria: **MTEB/MMTEB Leaderboard**, **CCKM Benchmark** (2026), modal
 |---|---|---|---|---|---|---|
 | 1 ⭐ | `jinaai/jina-clip-v2` | ~900M | ~1 GB | 1024 | Text+Image | Open-weight; multilingual; Matryoshka |
 | 2 | `nomic-ai/nomic-embed-vision-v2` | — | ~500 MB | 768 | Text+Image | Ultra-lightweight |
-| 3 | `Qwen/Qwen3-Embedding-0.6B` | 600M | ~1.5 GB | 1024 | Text only | SOTA for size class on text benchmarks |
+| 3 | `harrier-0.6b` | 600M | ~1 GB | 768 | Text only | V7 local embedding model; lightweight CPU/GPU execution |
+| 4 | `Qwen/Qwen3-Embedding-0.6B` | 600M | ~1.5 GB | 1024 | Text only | SOTA for size class on text benchmarks |
+
+> **V7 API Key Awareness:** The model registry dynamically annotates model entries with operational status flags: `ready` (available), `missing_key` (requires API key in `.env`), and `local_only` (runs locally without remote credentials).
 
 ### Cloud Options
 
@@ -224,17 +227,20 @@ COMPLETION_FALLBACKS = [
 | Frontier (Gemini 3.x) | No truncation (1M+) |
 | Mid-tier (70B class) | 32,000 tokens |
 | Small free-tier | 8,000 tokens |
-
-### Provider API Keys
+### Provider API Keys & Credentials
 ```env
 GOOGLE_API_KEY=          # Google AI Studio (Gemini)
 OPENROUTER_API_KEY=      # OpenRouter aggregator
 GROQ_API_KEY=            # Groq
 CEREBRAS_API_KEY=        # Cerebras
 OPENAI_API_KEY=          # OpenAI (for DeepEval judge)
+HF_TOKEN=                # HuggingFace Hub Access Token
 ```
 
----
+### Local Disk Path Resolution & Model Purging (V7)
+- **Local Disk Resolution**: The gateway dynamically resolves local disk storage paths (`HF_HOME` cache directories e.g. `~/.cache/huggingface/hub/models--<PROVIDER>--<MODEL>` or local GGUF weights `./models/*.gguf`) and returns disk cache status (`is_downloaded: true|false`) via `GET /api/models/local/status`.
+- **Model Deletion & Disk Purge**: Admin users can purge model definitions and optional local weight files via `DELETE /api/models/local/{model_id}?purge_disk=true`. If `purge_disk=true`, the gateway unloads the model from VRAM, deletes the directory from disk (`shutil.rmtree`), and removes the registry DB entry.
+- **Dynamic LiteLLM Discovery**: Cloud models are queried directly from LiteLLM's internal registry via `/api/models/litellm/available?provider={provider}`, allowing users to select any provider-supported model dynamically in Hub model selectors.
 
 ## 7. Model VRAM Budget Profiles
 

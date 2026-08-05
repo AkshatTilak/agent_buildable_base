@@ -1,12 +1,13 @@
 # GuardRoute — Decision Routing & Orchestration Architecture
 
 > **V6 Update — Hub Scoping.** GuardRoute now backs two hub types — the **Agent Hub** (agent definitions, endpoints, invocation logs) and the **Workflow Hub** (many versioned workflows per hub) — instead of one flat global agent and workflow plane.
+> **V7 Update — Dynamic Model Registry & API Key Awareness.** `registry.py` dynamically synchronizes LiteLLM models; models are annotated with API key availability (`ready`, `missing_key`, `local_only`); model dropdown UI displays availability status and tooltips.
 > All resources described below are scoped by `hub_id`. See
 > [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md)
 > for the canonical tenancy model.
 
 > **Source:** Migrated from `requirements/guardroute.md`
-> **Last Updated:** 2026-07-28 (V6 hub scoping)
+> **Last Updated:** 2026-08-05 (V7 platform stabilization)
 
 GuardRoute classifies query complexity, coordinates parallel subagents using LangGraph, implements fallback routing via LiteLLM, publishes diagnostic logs to Kafka, and manages multi-turn conversations. Model selection is configurable via the Model Registry (see `references/logic/model_registry.md`).
 
