@@ -13,7 +13,7 @@ All contextual knowledge must be strictly categorized into the following subdire
 
 ### `logic/` (Business Rules & System Flow)
 * **Purpose:** Stores the core business logic, decision matrices, and AI/system interaction flows.
-* **Contents:** State machine definitions, prompt engineering strategies, core algorithmic rules, and data validation requirements.
+* **Contents:** State machine definitions, prompt engineering strategies, core algorithmic rules, data validation requirements, and [PDF Spatial Ingestion & Extraction Rules](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/references/logic/ingestion_extraction_rules.md).
 * **When to use:** Read this to understand *why* a feature behaves the way it does. Update this when altering fundamental system behavior.
 
 ### `structure/` (Architecture & Topology)

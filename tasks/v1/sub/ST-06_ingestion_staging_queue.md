@@ -9,7 +9,7 @@ Implement backend APIs for managing the unified `staged_records` queue, supporti
 
 ## Technical Actionable Steps
 
-- [ ] **Step 1: Build Staging Queue Management APIs**
+- [x] **Step 1: Build Staging Queue Management APIs**
   - Create endpoints in `ingestion-service`:
     - `GET /ingestion/staging` — Filter by: status (`pending_review`, `approved`, `rejected`), source, provider_type, confidence score range, extraction_method, date range
     - `GET /ingestion/staging/{id}` — Get full staged record with raw_payload, extracted_data, and source provenance
@@ -17,7 +17,7 @@ Implement backend APIs for managing the unified `staged_records` queue, supporti
     - `POST /ingestion/staging/{id}/reject` — Reject record with reason, write to audit_logs
     - `POST /ingestion/staging/bulk-approve` — Batch approve records by filter criteria (e.g., all confidence > 0.95 from source X)
 
-- [ ] **Step 2: Implement Record Promotion Logic**
+- [x] **Step 2: Implement Record Promotion Logic**
   - On approval, atomically:
     1. Parse `extracted_data` JSONB and map fields to target normalized tables (`providers`, `provider_ratings`, etc.)
     2. Upsert into production tables (match on CCN/NPI/address)
@@ -25,13 +25,13 @@ Implement backend APIs for managing the unified `staged_records` queue, supporti
     4. Update `staged_records.review_status` → `approved`, set `reviewed_by` and `reviewed_at`
     5. Write audit log entry
 
-- [ ] **Step 3: Implement `ingestion_runs` Telemetry Logger**
+- [x] **Step 3: Implement `ingestion_runs` Telemetry Logger**
   - Track run metadata per execution:
     - `source_name`, `data_source_id`, `records_fetched`, `records_staged`, `records_auto_upserted`, `records_rejected`
     - `errors_count`, `duration_ms`, `status` (success, failed, partial)
     - `config_snapshot` (JSONB copy of ingestion_config.yaml settings used for this run)
 
-- [ ] **Step 4: Build Source Provenance Query API**
+- [x] **Step 4: Build Source Provenance Query API**
   - `GET /ingestion/provenance/{provider_id}` — Returns full history of all data sources that contributed to a given provider record
   - Shows: which fields came from which source, when, and with what confidence
 
