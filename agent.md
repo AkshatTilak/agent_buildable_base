@@ -20,6 +20,7 @@ All actionable work must be isolated into individual task files within the `task
 * **Base Tasks (`tasks/base/`):** Define the "What" and "Why" (architectural milestones).
 * **Subtasks (`tasks/sub/`):** Provide granular execution details, properly defining all actionables to achieve the parent Base Task.
 * **Complexity Rating:** Assign a complexity rating to every task to guide compute allocation.
+All tasks should have [] checkboxes to track them and link to their specific subtask or refrences.
 
 ### 3. Contextual Memory Generation (Strictly adhere to `references/references.md`)
 As you architect the system, populate the `references/` directory to give downstream agents context.

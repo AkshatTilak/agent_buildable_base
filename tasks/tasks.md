@@ -12,6 +12,8 @@ All project work is divided into four distinct layers, represented by the subdir
 * **Purpose:** Defines the absolute final objective of the entire system.
 * **Scope:** Contains a single, high-level document outlining what the completed, production-ready system looks like.
 * **Completion State:** The Goal is only achieved when **all** underlying Base Tasks are successfully executed, verified, and integrated.
+* All goal tasks should have [ ] checkboxes to track them and link to their specific subtask or refrences.
+* Each new goal should be versioned starting from v1 (folder wise manage and create a version folder under which all tasks, goals, subtasks, temp tasks should be maintained).
 
 ### II. `base/` (Architectural Milestones)
 * **Purpose:** Defines the broad, foundational objectives of the project (the "What" and the "Why").
