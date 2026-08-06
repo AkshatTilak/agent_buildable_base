@@ -5,6 +5,7 @@ Build the complete multi-tier data collection, inspection, analysis, and ETL ing
 - **CMS Provider Data API** (130+ datasets across 7 provider themes: Nursing Homes, Hospitals, Home Health, Hospice, Doctors/Clinicians, Inpatient Rehab, Long-Term Care)
 - **Vintage Magazine Precision Extraction Pipeline** (`pdfplumber` TOC-driven parser for evaluation checklists, 3-column glossary, and directory grid tables)
 - **INCOG Ombudsman PDF Tabular Extraction** (6-column spatial bounding-box state directory parsing)
+- **Cross-Source Listing Preprocessing & Entity Resolution** (Master Data Management thin golden record + sourced junction tables)
 - **Human-in-the-loop data inspection workflow** with raw source directories and inspection notes
 - **Reference Rules**: [ingestion_extraction_rules.md](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/references/logic/ingestion_extraction_rules.md)
 
@@ -32,11 +33,13 @@ All pipelines feed into a normalized PostgreSQL schema with source provenance tr
 - [x] [ST-04D: Tier 1 CMS API Ingestion Pipelines](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-04D_ingestion_tier1_cms_api.md)
   - Details: Per-theme CMS sync jobs across all 7 provider categories. Phase 1 priority: general info, locations/names, reviews/penalties, ownership. User-selectable dataset config.
 
-### Phase 2: PDF Extraction Pipelines
+### Phase 2: PDF Extraction & Preprocessing Pipelines
 - [x] [ST-05A: Vintage Magazine OCR & Extraction Pipeline](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05A_vintage_magazine_ocr_pipeline.md)
   - Details: TOC-driven `pdfplumber` pipeline. Triple-output: 7 evaluation checklists (`checklists/`), 20 glossary definitions (`glossary/`), 488 directory listings (`listings/`) with contextual feature dictionaries, multi-line title resolution, and symbol key-legend decoding.
 - [x] [ST-05B: INCOG Ombudsman PDF Tabular Extraction](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05B_ombudsman_pdf_extraction.md)
   - Details: 6-column spatial bounding-box `pdfplumber` extractor (`x0` thresholds: `< 170`, `170-250`, `250-360`, `360-440`, `440-520`, `>= 520`) anchored on `OMBUDSMAN [Region]` blocks. Direct staging with high confidence (`0.95`).
+- [x] [ST-05C: Listing Preprocessing, Classification & Entity Resolution](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05C_listing_normalization_and_entity_resolution.md)
+  - Details: Preprocessing pipeline reconciles multi-source listings (CMS, Ombudsman, Vintage) into MDM thin golden record + sourced junction tables with YAML taxonomies (`care_types.yaml`, `features.yaml`, `payment_and_ownership.yaml`), blocking, weighted similarity deduplication, and dual guard-rail protection.
 
 ### Phase 3: Orchestration & Staging
 - [x] [ST-06: Ingestion Staging Queue & Review APIs](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-06_ingestion_staging_queue.md)
@@ -47,14 +50,13 @@ All pipelines feed into a normalized PostgreSQL schema with source provenance tr
 ---
 
 ## Complexity Rating
-**Very High** — Covers 130+ CMS API datasets, normalized multi-table schema design, spatial PDF extraction, 3 distinct extraction pipeline architectures, user-selectable dataset configuration, and full source provenance tracking.
+**Very High** — Covers 130+ CMS API datasets, normalized multi-table schema design, spatial PDF extraction, multi-source entity resolution & MDM deduplication, user-selectable dataset configuration, and full source provenance tracking.
 
 ## Acceptance Criteria
 - `data/raw_sources/` directories exist with sample CMS CSVs downloaded and inspectable
 - Normalized schema covers providers, deficiencies, penalties, ownership, staffing, quality measures, surveys — with source provenance on every record
 - Phase 1 CMS sync jobs (general info, locations, reviews/penalties, ownership) execute across all 7 provider themes
-- User-selectable dataset configuration allows toggling individual CMS datasets on/off
 - Vintage magazine extraction produces structured checklist categories, glossary definitions, AND staged facility records with contextual feature dictionaries
 - INCOG Ombudsman PDFs extract cleanly into `staged_records` with all 6 columns mapped
+- Cross-source preprocessing engine reconciles multi-source listings into MDM golden records + junction tables with YAML taxonomies and deduplication scoring
 - All ingested records track their data source, extraction timestamp, and confidence score
-- Multiple review sources per facility are supported (CMS is not the only source)

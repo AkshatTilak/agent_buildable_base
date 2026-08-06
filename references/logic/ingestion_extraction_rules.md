@@ -1,7 +1,7 @@
 # Reference: Ingestion & Spatial PDF Extraction Rules (`ingestion_extraction_rules.md`)
 
 **Parent Context:** [references.md](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/references/references.md)
-**Related Subtasks:** [ST-05A: Vintage Magazine Extraction](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05A_vintage_magazine_ocr_pipeline.md), [ST-05B: Ombudsman Tabular Extraction](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05B_ombudsman_pdf_extraction.md)
+**Related Subtasks:** [ST-05A: Vintage Magazine Extraction](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05A_vintage_magazine_ocr_pipeline.md), [ST-05B: Ombudsman Tabular Extraction](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05B_ombudsman_pdf_extraction.md), [ST-05C: Listing Preprocessing & Entity Resolution](file:///c:/Akshat/idea/TrueCare/agent_buildable_base/tasks/v1/sub/ST-05C_listing_normalization_and_entity_resolution.md)
 
 ---
 
@@ -48,3 +48,25 @@
 ## 3. Storage & Lineage Rules
 - **JSON Exclusivity**: CSV files removed per pipeline directive; inspectable outputs saved strictly to `.json` in `data/raw_sources/`.
 - **PostgreSQL Staging**: Records staged in `staged_records` table with `0.95` confidence score, source PDF metadata, and raw JSON payloads for full auditability.
+
+---
+
+## 4. Preprocessing, Entity Resolution & Multi-Valued Fact Normalization (`ST-05C`)
+
+### Master Data Management (MDM) Architecture
+- **Thin Golden Record (`facilities`)**: Stores singular attributes (`facility_uid`, `entity_type`, `primary_name`, canonical address/phone, `status`, `is_active`, timestamps).
+- **Sourced Junction Tables**: Separates multi-valued facts into dedicated junction tables (`facility_care_types`, `facility_features`, `facility_payment_options`, `facility_contacts`, `facility_identifiers`, `facility_ownership`, `facility_source_links`).
+
+### Canonical Taxonomies & Crosswalks (`config/taxonomy/`)
+- `care_types.yaml`: Tags each care category with `entity_type` (`facility`, `service_organization`, `practitioner`, `program`) to cleanly separate non-building listings (e.g., funeral homes, PERS vendors).
+- `features.yaml`: ~65 canonical feature codes with contextual value domains (`Included`, `Available`, `Extra Cost`).
+- `payment_and_ownership.yaml`: Payment option codes and normalized ownership classifications (`for_profit`, `nonprofit`, `government`).
+
+### Deduplication & Scoring Rules
+- **ZIP/City Blocking**: Scopes match comparison within 5-digit ZIP codes (or state/city fallback).
+- **Weighted Matcher**: Scores candidate similarity across normalized Name, Address, and Phone.
+- **Dual Guard Rail**: Exact phone match is restricted if street addresses disagree, preventing false auto-merges on shared marketing or campus lines.
+- **Review Queues**: Candidates with match scores between $0.60$ and $0.79$ are routed to `match_review_queue.csv`; unmapped raw terms are routed to `unmapped_terms_review.csv`.
+
+### Search Optimization & Fast Filtering
+- B-tree indexing on junction tables (`idx_features_code`, `idx_features_facility`, `idx_care_types_code`, `idx_care_types_facility`) enables instant bidirectional queries for feature filtering and facility detail lookup.
