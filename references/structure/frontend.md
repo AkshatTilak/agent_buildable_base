@@ -133,6 +133,7 @@ frontend/src/
 │   │   │   ├── RetrievalTester.tsx      # props { hubId, collectionId } — no global state
 │   │   │   ├── DatastoresWorkspace.tsx  # new in V6 — per-hub physical store bindings
 │   │   │   ├── DocumentsWorkspace.tsx
+│   │   │   ├── IngestionUploadModal.tsx # V7: Advanced Multi-Step Pipeline Config (OCR, Chunking, Embedding, Summary, KG)
 │   │   │   └── JobsWorkspace.tsx
 │   │   ├── agent/
 │   │   │   ├── AgentOverview.tsx

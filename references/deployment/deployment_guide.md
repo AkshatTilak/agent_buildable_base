@@ -18,8 +18,8 @@ The ContAIned platform operates as a multi-tenant microservices platform with a 
 | **PostgreSQL** | PostgreSQL 16 | `5432` | `postgres:5432` | Primary relational store (Users, Hubs, Agents, Workflows, Audit Logs) |
 | **Qdrant** | Qdrant Vector DB | `6333` | `qdrant:6333` | Vector database for SyntraFlow document collections and embeddings |
 | **Redis** | Redis 7 Alpine | `6379` | `redis:6379` | Telemetry pub/sub, rate limiting, and session caching |
-| **Neo4j** *(Optional)* | Neo4j 5.20 | `7474`, `7687` | `neo4j:7687` | Knowledge graph entity store |
-| **Kafka** *(Optional)* | Confluent Kafka 7.6 | `9092` | `kafka:9092` | Asynchronous job message broker |
+| **Neo4j** | Neo4j 5.20 | `7474`, `7687` | `neo4j:7687` | Knowledge graph entity store (Core Infrastructure) |
+| **Kafka** | Confluent Kafka 7.6 | `9092` | `kafka:9092` | Asynchronous job message broker (Core Infrastructure) |
 
 ---
 
@@ -80,10 +80,13 @@ poetry run python scripts/deploy.py --mode all --profile core
 ### Method B: Manual Containerized Deployment (Docker Compose)
 
 #### 1. Deploy Infrastructure Containers
-Spin up the core database and cache layer:
+Spin up the core database, graph, message broker, and cache layer (PostgreSQL, Qdrant, Redis, Neo4j, Zookeeper, Kafka):
 ```bash
 docker compose -f infrastructure/docker-compose.yml --profile core up -d
 ```
+
+> **💡 Kafka & Zookeeper Volume Consistency:**
+> Both `zookeeper` and `kafka` services use persistent Docker volumes (`zookeeper_data` and `kafka_data`) in `docker-compose.yml` to ensure Zookeeper cluster ID state remains synced. If you ever encounter an `InconsistentClusterIdException` after partial volume removals, run `docker compose -f infrastructure/docker-compose.yml --profile core down -v` to reset volumes cleanly.
 
 #### 2. Run Database Migrations
 Apply Alembic migrations to set up the V6 database schema and seed default hubs:

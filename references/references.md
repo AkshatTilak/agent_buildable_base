@@ -19,7 +19,7 @@ All contextual knowledge must be strictly categorized into the following subdire
   * [auth.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/auth.md): V7 auth model including soft-deletion, session revocation on logout, and environment-driven super-admin bootstrapping.
   * [workflow_v6.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v6.md): Multi-workflow builder architecture and version control.
   * [workflow_v5.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/workflow_v5.md): Workflow Builder V5 node types and graph parser.
-  * [syntraflow.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/syntraflow.md): Ingestion engine and dynamic vector collection bindings.
+  * [syntraflow.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/syntraflow.md): Ingestion engine, dynamic collection bindings, and V7 Modular Multi-Step Configurable Ingestion Pipeline (OCR, Chunking, Embedding, Summarization, KG Extraction).
   * [guardroute.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/guardroute.md): Agent execution and routing architecture.
   * [evalops.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/evalops.md): Evaluation engine and polymorphic test targets.
   * [agent_endpoints.md](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/agent_endpoints.md): Agent execution endpoints and routing logic.

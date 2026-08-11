@@ -1,34 +1,44 @@
 # SyntraFlow — Ingestion & Hybrid RAG Architecture
 
 > **V6 Update — Hub Scoping.** SyntraFlow is now the **Ingestion Hub**: a deployment holds many ingestion hubs, each owning its own collections, documents, jobs and the physical datastores that back them.
-> **V7 Update — Datastore Validation & Harrier 0.6B Support.** Strict datastore binding validation is enforced before collection creation; Harrier 0.6B local embedding support added; stage-by-stage trace logging enabled in `syntraflow.log`.
+> **V7 Update — Datastore Validation, Harrier 0.6B Support & Modular Ingestion Pipeline.** Strict datastore binding validation is enforced before collection creation; Harrier 0.6B local embedding support added; stage-by-stage trace logging enabled in `syntraflow.log`; **Modular Step-by-Step Configurable Ingestion Pipeline** introduced allowing per-job and per-collection explicit selection of OCR Engine, Chunking Strategy & Sliders, Vector Embedding Model, LLM Summarization Model, and Knowledge Graph Extraction.
 > All resources described below are scoped by `hub_id`. See
 > [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md)
 > for the canonical tenancy model.
 
 > **Source:** Migrated from `requirements/syntraflow.md`
-> **Last Updated:** 2026-08-05 (V7 platform stabilization)
+> **Last Updated:** 2026-08-07 (V7 platform stabilization & modular pipeline)
 
-SyntraFlow handles ingestion, layout-aware OCR extraction, keyframe/ASR audio alignment, index writing (PostgreSQL, Qdrant, Neo4j), and MCP retrieval server. Model selection is configurable via the Model Registry (see `references/logic/model_registry.md`).
+SyntraFlow handles ingestion, layout-aware OCR extraction, keyframe/ASR audio alignment, index writing (PostgreSQL, Qdrant, Neo4j), and MCP retrieval server. Model and pipeline step selection is fully configurable per ingestion job and collection profile.
 
 Every ingestion resource belongs to exactly one `ingestion` hub. Agents and workflows that live in other hubs may only read a hub's collections through an explicit `hub_link` (see [`hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md) §3.3); there is no global collection plane.
 
 ---
 
-## 1. Document Ingestion ✅
+## 1. Modular Step-by-Step Ingestion Pipeline ✅
 
-### Configurable OCR Engine (via Model Registry)
-- **Local Mode:** Load configured local OCR model (default: GLM-OCR) into inference server VRAM on request. Extract raw document structures. Optionally pass to LLM for layout-preserving Markdown.
-- **API Mode:** Pass document images to cloud OCR model (default: Gemini 3.5 Flash) for layout-preserving Markdown and tabular JSON. Zero local VRAM cost.
-- See `references/logic/model_registry.md` §2 for all OCR model options.
+Every document ingestion job can be configured with an explicit pipeline specification covering 5 distinct execution stages:
 
-### Layout-Aware Chunking Engine
-- Split by logical layout boundaries (headers, paragraphs, sections) — not arbitrary token lengths.
-- Maintain parent-child mappings for headers.
-- Parameters:
-  - `CHUNK_MAX_TOKENS=512`
-  - `CHUNK_OVERLAP=50`
-  - Minimum chunk size: 50 tokens.
+1. **OCR / Text Extraction Stage (`ocr_engine`)**:
+   - `direct`: Fast direct text parsing (PDF/Docx/HTML) without GPU overhead.
+   - `glm-ocr`: Local GLM-OCR model for complex multi-column & formula layout parsing.
+   - `baidu-ocr`: Baidu/PaddleOCR for lightweight local tabular and document extraction.
+   - `gemini-vlm`: Cloud Multimodal VLM for rich layout and visual markdown conversion.
+
+2. **Chunking Strategy Stage (`chunking_strategy`, `chunk_size`, `chunk_overlap`)**:
+   - `recursive`: Character & line recursive chunking with configurable overlap.
+   - `semantic`: Embedding-driven semantic sentence boundary split (using selected embedder model & similarity threshold).
+   - `layout-aware`: Header & section hierarchical layout chunking preserving parent section references.
+
+3. **Vector Embedding Stage (`embedding_model`)**:
+   - Explicitly selectable per collection / job: `harrier-0.6b`, `jinaai/jina-clip-v2`, `BAAI/bge-base-en-v1.5`, `nomic-ai/nomic-embed-vision-v2`.
+   - Embeddings are written to Qdrant using the collection's registered `physical_name`.
+
+4. **LLM Summary Post-Processing Stage (`summary_model`)**:
+   - Optional summary generation per document using selectable LLM (`gemini/gemini-2.5-flash`, `ollama/llama3`, etc.).
+
+5. **Knowledge Graph Extraction Stage (`graph_model`, `enable_knowledge_graph`)**:
+   - Optional entity & relationship extraction pass per chunk using selectable LLM, written to the hub's bound Neo4j instance.
 
 ---
 

@@ -26,8 +26,9 @@ Version 7 executes a comprehensive platform stabilization cycle across the monor
 | [B7-07](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/07_syntraflow_updates.md) | Syntraflow Stabilizations & Datastore Validation | `projects/syntraflow` | 🟡 Medium | 4 | `[x]` |
 | [B7-08](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/08_guardroute_updates.md) | GuardRoute Model Registry & Key Awareness | `projects/guardroute` | 🟡 Medium | 4 | `[x]` |
 | [B7-09](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/09_evalops_updates.md) | EvalOps Judge Sync & Error Boundaries | `projects/evalops` | 🟡 Medium | 2 | `[x]` |
+| [B7-10](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/10_modular_ingestion_pipeline.md) | Modular Configurable Ingestion Pipeline & UX | `projects/syntraflow`, `gateway`, `frontend` | 🔴 High | 2 | `[x]` |
 
-**Total: 9 Base Tasks, 25 Subtasks.**
+**Total: 10 Base Tasks, 27 Subtasks.**
 
 ---
 
@@ -41,7 +42,9 @@ graph TD
     B04[B7-04 Infrastructure Storage] --> B02
     B07[B7-07 Syntraflow Validation] --> B08[B7-08 GuardRoute Registry]
     B08 --> B09[B7-09 EvalOps Judge Sync]
-    B03 --> B05
+    B07 --> B10[B7-10 Modular Ingestion Pipeline]
+    B03 --> B10
+    B10 --> B05
     B05 --> B06[B7-06 Documentation Audit]
 ```
 
@@ -53,8 +56,9 @@ graph TD
 | **2** | `B7-02`, `B7-07` | Gateway error handling & Syntraflow datastore validation. |
 | **3** | `B7-03`, `B7-08` | Frontend empty states & GuardRoute dynamic model registry key awareness. |
 | **4** | `B7-09` | EvalOps judge model sync dependent on GuardRoute model registry. |
-| **5** | `B7-05` | Comprehensive Gateway API tests run after all API changes land. |
-| **6** | `B7-06` | Final documentation audit to verify system memory consistency. |
+| **5** | `B7-10` | Modular Configurable Ingestion Pipeline & UI UX overhaul. |
+| **6** | `B7-05` | Comprehensive Gateway API tests run after all API changes land. |
+| **7** | `B7-06` | Final documentation audit to verify system memory consistency. |
 
 ---
 
