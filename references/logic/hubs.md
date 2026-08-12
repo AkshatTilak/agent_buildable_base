@@ -260,6 +260,12 @@ be reachable from a flat top-level route.
 /hubs/{hub_id}                            # get / update / archive
 /hubs/{hub_id}/members                    # membership CRUD
 /hubs/{hub_id}/links                      # cross-hub grant CRUD
+                                          #   GET ?direction=outgoing (default) | incoming
+                                          #   POST create, PATCH/DELETE /links/{link_id}
+                                          #   NOTE: there is NO /dependents endpoint; incoming
+                                          #   links are read via GET /links?direction=incoming
+                                          #   GET denormalizes target_hub_name/type/slug by
+                                          #   joining the target hub (never null)
 
 /hubs/{hub_id}/datastores                 # ingestion hubs only
 /hubs/{hub_id}/collections                # ingestion hubs only

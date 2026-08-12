@@ -149,6 +149,21 @@ Every such reference is validated through `common/services/hub_resolver.py` at t
 The **Agent Picker** in the property drawer groups options by source agent hub and shows a badge when a
 hub link is missing, with an inline "Request link" action for maintainers.
 
+### Frontend resource sourcing (V7 fix)
+
+The editor's property drawer dropdowns (agent, retrieval/collection, eval suite, DB credential) must
+source resources from **linked** hubs, not the current workflow hub. `WorkflowEditor.tsx` implements
+`fetchLinkedHubResources()`:
+
+1. Call `GET /hubs/{hub_id}/links` to list outgoing links.
+2. Build a hub-id set = `{ currentHubId } ∪ { link.target_hub_id }`.
+3. For each hub id, fetch agents (`GET /hubs/{hid}/agents`), collections
+   (`GET /hubs/{hid}/ingestion/collections` → `res.collections`), eval suites, and DB credentials,
+   merging results. Each call is try/catch-wrapped so a wrong-hub-type call is silently skipped.
+
+This is required because `GET /hubs/{hub_id}/agents` and `GET /hubs/{hub_id}/ingestion/collections`
+enforce `hub_type="agent"` / `hub_type="ingestion"` respectively and will reject a workflow hub id.
+
 ---
 
 ## 5. Frontend
@@ -180,6 +195,37 @@ runsByWorkflow: Record<string, WorkflowRun[]>
 
 Canvas edits debounce-autosave the draft (2s idle) and show an explicit `Saved • v7 draft` /
 `Unsaved changes` / `Conflict` state in the editor header.
+
+### Draft persistence & graph loading (V7 fix)
+
+* **Graph source on load** — `WorkflowEditor.tsx` resolves the graph in priority order:
+  localStorage draft → navigation `starterGraph` (from the Create dialog template) → backend
+  `draft_graph` (from `GET /{wf_id}`, field `draft_graph`, **not** `graph_json`) → empty graph.
+* **Frontend-only drafts** — the graph is auto-persisted to `localStorage` under
+  `contained_workflow_draft_{workflowId}` on every change. Only an explicit **Save Draft** pushes the
+  graph to the backend via `PUT /{wf_id}/draft` (which returns `WorkflowVersionDetail`), then clears the
+  local draft. `PUT /{wf_id}` remains metadata-only (name/description/tags) and must **not** be used to
+  save the graph.
+* **Starter templates** — `CreateWorkflowDialog.tsx` builds starter `{ nodes, edges }` for the
+  `rag` / `classifier` / `multi-agent` templates and passes them to the editor via navigation state, so
+  the canvas is seeded instead of empty.
+* **Non-overlapping placement** — `handleAddNode` scans a grid (~280×170 per card) and picks the first
+  free slot that does not overlap any existing node position.
+
+### Canvas interactivity & dropdown loading (V7 fix)
+
+* **Pan / zoom** — `WorkflowCanvas.tsx` maintains a `{ x, y, zoom }` viewport transform applied to the
+  node layer; edges are recomputed against the transformed viewport so they stay aligned. Pan by
+  dragging the empty background; zoom via mouse wheel (cursor-centered) and `+`/`-` buttons, clamped
+  ~0.25×–2.5×.
+* **Keyboard shortcuts** — scoped to the editor: `Del`/`Backspace` delete node, `Cmd/Ctrl+D` duplicate,
+  `Cmd/Ctrl+S` save draft, `Cmd/Ctrl+Z` / `Cmd/Ctrl+Shift+Z` undo/redo (bounded history), `+`/`-` zoom,
+  `0` fit view. Suppressed while typing in inputs/selects/textareas.
+* **Fullscreen** — a toolbar button expands the canvas to the viewport (Fullscreen API or fixed
+  overlay) and restores on exit; pan/zoom state is preserved.
+* **Dropdown loading states** — the property drawer tracks per-resource loading/error for agents,
+  collections, eval suites, and DB credentials, rendering a spinner while fetching and a clear
+  empty/error state on failure.
 
 ### UX requirements
 

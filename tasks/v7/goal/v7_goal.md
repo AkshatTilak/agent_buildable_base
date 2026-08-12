@@ -29,8 +29,22 @@ Execute a comprehensive v7 platform stabilization cycle across the monorepo to f
 5. **API Test Coverage**:
    - Comprehensive test suite covering all Gateway routes (Auth, Users, Hubs, Ingestion, Agents, Workflows, Evals, MCP, Proxy) without building heavy containers.
 
-6. **Documentation Integrity**:
+6. **Workflow Canvas UX Fixes**:
+   - Starter template defaults (RAG / classifier / multi-agent) seed the canvas instead of opening empty.
+   - Node positions persist across reloads via frontend-only localStorage drafts, pushed to the backend draft endpoint on explicit Save.
+   - Newly added nodes never overlap existing nodes.
+   - Agent / retrieval property dropdowns source resources from linked hubs.
+   - Links panel loads without a 404 (incoming links read via `GET /links?direction=incoming`).
+
+7. **Workflow Canvas Interactivity & Hub Panel Fixes**:
+   - Property-drawer dropdowns show loading / empty / error states.
+   - Canvas supports pan, zoom, smooth node movement, and keyboard shortcuts (delete, duplicate, save, undo/redo, zoom).
+   - Canvas can enter and exit fullscreen.
+   - Members panel is null-safe and renders without crashing when `email` / `display_name` are null.
+   - Links panel shows target hub name/type/slug (backend denormalization + frontend fallback) instead of empty columns.
+
+8. **Documentation Integrity**:
    - Complete audit and update of `agent_buildable_base/references/` to accurately document v7 patterns.
 
 ## Acceptance Criteria
-All 6 Base Tasks and 16 Subtasks marked `[x]` with full automated test execution passing.
+All 8 Base Task groups and 44 Subtasks marked `[x]` with full automated test execution passing.
