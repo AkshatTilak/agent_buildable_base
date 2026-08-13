@@ -18,8 +18,8 @@ Version 8 replaces the current mock-heavy, in-memory-only test suite with a laye
 | ID | Title | Owner | Complexity | Subtasks | Status |
 |---|---|---|---|---|---|
 | [B8-01](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/01_test_infrastructure_foundation.md) | Test Infrastructure & Configuration Foundation | `tests/`, `infrastructure`, `common/config` | 🔴 High | 4 | `[x]` |
-| [B8-02](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/02_reorganize_existing_tests.md) | Reorganize & Classify Existing Tests | `tests/` | 🟡 Medium | 3 | `[ ]` |
-| [B8-03](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/03_auth_user_lifecycle_real.md) | Real-World Integration Tests — Auth & User Lifecycle | `tests/integration/gateway`, `gateway/auth` | 🔴 High | 3 | `[ ]` |
+| [B8-02](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/02_reorganize_existing_tests.md) | Reorganize & Classify Existing Tests | `tests/` | 🟡 Medium | 3 | `[x]` |
+| [B8-03](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/03_auth_user_lifecycle_real.md) | Real-World Integration Tests — Auth & User Lifecycle | `tests/integration/gateway`, `gateway/auth` | 🔴 High | 3 | `[x]` |
 | [B8-04](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/04_hub_management_linking_real.md) | Real-World Integration Tests — Hub Management & Linking | `tests/integration/gateway`, `gateway/api`, `common/services` | 🔴 High | 4 | `[ ]` |
 | [B8-05](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/05_syntraflow_ingestion_retrieval_real.md) | Real-World Integration Tests — SyntraFlow (Ingestion & Retrieval) | `tests/integration/syntraflow`, `projects/syntraflow` | 🔴 High | 3 | `[ ]` |
 | [B8-06](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/06_guardroute_workflows_agents_real.md) | Real-World Integration Tests — GuardRoute (Workflows & Agents) | `tests/integration/guardroute`, `projects/guardroute` | 🔴 High | 4 | `[ ]` |
@@ -33,7 +33,8 @@ Version 8 replaces the current mock-heavy, in-memory-only test suite with a laye
 | [B8-14](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/14_websocket_sse_streaming_tests.md) | WebSocket & SSE Streaming Tests | `tests/streaming`, `gateway/api` | 🔴 High | 6 | `[ ]` |
 | [B8-15](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/15_mcp_tools_ecosystem.md) | MCP Tools Ecosystem & User-Facing Tool Registry | `mcp_tools/`, `tests/integration` | 🟡 Medium | 3 | `[ ]` |
 | [B8-16](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/16_comprehensive_api_surface_coverage.md) | Comprehensive API Surface Coverage | `tests/integration/gateway`, `scripts` | 🔴 High | 7 | `[ ]` |
-| [B8-17](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/17_test_observability_logging.md) | Test Observability & Logging Infrastructure | `tests/conftest.py`, `scripts` | 🟡 Medium | 4 | `[ ]` |
+| [B8-17](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/17_test_observability_logging.md) | Test Observability & Logging Infrastructure | `tests/conftest.py`, `scripts` | 🟡 Medium | 4 | `[x]` |
+
 
 **Total: 17 Base Tasks, 66 Subtasks.**
 

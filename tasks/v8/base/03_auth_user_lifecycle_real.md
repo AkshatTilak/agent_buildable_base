@@ -25,9 +25,10 @@ Existing auth tests are mock-based and never validate that the auth system works
   - Rate limiting enforcement with real SlowAPI against real endpoints.
 
 ## Associated Subtasks
-1. `[ ]` `sub_03_01_auth_real.md`: `test_auth_real.py` — full auth lifecycle against real Postgres.
-2. `[ ]` `sub_03_02_invites_real.md`: `test_invites_real.py` — invite system against real Postgres.
-3. `[ ]` `sub_03_03_rbac_real.md`: `test_rbac_real.py` — role enforcement, API keys, rate limiting.
+1. `[x]` `sub_03_01_auth_real.md`: `test_auth_real.py` — full auth lifecycle against real Postgres.
+2. `[x]` `sub_03_02_invites_real.md`: `test_invites_real.py` — invite system against real Postgres.
+3. `[x]` `sub_03_03_rbac_real.md`: `test_rbac_real.py` — role enforcement, API keys, rate limiting.
+
 
 ## Definition of Done
 - All auth lifecycle, invite, and RBAC tests pass against real Postgres.

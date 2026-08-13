@@ -15,9 +15,9 @@ The current flat `tests/` directory mixes unit, integration, and e2e concerns wi
 - **Tag every test file** with the appropriate marker (`@pytest.mark.unit`, etc.).
 
 ## Associated Subtasks
-1. `[ ]` `sub_02_01_audit_and_classify.md`: Audit all 77 test files and classify each as unit/integration/e2e.
-2. `[ ]` `sub_02_02_migrate_and_fix_imports.md`: Move files into the new hierarchy, fix broken imports, and consolidate submodule tests.
-3. `[ ]` `sub_02_03_validate_and_tag.md`: Validate all migrated tests still pass and tag every file with the correct marker.
+1. `[x]` `sub_02_01_audit_and_classify.md`: Audit all 77 test files and classify each as unit/integration/e2e.
+2. `[x]` `sub_02_02_migrate_and_fix_imports.md`: Move files into the new hierarchy, fix broken imports, and consolidate submodule tests.
+3. `[x]` `sub_02_03_validate_and_tag.md`: Validate all migrated tests still pass and tag every file with the correct marker.
 
 ## Definition of Done
 - All 77 existing tests pass after migration (`pytest tests/unit/ -v` reproduces today's pass/fail).
