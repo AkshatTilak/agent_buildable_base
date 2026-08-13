@@ -4,7 +4,7 @@
 
 ## Actionable Steps
 - [ ] Implement unified embedding adapter interface.
-- [ ] Support local: jina-clip-v2, nomic-embed-vision-v2, Qwen3-Embedding-0.6B.
+- [ ] Support local: jina-clip-v2, nomic-embed-vision-v1.5, Qwen3-Embedding-0.6B.
 - [ ] Support cloud: Gemini Embedding 2, Voyage Multimodal 3, OpenAI text-embedding-3-large.
 - [ ] Enforce vector dimension rules: Qdrant collection dimension matches active model.
 - [ ] Support Matryoshka dimension truncation where available.

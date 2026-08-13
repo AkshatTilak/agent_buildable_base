@@ -366,7 +366,7 @@ directory and makes backups, inspection, and reset operations straightforward.
 - **Per-hub instances:** an ingestion hub may point at its own Qdrant via a `datastore_binding`; `QDRANT_URL` is the fallback default.
 - **Vector dimension:** Dynamically determined by active embedding model:
   - jina-clip-v2: **1024**
-  - nomic-embed-vision-v2: **768**
+  - nomic-embed-vision-v1.5: **768**
   - Gemini Embedding 2: configurable up to **3072**
 - Distance metric: **Cosine**.
 - On startup, validate connectivity and initialize the `syntraflow_collections` tracking table in Postgres.

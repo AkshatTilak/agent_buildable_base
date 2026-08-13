@@ -32,6 +32,7 @@ This document details the shared library modules used by all backends and projec
 | `GROQ_API_KEY` | `Optional[str]` | `None` | Groq provider key |
 | `CEREBRAS_API_KEY` | `Optional[str]` | `None` | Cerebras provider key |
 | `HF_HOME` | `str` | `"~/.cache/huggingface/hub"` | HuggingFace cache |
+| `MODEL_CACHE_DIR` | `str` | `"./models"` | Local model weights cache (HF checkpoints + GGUF) |
 | `DEVICE` | `str` | `"auto"` | Device selection |
 | `INFERENCE_SERVER_PORT` | `int` | `8010` | Explicit port field |
 

@@ -13,7 +13,7 @@ Ingestion and retrieval are the heart of the RAG system. Existing tests mock Qdr
   - Verify collection auto-creation and schema sync.
   - Multi-file batch ingestion.
   - Duplicate document detection and deduplication.
-  - **Local embedder path**: Ingest with `harrier-0.6b` (BAAI/bge-base-en-v1.5, 768-dim) → verify Qdrant vectors are 768-dim.
+  - **Local embedder path**: Ingest with compatibility alias `harrier-0.6b`, resolved to `microsoft/harrier-oss-v1-0.6b` (1,024-dim, 32,768-token max) → verify Qdrant vectors are 1,024-dim.
   - **API embedder path**: Ingest with `gemini/gemini-embedding-2` via LiteLLM → verify vectors stored correctly.
   - **Local OCR path**: Ingest scanned PDF with `OCR_PROVIDER=local` (Baidu Unlimited-OCR) → verify text extracted.
 - **`tests/integration/syntraflow/test_retrieval_real.py`** — Retrieval engine:
@@ -21,19 +21,24 @@ Ingestion and retrieval are the heart of the RAG system. Existing tests mock Qdr
   - Vector-only retrieval vs hybrid (vector + graph) retrieval comparison.
   - Metadata filtering (by source, date, collection).
   - Hub-scoped retrieval (only returns docs from bound collections).
-  - Test retrieval with both `jina-clip-v2` (1024-dim) and `harrier-0.6b` (768-dim) collections.
+  - Test retrieval with `jina-clip-v2` (1,024-dim), Harrier 0.6B (1,024-dim), and Harrier 270M (640-dim) collections.
 - **`tests/integration/syntraflow/test_collections_real.py`** — Collection management:
   - Create/list/delete collections on real Qdrant.
   - Collection schema sync between Postgres and Qdrant.
   - Collection access control via hub bindings.
 
 ## Associated Subtasks
-1. `[ ]` `sub_05_01_ingestion_real.md`: `test_ingestion_real.py` — ingestion pipeline, both embedder paths, local OCR.
-2. `[ ]` `sub_05_02_retrieval_real.md`: `test_retrieval_real.py` — retrieval engine, hybrid, metadata filtering, hub scoping.
-3. `[ ]` `sub_05_03_collections_real.md`: `test_collections_real.py` — collection management & schema sync.
+1. `[x]` `sub_05_01_ingestion_real.md`: `test_ingestion_real.py` — ingestion pipeline, both embedder paths, local OCR. *(API embedder + OCR paths blocked by infra — see `references/issues/08_05_syntraflow_real_bugs_and_blockers.md`)*
+2. `[x]` `sub_05_02_retrieval_real.md`: `test_retrieval_real.py` — retrieval engine, hybrid, metadata filtering, hub scoping.
+3. `[x]` `sub_05_03_collections_real.md`: `test_collections_real.py` — collection management & schema sync.
 
 ## Definition of Done
-- Ingestion jobs complete and store correctly-dimensioned vectors in real Qdrant for both `harrier-0.6b` (768-dim) and `gemini/gemini-embedding-2` paths.
+- Ingestion jobs complete and store correctly-dimensioned vectors in real Qdrant for Harrier 0.6B (1,024-dim), Harrier 270M (640-dim), and `gemini/gemini-embedding-2` paths.
 - Local OCR path extracts text from scanned PDFs.
 - Retrieval returns relevant chunks with metadata filtering and hub scoping.
 - Collection create/list/delete and schema sync verified against real Qdrant.
+
+## Status
+- **12 tests pass** (`tests/integration/syntraflow`): 3 collections + 4 ingestion + 5 retrieval.
+- Local embedder (Harrier OSS v1 0.6B, 1,024-dim), PDF/text ingestion, batch, dedup, retrieval (vector/hybrid/metadata/hub-scope/multi-dim), and collection CRUD/schema-sync verified against real Postgres, Qdrant & Neo4j.
+- API embedder (`gemini/gemini-embedding-2`) and local OCR paths blocked by infrastructure (see issue doc).

@@ -141,12 +141,26 @@ Selection criteria: **MTEB/MMTEB Leaderboard**, **CCKM Benchmark** (2026), modal
 
 ### Local Options
 
-| # | Model | Params | VRAM | Dim | Modalities | Key Strengths |
-|---|---|---|---|---|---|---|
-| 1 ⭐ | `jinaai/jina-clip-v2` | ~900M | ~1 GB | 1024 | Text+Image | Open-weight; multilingual; Matryoshka |
-| 2 | `nomic-ai/nomic-embed-vision-v2` | — | ~500 MB | 768 | Text+Image | Ultra-lightweight |
-| 3 | `harrier-0.6b` | 600M | ~1 GB | 768 | Text only | V7 local embedding model; lightweight CPU/GPU execution |
-| 4 | `Qwen/Qwen3-Embedding-0.6B` | 600M | ~1.5 GB | 1024 | Text only | SOTA for size class on text benchmarks |
+| # | Model | Params | VRAM | Output Dim | Max Tokens | Modalities | Key Strengths |
+|---|---|---:|---:|---:|---:|---|---|
+| 1 ⭐ | `jinaai/jina-clip-v2` | ~900M | ~1 GB | 1024 (64-1024 Matryoshka) | 8,192 | Text+Image | Open-weight; multilingual; shared text/image space |
+| 2 | `nomic-ai/nomic-embed-vision-v1.5` | 92.9M | ~500 MB | 768 | — | Image | Vision embedder sharing the `nomic-embed-text-v1.5` embedding space |
+| 3 | `microsoft/harrier-oss-v1-270m` | 270M | ~400 MB* | 640 | 32,768 | Text only | Multilingual; last-token pooling; L2-normalized |
+| 4 | `microsoft/harrier-oss-v1-0.6b` | 0.6B | ~800 MB* | 1,024 | 32,768 | Text only | Multilingual; last-token pooling; L2-normalized |
+| 5 | `microsoft/harrier-oss-v1-27b` | 27B | deployment-dependent | 5,376 | 32,768 | Text only | Highest-capacity Harrier variant; not a local default |
+| 6 | `Qwen/Qwen3-Embedding-0.6B` | 0.6B | ~1.5 GB* | up to 1,024 (32-1024 configurable) | 32,768 | Text only | Instruction-aware; multilingual; Matryoshka |
+
+\* VRAM values are deployment estimates, not model-card guarantees. Harrier values are sourced from the [Microsoft model card](https://huggingface.co/microsoft/harrier-oss-v1-0.6b).
+
+### Harrier OSS v1 Reference Values
+
+| Model | Parameters | Output Dim | Max Tokens | Multilingual MTEB v2 |
+|---|---:|---:|---:|---:|
+| `microsoft/harrier-oss-v1-270m` | 270M | 640 | 32,768 | 66.5 |
+| `microsoft/harrier-oss-v1-0.6b` | 0.6B | 1,024 | 32,768 | 69.0 |
+| `microsoft/harrier-oss-v1-27b` | 27B | 5,376 | 32,768 | 74.3 |
+
+Short IDs such as `harrier-0.6b` are compatibility aliases only. They resolve to the canonical Hugging Face repository and must not identify a BGE checkpoint or imply a 768-dimensional output.
 
 > **V7 API Key Awareness:** The model registry dynamically annotates model entries with operational status flags: `ready` (available), `missing_key` (requires API key in `.env`), and `local_only` (runs locally without remote credentials).
 
@@ -160,7 +174,7 @@ Selection criteria: **MTEB/MMTEB Leaderboard**, **CCKM Benchmark** (2026), modal
 
 ### Vector Dimension Rules
 - Each collection's physical Qdrant collection (`{hub_slug}__{collection_name}`) is created with the `vector_dim` of the embedding model chosen for that collection and recorded on the collection row.
-- Default offered in the picker: **1024** (jina-clip-v2 native).
+- Default offered in the picker: **1024** (jina-clip-v2 and Harrier 0.6B native output dimensions).
 - A collection's embedding model and dimension are immutable; moving to a different model means creating a new collection and re-ingesting.
 
 ---
@@ -249,7 +263,7 @@ HF_TOKEN=                # HuggingFace Hub Access Token
 |---|---|---|
 | OCR | Gemini 3.5 Flash (cloud) | 0 |
 | ASR | SenseVoice-Small | 250 MB |
-| Embedding | nomic-embed-vision-v2 | 500 MB |
+| Embedding | nomic-embed-vision-v1.5 | 500 MB |
 | Classifier | Semantic Router | 0 |
 | Completion | Gemini (cloud) | 0 |
 | **Total** | | **~750 MB** |

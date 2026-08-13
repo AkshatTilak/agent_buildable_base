@@ -1,7 +1,7 @@
 # SyntraFlow — Ingestion & Hybrid RAG Architecture
 
 > **V6 Update — Hub Scoping.** SyntraFlow is now the **Ingestion Hub**: a deployment holds many ingestion hubs, each owning its own collections, documents, jobs and the physical datastores that back them.
-> **V7 Update — Datastore Validation, Harrier 0.6B Support & Modular Ingestion Pipeline.** Strict datastore binding validation is enforced before collection creation; Harrier 0.6B local embedding support added; stage-by-stage trace logging enabled in `syntraflow.log`; **Modular Step-by-Step Configurable Ingestion Pipeline** introduced allowing per-job and per-collection explicit selection of OCR Engine, Chunking Strategy & Sliders, Vector Embedding Model, LLM Summarization Model, and Knowledge Graph Extraction.
+> **V7 Update — Datastore Validation, Harrier OSS v1 Support & Modular Ingestion Pipeline.** Strict datastore binding validation is enforced before collection creation; Microsoft Harrier OSS v1 local embedding support added; stage-by-stage trace logging enabled in `syntraflow.log`; **Modular Step-by-Step Configurable Ingestion Pipeline** introduced allowing per-job and per-collection explicit selection of OCR Engine, Chunking Strategy & Sliders, Vector Embedding Model, LLM Summarization Model, and Knowledge Graph Extraction.
 > All resources described below are scoped by `hub_id`. See
 > [`references/logic/hubs.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/logic/hubs.md)
 > for the canonical tenancy model.
@@ -31,7 +31,7 @@ Every document ingestion job can be configured with an explicit pipeline specifi
    - `layout-aware`: Header & section hierarchical layout chunking preserving parent section references.
 
 3. **Vector Embedding Stage (`embedding_model`)**:
-   - Explicitly selectable per collection / job: `harrier-0.6b`, `jinaai/jina-clip-v2`, `BAAI/bge-base-en-v1.5`, `nomic-ai/nomic-embed-vision-v2`.
+   - Explicitly selectable per collection / job: `microsoft/harrier-oss-v1-0.6b` (1,024-dim), `microsoft/harrier-oss-v1-270m` (640-dim), `jinaai/jina-clip-v2` (1,024-dim native), and `nomic-ai/nomic-embed-vision-v1.5` (768-dim, image-only).
    - Embeddings are written to Qdrant using the collection's registered `physical_name`.
 
 4. **LLM Summary Post-Processing Stage (`summary_model`)**:

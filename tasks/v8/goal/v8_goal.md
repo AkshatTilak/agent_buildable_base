@@ -19,7 +19,7 @@ Replace the current mock-heavy, in-memory-only test suite with a layered testing
 3. **Real-World Integration Tests**:
    - **Auth & User Lifecycle** — registration, login, JWT, password reset, invites, RBAC, lockout, OAuth linking against real Postgres.
    - **Hub Management & Linking** — hub CRUD, membership, hub links, datastore bindings, cross-hub access.
-   - **SyntraFlow** — ingestion & retrieval against real Qdrant/Neo4j, both local (`harrier-0.6b`, `jina-clip-v2`) and API (`gemini/gemini-embedding-2`) embedder paths, local OCR path.
+   - **SyntraFlow** — ingestion & retrieval against real Qdrant/Neo4j, local Harrier OSS v1 (`microsoft/harrier-oss-v1-0.6b` at 1,024 dimensions and `microsoft/harrier-oss-v1-270m` at 640 dimensions), `jinaai/jina-clip-v2` at 1,024 dimensions, and API (`gemini/gemini-embedding-2`) embedder paths, plus local OCR.
    - **GuardRoute** — agent CRUD, workflow lifecycle/versioning, workflow execution, node executors against real backends.
    - **EvalOps** — dataset management, DeepEval/RAGAS runner execution, eval hub management.
 
