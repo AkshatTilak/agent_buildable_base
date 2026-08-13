@@ -39,13 +39,13 @@ graph TD
 ## Subtasks
 1. `[x]` `sub_12_01_encrypted_credentials_and_db_connectors.md`: `ExternalCredential` ORM model + Alembic migration, Fernet credential encryption (reuse `common/security/crypto.py`), async connector pool manager (`common/clients/db_connectors/`), read-only + row-limit + timeout guardrails, and hub-scoped Gateway credentials API.
 2. `[x]` `sub_12_02_database_mcp_tool_bridge.md`: Dynamic MCP tool bridge (`common/services/mcp_db_bridge.py`) exposing DB connections as LLM agent tools, registered through the existing Gateway MCP registry (`gateway/api/mcp_manager.py`).
-3. `[x]` `sub_12_03_workflow_database_query_nodes.md`: Dedicated visual workflow nodes (`DatabaseQueryNode`, `DBStoreNode`), LangGraph node executors, handles (`in_params`, `out_rows`, `out_error`), and parametrized query evaluation.
-4. `[x]` `sub_12_04_frontend_db_connector_management_ui.md`: React UI for managing external database connection profiles, query test playground, and workflow builder property drawer database node selectors.
+3. `[x]` `sub_12_03_workflow_database_query_nodes.md`: Dedicated visual workflow nodes (`DatabaseQueryNode`, `DBStoreNode`), LangGraph node executors, handles (`in_params`, `out_rows`, `out_error`), and parametrized query evaluation. **Updated by B7-15:** DB access is now a **tool** bound to an agent node (`data.tools` type `db`), dispatched via `projects/guardroute/src/nodes/tool_executor.py`; the standalone `database_query` / `db_store` node types are removed.
+4. `[x]` `sub_12_04_frontend_db_connector_management_ui.md`: React UI for managing external database connection profiles, query test playground, and workflow builder property drawer database node selectors. **Updated by B7-15:** the workflow property drawer now exposes DB credentials through the agent-node **tool-binding editor** rather than standalone DB nodes.
 
 ## Definition of Done
 - `ExternalCredential` rows are hub-scoped, encrypted at rest (Fernet), and never return secrets in API responses.
 - `common/clients/db_connectors/` supports Postgres, MySQL, MongoDB, Redis (Snowflake/BigQuery optional) with read-only enforcement, row limits, and timeouts.
 - DB connections are exposed as MCP tools through the existing Gateway MCP registry and callable by Agent Hub LLM agents.
-- `DatabaseQueryNode` / `DBStoreNode` execute in GuardRoute workflows with parametrized queries and error-handle fallback.
-- Frontend connection manager + workflow property drawer selectors are wired to the new API.
+- DB access executes in GuardRoute workflows as an agent **tool** (`db` binding) with parametrized queries and error capture (see B7-15).
+- Frontend connection manager + agent-node tool-binding editor are wired to the new API.
 

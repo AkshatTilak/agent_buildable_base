@@ -31,8 +31,9 @@ Version 7 executes a comprehensive platform stabilization cycle across the monor
 | [B7-12](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/12_external_database_connectors_and_tooling.md) | External Database Connectors & Database Tooling Nodes | `common/clients`, `common/security`, `gateway`, `frontend` | 🔴 High | 4 | `[/]` |
 | [B7-13](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/13_workflow_canvas_fixes.md) | Workflow Canvas UX Fixes — Defaults, Draft Persistence, Cross-Hub Links & Links Panel | `frontend/src/components/hubs/workflow`, `frontend/src/services` | 🟡 Medium | 4 | `[x]` |
 | [B7-14](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/14_workflow_canvas_interactivity_and_panel_fixes.md) | Workflow Canvas Interactivity, Loading States & Hub Panel Fixes | `frontend/src/components/hubs/workflow`, `frontend/src/components/hubs`, `gateway/api`, `common/services` | 🟡 Medium | 5 | `[ ]` |
+| [B7-15](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v7/base/15_agent_tools_architecture.md) | Agent Tools Architecture — Remove Standalone Tool Nodes | `common/schemas`, `projects/guardroute`, `frontend/src/components/hubs/workflow`, `frontend/src/components/nodes` | 🔴 High | 1 | `[x]` |
 
-**Total: 14 Base Tasks, 44 Subtasks.**
+**Total: 15 Base Tasks, 45 Subtasks.**
 
 ---
 
