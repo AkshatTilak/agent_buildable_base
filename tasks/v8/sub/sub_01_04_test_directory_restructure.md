@@ -7,7 +7,7 @@
 Reorganize the flat `tests/` directory into the layered hierarchy.
 
 ## Tasks
-1. [ ] Create the new directory structure:
+1. [x] Create the new directory structure:
    ```
    tests/
    ├── conftest.py                  # Root fixtures & markers
@@ -24,8 +24,8 @@ Reorganize the flat `tests/` directory into the layered hierarchy.
    ├── live_api/                    # Tests requiring external API keys
    └── performance/                 # Response-time benchmarks, caching, load tests
    ```
-2. [ ] Add `__init__.py` files where needed for pytest import resolution.
-3. [ ] Ensure `testpaths` in pytest config points to the new directories.
+2. [x] Add `__init__.py` files where needed for pytest import resolution.
+3. [x] Ensure `testpaths` in pytest config points to the new directories.
 
 ## Definition of Done
 - The layered `tests/` hierarchy exists with all subdirectories.

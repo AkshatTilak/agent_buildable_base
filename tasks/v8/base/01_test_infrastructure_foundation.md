@@ -22,10 +22,10 @@ Today there is no test infrastructure for standing up real Docker services, mana
 - **Test directory restructure** — Reorganize flat `tests/` into `unit/`, `integration/` (gateway/syntraflow/guardroute/evalops), `streaming/`, `e2e/` (flows/contracts), `live_api/`, `performance/`.
 
 ## Associated Subtasks
-1. `[ ]` `sub_01_01_test_env_and_compose.md`: `.env.test` / `.env.test.example` and `docker-compose.test.yml` with ephemeral volumes.
-2. `[ ]` `sub_01_02_root_conftest_fixtures.md`: Root `conftest.py` with markers, real-service fixtures, seed factories, and gateway client.
-3. `[ ]` `sub_01_03_process_fixtures_and_logging.md`: Gateway/Inference subprocess fixtures, structured test logging, and pytest config updates.
-4. `[ ]` `sub_01_04_test_directory_restructure.md`: Reorganize `tests/` into the layered hierarchy.
+1. `[x]` `sub_01_01_test_env_and_compose.md`: `.env.test` / `.env.test.example` and `docker-compose.test.yml` with ephemeral volumes.
+2. `[x]` `sub_01_02_root_conftest_fixtures.md`: Root `conftest.py` with markers, real-service fixtures, seed factories, and gateway client.
+3. `[x]` `sub_01_03_process_fixtures_and_logging.md`: Gateway/Inference subprocess fixtures, structured test logging, and pytest config updates.
+4. `[x]` `sub_01_04_test_directory_restructure.md`: Reorganize `tests/` into the layered hierarchy.
 
 ## Definition of Done
 - `docker compose -f infrastructure/docker-compose.test.yml up -d` starts all services with ephemeral volumes; `down -v` cleans up.

@@ -17,7 +17,7 @@ Version 8 replaces the current mock-heavy, in-memory-only test suite with a laye
 
 | ID | Title | Owner | Complexity | Subtasks | Status |
 |---|---|---|---|---|---|
-| [B8-01](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/01_test_infrastructure_foundation.md) | Test Infrastructure & Configuration Foundation | `tests/`, `infrastructure`, `common/config` | 🔴 High | 4 | `[ ]` |
+| [B8-01](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/01_test_infrastructure_foundation.md) | Test Infrastructure & Configuration Foundation | `tests/`, `infrastructure`, `common/config` | 🔴 High | 4 | `[x]` |
 | [B8-02](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/02_reorganize_existing_tests.md) | Reorganize & Classify Existing Tests | `tests/` | 🟡 Medium | 3 | `[ ]` |
 | [B8-03](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/03_auth_user_lifecycle_real.md) | Real-World Integration Tests — Auth & User Lifecycle | `tests/integration/gateway`, `gateway/auth` | 🔴 High | 3 | `[ ]` |
 | [B8-04](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/04_hub_management_linking_real.md) | Real-World Integration Tests — Hub Management & Linking | `tests/integration/gateway`, `gateway/api`, `common/services` | 🔴 High | 4 | `[ ]` |

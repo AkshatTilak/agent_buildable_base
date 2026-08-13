@@ -7,18 +7,18 @@
 Create session-scoped subprocess fixtures for the gateway and inference servers, plus structured test logging and pytest config updates.
 
 ## Tasks
-1. [ ] Create session-scoped async fixtures that:
+1. [x] Create session-scoped async fixtures that:
    - Start gateway via `poetry run uvicorn gateway.main:app --port 8100`.
    - Start inference via `poetry run uvicorn inference.main:app --port 8110`.
    - Wait for health checks to pass before yielding.
    - Kill processes on teardown.
-2. [ ] Configure pytest JSON reporter + custom log formatter capturing:
+2. [x] Configure pytest JSON reporter + custom log formatter capturing:
    - Test name, marker, duration.
    - All HTTP requests/responses (URL, method, status, latency).
    - DB queries executed (count, slow queries >100ms).
    - Assertion failures with full context.
    - Streaming events received/sent count.
-3. [ ] Update `pytest.ini` / `pyproject.toml`:
+3. [x] Update `pytest.ini` / `pyproject.toml`:
    - Register custom markers.
    - Configure `testpaths` to include new directories.
    - Set default `--strict-markers`.
