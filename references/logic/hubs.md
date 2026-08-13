@@ -266,6 +266,11 @@ be reachable from a flat top-level route.
                                           #   links are read via GET /links?direction=incoming
                                           #   GET denormalizes target_hub_name/type/slug by
                                           #   joining the target hub (never null)
+/hubs/{hub_id}/linkable-targets           # GET — hubs the caller may legally link to from this
+                                          #   hub (respects ALLOWED_LINK_DIRECTIONS + dual-hub
+                                          #   contributor-or-higher membership). Iterates
+                                          #   list_hubs_for_user() which returns (Hub, role)
+                                          #   tuples — unpack both.
 
 /hubs/{hub_id}/datastores                 # ingestion hubs only
 /hubs/{hub_id}/collections                # ingestion hubs only

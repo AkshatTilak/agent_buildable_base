@@ -30,10 +30,10 @@ Hub management is the core multi-tenant primitive. Existing tests are mock-only 
   - Unbind → verify cleanup.
 
 ## Associated Subtasks
-1. `[ ]` `sub_04_01_hubs_real.md`: `test_hubs_real.py` — hub lifecycle & cascading cleanup.
-2. `[ ]` `sub_04_02_hub_members_real.md`: `test_hub_members_real.py` — membership & role transitions.
-3. `[ ]` `sub_04_03_hub_links_real.md`: `test_hub_links_real.py` — hub linking & cross-hub access.
-4. `[ ]` `sub_04_04_datastore_bindings_real.md`: `test_datastore_bindings_real.py` — datastore binding & credential encryption.
+1. `[x]` `sub_04_01_hubs_real.md`: `test_hubs_real.py` — hub lifecycle & cascading cleanup.
+2. `[x]` `sub_04_02_hub_members_real.md`: `test_hub_members_real.py` — membership & role transitions.
+3. `[x]` `sub_04_03_hub_links_real.md`: `test_hub_links_real.py` — hub linking & cross-hub access.
+4. `[x]` `sub_04_04_datastore_bindings_real.md`: `test_datastore_bindings_real.py` — datastore binding & credential encryption.
 
 ## Definition of Done
 - Hub CRUD, archive/restore, delete cascades, and slug uniqueness verified against real Postgres.

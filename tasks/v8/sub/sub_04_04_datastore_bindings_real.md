@@ -7,9 +7,9 @@
 Create `tests/integration/gateway/test_datastore_bindings_real.py` — datastore binding & credential encryption.
 
 ## Tasks
-1. [ ] Bind Qdrant collection to hub → verify `DatastoreBinding` row.
-2. [ ] Bind external DB connector → test credential encryption/decryption.
-3. [ ] Unbind → verify cleanup.
+1. [x] Bind Qdrant collection to hub → verify `DatastoreBinding` row.
+2. [x] Bind external DB connector → test credential encryption/decryption.
+3. [x] Unbind → verify cleanup.
 
 ## Definition of Done
 - Datastore binding, credential encryption/decryption, and unbind cleanup verified against real Postgres.

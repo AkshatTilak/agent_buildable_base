@@ -7,10 +7,10 @@
 Create `tests/integration/gateway/test_hub_links_real.py` — hub linking & cross-hub access.
 
 ## Tasks
-1. [ ] Create link between two hubs → verify bidirectional access.
-2. [ ] Cross-hub data access (agent hub accessing ingestion hub's collections).
-3. [ ] Link revocation → verify access denied.
-4. [ ] Link visibility (which resources are exposed through links).
+1. [x] Create link between two hubs → verify bidirectional access.
+2. [x] Cross-hub data access (agent hub accessing ingestion hub's collections).
+3. [x] Link revocation → verify access denied.
+4. [x] Link visibility (which resources are exposed through links).
 
 ## Definition of Done
 - Hub linking, cross-hub access, link revocation, and link visibility verified against real Postgres.
