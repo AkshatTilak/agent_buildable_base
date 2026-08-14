@@ -12,4 +12,6 @@ Identify and fix N+1 query patterns in the backend.
 3. [ ] Fix eval results with test case details.
 
 ## Definition of Done
-- N+1 query patterns eliminated for hub members, agent/workflow listing, and eval results.
+- N+1 query patterns eliminated for hub members, agent/workflow listing, and eval results against actual running Postgres (`:5432`).
+- If query errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

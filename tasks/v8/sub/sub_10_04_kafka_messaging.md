@@ -12,5 +12,7 @@ Create `tests/live_api/test_kafka_messaging.py` — Kafka publish/consume & offl
 3. [ ] Test Kafka-offline fallback (stop Kafka → verify local background execution takes over).
 
 ## Definition of Done
-- Kafka publish/consume verified for ingestion and eval triggers.
+- Kafka publish/consume verified for ingestion and eval triggers on actual Kafka broker (`:9092`).
 - Kafka-offline fallback verified (local background execution takes over).
+- If errors arise, inspect Docker container logs (`docker compose logs kafka`) and fix root causes directly in Kafka consumer/producer code.
+- Deleting test data is not necessary.

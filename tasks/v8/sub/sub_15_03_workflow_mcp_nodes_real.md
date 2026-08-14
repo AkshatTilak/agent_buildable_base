@@ -13,5 +13,7 @@ Create `tests/integration/guardroute/test_workflow_mcp_nodes_real.py` — MCP to
 4. [ ] Test MCP node with auth (bearer token passed correctly).
 
 ## Definition of Done
-- MCP-node-in-workflow test passes with result passing downstream.
+- MCP-node-in-workflow test passes with result passing downstream against actual running Gateway (`:8000`).
 - Error handling and auth verified.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

@@ -77,6 +77,8 @@ Many gateway endpoints have minimal or no test coverage. A coverage audit plus t
 7. `[ ]` `sub_16_07_api_coverage_audit.md`: `scripts/api_coverage_audit.py` — coverage matrix.
 
 ## Definition of Done
-- Every gateway router endpoint has at least one real integration test.
-- API key, credentials, DB credentials, models, audit, proxy, and health tests pass against real services.
+- Every gateway router endpoint has at least one real integration test against actual running Gateway (`:8000`) and backend services.
+- API key, credentials, DB credentials, models, audit, proxy, and health tests pass against actual running services on standard ports.
 - `scripts/api_coverage_audit.py` produces a coverage matrix showing untested endpoints.
+- If errors arise, inspect Docker container logs (`docker compose logs db redis`) and fix root causes directly.
+- Deleting test data is not necessary.

@@ -12,4 +12,6 @@ Create `tests/integration/gateway/test_admin_audit_real.py` — audit log.
 3. [ ] Verify admin-only access enforcement.
 
 ## Definition of Done
-- Audit log auto-generation, filtered queries, and admin-only access verified.
+- Audit log auto-generation, filtered queries, and admin-only access verified against actual running Postgres (`:5432`) and Gateway (`:8000`).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

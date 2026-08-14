@@ -12,6 +12,8 @@ Create `tests/integration/gateway/test_rbac_real.py` — role enforcement, API k
 3. [ ] Rate limiting enforcement with real SlowAPI against real endpoints.
 
 ## Definition of Done
-- Role-based permissions verified across hub operations.
+- Role-based permissions verified across hub operations against actual running Postgres (`:5432`) and Gateway (`:8000`).
 - API key create/use/revoke verified.
 - Rate limiting enforced with real SlowAPI against real endpoints.
+- If errors arise, inspect Docker container logs (`docker compose logs db redis`) and fix root causes directly in backend RBAC code.
+- Deleting test data is not necessary.

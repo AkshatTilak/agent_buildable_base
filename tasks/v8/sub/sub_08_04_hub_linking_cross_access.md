@@ -14,5 +14,7 @@ Create `tests/e2e/flows/test_hub_linking_cross_access.py` — cross-hub access.
 5. [ ] Revoke link → verify agent can no longer access ingestion data.
 
 ## Definition of Done
-- Cross-hub retrieval verified via linked hubs.
+- Cross-hub retrieval verified via linked hubs against actual running Postgres, Qdrant (`:6333`), and Gateway (`:8000`).
 - Link revocation denies access to ingestion data.
+- If errors arise, inspect Docker container logs (`docker compose logs db qdrant`) and fix root causes directly in backend cross-hub retrieval code.
+- Deleting test data is not necessary.

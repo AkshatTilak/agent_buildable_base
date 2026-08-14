@@ -16,4 +16,6 @@ Create `tests/live_api/test_mcp_tools_real.py` — real MCP tool lifecycle & wor
 7. [ ] Test tool enable/disable toggle → verify disabled tools are excluded from discovery.
 
 ## Definition of Done
-- Real MCP tool discovery, invocation, auth round-trip, workflow integration, and enable/disable verified.
+- Real MCP tool discovery, invocation, auth round-trip, workflow integration, and enable/disable verified against actual running Gateway (`:8000`) and Postgres (`:5432`).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in MCP manager code.
+- Deleting test data is not necessary.

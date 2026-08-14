@@ -13,4 +13,6 @@ Create `tests/performance/test_api_response_times.py` — response-time assertio
 4. [ ] Workflow execution < configurable timeout.
 
 ## Definition of Done
-- Response-time assertions pass (health < 50ms, hub list < 200ms, agent CRUD < 300ms).
+- Response-time assertions pass against actual running Gateway (`:8000`) and Postgres (`:5432`) (health < 50ms, hub list < 200ms, agent CRUD < 300ms).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

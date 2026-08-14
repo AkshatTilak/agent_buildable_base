@@ -27,7 +27,9 @@ EvalOps is the automated QA layer. Existing tests mock the DeepEval/RAGAS runner
 3. `[ ]` `sub_07_03_eval_hub_real.md`: `test_eval_hub_real.py` — eval hub management & dashboard metrics.
 
 ## Definition of Done
-- Dataset create/list/get/delete and JSON import verified against real Postgres.
-- DeepEval safety tests and RAGAS benchmarks run with real LLM judge and real Qdrant data, producing scores.
+- Dataset create/list/get/delete and JSON import verified against actual running Postgres (`:5432`).
+- DeepEval safety tests and RAGAS benchmarks run with real LLM judge and actual running Qdrant (`:6333`) data, producing scores.
 - Eval run lifecycle and results storage/retrieval verified.
 - Eval hub CRUD, agent-hub linking, and dashboard metrics aggregation verified.
+- When errors or failures occur, inspect **Docker container logs** (`docker compose logs db qdrant`) and **fix the underlying backend, gateway, or EvalOps submodule code**.
+- Deleting test data is not necessary.

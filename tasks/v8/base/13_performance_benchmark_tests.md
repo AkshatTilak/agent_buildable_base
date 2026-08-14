@@ -26,6 +26,8 @@ Without performance baselines, optimizations can silently regress. Benchmark tes
 3. `[ ]` `sub_13_03_concurrent_access.md`: `test_concurrent_access.py` — concurrency isolation.
 
 ## Definition of Done
-- Response-time assertions pass (health < 50ms, hub list < 200ms, agent CRUD < 300ms).
-- Cache effectiveness verified (>50% speedup on hit; stale data not served after mutation).
+- Response-time assertions pass against actual running Gateway (`:8000`) and Postgres (`:5432`) (health < 50ms, hub list < 200ms, agent CRUD < 300ms).
+- Cache effectiveness verified on actual Redis (`:6379`) (>50% speedup on hit; stale data not served after mutation).
 - Concurrent hub creation, workflow runs, and ingestion jobs show no race conditions or duplication.
+- If benchmark failures occur, inspect **Docker container logs** (`docker compose logs db redis qdrant`) and fix root causes directly in backend or submodule code.
+- Deleting test data is not necessary.

@@ -67,7 +67,8 @@ Streaming is a critical failure point. Existing tests never exercise WebSocket/S
 6. `[ ]` `sub_14_06_external_api_sse.md`: `test_external_api_sse.py` — external API SSE.
 
 ## Definition of Done
-- All six streaming surfaces tested end-to-end against a running gateway with real Redis pub/sub.
-- Event ordering, JSON schema, reconnection, concurrency, and resource cleanup verified.
+- All six streaming surfaces tested end-to-end against the actual running gateway (`:8000`) with actual Redis pub/sub (`:6379`).
+- Event ordering, JSON schema, reconnection, concurrency, and connection lifecycle verified.
 - SSE format compliance and `[DONE]` sentinel verified.
 - Streaming error handling and DB logging verified.
+- When streaming failures occur, inspect **Docker container logs** (`docker compose logs redis`) and fix root causes directly in gateway routing and event generator logic. Deleting test data is not necessary.

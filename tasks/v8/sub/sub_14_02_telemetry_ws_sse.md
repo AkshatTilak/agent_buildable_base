@@ -21,5 +21,7 @@ Create `tests/streaming/test_telemetry_ws.py` + `test_telemetry_sse.py` — tele
    - Verify SSE works when Redis is unavailable (fallback to direct metrics polling).
 
 ## Definition of Done
-- Telemetry WebSocket and SSE tests pass against a running gateway with real Redis pub/sub.
-- JSON schema, format compliance, reconnection, concurrency, and resource cleanup verified.
+- Telemetry WebSocket and SSE tests pass against actual running gateway (`:8000`) with actual Redis pub/sub (`:6379`).
+- JSON schema, format compliance, reconnection, concurrency, and connection lifecycle verified.
+- If errors arise, inspect Docker container logs (`docker compose logs redis`) and fix root causes directly in gateway telemetry code.
+- Deleting test data is not necessary.

@@ -13,4 +13,5 @@ Create `scripts/api_coverage_audit.py` — coverage matrix showing untested endp
 4. [ ] Integrate the audit into the test pipeline (optional CI check).
 
 ## Definition of Done
-- `scripts/api_coverage_audit.py` produces a coverage matrix showing untested endpoints.
+- `scripts/api_coverage_audit.py` produces a coverage matrix showing untested endpoints across actual running gateway routers.
+- Deleting test data is not necessary.

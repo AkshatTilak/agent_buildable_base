@@ -12,4 +12,6 @@ Create `tests/integration/evalops/test_eval_hub_real.py` — eval hub management
 3. [ ] Eval dashboard metrics aggregation.
 
 ## Definition of Done
-- Eval hub CRUD, agent-hub linking, and dashboard metrics aggregation verified against real Postgres.
+- Eval hub CRUD, agent-hub linking, and dashboard metrics aggregation verified against actual running Postgres (`:5432`).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in backend eval hub code.
+- Deleting test data is not necessary.

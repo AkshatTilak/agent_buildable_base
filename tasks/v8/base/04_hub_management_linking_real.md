@@ -11,7 +11,7 @@ Hub management is the core multi-tenant primitive. Existing tests are mock-only 
   - Create hub (agent / workflow / ingestion / eval types) → verify DB row + auto-membership as owner.
   - Update hub metadata (name, slug, settings).
   - Archive/restore hub → verify gated access.
-  - Delete hub → verify cascading cleanup (members, links, bindings, agents, workflows).
+  - Delete hub endpoint test → verify cascading cleanup (members, links, bindings, agents, workflows). *(Note: Deleting data after test completion is not necessary; unique namespacing is used).*
   - Hub slug uniqueness enforcement.
 - **`tests/integration/gateway/test_hub_members_real.py`** — Membership:
   - Add member with role → verify `HubMember` row.
@@ -27,16 +27,17 @@ Hub management is the core multi-tenant primitive. Existing tests are mock-only 
 - **`tests/integration/gateway/test_datastore_bindings_real.py`** — Datastore binding:
   - Bind Qdrant collection to hub → verify `DatastoreBinding` row.
   - Bind external DB connector → test credential encryption/decryption.
-  - Unbind → verify cleanup.
+  - Unbind → verify unbinding logic.
 
 ## Associated Subtasks
-1. `[x]` `sub_04_01_hubs_real.md`: `test_hubs_real.py` — hub lifecycle & cascading cleanup.
+1. `[x]` `sub_04_01_hubs_real.md`: `test_hubs_real.py` — hub lifecycle & cascading deletion endpoint tests.
 2. `[x]` `sub_04_02_hub_members_real.md`: `test_hub_members_real.py` — membership & role transitions.
 3. `[x]` `sub_04_03_hub_links_real.md`: `test_hub_links_real.py` — hub linking & cross-hub access.
 4. `[x]` `sub_04_04_datastore_bindings_real.md`: `test_datastore_bindings_real.py` — datastore binding & credential encryption.
 
 ## Definition of Done
-- Hub CRUD, archive/restore, delete cascades, and slug uniqueness verified against real Postgres.
+- Hub CRUD, archive/restore, delete cascades, and slug uniqueness verified against actual running Postgres.
 - Membership add/remove, role transitions, owner transfer, and creation-permission differences verified.
 - Hub linking, cross-hub access, link revocation, and link visibility verified.
-- Datastore binding, credential encryption/decryption, and unbind cleanup verified.
+- Datastore binding, credential encryption/decryption, and unbind operations verified.
+- If test failures occur, inspect Docker container logs (`docker compose logs db`) and fix backend/submodule flaws.

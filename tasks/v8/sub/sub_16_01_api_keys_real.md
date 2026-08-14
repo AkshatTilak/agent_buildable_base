@@ -14,4 +14,6 @@ Create `tests/integration/gateway/test_api_keys_real.py` — API key lifecycle.
 5. [ ] Key stats/analytics endpoint.
 
 ## Definition of Done
-- API key lifecycle verified against real Postgres (create, use, revoke, rate limit, stats).
+- API key lifecycle verified against actual running Postgres (`:5432`) and Gateway (`:8000`) (create, use, revoke, rate limit, stats).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

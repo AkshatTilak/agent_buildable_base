@@ -14,4 +14,6 @@ Create `tests/integration/gateway/test_hub_members_real.py` — membership & rol
 5. [x] Member-created vs admin-created hub permission differences (`ALLOW_MEMBER_HUB_CREATION`).
 
 ## Definition of Done
-- Membership add/remove, role transitions, owner transfer, and creation-permission differences verified against real Postgres.
+- Membership add/remove, role transitions, owner transfer, and creation-permission differences verified against actual running Postgres (`:5432`).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in backend membership code.
+- Deleting test data is not necessary.

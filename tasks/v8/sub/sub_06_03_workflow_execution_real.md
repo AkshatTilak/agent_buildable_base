@@ -14,5 +14,7 @@ Create `tests/integration/guardroute/test_workflow_execution_real.py` — workfl
 5. [ ] Run output collection and logging.
 
 ## Definition of Done
-- Linear, conditional, and MCP-tool workflows execute with real LLM calls.
+- Linear, conditional, and MCP-tool workflows execute with real LLM calls against actual running Gateway (`:8000`), Inference (`:8001`), and Postgres (`:5432`).
 - Run status tracking and output collection/logging verified.
+- If errors arise, inspect Docker container logs (`docker compose logs db redis`) and fix root causes directly in GuardRoute execution engine.
+- Deleting test data is not necessary.

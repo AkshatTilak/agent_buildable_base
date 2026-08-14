@@ -13,5 +13,7 @@ Add Redis caching for hub resolution, user session data, model registry, and col
 4. [ ] Cache Qdrant collection schemas (collection metadata).
 
 ## Definition of Done
-- Redis caching layer in place for hub, session, model registry, and collection metadata.
+- Redis caching layer in place for hub, session, model registry, and collection metadata on actual Redis (`:6379`).
 - Cache hit/miss ratios visible in gateway logs.
+- If errors arise, inspect Docker container logs (`docker compose logs redis db`) and fix root causes directly.
+- Deleting test data is not necessary.

@@ -9,7 +9,15 @@
 
 ## 1. Scope
 
-Version 8 replaces the current mock-heavy, in-memory-only test suite with a layered testing infrastructure that hits **real services** (Postgres, Qdrant, Redis, Neo4j, Kafka, LiteLLM), validates full frontend-to-backend data flows, tests all WebSocket/SSE streaming interactions, and exposes real-world bugs. Simultaneously it optimizes the backend and frontend for performance, deduplication, and caching, and establishes a user-facing MCP tools ecosystem.
+Version 8 replaces the current mock-heavy, in-memory-only test suite with a layered testing infrastructure that hits **actual running services & standard ports** (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Kafka `:9092`, Gateway `:8000`, Inference `:8001`), validates full frontend-to-backend data flows, tests all WebSocket/SSE streaming interactions, and exposes real-world bugs. 
+
+**Core Principles for V8 Execution:**
+- **Full-Stack Bug Remediation:** When tests uncover errors or flaws, engineers/agents are mandated to diagnose and fix the root causes in the backend (FastAPI gateway, services, models), frontend (API clients, state stores, UI), inference engine, or submodules (SyntraFlow, GuardRoute, EvalOps, Common Library) to make tests pass cleanly.
+- **Docker Container Log Inspection:** When tests fail, inspect **Docker container logs** (`docker compose logs <service>`) to pinpoint backend infrastructure issues.
+- **Actual Services & Ports:** Do not create separate test containers or divergent ports. Use the actual running development services.
+- **No Mandatory Test Data Deletion:** Deleting data created during tests is not necessary; unique namespaces and UUIDs are used to avoid test interference.
+
+Simultaneously, V8 optimizes the backend and frontend for performance, deduplication, and caching, and establishes a user-facing MCP tools ecosystem.
 
 ---
 
@@ -86,12 +94,14 @@ graph TD
 
 ## 4. Cross-Cutting Rules for V8 Execution Agents
 
-1. **Real services, not mocks.** Integration, streaming, E2E, and live API tests must connect to real Postgres, Qdrant, Redis, Neo4j, Kafka, and LiteLLM — never `sqlite+aiosqlite:///:memory:` or `MagicMock` for external services.
-2. **Test model configuration.** All LLM-dependent tests use API-based models via Google Gemini API key (`GOOGLE_API_KEY` in `.env.test`). No local completion/chat models in tests. Use `gemini/gemini-3.5-flash` for workflow/playground/eval, `gemini/gemma-3-27b-it` for agent-creation tests, `gemini/gemini-embedding-2` for API embedding, `microsoft/harrier-oss-v1-0.6b` (1,024-dim) and `microsoft/harrier-oss-v1-270m` (640-dim) for local text embedding, `jinaai/jina-clip-v2` (1,024-dim) for local multimodal embedding, and `gemini/gemini-3.5-flash` as `DEEPEVAL_MODEL`. Compatibility aliases such as `harrier-0.6b` may be accepted by tests only when they resolve to the canonical repository ID.
-3. **Ephemeral test infra.** `docker-compose.test.yml` uses ephemeral volumes; all data is destroyed on `down -v`. Gateway/Inference run as `poetry run uvicorn` subprocesses (not Dockerized).
-4. **Markers are mandatory.** Every test file must carry the correct `@pytest.mark.*` marker (`unit`, `integration`, `e2e`, `live_api`, `streaming`, `performance`). `--strict-markers` is enforced.
-5. **No breaking currently-passing tests.** Reorganization (B8-02) must reproduce today's pass/fail exactly.
-6. **Always update references.** Every structural or logic change must be documented in `agent_buildable_base/references/`.
+1. **Actual services and standard ports, not separate containers or mock-only bypasses.** Integration, streaming, E2E, and live API tests must connect to actual running services on standard ports (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Kafka `:9092`, Gateway `:8000`, Inference `:8001`). Do NOT spin up separate test container stacks with divergent ports.
+2. **Fix root-cause flaws across the entire stack.** When tests encounter errors, failures, or schema discrepancies, do not merely skip tests or assert around broken behavior. Investigate and actively **fix the underlying backend, frontend, inference engine, or submodule code** (e.g., `projects/syntraflow`, `projects/guardroute`, `projects/evalops`, `common/`, `gateway/`, `frontend/`).
+3. **Inspect Docker container logs on test failures.** When tests fail, execute `docker compose logs <service>` or `docker logs <container>` to examine container-side error traces (Postgres, Qdrant, Neo4j, Redis, Kafka) alongside pytest traces.
+4. **Deleting test data is not necessary.** Test data persistence is acceptable. Use unique identifiers (UUIDs, prefixed slugs) for test entity isolation rather than mandating aggressive post-test deletion or database purging.
+5. **Test model configuration.** All LLM-dependent tests use API-based models via Google Gemini API key (`GOOGLE_API_KEY` in `.env.test`). No local completion/chat models in tests. Use `gemini/gemini-3.5-flash` for workflow/playground/eval, `gemini/gemma-3-27b-it` for agent-creation tests, `gemini/gemini-embedding-2` for API embedding, `microsoft/harrier-oss-v1-0.6b` (1,024-dim) and `microsoft/harrier-oss-v1-270m` (640-dim) for local text embedding, `jinaai/jina-clip-v2` (1,024-dim) for local multimodal embedding, and `gemini/gemini-3.5-flash` as `DEEPEVAL_MODEL`. Compatibility aliases such as `harrier-0.6b` may be accepted by tests only when they resolve to the canonical repository ID.
+6. **Markers are mandatory.** Every test file must carry the correct `@pytest.mark.*` marker (`unit`, `integration`, `e2e`, `live_api`, `streaming`, `performance`). `--strict-markers` is enforced.
+7. **No breaking currently-passing tests.** Reorganization (B8-02) must reproduce today's pass/fail exactly.
+8. **Always update references.** Every structural or logic change must be documented in `agent_buildable_base/references/`.
 
 ---
 

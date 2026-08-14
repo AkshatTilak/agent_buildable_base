@@ -12,6 +12,8 @@ Add DB indexes, cursor pagination, and eager loading for related entities.
 3. [ ] Add `select_in_loading` / `joinedload` for related entities.
 
 ## Definition of Done
-- DB indexes added for frequently filtered columns.
+- DB indexes added for frequently filtered columns in actual Postgres (`:5432`).
 - Cursor pagination implemented where applicable.
 - Eager loading used for related entities.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

@@ -12,4 +12,6 @@ Create `tests/integration/gateway/test_datastore_bindings_real.py` — datastore
 3. [x] Unbind → verify cleanup.
 
 ## Definition of Done
-- Datastore binding, credential encryption/decryption, and unbind cleanup verified against real Postgres.
+- Datastore binding, credential encryption/decryption, and unbind operations verified against actual running Postgres (`:5432`) and Qdrant (`:6333`).
+- If errors arise, inspect Docker container logs (`docker compose logs db qdrant`) and fix root causes directly in backend binding services.
+- Deleting test data is not necessary.

@@ -11,5 +11,7 @@ Create `tests/performance/test_caching_effectiveness.py` — cache hit speedup &
 2. [ ] Cache invalidation — verify stale data not served after mutation.
 
 ## Definition of Done
-- Cache effectiveness verified (>50% speedup on hit).
+- Cache effectiveness verified on actual Redis (`:6379`) (>50% speedup on hit).
 - Stale data not served after mutation.
+- If errors arise, inspect Docker container logs (`docker compose logs redis db`) and fix root causes directly.
+- Deleting test data is not necessary.

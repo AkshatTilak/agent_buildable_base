@@ -17,11 +17,13 @@ Create `tests/integration/syntraflow/test_ingestion_real.py` — ingestion pipel
 8. [ ] **Local OCR path**: Ingest scanned PDF with `OCR_PROVIDER=local` (Baidu Unlimited-OCR) → verify text extracted. **BLOCKED** — OCR model not configured/loadable on CPU-only host (see `references/issues/08_05_syntraflow_real_bugs_and_blockers.md`).
 
 ## Definition of Done
-- Ingestion jobs complete and store correctly-dimensioned vectors in real Qdrant for both `microsoft/harrier-oss-v1-0.6b` (1,024-dim) and `gemini/gemini-embedding-2` paths.
+- Ingestion jobs complete and store correctly-dimensioned vectors in actual running Qdrant (`:6333`) for both `microsoft/harrier-oss-v1-0.6b` (1,024-dim) and `gemini/gemini-embedding-2` paths.
 - Local OCR path extracts text from scanned PDFs.
 - Chunk metadata, collection auto-creation, batch ingestion, and deduplication verified.
+- If errors arise during ingestion or embedding, inspect **Docker container logs** (`docker compose logs qdrant db`) and resolve root causes in backend / inference / SyntraFlow submodules.
+- Deleting test data is not necessary.
 
 ## Status
-- `test_ingestion_real.py` created; **4 tests pass** against real Postgres & Qdrant.
+- `test_ingestion_real.py` created; **4 tests pass** against actual running Postgres & Qdrant.
 - Local embedder (Harrier OSS v1 0.6B, 1,024-dim), PDF/text ingestion, batch, and dedup verified.
-- API embedder and OCR paths blocked by infrastructure (see issue doc).
+- Fixes to inference routing for API embedders and OCR configuration to be resolved in backend/submodule code rather than bypassed.

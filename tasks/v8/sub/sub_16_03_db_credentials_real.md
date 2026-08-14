@@ -14,4 +14,6 @@ Create `tests/integration/gateway/test_db_credentials_real.py` — external DB v
 5. [ ] Delete credential → verify cleanup.
 
 ## Definition of Done
-- External DB credentials vault verified (create/encrypt, test connection, DB MCP tools, update/re-encrypt, delete).
+- External DB credentials vault verified against actual running Postgres (`:5432`) (create/encrypt, test connection, DB MCP tools, update/re-encrypt, delete endpoint test).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

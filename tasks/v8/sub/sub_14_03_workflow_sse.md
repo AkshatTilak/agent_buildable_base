@@ -15,5 +15,7 @@ Create `tests/streaming/test_workflow_sse.py` — workflow run SSE.
 6. [ ] Test concurrent SSE connections to same run.
 
 ## Definition of Done
-- Workflow run SSE tests pass with correct event ordering and JSON structure.
+- Workflow run SSE tests pass with correct event ordering and JSON structure against actual running Gateway (`:8000`).
 - Failed-run error events, reconnection, and concurrency verified.
+- If errors arise, inspect Docker container logs (`docker compose logs redis db`) and fix root causes directly in workflow streaming logic.
+- Deleting test data is not necessary.

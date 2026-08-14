@@ -18,4 +18,6 @@ Create `tests/integration/gateway/test_mcp_lifecycle_real.py` — full MCP lifec
 9. [ ] Test internal server deletion block (`is_internal = True`).
 
 ## Definition of Done
-- Full MCP lifecycle test passes (register → health → discover → invoke → toggle → update → delete → internal block).
+- Full MCP lifecycle test passes against actual running Gateway (`:8000`) and Postgres (`:5432`) (register → health → discover → invoke → toggle → update → delete endpoint test → internal block).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

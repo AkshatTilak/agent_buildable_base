@@ -22,5 +22,7 @@ There are no frontend tests and no API-contract validation. Frontend TypeScript 
 
 ## Definition of Done
 - `scripts/extract_api_types.py` parses `types/api.ts` into JSON Schema.
-- Contract tests validate every major API surface against the real gateway.
-- All identified type mismatches (field names, types, optional/required, enums) are fixed.
+- Contract tests validate every major API surface against the actual running gateway (`:8000`).
+- All identified type mismatches (field names, types, optional/required, enums) are fixed across backend Pydantic models or frontend TypeScript interfaces.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and resolve root causes.
+- Deleting test data is not necessary.

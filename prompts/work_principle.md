@@ -23,7 +23,9 @@ This document outlines the strict protocol, execution standards, and operational
 ### Complete & Integrated Delivery
 - Every task must be completed **fully and end-to-end**, integrating across all dependent submodules.
 - **Never implement duplicate code.** Abstract recurring logic into a shared utility or `common/` package.
-- **Run infrastructure & inference to test:** Execute and verify any required services or infrastructure (e.g., Docker containers, Kafka, Qdrant, Postgres) before considering work complete.
+- **Run infrastructure & inference to test:** Execute and verify against the **actual running development environment and services on standard ports** (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Kafka `:9092`, Gateway `:8000`, Inference `:8001`). Do NOT spin up separate test container stacks or divergent ports.
+- **Test data retention:** Deleting data created by tests is **not necessary**; utilize unique namespaces/UUIDs for test entity isolation.
+- **Inspect Docker container logs & fix root causes:** When tests encounter errors or expose flaws, you must inspect **Docker container logs** (`docker compose logs <service>`) and **actively fix the underlying backend, frontend, inference, or submodule code** (SyntraFlow, GuardRoute, EvalOps, Common Library) rather than skipping, ignoring, or mocking around the failures.
 
 ### Mandatory Poetry Command Standard
 All Python command execution, dependency management, testing, and script runs MUST strictly use **Poetry**. Direct execution of system Python or un-managed virtualenv binaries is prohibited.

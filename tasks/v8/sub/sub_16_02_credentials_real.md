@@ -13,4 +13,6 @@ Create `tests/integration/gateway/test_credentials_real.py` — provider credent
 4. [ ] List all provider slots (env + DB merged view).
 
 ## Definition of Done
-- Provider credentials verified (set/encrypt/mask, DB precedence, env fallback, merged view).
+- Provider credentials verified against actual running Postgres (`:5432`) and Gateway (`:8000`) (set/encrypt/mask, DB precedence, env fallback, merged view).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

@@ -16,5 +16,7 @@ Create `tests/integration/gateway/test_proxy_real.py` + `test_health_real.py` â€
    - Health endpoint with degraded service â†’ verify partial health report.
 
 ## Definition of Done
-- Proxy completion, auth, and RBAC verified.
+- Proxy completion, auth, and RBAC verified against actual running Gateway (`:8000`).
 - Health endpoint reports all service statuses; degraded service produces partial health report.
+- If errors arise, inspect Docker container logs (`docker compose logs`) and fix root causes directly.
+- Deleting test data is not necessary.

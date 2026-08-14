@@ -35,7 +35,9 @@ Workflow execution and agent orchestration are the core GuardRoute responsibilit
 4. `[ ]` `sub_06_04_orchestrator_real.md`: `test_orchestrator_real.py` — node executors & error handling.
 
 ## Definition of Done
-- Agent CRUD and hub scoping verified against real Postgres.
+- Agent CRUD and hub scoping verified against actual running Postgres (`:5432`) and Gateway (`:8000`).
 - Workflow lifecycle, versioning, import/export, and hub scoping verified.
 - Linear, conditional, and MCP-tool workflows execute with real LLM calls and correct run-status tracking.
 - Each node executor type tested individually with proper error handling.
+- When errors or failures occur, inspect **Docker container logs** (`docker compose logs db redis`) and **fix the underlying backend, gateway, or GuardRoute submodule code**.
+- Deleting test data is not necessary.

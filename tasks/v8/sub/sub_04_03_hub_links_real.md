@@ -13,4 +13,6 @@ Create `tests/integration/gateway/test_hub_links_real.py` — hub linking & cros
 4. [x] Link visibility (which resources are exposed through links).
 
 ## Definition of Done
-- Hub linking, cross-hub access, link revocation, and link visibility verified against real Postgres.
+- Hub linking, cross-hub access, link revocation, and link visibility verified against actual running Postgres (`:5432`).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in backend hub-linking code.
+- Deleting test data is not necessary.

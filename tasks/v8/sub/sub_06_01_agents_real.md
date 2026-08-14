@@ -13,5 +13,7 @@ Create `tests/integration/guardroute/test_agents_real.py` — agent CRUD & hub s
 4. [ ] Agent-hub scoping (agent only accessible within its hub).
 
 ## Definition of Done
-- Agent CRUD and hub scoping verified against real Postgres.
+- Agent CRUD and hub scoping verified against actual running Postgres (`:5432`) and Gateway (`:8000`).
 - Endpoint slug regeneration rules verified on update.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in backend agent services or GuardRoute code.
+- Deleting test data is not necessary.

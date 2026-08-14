@@ -13,4 +13,6 @@ Create `tests/integration/guardroute/test_workflows_real.py` — workflow lifecy
 4. [ ] Workflow-hub scoping.
 
 ## Definition of Done
-- Workflow lifecycle, versioning, import/export, and hub scoping verified against real Postgres.
+- Workflow lifecycle, versioning, import/export, and hub scoping verified against actual running Postgres (`:5432`) and Gateway (`:8000`).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in backend workflow code or GuardRoute submodule.
+- Deleting test data is not necessary.

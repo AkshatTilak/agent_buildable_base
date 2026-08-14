@@ -14,4 +14,6 @@ Create `tests/integration/gateway/test_models_real.py` — model registry.
 5. [ ] Test model health probe.
 
 ## Definition of Done
-- Model registry verified (list, register, select, delete/download, health probe).
+- Model registry verified against actual running Gateway (`:8000`) and Postgres (`:5432`) (list, register, select, delete/download, health probe).
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.

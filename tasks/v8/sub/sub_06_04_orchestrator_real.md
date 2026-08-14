@@ -12,6 +12,8 @@ Create `tests/integration/guardroute/test_orchestrator_real.py` — node executo
 3. [ ] Error handling per node type (timeout, invalid config, missing credentials).
 
 ## Definition of Done
-- Each node executor type tested individually against real backends.
+- Each node executor type tested individually against actual running backends on standard ports.
 - Multi-agent executor tested with `gemini/gemma-3-27b-it`.
 - Error handling verified per node type.
+- If errors arise, inspect Docker container logs (`docker compose logs db redis qdrant`) and fix root causes directly in node executor code.
+- Deleting test data is not necessary.

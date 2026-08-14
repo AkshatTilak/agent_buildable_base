@@ -16,4 +16,6 @@ Lazy-load submodule routes, tune connection pools, and implement proper cache in
 
 ## Definition of Done
 - Submodule routes lazy-loaded; connection pools tuned.
-- Cache invalidation on hub/member/collection mutations verified (no stale data served).
+- Cache invalidation on hub/member/collection mutations verified on actual Redis (`:6379`) (no stale data served).
+- If errors arise, inspect Docker container logs (`docker compose logs redis db`) and fix root causes directly.
+- Deleting test data is not necessary.

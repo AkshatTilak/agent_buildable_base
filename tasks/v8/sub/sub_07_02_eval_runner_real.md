@@ -13,5 +13,7 @@ Create `tests/integration/evalops/test_eval_runner_real.py` — DeepEval/RAGAS e
 4. [ ] Eval results storage and retrieval.
 
 ## Definition of Done
-- DeepEval safety tests and RAGAS benchmarks run with real LLM judge and real Qdrant data, producing scores.
+- DeepEval safety tests and RAGAS benchmarks run with real LLM judge and actual running Qdrant (`:6333`) data, producing scores.
 - Eval run lifecycle and results storage/retrieval verified.
+- If errors arise, inspect Docker container logs (`docker compose logs db qdrant`) and fix root causes directly in EvalOps runner logic.
+- Deleting test data is not necessary.

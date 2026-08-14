@@ -65,5 +65,7 @@ There is no canonical location for user-contributed MCP tool servers, no sample 
 ## Definition of Done
 - `mcp_tools/` directory with `sample_calculator`, `sample_web_search`, `sample_code_executor`, and `_template` servers, each implementing REST + JSON-RPC.
 - Comprehensive `mcp_tools/README.md` guide.
-- Full MCP lifecycle test passes (register → health → discover → invoke → toggle → update → delete → internal block).
+- Full MCP lifecycle test passes against actual running Gateway (`:8000`) and Postgres (`:5432`) (register → health → discover → invoke → toggle → update → delete endpoint test → internal block).
 - MCP-node-in-workflow test passes with error handling and auth.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in MCP manager or GuardRoute engine.
+- Deleting test data is not necessary.

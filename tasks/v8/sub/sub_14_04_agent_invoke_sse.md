@@ -15,5 +15,7 @@ Create `tests/streaming/test_agent_invoke_sse.py` — agent invoke SSE.
 6. [ ] Verify invocation is logged to DB after stream completes.
 
 ## Definition of Done
-- Agent invoke SSE tests pass with coherent chunk accumulation, `[DONE]` sentinel, and `status: completed` with `latency_ms`.
+- Agent invoke SSE tests pass with coherent chunk accumulation, `[DONE]` sentinel, and `status: completed` with `latency_ms` against actual running Gateway (`:8000`) and Inference server (`:8001`).
 - Streaming error handling and DB logging verified.
+- If errors arise, inspect Docker container logs (`docker compose logs redis db`) and fix root causes directly.
+- Deleting test data is not necessary.

@@ -35,7 +35,9 @@ Live API tests validate the actual external integrations (Gemini, OpenRouter, MC
 4. `[ ]` `sub_10_04_kafka_messaging.md`: `test_kafka_messaging.py` — Kafka publish/consume & offline fallback.
 
 ## Definition of Done
-- LiteLLM routing and fallback chains verified with real API keys.
-- Inference proxy OCR/embedding endpoints verified.
+- LiteLLM routing and fallback chains verified with real API keys against actual running Gateway (`:8000`).
+- Inference proxy OCR/embedding endpoints verified against actual running Inference server (`:8001`).
 - Real MCP tool discovery, invocation, auth round-trip, workflow integration, and enable/disable verified.
-- Kafka publish/consume and offline fallback verified.
+- Kafka publish/consume verified on actual Kafka broker (`:9092`) with verified offline fallback.
+- If errors arise, inspect Docker container logs (`docker compose logs kafka db`) and fix root causes directly in gateway or submodules.
+- Deleting test data is not necessary.

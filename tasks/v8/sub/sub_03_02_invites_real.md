@@ -13,5 +13,7 @@ Create `tests/integration/gateway/test_invites_real.py` — invite system agains
 4. [ ] Duplicate invite handling.
 
 ## Definition of Done
-- Invite creation, acceptance, expiry, and duplicate handling verified against real Postgres.
+- Invite creation, acceptance, expiry, and duplicate handling verified against actual running Postgres (`:5432`).
 - Accepted invite creates user with correct hub membership.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in backend invite logic.
+- Deleting test data is not necessary.

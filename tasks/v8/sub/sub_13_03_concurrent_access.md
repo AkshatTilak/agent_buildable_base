@@ -12,4 +12,6 @@ Create `tests/performance/test_concurrent_access.py` — concurrency isolation.
 3. [ ] 10 concurrent ingestion jobs — no chunk duplication.
 
 ## Definition of Done
-- Concurrent hub creation, workflow runs, and ingestion jobs show no race conditions or duplication.
+- Concurrent hub creation, workflow runs, and ingestion jobs show no race conditions or duplication against actual running dev services.
+- If concurrency errors arise, inspect Docker container logs (`docker compose logs db redis qdrant`) and fix root causes directly.
+- Deleting test data is not necessary.

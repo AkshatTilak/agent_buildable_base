@@ -33,12 +33,14 @@ Ingestion and retrieval are the heart of the RAG system. Existing tests mock Qdr
 3. `[x]` `sub_05_03_collections_real.md`: `test_collections_real.py` — collection management & schema sync.
 
 ## Definition of Done
-- Ingestion jobs complete and store correctly-dimensioned vectors in real Qdrant for Harrier 0.6B (1,024-dim), Harrier 270M (640-dim), and `gemini/gemini-embedding-2` paths.
+- Ingestion jobs complete and store correctly-dimensioned vectors in actual running Qdrant for Harrier 0.6B (1,024-dim), Harrier 270M (640-dim), and `gemini/gemini-embedding-2` paths.
 - Local OCR path extracts text from scanned PDFs.
 - Retrieval returns relevant chunks with metadata filtering and hub scoping.
-- Collection create/list/delete and schema sync verified against real Qdrant.
+- Collection create/list/delete and schema sync verified against actual running Qdrant.
+- Deleting test data is not necessary.
+- When errors or failures occur, inspect **Docker container logs** (`docker compose logs qdrant neo4j db`) and **fix the underlying backend, inference, or SyntraFlow submodule code** to achieve end-to-end correctness.
 
 ## Status
 - **12 tests pass** (`tests/integration/syntraflow`): 3 collections + 4 ingestion + 5 retrieval.
-- Local embedder (Harrier OSS v1 0.6B, 1,024-dim), PDF/text ingestion, batch, dedup, retrieval (vector/hybrid/metadata/hub-scope/multi-dim), and collection CRUD/schema-sync verified against real Postgres, Qdrant & Neo4j.
-- API embedder (`gemini/gemini-embedding-2`) and local OCR paths blocked by infrastructure (see issue doc).
+- Local embedder (Harrier OSS v1 0.6B, 1,024-dim), PDF/text ingestion, batch, dedup, retrieval (vector/hybrid/metadata/hub-scope/multi-dim), and collection CRUD/schema-sync verified against actual running Postgres, Qdrant & Neo4j.
+- Ongoing/blocked paths (such as API embedder routing in inference or local OCR setup) must be diagnosed and resolved in the backend/submodule rather than permanently bypassed.

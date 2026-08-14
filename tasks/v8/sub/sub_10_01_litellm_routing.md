@@ -12,5 +12,7 @@ Create `tests/live_api/test_litellm_routing.py` — routing & fallback chains.
 3. [ ] Verify model selection respects `DEEPEVAL_MODEL` config.
 
 ## Definition of Done
-- LiteLLM routing and fallback chains verified with real API keys.
+- LiteLLM routing and fallback chains verified with real API keys against actual running Gateway (`:8000`).
 - `DEEPEVAL_MODEL` config respected.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in LiteLLM router.
+- Deleting test data is not necessary.

@@ -15,6 +15,8 @@ Create `tests/integration/gateway/test_auth_real.py` — full auth lifecycle aga
 6. [ ] OAuth callback simulation (Google/GitHub identity linking).
 
 ## Definition of Done
-- All auth lifecycle tests pass against real Postgres.
+- All auth lifecycle tests pass against actual running Postgres (`:5432`) and Gateway (`:8000`).
 - JWT tokens validated for contents and expiry.
 - Lockout, approval gate, and OAuth linking verified.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in backend auth code.
+- Deleting test data is not necessary.

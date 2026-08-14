@@ -35,8 +35,10 @@ The backend performs repeated DB lookups (N+1 patterns), lacks caching for frequ
 4. `[ ]` `sub_11_04_startup_and_cache_invalidation.md`: Lazy route loading, pool tuning, cache invalidation on mutations.
 
 ## Definition of Done
-- Redis caching layer in place with proper invalidation on mutations.
-- N+1 query patterns eliminated.
-- DB indexes added; cursor pagination where applicable; eager loading for related entities.
+- Redis caching layer in place on actual Redis (`:6379`) with proper invalidation on mutations.
+- N+1 query patterns eliminated in backend and submodule queries.
+- DB indexes added; cursor pagination where applicable; eager loading for related entities in Postgres (`:5432`).
 - Submodule routes lazy-loaded; connection pools tuned.
 - Cache hit/miss ratios visible in gateway logs.
+- If performance or query errors arise, inspect Docker container logs (`docker compose logs db redis`) and fix root causes directly.
+- Deleting test data is not necessary.

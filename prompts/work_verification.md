@@ -57,11 +57,13 @@ graph TD
 * If duplicate helper functions, AI clients, or data models are found, immediately refactor them into a centralized `common/` or shared reference package.
 * Update all dependent submodules to import from this unified layer.
 
-### Step 3: Test Execution (Poetry Mandatory)
-* Run the designated test suites using Poetry:
+### Step 3: Test Execution & Flaw Remediation (Poetry Mandatory)
+* Run the designated test suites using Poetry against the **actual running development containers and services** (`:8000` Gateway, `:8001` Inference, standard DB ports):
   - AI evaluation checks: `poetry run deepeval run test <test_file>`
   - Unit and integration test suites: `poetry run pytest`
   - Code formatting and static type checks: `poetry run ruff check .` and `poetry run mypy .`
+* **Defect & Error Diagnostics:** If any test fails or errors, inspect the **Docker container logs** (`docker compose logs <service>` / `docker logs <container>`) to identify root-cause database, vector-store, or messaging faults.
+* **Fix the Underlying Flaws:** Actively debug and resolve errors directly in the backend, frontend, inference engine, or submodules (SyntraFlow, GuardRoute, EvalOps, Common Library). Do not bypass or mask genuine system bugs. Deleting test data after execution is **not necessary**.
 
 ### Step 4: Systemic Feedback Loop (Adhere to [`references.md`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/references.md))
 * **Log Technical Debt:** If architectural flaws, deprecated dependencies, or technical blockers are discovered during the audit, log a detailed report in [`references/issues/`](file:///c:/Akshat/ContAIned/agent_buildable_base/references/issues) so future execution agents are aware.

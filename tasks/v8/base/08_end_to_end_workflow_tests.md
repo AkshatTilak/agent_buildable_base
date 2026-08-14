@@ -1,27 +1,26 @@
 # Base Task 8: End-to-End Workflow Tests (Full User Journeys) (v8)
 
 ## Objective
-Multi-step tests that exercise the entire system from signup to eval results, touching every service layer (Postgres, Qdrant, Redis, Neo4j, LiteLLM).
+Multi-step tests that exercise the entire system from signup to eval results, touching every actual service layer (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Gateway `:8000`, Inference `:8001`, LiteLLM).
 
 ## Why
-Unit and integration tests validate individual layers in isolation. E2E tests are the only way to catch cross-service integration bugs — auth → hub → agent → ingestion → retrieval → eval → cleanup — that only surface when the full stack runs together.
+Unit and integration tests validate individual layers in isolation. E2E tests are the only way to catch cross-service integration bugs — auth → hub → agent → ingestion → retrieval → eval — that only surface when the full stack runs together. When E2E tests uncover flaws, agents must inspect Docker container logs and fix the root causes in the backend, frontend, inference, or submodules.
 
 ## Scope
 - **`tests/e2e/flows/test_complete_agent_journey.py`**:
-  1. Register new user via auth API.
+  1. Register new user via auth API (unique email/slug).
   2. Create an "agent" hub.
   3. Create an agent with `model_id: gemini/gemma-3-27b-it`, system prompt, temperature=0.3.
   4. Link an ingestion hub → upload documents (embed with `harrier-0.6b`) → verify retrieval.
   5. Test the agent via playground (real LLM call to `gemini/gemma-3-27b-it`).
   6. Create an eval hub → link to agent hub → run eval with `DEEPEVAL_MODEL=gemini/gemini-3.5-flash` → verify scores.
-  7. Cleanup: delete everything in reverse order.
+  7. *(Deleting test data is not necessary).*
 - **`tests/e2e/flows/test_complete_workflow_journey.py`**:
   1. Register user → create workflow hub.
   2. Design a multi-node workflow (LLM node using `gemini/gemini-3.5-flash` → conditional → two branches).
   3. Execute workflow run → verify step-by-step execution log.
   4. Save workflow version → modify → save new version → restore old version.
   5. Export workflow → import into new hub → verify portability.
-  6. Cleanup.
 - **`tests/e2e/flows/test_multi_user_collaboration.py`**:
   1. Admin creates hub → invites member.
   2. Member accepts invite → gains access.
@@ -42,6 +41,6 @@ Unit and integration tests validate individual layers in isolation. E2E tests ar
 4. `[ ]` `sub_08_04_hub_linking_cross_access.md`: `test_hub_linking_cross_access.py` — cross-hub access.
 
 ## Definition of Done
-- All four E2E journeys pass end-to-end against the running gateway and all real services.
-- Each journey cleans up all created resources in reverse order.
-- Cross-service integration bugs (auth → hub → agent → ingestion → retrieval → eval) are exposed and fixed.
+- All four E2E journeys pass end-to-end against the actual running gateway (`:8000`), inference (`:8001`), and actual Docker services.
+- Test entities use unique namespaces/UUIDs; deleting test data after runs is not necessary.
+- Cross-service integration bugs across auth, hubs, agents, ingestion, retrieval, and eval are diagnosed with Docker container logs (`docker compose logs`) and fixed directly in the underlying backend/frontend/submodule code.

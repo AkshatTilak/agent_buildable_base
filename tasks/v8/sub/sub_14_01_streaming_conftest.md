@@ -13,4 +13,6 @@ Create `tests/streaming/conftest.py` — shared streaming fixtures & helpers.
 4. [ ] `collect_all_events` helper — collects all SSE events until stream closes or timeout.
 
 ## Definition of Done
-- Shared streaming fixtures and helpers available to all streaming tests.
+- Shared streaming fixtures and helpers available to all streaming tests against actual running Gateway (`:8000`).
+- If errors arise, inspect Docker container logs (`docker compose logs redis`) and fix root causes directly.
+- Deleting test data is not necessary.

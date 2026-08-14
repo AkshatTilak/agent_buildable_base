@@ -14,5 +14,7 @@ Create `tests/e2e/contracts/test_api_contracts.py` — contract validation acros
 2. [ ] Cover: health, auth, hubs, agents, workflows, ingestion, eval, MCP, models, credentials, settings.
 
 ## Definition of Done
-- Contract tests validate every major API surface against the real gateway.
+- Contract tests validate every major API surface against the actual running gateway (`:8000`).
 - Status codes, error shapes, and pagination structures confirmed.
+- If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly.
+- Deleting test data is not necessary.
