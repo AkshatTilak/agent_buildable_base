@@ -16,9 +16,9 @@ There are no frontend tests and no API-contract validation. Frontend TypeScript 
 - **Identify type mismatches** between frontend expectations and actual backend responses (field names, types, optional vs required, enum values).
 
 ## Associated Subtasks
-1. `[ ]` `sub_09_01_extract_api_types.md`: `scripts/extract_api_types.py` — TS interface → JSON Schema extraction.
-2. `[ ]` `sub_09_02_api_contract_tests.md`: `tests/e2e/contracts/test_api_contracts.py` — contract validation across all API surfaces.
-3. `[ ]` `sub_09_03_fix_type_mismatches.md`: Identify and fix frontend/backend type mismatches found by contract tests.
+1. `[x]` `sub_09_01_extract_api_types.md`: `scripts/extract_api_types.py` — TS interface → JSON Schema extraction.
+2. `[x]` `sub_09_02_api_contract_tests.md`: `tests/e2e/contracts/test_api_contracts.py` — contract validation across all API surfaces.
+3. `[x]` `sub_09_03_fix_type_mismatches.md`: Identify and fix frontend/backend type mismatches found by contract tests.
 
 ## Definition of Done
 - `scripts/extract_api_types.py` parses `types/api.ts` into JSON Schema.

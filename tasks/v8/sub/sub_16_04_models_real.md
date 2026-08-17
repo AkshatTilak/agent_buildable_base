@@ -7,11 +7,11 @@
 Create `tests/integration/gateway/test_models_real.py` — model registry.
 
 ## Tasks
-1. [ ] List available models (LiteLLM + local) → verify response schema.
-2. [ ] Register custom model → verify DB row.
-3. [ ] Select model for role → verify active model changes.
-4. [ ] Delete/download model endpoints.
-5. [ ] Test model health probe.
+1. [x] List available models (LiteLLM + local) → verify response schema.
+2. [x] Register custom model → verify DB row.
+3. [x] Select model for role → verify active model changes.
+4. [x] Delete/download model endpoints.
+5. [x] Test model health probe.
 
 ## Definition of Done
 - Model registry verified against actual running Gateway (`:8000`) and Postgres (`:5432`) (list, register, select, delete/download, health probe).

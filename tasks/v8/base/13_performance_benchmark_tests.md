@@ -21,9 +21,9 @@ Without performance baselines, optimizations can silently regress. Benchmark tes
   - 10 concurrent ingestion jobs — no chunk duplication.
 
 ## Associated Subtasks
-1. `[ ]` `sub_13_01_api_response_times.md`: `test_api_response_times.py` — response-time assertions.
-2. `[ ]` `sub_13_02_caching_effectiveness.md`: `test_caching_effectiveness.py` — cache hit speedup & invalidation.
-3. `[ ]` `sub_13_03_concurrent_access.md`: `test_concurrent_access.py` — concurrency isolation.
+1. `[x]` `sub_13_01_api_response_times.md`: `test_api_response_times.py` — response-time assertions.
+2. `[x]` `sub_13_02_caching_effectiveness.md`: `test_caching_effectiveness.py` — cache hit speedup & invalidation.
+3. `[x]` `sub_13_03_concurrent_access.md`: `test_concurrent_access.py` — concurrency isolation.
 
 ## Definition of Done
 - Response-time assertions pass against actual running Gateway (`:8000`) and Postgres (`:5432`) (health < 50ms, hub list < 200ms, agent CRUD < 300ms).

@@ -7,9 +7,9 @@
 Create `tests/live_api/test_litellm_routing.py` — routing & fallback chains.
 
 ## Tasks
-1. [ ] Call primary (Gemini Flash) → verify response structure.
-2. [ ] Simulate primary failure → verify fallback to OpenRouter.
-3. [ ] Verify model selection respects `DEEPEVAL_MODEL` config.
+1. [x] Call primary (Gemini Flash) → verify response structure.
+2. [x] Simulate primary failure → verify fallback to OpenRouter.
+3. [x] Verify model selection respects `DEEPEVAL_MODEL` config.
 
 ## Definition of Done
 - LiteLLM routing and fallback chains verified with real API keys against actual running Gateway (`:8000`).

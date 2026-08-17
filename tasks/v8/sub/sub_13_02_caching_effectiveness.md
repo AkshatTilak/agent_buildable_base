@@ -7,8 +7,8 @@
 Create `tests/performance/test_caching_effectiveness.py` — cache hit speedup & invalidation.
 
 ## Tasks
-1. [ ] First call (cache miss) vs second call (cache hit) — verify >50% speedup.
-2. [ ] Cache invalidation — verify stale data not served after mutation.
+1. [x] First call (cache miss) vs second call (cache hit) — verify >50% speedup.
+2. [x] Cache invalidation — verify stale data not served after mutation.
 
 ## Definition of Done
 - Cache effectiveness verified on actual Redis (`:6379`) (>50% speedup on hit).

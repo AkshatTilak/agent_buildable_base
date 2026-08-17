@@ -29,10 +29,10 @@ The backend performs repeated DB lookups (N+1 patterns), lacks caching for frequ
   - Collection create/delete → clear collection cache.
 
 ## Associated Subtasks
-1. `[ ]` `sub_11_01_redis_caching_layer.md`: Redis caching for hub, session, model registry, collection metadata.
-2. `[ ]` `sub_11_02_query_deduplication.md`: Fix N+1 query patterns (hub members, agent/workflow listing, eval results).
-3. `[ ]` `sub_11_03_response_optimization.md`: DB indexes, cursor pagination, eager loading.
-4. `[ ]` `sub_11_04_startup_and_cache_invalidation.md`: Lazy route loading, pool tuning, cache invalidation on mutations.
+1. `[x]` `sub_11_01_redis_caching_layer.md`: Redis caching for hub, session, model registry, collection metadata.
+2. `[x]` `sub_11_02_query_deduplication.md`: Fix N+1 query patterns (hub members, agent/workflow listing, eval results).
+3. `[x]` `sub_11_03_response_optimization.md`: DB indexes, cursor pagination, eager loading.
+4. `[x]` `sub_11_04_startup_and_cache_invalidation.md`: Lazy route loading, pool tuning, cache invalidation on mutations.
 
 ## Definition of Done
 - Redis caching layer in place on actual Redis (`:6379`) with proper invalidation on mutations.

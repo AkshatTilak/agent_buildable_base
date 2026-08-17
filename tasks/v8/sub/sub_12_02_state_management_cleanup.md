@@ -7,9 +7,9 @@
 Review Zustand slices to dedupe state and reset stale state on hub switch/logout.
 
 ## Tasks
-1. [ ] Dedupe state duplicated between Zustand and React Query cache.
-2. [ ] Clear stale state on hub switch / logout.
-3. [ ] Proper state reset on navigation away from hub context.
+1. [x] Dedupe state duplicated between Zustand and React Query cache.
+2. [x] Clear stale state on hub switch / logout.
+3. [x] Proper state reset on navigation away from hub context.
 
 ## Definition of Done
 - Zustand state deduplicated with React Query cache.

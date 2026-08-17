@@ -7,12 +7,12 @@
 Create `tests/streaming/test_workflow_sse.py` — workflow run SSE.
 
 ## Tasks
-1. [ ] Start a workflow run → open SSE stream → verify event sequence: `run_start` → `node_start` → `node_end` → ... → `run_end`.
-2. [ ] Validate each event's JSON structure (node_id, status, timestamps, output).
-3. [ ] Test stream for multi-node workflows (verify correct ordering).
-4. [ ] Test stream for failed workflow runs (error events).
-5. [ ] Test reconnecting to a completed run's stream (should get final state or empty).
-6. [ ] Test concurrent SSE connections to same run.
+1. [x] Start a workflow run → open SSE stream → verify event sequence: `run_start` → `node_start` → `node_end` → ... → `run_end`.
+2. [x] Validate each event's JSON structure (node_id, status, timestamps, output).
+3. [x] Test stream for multi-node workflows (verify correct ordering).
+4. [x] Test stream for failed workflow runs (error events).
+5. [x] Test reconnecting to a completed run's stream (should get final state or empty).
+6. [x] Test concurrent SSE connections to same run.
 
 ## Definition of Done
 - Workflow run SSE tests pass with correct event ordering and JSON structure against actual running Gateway (`:8000`).

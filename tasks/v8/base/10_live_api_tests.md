@@ -29,14 +29,14 @@ Live API tests validate the actual external integrations (Gemini, OpenRouter, MC
   - Test Kafka-offline fallback (stop Kafka → verify local background execution takes over).
 
 ## Associated Subtasks
-1. `[ ]` `sub_10_01_litellm_routing.md`: `test_litellm_routing.py` — routing & fallback chains.
-2. `[ ]` `sub_10_02_inference_proxy.md`: `test_inference_proxy.py` — OCR & embedding endpoints.
-3. `[ ]` `sub_10_03_mcp_tools_real.md`: `test_mcp_tools_real.py` — real MCP tool lifecycle & workflow integration.
-4. `[ ]` `sub_10_04_kafka_messaging.md`: `test_kafka_messaging.py` — Kafka publish/consume & offline fallback.
+1. `[x]` `sub_10_01_litellm_routing.md`: `test_litellm_routing.py` — routing & fallback chains.
+2. `[x]` `sub_10_02_inference_proxy.md`: `test_inference_proxy.py` — OCR & embedding endpoints.
+3. `[x]` `sub_10_03_mcp_tools_real.md`: `test_mcp_tools_real.py` — real MCP tool lifecycle & workflow integration.
+4. `[x]` `sub_10_04_kafka_messaging.md`: `test_kafka_messaging.py` — Kafka publish/consume & offline fallback.
 
 ## Definition of Done
 - LiteLLM routing and fallback chains verified with real API keys against actual running Gateway (`:8000`).
-- Inference proxy OCR/embedding endpoints verified against actual running Inference server (`:8001`).
+- Inference proxy OCR/embedding endpoints verified against actual running Inference server (`:8010`).
 - Real MCP tool discovery, invocation, auth round-trip, workflow integration, and enable/disable verified.
 - Kafka publish/consume verified on actual Kafka broker (`:9092`) with verified offline fallback.
 - If errors arise, inspect Docker container logs (`docker compose logs kafka db`) and fix root causes directly in gateway or submodules.

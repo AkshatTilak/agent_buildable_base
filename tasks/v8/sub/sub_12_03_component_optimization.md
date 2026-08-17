@@ -7,9 +7,9 @@
 Memoize expensive components, virtual-scroll large lists, and lazy-load heavy pages.
 
 ## Tasks
-1. [ ] Memoize expensive components (workflow canvas, eval dashboards, member lists).
-2. [ ] Virtual scroll for large lists (documents, chunks, eval results).
-3. [ ] Lazy-load heavy pages (Playground, MCP Hub, Settings).
+1. [x] Memoize expensive components (workflow canvas, eval dashboards, member lists).
+2. [x] Virtual scroll for large lists (documents, chunks, eval results).
+3. [x] Lazy-load heavy pages (Playground, MCP Hub, Settings).
 
 ## Definition of Done
 - Expensive components memoized.

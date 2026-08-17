@@ -9,7 +9,7 @@
 
 ## 1. Scope
 
-Version 8 replaces the current mock-heavy, in-memory-only test suite with a layered testing infrastructure that hits **actual running services & standard ports** (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Kafka `:9092`, Gateway `:8000`, Inference `:8001`), validates full frontend-to-backend data flows, tests all WebSocket/SSE streaming interactions, and exposes real-world bugs. 
+Version 8 replaces the current mock-heavy, in-memory-only test suite with a layered testing infrastructure that hits **actual running services & standard ports** (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Kafka `:9092`, Gateway `:8000`, Inference `:8010`), validates full frontend-to-backend data flows, tests all WebSocket/SSE streaming interactions, and exposes real-world bugs. 
 
 **Core Principles for V8 Execution:**
 - **Full-Stack Bug Remediation:** When tests uncover errors or flaws, engineers/agents are mandated to diagnose and fix the root causes in the backend (FastAPI gateway, services, models), frontend (API clients, state stores, UI), inference engine, or submodules (SyntraFlow, GuardRoute, EvalOps, Common Library) to make tests pass cleanly.
@@ -30,17 +30,17 @@ Simultaneously, V8 optimizes the backend and frontend for performance, deduplica
 | [B8-03](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/03_auth_user_lifecycle_real.md) | Real-World Integration Tests — Auth & User Lifecycle | `tests/integration/gateway`, `gateway/auth` | 🔴 High | 3 | `[x]` |
 | [B8-04](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/04_hub_management_linking_real.md) | Real-World Integration Tests — Hub Management & Linking | `tests/integration/gateway`, `gateway/api`, `common/services` | 🔴 High | 4 | `[x]` |
 | [B8-05](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/05_syntraflow_ingestion_retrieval_real.md) | Real-World Integration Tests — SyntraFlow (Ingestion & Retrieval) | `tests/integration/syntraflow`, `projects/syntraflow` | 🔴 High | 3 | `[/]` *(12 tests pass; API embedder + OCR paths blocked by infra)* |
-| [B8-06](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/06_guardroute_workflows_agents_real.md) | Real-World Integration Tests — GuardRoute (Workflows & Agents) | `tests/integration/guardroute`, `projects/guardroute` | 🔴 High | 4 | `[ ]` |
-| [B8-07](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/07_evalops_evaluation_real.md) | Real-World Integration Tests — EvalOps (Evaluation Pipelines) | `tests/integration/evalops`, `projects/evalops` | 🔴 High | 3 | `[ ]` |
-| [B8-08](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/08_end_to_end_workflow_tests.md) | End-to-End Workflow Tests (Full User Journeys) | `tests/e2e/flows` | 🔴 High | 4 | `[ ]` |
-| [B8-09](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/09_frontend_backend_contract_tests.md) | Frontend-Backend Contract Tests | `tests/e2e/contracts`, `scripts`, `frontend/src` | 🟡 Medium | 3 | `[ ]` |
-| [B8-10](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/10_live_api_tests.md) | Live API Tests (External Service Integration) | `tests/live_api`, `gateway`, `mcp_tools` | 🔴 High | 4 | `[ ]` |
-| [B8-11](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/11_backend_performance_optimizations.md) | Backend Performance Optimizations | `gateway`, `common/services`, `common/clients` | 🔴 High | 4 | `[ ]` |
-| [B8-12](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/12_frontend_performance_optimizations.md) | Frontend Performance Optimizations | `frontend/src` | 🟡 Medium | 4 | `[ ]` |
-| [B8-13](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/13_performance_benchmark_tests.md) | Performance Benchmark Tests | `tests/performance` | 🟡 Medium | 3 | `[ ]` |
-| [B8-14](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/14_websocket_sse_streaming_tests.md) | WebSocket & SSE Streaming Tests | `tests/streaming`, `gateway/api` | 🔴 High | 6 | `[ ]` |
-| [B8-15](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/15_mcp_tools_ecosystem.md) | MCP Tools Ecosystem & User-Facing Tool Registry | `mcp_tools/`, `tests/integration` | 🟡 Medium | 3 | `[ ]` |
-| [B8-16](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/16_comprehensive_api_surface_coverage.md) | Comprehensive API Surface Coverage | `tests/integration/gateway`, `scripts` | 🔴 High | 7 | `[ ]` |
+| [B8-06](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/06_guardroute_workflows_agents_real.md) | Real-World Integration Tests — GuardRoute (Workflows & Agents) | `tests/integration/guardroute`, `projects/guardroute` | 🔴 High | 4 | `[x]` |
+| [B8-07](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/07_evalops_evaluation_real.md) | Real-World Integration Tests — EvalOps (Evaluation Pipelines) | `tests/integration/evalops`, `projects/evalops` | 🔴 High | 3 | `[x]` |
+| [B8-08](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/08_end_to_end_workflow_tests.md) | End-to-End Workflow Tests (Full User Journeys) | `tests/e2e/flows` | 🔴 High | 4 | `[x]` |
+| [B8-09](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/09_frontend_backend_contract_tests.md) | Frontend-Backend Contract Tests | `tests/e2e/contracts`, `scripts`, `frontend/src` | 🟡 Medium | 3 | `[x]` |
+| [B8-10](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/10_live_api_tests.md) | Live API Tests (External Service Integration) | `tests/live_api`, `gateway`, `mcp_tools` | 🔴 High | 4 | `[x]` |
+| [B8-11](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/11_backend_performance_optimizations.md) | Backend Performance Optimizations | `gateway`, `common/services`, `common/clients` | 🔴 High | 4 | `[x]` |
+| [B8-12](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/12_frontend_performance_optimizations.md) | Frontend Performance Optimizations | `frontend/src` | 🟡 Medium | 4 | `[x]` |
+| [B8-13](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/13_performance_benchmark_tests.md) | Performance Benchmark Tests | `tests/performance` | 🟡 Medium | 3 | `[x]` |
+| [B8-14](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/14_websocket_sse_streaming_tests.md) | WebSocket & SSE Streaming Tests | `tests/streaming`, `gateway/api` | 🔴 High | 6 | `[x]` |
+| [B8-15](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/15_mcp_tools_ecosystem.md) | MCP Tools Ecosystem & User-Facing Tool Registry | `mcp_tools/`, `tests/integration` | 🟡 Medium | 3 | `[x]` |
+| [B8-16](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/16_comprehensive_api_surface_coverage.md) | Comprehensive API Surface Coverage | `tests/integration/gateway`, `scripts` | 🔴 High | 7 | `[x]` |
 | [B8-17](file:///c:/Akshat/ContAIned/agent_buildable_base/tasks/v8/base/17_test_observability_logging.md) | Test Observability & Logging Infrastructure | `tests/conftest.py`, `scripts` | 🟡 Medium | 4 | `[x]` |
 
 
@@ -94,7 +94,7 @@ graph TD
 
 ## 4. Cross-Cutting Rules for V8 Execution Agents
 
-1. **Actual services and standard ports, not separate containers or mock-only bypasses.** Integration, streaming, E2E, and live API tests must connect to actual running services on standard ports (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Kafka `:9092`, Gateway `:8000`, Inference `:8001`). Do NOT spin up separate test container stacks with divergent ports.
+1. **Actual services and standard ports, not separate containers or mock-only bypasses.** Integration, streaming, E2E, and live API tests must connect to actual running services on standard ports (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Kafka `:9092`, Gateway `:8000`, Inference `:8010`). Do NOT spin up separate test container stacks with divergent ports.
 2. **Fix root-cause flaws across the entire stack.** When tests encounter errors, failures, or schema discrepancies, do not merely skip tests or assert around broken behavior. Investigate and actively **fix the underlying backend, frontend, inference engine, or submodule code** (e.g., `projects/syntraflow`, `projects/guardroute`, `projects/evalops`, `common/`, `gateway/`, `frontend/`).
 3. **Inspect Docker container logs on test failures.** When tests fail, execute `docker compose logs <service>` or `docker logs <container>` to examine container-side error traces (Postgres, Qdrant, Neo4j, Redis, Kafka) alongside pytest traces.
 4. **Deleting test data is not necessary.** Test data persistence is acceptable. Use unique identifiers (UUIDs, prefixed slugs) for test entity isolation rather than mandating aggressive post-test deletion or database purging.

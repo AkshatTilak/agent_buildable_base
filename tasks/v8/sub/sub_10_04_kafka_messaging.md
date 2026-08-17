@@ -7,9 +7,9 @@
 Create `tests/live_api/test_kafka_messaging.py` — Kafka publish/consume & offline fallback.
 
 ## Tasks
-1. [ ] Publish ingestion job to Kafka topic → verify SyntraFlow consumer picks it up.
-2. [ ] Publish eval trigger → verify EvalOps consumer processes it.
-3. [ ] Test Kafka-offline fallback (stop Kafka → verify local background execution takes over).
+1. [x] Publish ingestion job to Kafka topic → verify SyntraFlow consumer picks it up.
+2. [x] Publish eval trigger → verify EvalOps consumer processes it.
+3. [x] Test Kafka-offline fallback (stop Kafka → verify local background execution takes over).
 
 ## Definition of Done
 - Kafka publish/consume verified for ingestion and eval triggers on actual Kafka broker (`:9092`).

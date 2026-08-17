@@ -7,10 +7,10 @@
 Create `tests/integration/guardroute/test_workflows_real.py` — workflow lifecycle & versioning.
 
 ## Tasks
-1. [ ] Create workflow with canvas JSON → verify DB storage.
-2. [ ] Workflow versioning (save new version → list versions → restore old version).
-3. [ ] Workflow import/export (portability).
-4. [ ] Workflow-hub scoping.
+1. [x] Create workflow with canvas JSON → verify DB storage.
+2. [x] Workflow versioning (save new version → list versions → restore old version).
+3. [x] Workflow import/export (portability).
+4. [x] Workflow-hub scoping.
 
 ## Definition of Done
 - Workflow lifecycle, versioning, import/export, and hub scoping verified against actual running Postgres (`:5432`) and Gateway (`:8000`).

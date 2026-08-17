@@ -23,10 +23,10 @@ The frontend makes duplicate API fetches, duplicates state between Zustand and R
 - **Request batching** — Batch related API calls on page load (e.g., hub metadata + members + links in one request, or parallel `Promise.all`).
 
 ## Associated Subtasks
-1. `[ ]` `sub_12_01_api_deduplication.md`: React Query staleTime/gcTime, optimistic updates, request batching.
-2. `[ ]` `sub_12_02_state_management_cleanup.md`: Zustand/React Query dedup, state reset on hub switch/logout.
-3. `[ ]` `sub_12_03_component_optimization.md`: Memoization, virtual scrolling, lazy loading.
-4. `[ ]` `sub_12_04_bundle_size.md`: Tree-shake unused dependencies.
+1. `[x]` `sub_12_01_api_deduplication.md`: React Query staleTime/gcTime, optimistic updates, request batching.
+2. `[x]` `sub_12_02_state_management_cleanup.md`: Zustand/React Query dedup, state reset on hub switch/logout.
+3. `[x]` `sub_12_03_component_optimization.md`: Memoization, virtual scrolling, lazy loading.
+4. `[x]` `sub_12_04_bundle_size.md`: Tree-shake unused dependencies.
 
 ## Definition of Done
 - All query hooks use `staleTime`/`gcTime`; optimistic updates for CRUD.

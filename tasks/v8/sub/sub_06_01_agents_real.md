@@ -7,10 +7,10 @@
 Create `tests/integration/guardroute/test_agents_real.py` — agent CRUD & hub scoping.
 
 ## Tasks
-1. [ ] Create agent with system prompt + model config → verify DB row.
-2. [ ] Update agent → verify endpoint slug regeneration rules.
-3. [ ] Delete agent → verify cleanup.
-4. [ ] Agent-hub scoping (agent only accessible within its hub).
+1. [x] Create agent with system prompt + model config → verify DB row.
+2. [x] Update agent → verify endpoint slug regeneration rules.
+3. [x] Delete agent → verify cleanup.
+4. [x] Agent-hub scoping (agent only accessible within its hub).
 
 ## Definition of Done
 - Agent CRUD and hub scoping verified against actual running Postgres (`:5432`) and Gateway (`:8000`).

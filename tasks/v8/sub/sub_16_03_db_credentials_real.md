@@ -7,11 +7,11 @@
 Create `tests/integration/gateway/test_db_credentials_real.py` — external DB vault.
 
 ## Tasks
-1. [ ] Create Postgres credential → verify encrypted payload in DB.
-2. [ ] Test connection → verify success/failure response.
-3. [ ] Generate DB MCP tools for credential → verify tool definitions.
-4. [ ] Update credential → verify re-encryption.
-5. [ ] Delete credential → verify cleanup.
+1. [x] Create Postgres credential → verify encrypted payload in DB.
+2. [x] Test connection → verify success/failure response.
+3. [x] Generate DB MCP tools for credential → verify tool definitions.
+4. [x] Update credential → verify re-encryption.
+5. [x] Delete credential → verify cleanup.
 
 ## Definition of Done
 - External DB credentials vault verified against actual running Postgres (`:5432`) (create/encrypt, test connection, DB MCP tools, update/re-encrypt, delete endpoint test).

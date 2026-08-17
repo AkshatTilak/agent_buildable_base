@@ -7,9 +7,9 @@
 Create `tests/integration/evalops/test_eval_hub_real.py` — eval hub management & dashboard metrics.
 
 ## Tasks
-1. [ ] Eval hub CRUD.
-2. [ ] Link eval hub to agent hub → run evals against agent's model.
-3. [ ] Eval dashboard metrics aggregation.
+1. [x] Eval hub CRUD.
+2. [x] Link eval hub to agent hub → run evals against agent's model.
+3. [x] Eval dashboard metrics aggregation.
 
 ## Definition of Done
 - Eval hub CRUD, agent-hub linking, and dashboard metrics aggregation verified against actual running Postgres (`:5432`).

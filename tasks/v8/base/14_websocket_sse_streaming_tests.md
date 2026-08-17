@@ -59,12 +59,12 @@ Streaming is a critical failure point. Existing tests never exercise WebSocket/S
   - Test fallback chain behavior during streaming (primary fails → secondary picks up).
 
 ## Associated Subtasks
-1. `[ ]` `sub_14_01_streaming_conftest.md`: `tests/streaming/conftest.py` — shared streaming fixtures & helpers.
-2. `[ ]` `sub_14_02_telemetry_ws_sse.md`: `test_telemetry_ws.py` + `test_telemetry_sse.py` — telemetry streaming.
-3. `[ ]` `sub_14_03_workflow_sse.md`: `test_workflow_sse.py` — workflow run SSE.
-4. `[ ]` `sub_14_04_agent_invoke_sse.md`: `test_agent_invoke_sse.py` — agent invoke SSE.
-5. `[ ]` `sub_14_05_playground_sse.md`: `test_playground_sse.py` — playground chat SSE.
-6. `[ ]` `sub_14_06_external_api_sse.md`: `test_external_api_sse.py` — external API SSE.
+1. `[x]` `sub_14_01_streaming_conftest.md`: `tests/streaming/conftest.py` — shared streaming fixtures & helpers.
+2. `[x]` `sub_14_02_telemetry_ws_sse.md`: `test_telemetry_ws.py` + `test_telemetry_sse.py` — telemetry streaming.
+3. `[x]` `sub_14_03_workflow_sse.md`: `test_workflow_sse.py` — workflow run SSE.
+4. `[x]` `sub_14_04_agent_invoke_sse.md`: `test_agent_invoke_sse.py` — agent invoke SSE.
+5. `[x]` `sub_14_05_playground_sse.md`: `test_playground_sse.py` — playground chat SSE.
+6. `[x]` `sub_14_06_external_api_sse.md`: `test_external_api_sse.py` — external API SSE.
 
 ## Definition of Done
 - All six streaming surfaces tested end-to-end against the actual running gateway (`:8000`) with actual Redis pub/sub (`:6379`).

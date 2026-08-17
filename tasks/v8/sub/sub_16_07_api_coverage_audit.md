@@ -7,10 +7,10 @@
 Create `scripts/api_coverage_audit.py` — coverage matrix showing untested endpoints.
 
 ## Tasks
-1. [ ] Parse all FastAPI routers (16 gateway + 3 submodule) to enumerate endpoints.
-2. [ ] Compare against test files to determine which endpoints are tested.
-3. [ ] Produce a coverage matrix showing untested endpoints.
-4. [ ] Integrate the audit into the test pipeline (optional CI check).
+1. [x] Parse all FastAPI routers (16 gateway + 3 submodule) to enumerate endpoints.
+2. [x] Compare against test files to determine which endpoints are tested.
+3. [x] Produce a coverage matrix showing untested endpoints.
+4. [x] Integrate the audit into the test pipeline (optional CI check).
 
 ## Definition of Done
 - `scripts/api_coverage_audit.py` produces a coverage matrix showing untested endpoints across actual running gateway routers.

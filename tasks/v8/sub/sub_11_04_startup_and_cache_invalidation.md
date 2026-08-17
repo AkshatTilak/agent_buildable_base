@@ -7,9 +7,9 @@
 Lazy-load submodule routes, tune connection pools, and implement proper cache invalidation on mutations.
 
 ## Tasks
-1. [ ] Lazy-load submodule routes (defer import until route is first hit).
-2. [ ] Connection pool tuning (Postgres pool size, Qdrant connection limits).
-3. [ ] Cache invalidation on mutations:
+1. [x] Lazy-load submodule routes (defer import until route is first hit).
+2. [x] Connection pool tuning (Postgres pool size, Qdrant connection limits).
+3. [x] Cache invalidation on mutations:
    - Hub update/delete → clear hub cache.
    - Member add/remove → clear membership cache.
    - Collection create/delete → clear collection cache.

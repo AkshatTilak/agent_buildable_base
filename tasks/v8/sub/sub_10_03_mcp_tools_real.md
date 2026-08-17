@@ -7,13 +7,13 @@
 Create `tests/live_api/test_mcp_tools_real.py` — real MCP tool lifecycle & workflow integration.
 
 ## Tasks
-1. [ ] Stand up a sample MCP server from `mcp_tools/` → register via API → health check → discover tools → invoke tool → verify response.
-2. [ ] Test tool discovery via REST (`/tools`), JSON-RPC (`tools/list`), and direct probe endpoints.
-3. [ ] Test tool invocation via REST (`/invoke`) and JSON-RPC (`tools/call`).
-4. [ ] Test encrypted auth token round-trip (register with `bearer` auth → invoke with decrypted token).
-5. [ ] Test tool execution within a GuardRoute workflow node (MCP tool executor).
-6. [ ] Test DB-scoped MCP tools (`/hubs/{hub_id}/db-tools`) with real external DB credential.
-7. [ ] Test tool enable/disable toggle → verify disabled tools are excluded from discovery.
+1. [x] Stand up a sample MCP server from `mcp_tools/` → register via API → health check → discover tools → invoke tool → verify response.
+2. [x] Test tool discovery via REST (`/tools`), JSON-RPC (`tools/list`), and direct probe endpoints.
+3. [x] Test tool invocation via REST (`/invoke`) and JSON-RPC (`tools/call`).
+4. [x] Test encrypted auth token round-trip (register with `bearer` auth → invoke with decrypted token).
+5. [x] Test tool execution within a GuardRoute workflow node (MCP tool executor).
+6. [x] Test DB-scoped MCP tools (`/hubs/{hub_id}/db-tools`) with real external DB credential.
+7. [x] Test tool enable/disable toggle → verify disabled tools are excluded from discovery.
 
 ## Definition of Done
 - Real MCP tool discovery, invocation, auth round-trip, workflow integration, and enable/disable verified against actual running Gateway (`:8000`) and Postgres (`:5432`).

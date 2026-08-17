@@ -58,7 +58,7 @@ graph TD
 * Update all dependent submodules to import from this unified layer.
 
 ### Step 3: Test Execution & Flaw Remediation (Poetry Mandatory)
-* Run the designated test suites using Poetry against the **actual running development containers and services** (`:8000` Gateway, `:8001` Inference, standard DB ports):
+* Run the designated test suites using Poetry against the **actual running development containers and services** (`:8000` Gateway, `:8010` Inference, standard DB ports):
   - AI evaluation checks: `poetry run deepeval run test <test_file>`
   - Unit and integration test suites: `poetry run pytest`
   - Code formatting and static type checks: `poetry run ruff check .` and `poetry run mypy .`

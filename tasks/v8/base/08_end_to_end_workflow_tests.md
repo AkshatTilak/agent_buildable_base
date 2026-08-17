@@ -1,7 +1,7 @@
 # Base Task 8: End-to-End Workflow Tests (Full User Journeys) (v8)
 
 ## Objective
-Multi-step tests that exercise the entire system from signup to eval results, touching every actual service layer (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Gateway `:8000`, Inference `:8001`, LiteLLM).
+Multi-step tests that exercise the entire system from signup to eval results, touching every actual service layer (Postgres `:5432`, Qdrant `:6333`, Redis `:6379`, Neo4j `:7687`, Gateway `:8000`, Inference `:8010`, LiteLLM).
 
 ## Why
 Unit and integration tests validate individual layers in isolation. E2E tests are the only way to catch cross-service integration bugs — auth → hub → agent → ingestion → retrieval → eval — that only surface when the full stack runs together. When E2E tests uncover flaws, agents must inspect Docker container logs and fix the root causes in the backend, frontend, inference, or submodules.
@@ -35,12 +35,12 @@ Unit and integration tests validate individual layers in isolation. E2E tests ar
   5. Revoke link → verify agent can no longer access ingestion data.
 
 ## Associated Subtasks
-1. `[ ]` `sub_08_01_complete_agent_journey.md`: `test_complete_agent_journey.py` — full agent journey.
-2. `[ ]` `sub_08_02_complete_workflow_journey.md`: `test_complete_workflow_journey.py` — full workflow journey.
-3. `[ ]` `sub_08_03_multi_user_collaboration.md`: `test_multi_user_collaboration.py` — multi-user collaboration.
-4. `[ ]` `sub_08_04_hub_linking_cross_access.md`: `test_hub_linking_cross_access.py` — cross-hub access.
+1. `[x]` `sub_08_01_complete_agent_journey.md`: `test_complete_agent_journey.py` — full agent journey.
+2. `[x]` `sub_08_02_complete_workflow_journey.md`: `test_complete_workflow_journey.py` — full workflow journey.
+3. `[x]` `sub_08_03_multi_user_collaboration.md`: `test_multi_user_collaboration.py` — multi-user collaboration.
+4. `[x]` `sub_08_04_hub_linking_cross_access.md`: `test_hub_linking_cross_access.py` — cross-hub access.
 
 ## Definition of Done
-- All four E2E journeys pass end-to-end against the actual running gateway (`:8000`), inference (`:8001`), and actual Docker services.
+- All four E2E journeys pass end-to-end against the actual running gateway (`:8000`), inference (`:8010`), and actual Docker services.
 - Test entities use unique namespaces/UUIDs; deleting test data after runs is not necessary.
 - Cross-service integration bugs across auth, hubs, agents, ingestion, retrieval, and eval are diagnosed with Docker container logs (`docker compose logs`) and fixed directly in the underlying backend/frontend/submodule code.

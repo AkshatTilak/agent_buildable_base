@@ -22,9 +22,9 @@ EvalOps is the automated QA layer. Existing tests mock the DeepEval/RAGAS runner
   - Eval dashboard metrics aggregation.
 
 ## Associated Subtasks
-1. `[ ]` `sub_07_01_datasets_real.md`: `test_datasets_real.py` — dataset management & import.
-2. `[ ]` `sub_07_02_eval_runner_real.md`: `test_eval_runner_real.py` — DeepEval/RAGAS execution with real judge.
-3. `[ ]` `sub_07_03_eval_hub_real.md`: `test_eval_hub_real.py` — eval hub management & dashboard metrics.
+1. `[x]` `sub_07_01_datasets_real.md`: `test_datasets_real.py` — dataset management & import.
+2. `[x]` `sub_07_02_eval_runner_real.md`: `test_eval_runner_real.py` — DeepEval/RAGAS execution with real judge.
+3. `[x]` `sub_07_03_eval_hub_real.md`: `test_eval_hub_real.py` — eval hub management & dashboard metrics.
 
 ## Definition of Done
 - Dataset create/list/get/delete and JSON import verified against actual running Postgres (`:5432`).
@@ -33,3 +33,6 @@ EvalOps is the automated QA layer. Existing tests mock the DeepEval/RAGAS runner
 - Eval hub CRUD, agent-hub linking, and dashboard metrics aggregation verified.
 - When errors or failures occur, inspect **Docker container logs** (`docker compose logs db qdrant`) and **fix the underlying backend, gateway, or EvalOps submodule code**.
 - Deleting test data is not necessary.
+
+## Status
+- `[x] Completed` — All 11 EvalOps real integration tests passing against live Postgres, Redis, and Gateway infrastructure.

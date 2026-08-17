@@ -7,11 +7,11 @@
 Create `tests/integration/gateway/test_proxy_real.py` + `test_health_real.py` — proxy & health.
 
 ## Tasks
-1. [ ] **Proxy** (`test_proxy_real.py`):
+1. [x] **Proxy** (`test_proxy_real.py`):
    - Proxy completion request → verify response structure.
    - Proxy with auth → verify API key validation.
    - Test RBAC on proxy endpoints.
-2. [ ] **Health** (`test_health_real.py`):
+2. [x] **Health** (`test_health_real.py`):
    - Gateway health endpoint → verify all service statuses reported.
    - Health endpoint with degraded service → verify partial health report.
 

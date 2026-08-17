@@ -7,7 +7,7 @@
 Create the `mcp_tools/` directory with sample tool servers, `_template`, and comprehensive README.
 
 ## Tasks
-1. [ ] Create `mcp_tools/` directory structure:
+1. [x] Create `mcp_tools/` directory structure:
    ```
    mcp_tools/
    ├── README.md
@@ -28,11 +28,11 @@ Create the `mcp_tools/` directory with sample tool servers, `_template`, and com
        ├── requirements.txt
        └── README.md
    ```
-2. [ ] Each sample server is a self-contained FastAPI app implementing:
+2. [x] Each sample server is a self-contained FastAPI app implementing:
    - REST (`/tools` list, `/invoke`) and JSON-RPC (`tools/list`, `tools/call`) protocols.
    - Proper `inputSchema` definitions.
    - Startable with `python server.py` on a configurable port.
-3. [ ] Create `mcp_tools/README.md` covering:
+3. [x] Create `mcp_tools/README.md` covering:
    - What MCP is and how ContAIned discovers/registers tools.
    - Required endpoints (`/tools`, `/invoke`, or JSON-RPC `tools/list` + `tools/call`).
    - Authentication options (none, bearer, api_key) and token encryption at rest.

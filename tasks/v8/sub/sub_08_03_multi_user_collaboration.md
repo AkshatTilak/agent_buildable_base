@@ -7,11 +7,11 @@
 Create `tests/e2e/flows/test_multi_user_collaboration.py` — multi-user collaboration.
 
 ## Tasks
-1. [ ] Admin creates hub → invites member.
-2. [ ] Member accepts invite → gains access.
-3. [ ] Both users create resources in the same hub → verify visibility.
-4. [ ] Admin demotes member to viewer → verify write access revoked.
-5. [ ] Admin removes member → verify access fully revoked.
+1. [x] Admin creates hub → invites member.
+2. [x] Member accepts invite → gains access.
+3. [x] Both users create resources in the same hub → verify visibility.
+4. [x] Admin demotes member to viewer → verify write access revoked.
+5. [x] Admin removes member → verify access fully revoked.
 
 ## Definition of Done
 - Multi-user collaboration journey passes end-to-end against actual running dev services.

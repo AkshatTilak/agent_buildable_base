@@ -29,10 +29,10 @@ Workflow execution and agent orchestration are the core GuardRoute responsibilit
   - Error handling per node type (timeout, invalid config, missing credentials).
 
 ## Associated Subtasks
-1. `[ ]` `sub_06_01_agents_real.md`: `test_agents_real.py` — agent CRUD & hub scoping.
-2. `[ ]` `sub_06_02_workflows_real.md`: `test_workflows_real.py` — workflow lifecycle & versioning.
-3. `[ ]` `sub_06_03_workflow_execution_real.md`: `test_workflow_execution_real.py` — workflow runs with real LLM.
-4. `[ ]` `sub_06_04_orchestrator_real.md`: `test_orchestrator_real.py` — node executors & error handling.
+1. `[x]` `sub_06_01_agents_real.md`: `test_agents_real.py` — agent CRUD & hub scoping.
+2. `[x]` `sub_06_02_workflows_real.md`: `test_workflows_real.py` — workflow lifecycle & versioning.
+3. `[x]` `sub_06_03_workflow_execution_real.md`: `test_workflow_execution_real.py` — workflow runs with real LLM.
+4. `[x]` `sub_06_04_orchestrator_real.md`: `test_orchestrator_real.py` — node executors & error handling.
 
 ## Definition of Done
 - Agent CRUD and hub scoping verified against actual running Postgres (`:5432`) and Gateway (`:8000`).
@@ -41,3 +41,6 @@ Workflow execution and agent orchestration are the core GuardRoute responsibilit
 - Each node executor type tested individually with proper error handling.
 - When errors or failures occur, inspect **Docker container logs** (`docker compose logs db redis`) and **fix the underlying backend, gateway, or GuardRoute submodule code**.
 - Deleting test data is not necessary.
+
+## Status
+- `[x] Completed` — All 31 GuardRoute real integration tests passing against live Postgres, Redis, and Gateway infrastructure.

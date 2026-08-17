@@ -68,13 +68,13 @@ Many gateway endpoints have minimal or no test coverage. A coverage audit plus t
 - **Coverage gap report** — `scripts/api_coverage_audit.py` — Script that parses all FastAPI routers and compares against test files to produce a coverage matrix showing untested endpoints.
 
 ## Associated Subtasks
-1. `[ ]` `sub_16_01_api_keys_real.md`: `test_api_keys_real.py` — API key lifecycle.
-2. `[ ]` `sub_16_02_credentials_real.md`: `test_credentials_real.py` — provider credentials.
-3. `[ ]` `sub_16_03_db_credentials_real.md`: `test_db_credentials_real.py` — external DB vault.
-4. `[ ]` `sub_16_04_models_real.md`: `test_models_real.py` — model registry.
-5. `[ ]` `sub_16_05_admin_audit_real.md`: `test_admin_audit_real.py` — audit log.
-6. `[ ]` `sub_16_06_proxy_health_real.md`: `test_proxy_real.py` + `test_health_real.py` — proxy & health.
-7. `[ ]` `sub_16_07_api_coverage_audit.md`: `scripts/api_coverage_audit.py` — coverage matrix.
+1. `[x]` `sub_16_01_api_keys_real.md`: `test_api_keys_real.py` — API key lifecycle.
+2. `[x]` `sub_16_02_credentials_real.md`: `test_credentials_real.py` — provider credentials.
+3. `[x]` `sub_16_03_db_credentials_real.md`: `test_db_credentials_real.py` — external DB vault.
+4. `[x]` `sub_16_04_models_real.md`: `test_models_real.py` — model registry.
+5. `[x]` `sub_16_05_admin_audit_real.md`: `test_admin_audit_real.py` — audit log.
+6. `[x]` `sub_16_06_proxy_health_real.md`: `test_proxy_real.py` + `test_health_real.py` — proxy & health.
+7. `[x]` `sub_16_07_api_coverage_audit.md`: `scripts/api_coverage_audit.py` — coverage matrix.
 
 ## Definition of Done
 - Every gateway router endpoint has at least one real integration test against actual running Gateway (`:8000`) and backend services.

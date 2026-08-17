@@ -7,15 +7,15 @@
 Create `tests/integration/gateway/test_mcp_lifecycle_real.py` — full MCP lifecycle using sample tools.
 
 ## Tasks
-1. [ ] Start `sample_calculator` server as subprocess fixture.
-2. [ ] Register via `POST /api/mcp/servers` → verify DB row.
-3. [ ] Health check → verify `healthy` status.
-4. [ ] Discover tools → verify calculator tools appear in cache.
-5. [ ] Invoke `add` tool with `{a: 2, b: 3}` → verify result `5`.
-6. [ ] Toggle tool disabled → verify excluded from `GET /api/mcp/tools`.
-7. [ ] Update server URL → re-sync → verify tools still work.
-8. [ ] Delete server → verify cascading cleanup of tool cache.
-9. [ ] Test internal server deletion block (`is_internal = True`).
+1. [x] Start `sample_calculator` server as subprocess fixture.
+2. [x] Register via `POST /api/mcp/servers` → verify DB row.
+3. [x] Health check → verify `healthy` status.
+4. [x] Discover tools → verify calculator tools appear in cache.
+5. [x] Invoke `add` tool with `{a: 2, b: 3}` → verify result `5`.
+6. [x] Toggle tool disabled → verify excluded from `GET /api/mcp/tools`.
+7. [x] Update server URL → re-sync → verify tools still work.
+8. [x] Delete server → verify cascading cleanup of tool cache.
+9. [x] Test internal server deletion block (`is_internal = True`).
 
 ## Definition of Done
 - Full MCP lifecycle test passes against actual running Gateway (`:8000`) and Postgres (`:5432`) (register → health → discover → invoke → toggle → update → delete endpoint test → internal block).

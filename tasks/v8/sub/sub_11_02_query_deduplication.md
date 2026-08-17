@@ -7,9 +7,9 @@
 Identify and fix N+1 query patterns in the backend.
 
 ## Tasks
-1. [ ] Fix hub member loading (currently individual queries per member).
-2. [ ] Fix agent/workflow listing with related data.
-3. [ ] Fix eval results with test case details.
+1. [x] Fix hub member loading (currently individual queries per member).
+2. [x] Fix agent/workflow listing with related data.
+3. [x] Fix eval results with test case details.
 
 ## Definition of Done
 - N+1 query patterns eliminated for hub members, agent/workflow listing, and eval results against actual running Postgres (`:5432`).

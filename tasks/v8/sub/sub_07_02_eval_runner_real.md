@@ -7,10 +7,10 @@
 Create `tests/integration/evalops/test_eval_runner_real.py` — DeepEval/RAGAS execution with real judge.
 
 ## Tasks
-1. [ ] Run DeepEval safety tests (hallucination, injection, toxicity) against a real LLM response using `gemini/gemini-3.5-flash` as `DEEPEVAL_MODEL`.
-2. [ ] Run RAGAS retrieval quality benchmarks against real Qdrant collection data (embeddings from `harrier-0.6b`).
-3. [ ] Eval run lifecycle (dispatch → in-progress → completed with scores).
-4. [ ] Eval results storage and retrieval.
+1. [x] Run DeepEval safety tests (hallucination, injection, toxicity) against a real LLM response using `gemini/gemini-3.5-flash` as `DEEPEVAL_MODEL`.
+2. [x] Run RAGAS retrieval quality benchmarks against real Qdrant collection data (embeddings from `harrier-0.6b`).
+3. [x] Eval run lifecycle (dispatch → in-progress → completed with scores).
+4. [x] Eval results storage and retrieval.
 
 ## Definition of Done
 - DeepEval safety tests and RAGAS benchmarks run with real LLM judge and actual running Qdrant (`:6333`) data, producing scores.

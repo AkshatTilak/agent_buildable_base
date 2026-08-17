@@ -58,9 +58,9 @@ There is no canonical location for user-contributed MCP tool servers, no sample 
   - Test MCP node with auth (bearer token passed correctly).
 
 ## Associated Subtasks
-1. `[ ]` `sub_15_01_mcp_tools_directory.md`: Create `mcp_tools/` directory with sample servers + `_template` + README.
-2. `[ ]` `sub_15_02_mcp_lifecycle_real.md`: `test_mcp_lifecycle_real.py` — full MCP lifecycle.
-3. `[ ]` `sub_15_03_workflow_mcp_nodes_real.md`: `test_workflow_mcp_nodes_real.py` — MCP tools in workflows.
+1. `[x]` `sub_15_01_mcp_tools_directory.md`: Create `mcp_tools/` directory with sample servers + `_template` + README.
+2. `[x]` `sub_15_02_mcp_lifecycle_real.md`: `test_mcp_lifecycle_real.py` — full MCP lifecycle.
+3. `[x]` `sub_15_03_workflow_mcp_nodes_real.md`: `test_workflow_mcp_nodes_real.py` — MCP tools in workflows.
 
 ## Definition of Done
 - `mcp_tools/` directory with `sample_calculator`, `sample_web_search`, `sample_code_executor`, and `_template` servers, each implementing REST + JSON-RPC.
@@ -69,3 +69,6 @@ There is no canonical location for user-contributed MCP tool servers, no sample 
 - MCP-node-in-workflow test passes with error handling and auth.
 - If errors arise, inspect Docker container logs (`docker compose logs db`) and fix root causes directly in MCP manager or GuardRoute engine.
 - Deleting test data is not necessary.
+
+## Status
+- `[x] Completed` — `mcp_tools/` ecosystem created with full developer guides and starter templates; all 8 MCP lifecycle and workflow integration tests passing against live Gateway and Postgres.

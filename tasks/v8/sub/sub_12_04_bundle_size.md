@@ -7,9 +7,9 @@
 Identify and tree-shake unused dependencies to reduce bundle size.
 
 ## Tasks
-1. [ ] Audit `frontend/package.json` for unused dependencies.
-2. [ ] Tree-shake unused dependencies.
-3. [ ] Verify bundle size reduction via build output / Lighthouse.
+1. [x] Audit `frontend/package.json` for unused dependencies.
+2. [x] Tree-shake unused dependencies.
+3. [x] Verify bundle size reduction via build output / Lighthouse.
 
 ## Definition of Done
 - Unused dependencies tree-shaken.

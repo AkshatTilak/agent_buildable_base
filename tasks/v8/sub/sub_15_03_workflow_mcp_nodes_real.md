@@ -7,10 +7,10 @@
 Create `tests/integration/guardroute/test_workflow_mcp_nodes_real.py` — MCP tools in workflows.
 
 ## Tasks
-1. [ ] Create workflow with MCP tool node → assign sample calculator tool.
-2. [ ] Execute workflow → verify MCP node calls the tool and passes result downstream.
-3. [ ] Test MCP node error handling (tool server down, timeout, invalid params).
-4. [ ] Test MCP node with auth (bearer token passed correctly).
+1. [x] Create workflow with MCP tool node → assign sample calculator tool.
+2. [x] Execute workflow → verify MCP node calls the tool and passes result downstream.
+3. [x] Test MCP node error handling (tool server down, timeout, invalid params).
+4. [x] Test MCP node with auth (bearer token passed correctly).
 
 ## Definition of Done
 - MCP-node-in-workflow test passes with result passing downstream against actual running Gateway (`:8000`).
