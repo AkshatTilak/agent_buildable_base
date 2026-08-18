@@ -1,129 +1,135 @@
-# Agentic Workspace: Autonomous System Builder
+<div align="center">
 
-Welcome to the Agentic Workspace. This repository is an AI-driven, highly
-modular framework designed to autonomously architect, execute, and verify
-complete software systems from a raw user idea.
+# 🤖 Agent Buildable Base
 
-It is **stack-agnostic**: the stack, tooling, OS, and shell are detected or
-asked at init time and recorded in `STACK.md`.
+**An opinionated, stack-agnostic scaffold for building autonomous software systems with AI agents.**
 
----
+Turn a raw idea into a designed, executed, and verified system — without the agent drifting, duplicating, or shipping unverified code.
 
-## 1. Core Architecture & AI Services
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](VERSION)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/AkshatTilak/agent_buildable_base/pulls)
+[![GitHub issues](https://img.shields.io/github/issues/AkshatTilak/agent_buildable_base)](https://github.com/AkshatTilak/agent_buildable_base/issues)
 
-This system is built with AI orchestration as a first-class citizen. The
-intelligence layer drives all downstream execution.
-
-### Agent Orchestration Layer
-- **High-Level System Architect (`agent.md`):** The primary orchestrator. It
-  digests requirements, maps the high-level topology, and bifurcates the work
-  into actionable milestones.
-- **Execution & Inference Agents:** Specialized agents that read isolated tasks,
-  fetch necessary context, and write the core business logic.
-- **Verification & Guardrail Agents:** Autonomous auditing agents that validate
-  inference integrity, token efficiency, and code structure before marking a
-  task complete.
-
-### AI Integration & Observability
-- **Inference Integrity:** Built-in hooks for LLM configurations, prompt
-  management, and evaluation benchmarks.
-- **Contextual Memory (`references/`):** A decoupled memory bank that prevents
-  context window pollution.
+</div>
 
 ---
 
-## 2. Backend & Infrastructure Foundations
+## What is Agent Buildable Base?
 
-Supporting the AI orchestration layer is a robust, production-ready backend
-designed for scalability.
-- **Modular Subsystems:** Shared utilities, data models, and configurations live
-  in a centralized library to enforce DRY principles.
-- **Data & Type Safety:** Heavy utilization of explicit typing and validation.
-- **Containerization & Deployment:** Native support for isolated Docker
-  environments, with an optimization checklist to keep images lean.
+Agent Buildable Base is a **modular workspace framework** that lets an AI agent autonomously architect, execute, and verify complete software systems from a raw user idea. It is **stack-agnostic** — the stack, tooling, OS, and shell are detected or asked at init time and recorded in `STACK.md`.
 
----
+The core idea: instead of a monolithic system prompt, the agent is guided by a **routing workflow** (`workflows/router.md`) that classifies every request and dispatches it to the right workflow — planning, execution, verification, or skill discovery. Every artifact is versioned, every task is verified, and every skill is reusable.
 
-## 3. Workspace Directory Structure
+## Why Agent Buildable Base?
+
+- **Design before code.** Workflows are designed first (`design/`), then features (`features/`), then tasks (`tasks/`) — never the other way around.
+- **Contextual memory bank.** `references/` decouples long-lived knowledge from the agent's context window, preventing pollution and drift.
+- **Two-track verification.** Every task must pass both unit tests *and* real system interaction before it's marked done (`workflows/execution/work_verification.md`).
+- **Reusable skill library.** `skills/` holds folder-per-skill capabilities (QA, UI, debugging, TDD, research) with a pull-adapt-delete import workflow.
+- **Hard conventions.** snake_case, zero-state definitions, duplicate-name root-causing, and a strict fallback policy — enforced, not advisory.
+- **Version everything.** Every file carries YAML frontmatter; the base version lives in `VERSION` and `CHANGELOG.md`.
+
+## Quick Start
+
+> This is a **base scaffold**, not a runtime. You use it by bootstrapping a project inside it.
+
+```bash
+# 1. Clone the base
+git clone https://github.com/AkshatTilak/agent_buildable_base.git
+cd agent_buildable_base
+
+# 2. Start a new project (or onboard an existing codebase)
+#    The agent reads workflows/router.md and routes to planning/init_project.md
+```
+
+The `init_project` workflow will:
+1. **Detect or ask** your stack, tooling, OS, and shell → recorded in `STACK.md`.
+2. **Design workflows first** → `design/`.
+3. **Define features** → `features/`.
+4. **Decompose into tasks** → `tasks/` (goal → base → sub).
+5. **Execute and verify** each task before sign-off.
+
+## How It Works
+
+```mermaid
+graph TD
+    A[User Prompt] --> B[workflows/router.md]
+    B --> C{Task Type}
+    C -->|New Project| D[planning/init_project.md]
+    C -->|Plan / Research| E[planning/planning.md]
+    C -->|Execute| F[execution/work_principle.md]
+    C -->|Verify / Audit| G[execution/work_verification.md]
+    C -->|Find Skills| H[user/find_skills.md]
+    C -->|User Input| I[user/user_input.md]
+    D --> J[design/ → features/ → tasks/]
+    J --> F
+    F --> G
+```
+
+## Repository Structure
 
 ```text
-├── agent.md                # Base Architect prompt — always loaded, references workflows/router.md
+├── agent.md                # Base Architect prompt — always loaded
 ├── README.md               # You are here
 ├── CHANGELOG.md            # Base-level changelog
 ├── VERSION                 # Base version (semver)
 ├── STACK.md                # Recorded stack, tooling, OS, shell for THIS project
-├── USER_PREFERENCES.md     # Per-user preferences (tools, casing, fallback stance, verbosity)
+├── USER_PREFERENCES.md     # Per-user preferences
 ├── CONVENTIONS.md          # snake_case, zero-state, duplicate-name, fallback rules
 ├── CODING_PHILOSOPHY.md    # How we write code
-├── workflows/              # Workflows (renamed from prompts/) — organized by category
-│   ├── router.md           # Routes user prompts to the best workflow (checked FIRST)
+├── workflows/              # Routing + execution workflows
+│   ├── router.md           # Routes prompts to the best workflow (checked FIRST)
 │   ├── execution/          # work_principle, work_verification
 │   ├── planning/           # planning, init_project, extend_goal, extend_task
 │   ├── quality/            # recheck_codebase, fallback_policy
 │   ├── user/               # user_input, find_skills
 │   └── ci/                 # setup_ci
-├── design/                 # All design kept separate
-│   ├── design.md           # Master design guide & index
-│   ├── system/             # System architecture designs
-│   ├── workflows/          # Workflow designs (designed BEFORE tasks)
-│   └── ux/                 # User-interaction / UX designs
-├── features/               # Feature specs
-│   ├── features.md         # Master feature guide & index
-│   └── _template/          # Feature template (mermaid, connections, caveats, changelog)
-├── references/             # The contextual memory bank for agents
-│   ├── references.md       # Master guide for reading/writing contextual memory
-│   ├── code/               # Explanations of complex logic and historical mappings
-│   ├── deployment/         # Dockerfiles, CI/CD, env templates, optimization checklist
-│   ├── issues/             # Technical debt, bottlenecks, and blocked tasks
-│   ├── logic/              # Business rules and system interaction flows
-│   ├── resource/           # External API docs, dataset links, and asset catalogs
-│   ├── structure/          # Database schemas, API routing, and dependency graphs
-│   ├── user/               # Human-in-the-loop requests (API keys, manual QA)
-│   ├── tests/              # Two-track testing conventions
-│   ├── logs/               # Logging, tracing, and observability conventions
-│   ├── db/                 # Schema/model/migration sync tracking
-│   └── tooling/            # Linter/formatter/type-checker/dep-manager + OS/shell
+├── design/                 # System, workflow, and UX designs
+├── features/               # Feature specs with mermaid diagrams
+├── references/             # Contextual memory bank for agents
+│   ├── code/  deployment/  issues/  logic/  resource/
+│   ├── structure/  user/  tests/  logs/  db/  tooling/
 ├── tasks/                  # Active execution directory
-│   ├── tasks.md            # Master guide for task hierarchy and state roll-ups
-│   ├── _templates/         # Reusable Goal/Base/Sub/Temp skeletons
-│   ├── goal/               # The ultimate system objective
-│   ├── base/               # Broad architectural milestones (The "What" and "Why")
-│   ├── sub/                # Granular execution units (The "How")
-│   └── temp/               # Holding zone for spontaneous, out-of-scope issues
-├── skills/                 # Reusable job skills (tracked) — folder-per-skill
-│   ├── skills.md           # Skills index & how to write a skill
-│   ├── manage_skills.md    # Create/update/delete skills (CRUD)
-│   ├── qa/backend/         # SKILL.md + scripts/
-│   ├── qa/frontend/        # SKILL.md + scripts/
-│   ├── qa/docker/          # SKILL.md + scripts/
-│   ├── qa/network/         # SKILL.md + scripts/
-│   ├── ui/creation/        # SKILL.md + scripts/
-│   └── debug/traceback/    # SKILL.md + scripts/
+│   ├── goal/  base/  sub/  temp/  _templates/
+├── skills/                 # Reusable job skills (tracked)
+│   ├── skills.md           # Skills index
+│   ├── manage_skills.md    # CRUD + pull-adapt-delete import
+│   ├── qa/  ui/  debug/  practice/  research/  backend/
 └── assets/                 # User-provided test inputs (gitignored)
-    └── README.md           # Explains purpose; contents are gitignored
 ```
 
----
+## Skills Library
 
-## 4. How To Use
+The `skills/` directory holds reusable, folder-per-skill capabilities. Each skill is a `SKILL.md` (metadata + instructions) plus an optional `scripts/` folder.
 
-1. **Route** every interaction through `workflows/router.md` — it reads the user
-   prompt and picks the best workflow.
-2. **Start a project** with `workflows/planning/init_project.md` — either map an
-   existing codebase (read-only analysis first) or bootstrap a new one.
-3. **Design workflows first** (`design/`), then define features (`features/`),
-   then decompose into tasks (`tasks/`).
-4. **Execute** tasks per `workflows/execution/work_principle.md`.
-5. **Verify** every completed task per `workflows/execution/work_verification.md`.
-6. **Respect user preferences** (`USER_PREFERENCES.md`) and project overrides
-   (`STACK.md`).
-7. **Keep everything versioned** — bump versions and update changelogs.
+| Domain | Skills |
+|--------|--------|
+| **QA** | backend, frontend, docker, network, e2e |
+| **UI** | creation, frontend_design |
+| **Debug** | traceback |
+| **Practice** | tdd, systematic_debugging, code_review, verification_before_completion |
+| **Research** | web_research |
+| **Backend** | api_design, domain_modeling |
 
----
+New skills are imported via a **pull-adapt-delete** workflow: pull the source into `skills/_staging/`, adapt it to our format, then delete the staged copy.
 
-## 5. Versioning
+## Conventions
 
-- The base version is in `VERSION` and `CHANGELOG.md`.
-- Every file carries a YAML frontmatter header (`version`, `updated`, `id`,
-  `links`).
-- Releases are tagged in git (`v1.0.0`, ...).
+- **snake_case** everywhere — files, folders, identifiers.
+- **Zero-state convention** — every structure defines empty, populated, and errored states.
+- **Duplicate-name root-causing** — unify divergent names at the source, never add aliases.
+- **Fallback is not a default** — no blanket `try/except`; fallbacks only when the user requests them.
+- **Two-track testing** — unit + real system interaction, both mandatory.
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Follow the conventions in `CONVENTIONS.md` and `CODING_PHILOSOPHY.md`.
+2. Bump versions and update `CHANGELOG.md` for every change.
+3. Verify your work against `workflows/execution/work_verification.md`.
+
+## License
+
+[MIT](LICENSE) © 2026 Akshat Tilak
