@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 1.2.0
 updated: 2026-08-18
 id: skills
 links:
@@ -48,6 +48,15 @@ my-skill/
 | QA — frontend | `qa/frontend/SKILL.md` | Quality assurance for frontend systems. |
 | QA — docker | `qa/docker/SKILL.md` | Quality assurance for Docker builds. |
 | QA — network | `qa/network/SKILL.md` | Quality assurance for networking. |
+| QA — E2E | `qa/e2e/SKILL.md` | Live browser-driven E2E testing with Playwright. |
 | UI/UX creation | `ui/creation/SKILL.md` | Design and build user interfaces. |
+| UI — frontend design | `ui/frontend_design/SKILL.md` | Production-quality frontend design; avoids generic AI aesthetics. |
 | Traceback check | `debug/traceback/SKILL.md` | Diagnose and fix tracebacks/errors. |
+| Practice — TDD | `practice/tdd/SKILL.md` | Red-green-refactor test-first development cycle. |
+| Practice — systematic debugging | `practice/systematic_debugging/SKILL.md` | Structured 7-phase debugging workflow. |
+| Practice — code review | `practice/code_review/SKILL.md` | Structured code review against standards and spec. |
+| Practice — verification before completion | `practice/verification_before_completion/SKILL.md` | Mandatory pre-completion verification gate. |
+| Research — web research | `research/web_research/SKILL.md` | Structured web research with primary-source citations. |
+| Backend — API design | `backend/api_design/SKILL.md` | REST and GraphQL API design principles. |
+| Backend — domain modeling | `backend/domain_modeling/SKILL.md` | Ubiquitous language, domain glossary, and ADRs. |
 

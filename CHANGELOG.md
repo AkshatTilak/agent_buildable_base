@@ -10,6 +10,46 @@ The current version is tracked in [`VERSION`](VERSION) and mirrored as git tags
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-08-18
+
+### Added
+- **`skills/practice/tdd/`**: test-driven development skill — red-green-refactor
+  cycle at pre-agreed interface seams; bans tautological tests and internal
+  mocking. Adapted from obra/superpowers and mattpocock/skills.
+- **`skills/practice/systematic_debugging/`**: structured 4-phase debugging
+  workflow (root cause investigation → pattern analysis → hypothesis testing →
+  implementation). Complements `debug/traceback`. Adapted from obra/superpowers.
+- **`skills/practice/code_review/`**: two-axis code review (Standards + Spec)
+  with Fowler smell baseline. Adapted from mattpocock/skills and
+  obra/superpowers.
+- **`skills/practice/verification_before_completion/`**: mandatory pre-completion
+  gate — evidence before claims, gate function, red flags, rationalization
+  prevention. Adapted from obra/superpowers.
+- **`skills/qa/e2e/`**: live browser-driven E2E testing with Playwright
+  (decision tree, reconnaissance-then-action, state verification). Fills gap
+  left by static `qa/frontend`. Adapted from anthropic/skills.
+- **`skills/research/web_research/`**: structured web research with background
+  agent, primary-source citation, bias awareness. Adapted from
+  mattpocock/skills.
+- **`skills/ui/frontend_design/`**: production-quality frontend design enforcing
+  deliberate typography, color, spacing, and motion; avoids generic AI
+  aesthetics. Adapted from anthropic/skills.
+- **`skills/backend/api_design/`**: REST and GraphQL API design principles —
+  schema-first, error contracts, versioning, backward-compatibility awareness.
+  Adapted from wshobson/agents and addyosmani/agent-skills.
+- **`skills/backend/domain_modeling/`**: ubiquitous language glossary, domain
+  model documentation, Architectural Decision Records (ADRs), deletion test,
+  and codebase-design vocabulary (module, interface, depth, seam, adapter,
+  leverage, locality). Adapted from mattpocock/skills.
+
+### Changed
+- **`skills/skills.md`**: index expanded from 7 to 16 entries; version bumped to
+  1.2.0.
+- **`skills/manage_skills.md`**: added pull-adapt-delete workflow for importing
+  external skills; version bumped to 2.0.0.
+- **`workflows/user/find_skills.md`**: added staging directory workflow and
+  pull-adapt-delete process; version bumped to 2.0.0.
+
 ## [1.1.0] - 2026-08-18
 
 ### Added

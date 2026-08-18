@@ -1,5 +1,5 @@
 ---
-version: 1.0.0
+version: 2.0.0
 updated: 2026-08-18
 id: find_skills
 links:
@@ -41,12 +41,22 @@ The following hubs are known to be viable for discovering skills:
    `../planning/planning.md`).
 3. **Evaluate** candidates: relevance, accuracy, security (prefer A/B grades on
    agentskillshub), and fit for the project's stack and environment.
-4. **Import** the chosen skill into our format:
+4. **Pull** the chosen skill source into `skills/_staging/`:
+   - Clone the repository or download the skill files.
+   - Preserve the original structure for reference.
+   - Do NOT modify staged files — they are read-only reference.
+5. **Adapt** the skill into our format:
    - Create `skills/<domain>/<skill>/SKILL.md` + optional `scripts/`.
-   - Adapt the hub's instructions to our `SKILL.md` format (trigger conditions,
-     steps, expected outputs, references).
-5. **Register** it in the skills index (`../../skills/skills.md`).
-6. Use `../../skills/manage_skills.md` for create/update/delete operations.
+   - Convert frontmatter to our schema (`version`, `updated`, `id`, `links`).
+   - Rewrite instructions to reference our internal files (`workflows/`,
+     `references/`, `CONVENTIONS.md`, etc.).
+   - Remove hub-specific setup instructions.
+   - Add our standard sections: Trigger Conditions, Steps, Expected Outputs,
+     References.
+   - Credit the original source in References.
+6. **Register** it in the skills index (`../../skills/skills.md`).
+7. **Delete** the staged source from `skills/_staging/` after verification.
+8. Use `../../skills/manage_skills.md` for create/update/delete operations.
 
 ## 4. Skill Format
 
@@ -55,7 +65,13 @@ Each skill is a folder with:
   expected outputs, references).
 - **`scripts/`** (optional): executable code that supports the skill.
 
-## 5. Output
+## 5. Staging Directory
+
+`skills/_staging/` is a temporary holding area for pulled skill sources during
+the import process. It should always be empty except during active import work.
+
+## 6. Output
 
 - A new skill folder in `../../skills/`.
 - Updated skills index.
+- Empty `_staging/` directory.
