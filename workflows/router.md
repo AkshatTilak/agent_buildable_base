@@ -54,9 +54,10 @@ graph TD
 
 1. **Receive** the user prompt.
 2. **Classify** the task type using the decision tree above.
-3. **Route** to the primary workflow.
-4. **Load** supporting workflows as dependencies.
-5. **Execute** in order (respecting dependencies).
+3. **Inspect Skills**: Check `../skills/skills.md` to find available skills matching the task (e.g. `practice/tdd`, `practice/verification_before_completion`, `ui/frontend_design`). Adopt the relevant skill rules.
+4. **Route** to the primary workflow.
+5. **Load** supporting workflows and references (`../references/`).
+6. **Execute** in order (respecting dependencies).
 
 ## 4. Example Flows
 
