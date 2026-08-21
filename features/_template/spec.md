@@ -6,13 +6,20 @@ status: proposed            # proposed | designed | implemented | verified
 links:
   - ../../design/workflows/<workflow>.md
   - ../../tasks/base/<task>.md
+  - ../../tasks/goal/goal.md
   - ../../references/structure/<schema>.md
 ---
 
 # Feature: <Feature Name>
 
 ## Overview
-What this feature does, in plain terms.
+What this feature does, in plain terms. This spec is the feature's **LLD**
+(component logic, APIs, data structures) within the DDS — see
+`../../design/design.md` §2.
+
+## SRS Traceability
+Which SRS requirements (`FR-###` / `NFR-###` / `IR-###` in
+`../../tasks/goal/goal.md`) this feature implements.
 
 ## Mermaid Diagram
 Full connections and paths this feature considers.

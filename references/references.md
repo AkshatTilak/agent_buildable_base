@@ -1,9 +1,10 @@
 ---
-version: 1.0.0
-updated: 2026-08-18
+version: 1.1.0
+updated: 2026-08-20
 id: references
 links:
   - ../tasks/tasks.md
+  - ../design/design.md
   - ../CONVENTIONS.md
   - ../workflows/execution/work_principle.md
   - ../workflows/execution/work_verification.md
@@ -16,6 +17,12 @@ AI agents and human developers working on the project. It stores architectural
 decisions, codebase context, unresolved issues, deployment guidelines, testing
 and logging conventions, database/schema state, tooling, and human-in-the-loop
 tasks.
+
+**Role in the DDS** (see `../design/design.md` §2): `references/` holds the
+*factual detail* that backs both design levels — HLD draws on `structure/`,
+`db/`, `tooling/`, `deployment/`; LLD draws on `logic/`, `code/`, `tests/`,
+`logs/`; `issues/`, `resource/`, `user/` are cross-cutting. Design docs
+narrate; reference files record facts. **Link, don't copy.**
 
 **Agent Instruction:** Before executing a task, query the relevant subdirectories
 here to understand existing paradigms. Upon completing a complex task, updating
@@ -142,3 +149,11 @@ subdirectories. Do not dump raw data into the root folder.
 | Area | Path | Status |
 |------|------|--------|
 | _(none yet)_ | | |
+
+---
+
+## 4. Changelog
+
+- `1.1.0` (2026-08-20): Declared the HLD/LLD support role within the DDS;
+  added anti-duplication rule (link, don't copy).
+- `1.0.0` (2026-08-18): Initial reference management guide.

@@ -5,6 +5,7 @@ updated: YYYY-MM-DD
 status: not_started
 parent: goal_001
 depends_on: []
+srs_refs: [FR-001]            # requirement IDs from ../goal/goal.md this milestone satisfies
 links:
   - ../../design/workflows/<workflow>.md
   - ../../features/<feature>.md
@@ -14,6 +15,10 @@ links:
 
 ## Objective
 A one-sentence summary of the milestone.
+
+## SRS Traceability
+Which SRS requirements (`FR-###` / `NFR-###` / `IR-###` in `../goal/goal.md`)
+this milestone satisfies, and how.
 
 ## Business / System Value
 Why this component is necessary.

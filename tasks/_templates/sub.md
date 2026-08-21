@@ -5,6 +5,7 @@ updated: YYYY-MM-DD
 status: not_started
 parent: base_001
 depends_on: []
+srs_refs: []                  # optional: requirement IDs this unit directly implements (inherited from parent base task if empty)
 links:
   - ../../features/<feature>.md
   - ../../references/structure/<schema>.md

@@ -1,10 +1,11 @@
 ---
-version: 1.0.0
-updated: 2026-08-18
+version: 1.1.0
+updated: 2026-08-20
 id: router
 links:
   - ../agent.md
   - ../USER_PREFERENCES.md
+  - ../tasks/goal/goal.md
   - planning/planning.md
   - execution/work_principle.md
   - quality/recheck_codebase.md
@@ -25,7 +26,7 @@ graph TD
     B -->|Plan / Research| D["→ planning/planning.md"]
     B -->|Execute Task| E["→ execution/work_principle.md"]
     B -->|Verify / Audit| F["→ execution/work_verification.md"]
-    B -->|Extend Goal| G["→ planning/extend_goal.md"]
+    B -->|Change / Add / Retire Requirement (SRS)| G["→ planning/extend_goal.md"]
     B -->|Deepen Task| H["→ planning/extend_task.md"]
     B -->|Audit Drift| I["→ quality/recheck_codebase.md"]
     B -->|User Input Needed| J["→ user/user_input.md"]
@@ -42,7 +43,7 @@ graph TD
 | "Research" / "Plan" / "Options" / "Recommend" | `planning/planning.md` | `user/user_input.md` |
 | "Execute" / "Implement" / "Build" / "Work" | `execution/work_principle.md` | `planning/planning.md` (first) |
 | "Verify" / "Audit" / "Test" / "Check" | `execution/work_verification.md` | (standalone) |
-| "Expand" / "Deepen" a goal | `planning/extend_goal.md` | `user/user_input.md` |
+| "Change" / "Add" / "Retire" a requirement, "goal changed", "revise the SRS" | `planning/extend_goal.md` | `user/user_input.md` |
 | "Expand" / "Deepen" a task | `planning/extend_task.md` | `user/user_input.md` |
 | "Audit" / "Drift check" / "Recheck" | `quality/recheck_codebase.md` | `execution/work_verification.md` |
 | "Ask user" / "Need input" / "Conditioning" | `user/user_input.md` | (standalone or upstream) |
@@ -66,7 +67,7 @@ graph TD
 User: "Build authentication system"
 → Router classifies as "Execute + Plan"
 → Load: planning/planning.md (research first)
-→ Load: planning/extend_goal.md (clarify scope)
+→ Load: planning/extend_goal.md (add/clarify SRS requirements)
 → Load: user/user_input.md (ask user questions)
 → Load: execution/work_principle.md (execute)
 → Load: execution/work_verification.md (verify)
@@ -95,3 +96,9 @@ User: "Should we support backward compatibility?"
   (tools, casing, fallback stance, verbosity) that may affect which workflow or
   how it is executed.
 - Project-level overrides live in `../STACK.md`.
+
+## 6. Changelog
+
+- `1.1.0` (2026-08-20): Goal route is now the SRS revision route
+  (`planning/extend_goal.md` handles requirement CRUD + task restructuring).
+- `1.0.0` (2026-08-18): Initial router.

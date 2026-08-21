@@ -1,12 +1,13 @@
 ---
-version: 1.0.0
-updated: 2026-08-18
+version: 1.1.0
+updated: 2026-08-20
 id: tasks
 links:
   - ../CONVENTIONS.md
   - ../references/references.md
   - ../workflows/execution/work_principle.md
   - ../workflows/execution/work_verification.md
+  - ../workflows/planning/extend_goal.md
 ---
 
 # Standard Operating Procedure: Task Management & Hierarchy (`tasks.md`)
@@ -20,6 +21,11 @@ definitions to maintain alignment and prevent scope creep.
 > exist (see `../design/design.md`). Tasks are derived from designs, never the
 > other way around.
 
+> **SRS-first**: The Goal (`goal/goal.md`) is the project's **SRS** — the source
+> of truth for WHAT/WHY. All changes to it go through
+> `../workflows/planning/extend_goal.md`, which propagates requirement changes
+> into this task tree.
+
 ---
 
 ## 1. The Task Hierarchy
@@ -27,10 +33,15 @@ definitions to maintain alignment and prevent scope creep.
 All project work is divided into four layers, represented by the subdirectories
 within the `tasks/` folder:
 
-### I. `goal/` (The North Star)
-- **Purpose:** Defines the absolute final objective of the entire system.
-- **Scope:** Contains a single, high-level document outlining what the
-  completed, production-ready system looks like.
+### I. `goal/` (The North Star — SRS)
+- **Purpose:** The Goal file **is** the Software Requirements Specification
+  (SRS): purpose, scope, constraints, and versioned requirements with stable
+  IDs (`FR-###`, `NFR-###`, `IR-###`).
+- **Scope:** A single high-level document (`goal/goal.md`) outlining what the
+  completed, production-ready system looks like and requires.
+- **Versioning:** Every SRS edit bumps `version` and logs a Changelog entry;
+  minor/major bumps trigger task restructuring via
+  `../workflows/planning/extend_goal.md`.
 - **Completion State:** The Goal is only achieved when **all** underlying Base
   Tasks are successfully executed, verified, and integrated.
 
@@ -79,6 +90,7 @@ updated: YYYY-MM-DD
 status: not_started             # not_started | in_progress | completed
 parent: <parent_task_id>        # for sub/: the base task id; for base/: the goal id
 depends_on: [<task_ids>]        # tasks that must complete first
+srs_refs: [<requirement_ids>]   # FR/NFR/IR IDs from goal/goal.md this task satisfies (base: required; sub: optional, inherits parent)
 links:                          # cross-links to features/design/references/older tasks
   - ../features/<feature>.md
   - ../design/workflows/<workflow>.md
@@ -89,6 +101,9 @@ links:                          # cross-links to features/design/references/olde
 
 - **`id`** is stable and never reused.
 - **`version`** bumps on every edit; the changelog section below records what changed.
+- **`srs_refs`** is the traceability anchor: it lets the SRS revision workflow
+  (`../workflows/planning/extend_goal.md`) find every task affected by a
+  requirement change.
 - **`links`** is how tasks stay connected to features, designs, references, and
   **older tasks/versions they supersede** — so history is never lost when a task
   changes something an older task already handled.
@@ -100,12 +115,18 @@ links:                          # cross-links to features/design/references/olde
 Templates live in `tasks/_templates/` and are copied (not edited in place) when
 creating a new task.
 
-### Goal Template (`tasks/goal/goal.md`)
-- **Objective:** One-sentence statement of the ultimate system objective.
-- **Success Criteria:** The measurable definition of "done" for the whole system.
-- **Base Task Registry:** Checklist of all Base Tasks required to achieve the Goal.
-- **Constraints & Non-Goals:** What the system explicitly will NOT do.
-- **User Decisions:** Recorded user choices that shaped the goal (see
+### Goal Template (`tasks/goal/goal.md`) — the SRS
+Structured as a Software Requirements Specification (see the template for the
+full section layout):
+- **Introduction:** purpose, scope, definitions, references.
+- **Overall Description:** product perspective, users, constraints, assumptions.
+- **Functional / Non-Functional / Interface Requirements:** stable IDs
+  (`FR-###`, `NFR-###`, `IR-###`), never reused; retired IDs are struck
+  through, never deleted.
+- **Success Criteria:** the measurable definition of "done" for the whole system.
+- **Base Task Registry:** checklist of all Base Tasks, each annotated with the
+  requirement IDs it satisfies.
+- **User Decisions:** recorded user choices that shaped the SRS (see
   `../workflows/user/user_input.md`).
 
 ### Base Task Template (`tasks/base/[task_name].md`)
@@ -167,6 +188,9 @@ Tasks are cleared.
 - **Renumbering rule:** when a task is inserted or removed, renumber the
   affected `sub/` files and update `depends_on` references. Do not leave gaps or
   out-of-order numbers.
+- **SRS-driven restructuring:** when the Goal SRS changes (minor/major version
+  bump), the impact analysis, add/improve/remove decisions, and renumbering are
+  executed by `../workflows/planning/extend_goal.md` — never ad-hoc.
 - A task may only be marked `in_progress` when all its `depends_on` tasks are
   `completed`.
 
@@ -178,3 +202,10 @@ Tasks are cleared.
   (what changed, when, and why).
 - The base-level changelog is `../CHANGELOG.md`; feature-level changelogs live
   in `../features/<feature>/CHANGELOG.md`.
+
+### `tasks.md` Changelog
+
+- `1.1.0` (2026-08-20): Goal redefined as the SRS with stable requirement IDs;
+  added `srs_refs` traceability to the frontmatter schema; SRS-driven
+  restructuring routed through `extend_goal.md`.
+- `1.0.0` (2026-08-18): Initial task management SOP.

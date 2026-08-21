@@ -7,7 +7,7 @@
 Turn a raw idea into a designed, executed, and verified system — without the agent drifting, duplicating, or shipping unverified code.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](VERSION)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](VERSION)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/AkshatTilak/agent_buildable_base/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/AkshatTilak/agent_buildable_base)](https://github.com/AkshatTilak/agent_buildable_base/issues)
 
@@ -23,7 +23,8 @@ The core idea: instead of a monolithic system prompt, the agent is guided by a *
 
 ## Why Agent Buildable Base?
 
-- **Design before code.** Workflows are designed first (`design/`), then features (`features/`), then tasks (`tasks/`) — never the other way around.
+- **Requirements before design, design before code.** The goal file is a versioned **SRS** (`tasks/goal/goal.md`) with stable requirement IDs; the **DDS** (`design/` HLD + `features/` LLD specs) follows; tasks (`tasks/`) come last — never the other way around.
+- **Traceable change.** Every task carries `srs_refs` to the requirements it satisfies, so a goal change triggers structured impact analysis and task restructuring (`workflows/planning/extend_goal.md`).
 - **Contextual memory bank.** `references/` decouples long-lived knowledge from the agent's context window, preventing pollution and drift.
 - **Two-track verification.** Every task must pass both unit tests *and* real system interaction before it's marked done (`workflows/execution/work_verification.md`).
 - **Reusable skill library.** `skills/` holds folder-per-skill capabilities (QA, UI, debugging, TDD, research) with a pull-adapt-delete import workflow.
@@ -45,9 +46,9 @@ cd agent_buildable_base
 
 The `init_project` workflow will:
 1. **Detect or ask** your stack, tooling, OS, and shell → recorded in `STACK.md`.
-2. **Design workflows first** → `design/`.
-3. **Define features** → `features/`.
-4. **Decompose into tasks** → `tasks/` (goal → base → sub).
+2. **Author the SRS** → `tasks/goal/goal.md` (versioned requirements).
+3. **Design the DDS** → HLD in `design/system/`, LLD in `design/workflows/` + `features/`.
+4. **Decompose into tasks** → `tasks/` (goal SRS → base → sub) with `srs_refs` traceability.
 5. **Execute and verify** each task before sign-off.
 
 ## How It Works
@@ -62,7 +63,7 @@ graph TD
     C -->|Verify / Audit| G[execution/work_verification.md]
     C -->|Find Skills| H[user/find_skills.md]
     C -->|User Input| I[user/user_input.md]
-    D --> J[design/ → features/ → tasks/]
+    D --> J[SRS goal → design/ HLD → features/ LLD → tasks/]
     J --> F
     F --> G
 ```

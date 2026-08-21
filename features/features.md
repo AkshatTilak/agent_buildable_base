@@ -1,29 +1,32 @@
 ---
-version: 1.0.0
-updated: 2026-08-18
+version: 1.1.0
+updated: 2026-08-20
 id: features
 links:
   - ../design/design.md
   - ../tasks/tasks.md
+  - ../tasks/goal/goal.md
   - ../references/references.md
 ---
 
 # Features — Master Guide & Index
 
-> **Purpose**: A **feature** is a user-visible capability of the system. Each
-> feature is documented in its own folder under `features/`, with a spec that
-> includes a mermaid diagram, full connections and paths, caveats, and a
-> per-feature changelog.
+> **Purpose**: A **feature** is a user-visible capability of the system. Feature
+> specs are the **Low-Level Design (LLD)** layer of the DDS (see
+> `../design/design.md` §2): each spec documents component logic, APIs, data
+> structures, states, mermaid diagrams of full connections and paths, caveats,
+> and a per-feature changelog.
 
 ## 1. What Belongs Here
 
-- Feature **specifications** (what the feature does, how it connects).
+- Feature **specifications** (LLD: what the feature does, how it connects).
 - Feature **diagrams** (mermaid) showing full connections and paths.
 - Feature **caveats** and known limitations.
 - Feature **changelog** (every change to the feature).
 
-Design rationale lives in `../design/`; execution work lives in `../tasks/`.
-Features link to both.
+HLD rationale lives in `../design/system/`; execution work lives in
+`../tasks/`; requirements live in the SRS (`../tasks/goal/goal.md`). Features
+link to all three — content is never duplicated, only linked.
 
 ## 2. Directory Structure
 
@@ -45,7 +48,9 @@ features/
    - **States**: empty/zero, populated, errored (per `../CONVENTIONS.md` §2).
    - **Caveats**: known limitations, edge cases, and trade-offs.
    - **Backward compatibility**: whether changes preserve it (a user choice).
-3. Link the feature from the relevant tasks (`../tasks/tasks.md` §2 `links`).
+3. Link the feature from the relevant tasks (`../tasks/tasks.md` §2 `links`)
+   and note which SRS requirement IDs (`FR-###` / `NFR-###` / `IR-###` in
+   `../tasks/goal/goal.md`) it implements.
 4. Add the feature to the index below.
 5. Record changes in `features/<feature_name>/CHANGELOG.md`.
 
@@ -62,3 +67,9 @@ tasks that changed it.
 | Feature | Path | Status |
 |---------|------|--------|
 | _(none yet)_ | | |
+
+## 6. Changelog
+
+- `1.1.0` (2026-08-20): Reframed features as the LLD layer of the DDS; added
+  SRS requirement traceability.
+- `1.0.0` (2026-08-18): Initial features guide.

@@ -10,6 +10,39 @@ The current version is tracked in [`VERSION`](VERSION) and mirrored as git tags
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-20
+
+### Added
+- **SRS goal format**: `tasks/_templates/goal.md` is now a Software
+  Requirements Specification (Introduction, Overall Description, Functional /
+  Non-Functional / External Interface Requirements with stable `FR-###` /
+  `NFR-###` / `IR-###` IDs, Success Criteria, Base Task Registry, User
+  Decisions).
+- **`srs_refs` frontmatter field**: Base Tasks (required) and Subtasks
+  (optional) now trace to the SRS requirement IDs they satisfy, enabling
+  impact analysis on goal changes.
+- **SRS revision workflow**: `workflows/planning/extend_goal.md` rewritten as
+  the single entry point for requirement CRUD, SRS versioning (patch/minor/
+  major), impact analysis, and task restructuring (add / improve / remove /
+  renumber).
+- **DDS framing**: `design/design.md` is now the Design Document Specification
+  umbrella with an explicit HLD (architecture, stack, DB, modules) / LLD
+  (component logic, APIs, data structures, workflows) split and an
+  anti-duplication mapping to `STACK.md`, `features/`, and `references/`.
+
+### Changed
+- **`tasks/tasks.md`**: goal layer redefined as the SRS; frontmatter schema
+  documents `srs_refs`; SRS-driven restructuring routed through
+  `extend_goal.md` (§6).
+- **`features/features.md`**: features declared as the LLD layer of the DDS;
+  spec template gains an SRS Traceability section.
+- **`references/references.md`**: declared as the factual detail bank backing
+  HLD/LLD (link, don't copy).
+- **`workflows/planning/init_project.md`**: Mode A/B author the SRS first and
+  decompose with `srs_refs` traceability.
+- **`workflows/router.md`**: goal changes route to the SRS revision workflow.
+- **`agent.md`**: core objectives reordered to the SRS → DDS → tasks loop.
+
 ## [1.2.0] - 2026-08-18
 
 ### Added
