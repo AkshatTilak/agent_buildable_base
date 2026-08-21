@@ -41,16 +41,20 @@ restructures the tree. Every layer links; nothing is duplicated.
 
 ## Core Objectives & Workflow
 
-### 0. Routing & Skill Discovery (Adhere to `workflows/router.md`)
+### 0. Cold-Start Context Exploration & Router Discovery (Adhere to `workflows/router.md`)
+- **Cold-Start Protocol**: If a session begins with no prior conversation history or you are freshly initialized, **explore the active project's ABB workspace first** (`STACK.md`, `tasks/goal/goal.md`, `tasks/tasks.md`, `features/features.md`, `references/`) before executing modifying actions or answering stateful project queries. Establish full situational awareness: current milestone, active subtasks, tech stack, and verification gates.
 - On every interaction, consult `workflows/router.md` to classify the user prompt and route to the best workflow.
 - Consult `USER_PREFERENCES.md` for user preferences before executing.
 - **Skill Selection**: Inspect `skills/skills.md` (or available skills) and adopt relevant skills matching the task type (e.g. `practice/tdd` for testing/code, `ui/frontend_design` for interfaces, `practice/verification_before_completion` for verification).
 
-### 1. Project Initialization (Adhere to `workflows/planning/init_project.md`)
+### 1. Project Initialization & Open-Source Template Ingestion (Adhere to `workflows/planning/init_project.md`)
 - Run the `init_project` entry point.
 - **Detect or ask** the stack, tooling (linter, formatter, type-checker, dependency manager), OS, and shell. Record them in `STACK.md`.
+- **Open-Source Template & Reference Ingestion**: When planning or initializing a new system, research open-source architectures, repositories, and industry standard templates on GitHub. Prompt the user to choose their implementation approach:
+  1. **Build upon a template (Fork & Update)**: Adopt an existing open-source template/boilerplate codebase as the foundation and adapt it.
+  2. **Create from scratch with template in mind (Reference-Informed Scratch Build)**: Analyze reference architectures/templates, extract best practices, and author the SRS, DDS, features, and clean implementation from scratch.
+  3. **Custom Pure Architecture**: Build tailored architecture strictly according to custom specs.
 - For an **existing codebase**: perform **read-only analysis first**, propose a mapping into this system, and only write files after user approval.
-- For a **new project**: author the SRS (goal), design the DDS, define features, decompose tasks, and set up.
 
 ### 2. Requirements First — The SRS (Adhere to `tasks/goal/goal.md`)
 - **The Goal file is the SRS.** All requirements carry stable IDs (`FR-###`, `NFR-###`, `IR-###`) that are never reused.
@@ -78,9 +82,10 @@ As you architect the system, populate the `references/` directory to give downst
 - Do **NOT** write out full implementation code. Use references to guide execution agents conceptually.
 
 ### 7. Operational Guiding Principles
+- **Cold-Start Situational Awareness:** On fresh chat sessions, explore and assimilate active ABB workspace state before taking actions.
 - **Clarification First:** If the user's project idea contains ambiguities or gaps, ask targeted clarifying questions before finalizing architecture (see `workflows/user/user_input.md`).
 - **Risk & Conflict View:** If any part of the project design lacks feasibility, put that into view for the user immediately.
 - **Backward Compatibility Is A Choice:** Ask the user whether to preserve backward compatibility or break it. Never assume silently.
-- **Plan & Research:** Before finalizing architecture, research options and present recommendations (see `workflows/planning/planning.md`).
+- **Plan & Open-Source Research:** Before finalizing architecture, research open-source reference patterns/templates and present recommendations (see `workflows/planning/planning.md`).
 - **Two-Track Verification:** Enforce Track 1 (unit) and Track 2 (integration/E2E) verification defined in `STACK.md` before marking any subtask done.
 - **Respect Conventions:** Follow `CONVENTIONS.md` and `CODING_PHILOSOPHY.md` on all changes.
