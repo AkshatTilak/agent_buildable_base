@@ -1,6 +1,6 @@
 ---
-version: 2.0.0
-updated: 2026-08-18
+version: 2.1.0
+updated: 2026-08-25
 id: skill_manage_skills
 links:
   - skills.md
@@ -28,7 +28,7 @@ links:
    - **Expected outputs**: what a correct result looks like.
    - **References**: links to sources.
 4. **Add** an optional `scripts/` folder with executable code.
-5. **Register** the skill in `skills.md` index.
+5. **Register** the skill in `skills.md` index in both the Human Table and the Machine YAML index (A4 format: `name`, `path`, `description`, `version`, `aliases`).
 6. **Bump** the skills index version.
 
 ## 2. Update A Skill
@@ -36,7 +36,7 @@ links:
 1. **Locate** the skill folder.
 2. **Edit** `SKILL.md` (and `scripts/` if needed).
 3. **Bump** the `version` in the frontmatter.
-4. **Update** the `skills.md` index if the description/path changed.
+4. **Update** the `skills.md` index (both human table and machine YAML block) if the description/path/version changed.
 5. **Note** the change in the skill's changelog (if present).
 
 ## 3. Delete A Skill
@@ -44,7 +44,7 @@ links:
 1. **Confirm** with the user before deleting (see
    `../workflows/user/user_input.md`).
 2. **Remove** the skill folder.
-3. **Remove** the entry from the `skills.md` index.
+3. **Remove** the entry from both the human table and machine YAML block in `skills.md`.
 4. **Bump** the skills index version.
 
 ## 4. Import From A Hub (Pull-Adapt-Delete)
@@ -75,6 +75,7 @@ When importing a skill from an external hub or repository, follow the
   from `skills/_staging/`.
 - The `_staging/` directory should always be empty except during active
   import work.
+- Note: Automated `SkillStagingHook` blocks edits to `skills.md` if `_staging/` is not purged.
 
 ### Verification Checklist
 - [ ] Staged source pulled to `skills/_staging/`
@@ -83,11 +84,11 @@ When importing a skill from an external hub or repository, follow the
 - [ ] Internal links updated to point to our files
 - [ ] Hub-specific instructions removed
 - [ ] Original source credited in References
-- [ ] Skill registered in `skills.md` index
+- [ ] Skill registered in `skills.md` (Human table and Machine YAML index)
 - [ ] Staged source deleted from `_staging/`
 
 ## Expected Outputs
-- Skills library stays consistent and indexed.
+- Skills library stays consistent and dual-format indexed.
 - Every skill has a valid `SKILL.md` and optional `scripts/`.
 - The `skills.md` index is always up to date.
 - `_staging/` is empty except during active imports.
