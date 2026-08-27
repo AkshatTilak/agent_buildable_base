@@ -1,6 +1,6 @@
 ---
-version: 1.3.0
-updated: 2026-08-25
+version: 1.4.0
+updated: 2026-08-27
 id: skills
 links:
   - ../workflows/user/find_skills.md
@@ -58,6 +58,7 @@ my-skill/
 | Practice — code review | `practice/code_review/SKILL.md` | Structured code review against standards and spec. |
 | Practice — verification before completion | `practice/verification_before_completion/SKILL.md` | Mandatory pre-completion verification gate. |
 | Research — web research | `research/web_research/SKILL.md` | Structured web research with primary-source citations. |
+| Research — architecture & design | `research/architecture_research/SKILL.md` | Curated awesome-lists & GitHub trending for HLD/LLD design research. |
 | Backend — API design | `backend/api_design/SKILL.md` | REST and GraphQL API design principles. |
 | Backend — domain modeling | `backend/domain_modeling/SKILL.md` | Ubiquitous language, domain glossary, and ADRs. |
 
@@ -132,8 +133,13 @@ skills:
   - name: research_web_research
     path: research/web_research/SKILL.md
     description: Structured web research with primary-source citations.
-    version: 1.0.0
+    version: 2.1.0
     aliases: ["research/web_research", "web_research"]
+  - name: research_architecture_research
+    path: research/architecture_research/SKILL.md
+    description: Curated awesome-lists & GitHub trending for HLD/LLD design research.
+    version: 1.0.0
+    aliases: ["research/architecture_research", "architecture_research", "design_research"]
   - name: backend_api_design
     path: backend/api_design/SKILL.md
     description: REST and GraphQL API design principles.

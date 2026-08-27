@@ -1,8 +1,9 @@
 ---
-version: 2.0.0
-updated: 2026-08-18
+version: 2.1.0
+updated: 2026-08-27
 id: skill_research_web_research
 links:
+  - ../architecture_research/SKILL.md
   - ../../../references/references.md
   - ../../../references/resource/
   - ../../../workflows/planning/planning.md
@@ -56,9 +57,16 @@ reads.
 Prioritize sources in this order:
 1. **Official documentation**: the library/tool/framework's own docs.
 2. **Primary repositories**: source code, issues, release notes.
-3. **Reputable technical sources**: established blogs, conference talks,
+3. **Curated awesome-lists & GitHub trending** (for architecture/design tasks —
+   see `../architecture_research/SKILL.md` for the full protocol):
+   - `https://github.com/topics/awesome` — domain discovery hub.
+   - `https://github.com/binhnguyennus/awesome-scalability` — scalability &
+     reliability patterns.
+   - `https://github.com/vinta/awesome-python` — Python library selection.
+   - `https://github.com/trending?since=weekly` — momentum signals.
+4. **Reputable technical sources**: established blogs, conference talks,
    standards bodies.
-4. **Community knowledge**: Stack Overflow, GitHub discussions, Discord (treat
+5. **Community knowledge**: Stack Overflow, GitHub discussions, Discord (treat
    as supplementary, not authoritative).
 
 ### 4. Execute Research per Subtopic

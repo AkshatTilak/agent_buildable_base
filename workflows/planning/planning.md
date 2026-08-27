@@ -1,12 +1,14 @@
 ---
-version: 1.1.0
-updated: 2026-08-21
+version: 1.2.0
+updated: 2026-08-27
 id: planning
 links:
   - ../../design/design.md
   - ../../features/features.md
   - ../../tasks/tasks.md
   - ../user/user_input.md
+  - ../../skills/research/architecture_research/SKILL.md
+  - ../../skills/research/web_research/SKILL.md
 ---
 
 # Planning — Research, Options & Recommendations
@@ -22,7 +24,26 @@ links:
 
 ## 2. Research First & Open-Source Reference Ingestion
 
-- **Open-source & GitHub patterns**: search and review reputable open-source repositories and template architectures for prior art.
+Before proposing any architecture, run the research sequence below. Use
+`../../skills/research/architecture_research/SKILL.md` for design/HLD tasks and
+`../../skills/research/web_research/SKILL.md` for library/API tasks.
+
+### Required Starting Sources (Architecture/Design)
+
+| Source | URL | When to Use |
+|--------|-----|-------------|
+| Awesome Topics Hub | `https://github.com/topics/awesome` | Find domain-specific curated lists |
+| Awesome Scalability | `https://github.com/binhnguyennus/awesome-scalability` | Scalability, reliability, perf patterns |
+| Awesome Python | `https://github.com/vinta/awesome-python` | Python library selection |
+| GitHub Trending (weekly) | `https://github.com/trending?since=weekly` | Community momentum signals |
+| GitHub Search (stars) | `https://github.com/search?type=repositories&sort=stars` | Direct prior art |
+
+These are **starting points**, not the only sources. Always cross-validate with
+official docs and primary repos. See `architecture_research/SKILL.md` for the
+full research protocol.
+
+### Additional Research Channels
+
 - **Web research**: consult official documentation, RFCs, and reputable sources.
 - **Playwright / browser / crawl**: verify behavior against real pages/APIs where relevant.
 - **Workspace search**: check `references/` and existing code for prior art before proposing anything new.

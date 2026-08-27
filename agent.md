@@ -44,7 +44,7 @@ restructures the tree. Every layer links; nothing is duplicated.
 - **Cold-Start Protocol**: If a session begins with no prior conversation history or you are freshly initialized, **explore the active project's ABB workspace first** (`STACK.md`, `tasks/goal/goal.md`, `tasks/tasks.md`, `features/features.md`, `references/`) before executing modifying actions or answering stateful project queries. Establish full situational awareness: current milestone, active subtasks, tech stack, and verification gates.
 - On every interaction, consult `workflows/router.md` to classify the user prompt and route to the best workflow.
 - Consult `USER_PREFERENCES.md` for user preferences before executing.
-- **Skill Selection**: Inspect `skills/skills.md` (or available skills) and adopt relevant skills matching the task type (e.g. `practice/tdd` for testing/code, `ui/frontend_design` for interfaces, `practice/verification_before_completion` for verification).
+- **Skill Selection**: Inspect `skills/skills.md` (or available skills) and adopt relevant skills matching the task type (e.g. `practice/tdd` for testing/code, `ui/frontend_design` for interfaces, `practice/verification_before_completion` for verification, `research/architecture_research` for design/HLD research).
 
 ### 1. Project Initialization & Open-Source Template Ingestion (Adhere to `workflows/planning/init_project.md`)
 - Run the `init_project` entry point.
@@ -61,6 +61,7 @@ restructures the tree. Every layer links; nothing is duplicated.
 
 ### 3. System Design — The DDS (Adhere to `design/design.md`)
 - **Design the DDS BEFORE creating tasks.** Tasks are derived from designs, never the other way around.
+- **Architecture Research First**: Before finalising any HLD or LLD, load `skills/research/architecture_research/SKILL.md` and run its research process. Consult the curated awesome-lists (awesome-scalability, awesome-python, GitHub topics/awesome), GitHub trending, and GitHub search to discover proven patterns and reference implementations. These are required starting sources — not the only sources.
 - **HLD** (`design/system/`): architecture, major modules, data flow. Tech stack lives only in `STACK.md`; DB detail lives only in `references/db/` — link, don't copy.
 - **LLD** (`features/*/spec.md`, `design/workflows/`, `design/ux/`): component logic, APIs, data structures, workflows.
 
@@ -85,6 +86,6 @@ As you architect the system, populate the `references/` directory to give downst
 - **Clarification First:** If the user's project idea contains ambiguities or gaps, ask targeted clarifying questions before finalizing architecture (see `workflows/user/user_input.md`).
 - **Risk & Conflict View:** If any part of the project design lacks feasibility, put that into view for the user immediately.
 - **Backward Compatibility Is A Choice:** Ask the user whether to preserve backward compatibility or break it. Never assume silently.
-- **Plan & Open-Source Research:** Before finalizing architecture, research open-source reference patterns/templates and present recommendations (see `workflows/planning/planning.md`).
+- **Plan & Open-Source Research:** Before finalising architecture, load `skills/research/architecture_research/SKILL.md` and research open-source reference patterns. Required starting sources: `https://github.com/topics/awesome` (domain discovery), `https://github.com/binhnguyennus/awesome-scalability` (scalability patterns), `https://github.com/vinta/awesome-python` (Python libs), `https://github.com/trending?since=weekly` (momentum signals). These are starting points — always cross-validate with official docs and primary repos (see `workflows/planning/planning.md`).
 - **Two-Track Verification:** Enforce Track 1 (unit) and Track 2 (integration/E2E) verification defined in `STACK.md` before marking any subtask done.
 - **Respect Conventions:** Follow `CONVENTIONS.md` and `CODING_PHILOSOPHY.md` on all changes.
