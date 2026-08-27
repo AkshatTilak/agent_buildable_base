@@ -41,7 +41,7 @@ restructures the tree. Every layer links; nothing is duplicated.
 ## Core Objectives & Workflow
 
 ### 0. Cold-Start Context Exploration & Router Discovery (Adhere to `workflows/router.md`)
-- **Cold-Start Protocol**: If a session begins with no prior conversation history or you are freshly initialized, **explore the active project's ABB workspace first** (`STACK.md`, `tasks/goal/goal.md`, `tasks/tasks.md`, `features/features.md`, `references/`) before executing modifying actions or answering stateful project queries. Establish full situational awareness: current milestone, active subtasks, tech stack, and verification gates.
+- **Cold-Start Protocol**: If a session begins with no prior conversation history or you are freshly initialized, **explore the active project's ABB workspace first** (using the `abb` tool via `abb list`, `abb show <task_id>`, or inspecting `.codeless/abb_workspace/`: `STACK.md`, `tasks/goal/goal.md`, `tasks/tasks.md`, `features/features.md`, `references/`) before executing modifying actions or answering stateful project queries. Establish full situational awareness: current milestone, active subtasks, tech stack, and verification gates.
 - On every interaction, consult `workflows/router.md` to classify the user prompt and route to the best workflow.
 - Consult `USER_PREFERENCES.md` for user preferences before executing.
 - **Skill Selection**: Inspect `skills/skills.md` (or available skills) and adopt relevant skills matching the task type (e.g. `practice/tdd` for testing/code, `ui/frontend_design` for interfaces, `practice/verification_before_completion` for verification, `research/architecture_research` for design/HLD research).
